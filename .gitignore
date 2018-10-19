@@ -44,3 +44,5 @@ build/web/response.jsp
 build/web/style.css/style.css
 build/web/style.css/userStyle.css
 build/web/user.jsp
+/nbproject/private/
+/build/
