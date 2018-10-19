@@ -24,8 +24,17 @@ Troubleshooting
 
 If you are getting an error with your package name:
 
-	1. Right click the root of the project --> Project Properties
-	2. Categories --> Sources
-	3. Add the source folder in the directory
-	4. Rename the Label as needed
-	5. Remove old package folder
+1. Right click the root of the project --> Project Properties
+2. Categories --> Sources
+3. Add the source folder in the directory
+4. Rename the Label as needed
+5. Remove old package folder
+
+If it is still giving you problems:
+
+1. Right click the Source Packages folder --> Properties
+2. Categories --> Sources
+3. Add Folder
+4. Go up one folder and select the java folder
+5. Rename the Label as needed
+6. Remove old package folder
