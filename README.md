@@ -18,3 +18,14 @@ Steps:
 	5b. Set path for "WEB-INF Content" - if folder is not there create it
 	5c. don't worry about libraries folder for now
 6. Click Finish and test a build
+
+
+Troubleshooting
+
+If you are getting an error with your package name:
+
+	1. Right click the root of the project --> Project Properties
+	2. Categories --> Sources
+	3. Add the source folder in the directory
+	4. Rename the Label as needed
+	5. Remove old package folder
