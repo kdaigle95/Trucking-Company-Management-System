@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Preliminary Personnel View</h1>
-        <%!
+        <%
             Controller ctrl = Controller.getInstance();
         %>
         <table border="1" cellspacing="10" cellpadding="30">
@@ -23,15 +23,25 @@
                 <tr>
                     <th>
                         <%
-//                          out.println(ctrl.getEmployeeID());
-//                          ctrl.getEmployeeFirstName();
-                            
+                            ctrl.GetPersonnelData();
+                            int id = ctrl.getEmployeeID();
+                            out.println(id);
+                        %>
+                    </th>
+                    <th>
+                        <%
+                            ctrl.GetPersonnelData();
                             String name = ctrl.getEmployeeFirstName();
                             out.println(name);
                         %>
                     </th>
-                    <th></th>
-                    <th></th>
+                    <th>
+                        <%
+                            ctrl.GetPersonnelData();
+                            String sirName = ctrl.getEmployeeLastName();
+                            out.println(sirName);
+                        %>
+                    </th>
                     <th></th>
                 </tr>
             </thead>

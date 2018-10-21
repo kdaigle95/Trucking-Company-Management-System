@@ -87,34 +87,18 @@ public final class Database
         }    
     }
     
-    public ResultSet getPersonnel() throws SQLException, NullPointerException
+    public ResultSet getGenericResultSet(String dataQuery) throws SQLException, NullPointerException
     {
-        ResultSet personnelData = null;
+        ResultSet genericResultSet = null;
         
-        //create the query
-        String employeeQuery = "SELECT * FROM Personnel_Data";
-        
-        //create the java statment
-        //Statement st = null;
         try {           
             Statement st = conn.createStatement();
-            personnelData = st.executeQuery(employeeQuery);
+            genericResultSet = st.executeQuery(dataQuery);
         } 
         catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-
-        
-//        //iterate through the java resultset
-//        while (personnelData.next())
-//        {
-//            int id = personnelData.getInt("id");
-//            String firstName = personnelData.getString("fisrtName");
-//            String middleName = personnelData.getString("middleName");
-//            String lastName = personnelData.getString("lastName");
-//        }
-        
-        return personnelData;
+        return genericResultSet;
     }
 }

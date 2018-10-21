@@ -21,7 +21,7 @@
                    Controller ctrl = Controller.getInstance();
                    ctrl.getDatabase();
                    ctrl.startDatabase();
-                   ctrl.GetPersonnelData();
+                   
                 %>
                 
                 <p class="title">Log in</p>

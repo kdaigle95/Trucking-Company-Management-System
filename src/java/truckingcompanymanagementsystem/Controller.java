@@ -56,27 +56,22 @@ public final class Controller {
     
     public void GetPersonnelData() throws SQLException{
         
-
         ResultSet personnelData = null;
+        //create the query for the whole table (wildcard)
+        String employeeQuery = "SELECT * FROM Personnel_Data";
         try {
-            personnelData = db.getPersonnel();
+            personnelData = db.getGenericResultSet(employeeQuery);
         } 
         catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-//        while (personnelData.next())
-//        {
-//            int id = personnelData.getInt("id");
-//            String firstName = personnelData.getString("fisrtName");
-//            String middleName = personnelData.getString("middleName");
-//            String lastName = personnelData.getString("lastName");
-//        }
-        
-        //m_employeeID = personnelData.getInt("employee_id_number");
+
+       
         personnelData.first();
-        m_firstName = personnelData.getString("first_name");
         m_employeeID = personnelData.getInt("employee_id_number");
+        m_firstName = personnelData.getString("first_name");
+        m_lastName = personnelData.getString("last_name");
+        
     }
     
     //accessors
@@ -91,6 +86,12 @@ public final class Controller {
     {
         System.out.println("you have the employee first name");
         return m_firstName;
+    }
+    
+    public String getEmployeeLastName()
+    {
+        System.out.println("you have the employee last name");
+        return m_lastName;
     }
     
     //mutators
