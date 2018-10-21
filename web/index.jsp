@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import = "truckingcompanymanagementsystem.Controller" %>
+<%@page import = "truckingcompanymanagementsystem.*" %>
+<%@page import = "javax.servlet.http.*,javax.servlet.*" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,8 +17,11 @@
         <h3>"Managing your records for over 10 years"</h3>
         <div class="wrapper"> 
             <form class="login" ACTION="personnel.jsp" METHOD="post">
-                <%!
-                   Controller ctrl = Controller.getInstance(); 
+                <%
+                   Controller ctrl = Controller.getInstance();
+                   ctrl.getDatabase();
+                   ctrl.startDatabase();
+                   ctrl.GetPersonnelData();
                 %>
                 
                 <p class="title">Log in</p>

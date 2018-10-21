@@ -23,16 +23,12 @@ public final class Controller {
    
     
     
-    private Controller (){
-        
-        this.getDatabase();
+    private Controller ()
+    {  
+        //this.getDatabase();
         //use a logging library in future
         System.out.println("Controller Created");
-        try {
-            this.GetPersonnelData();
-        } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
     
     public static Controller getInstance(){
@@ -45,16 +41,22 @@ public final class Controller {
         
     }
     
-    public Database getDatabase(){
+    public void getDatabase()
+    {
+        this.db = Database.getInstance();
+        System.out.println("got the db");
+    }
     
-        db = Database.getInstance();
-        return db;
+    public void startDatabase()
+    {
+        db.startConnection();
+        System.out.println("started connection");
+
     }
     
     public void GetPersonnelData() throws SQLException{
         
-        //this is not long term - this is just to talk about in meeting
-        //Friday @11:00 10/19/18
+
         ResultSet personnelData = null;
         try {
             personnelData = db.getPersonnel();

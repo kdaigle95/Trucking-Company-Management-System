@@ -9,6 +9,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Statement;
 
 /**
  *
@@ -31,7 +32,7 @@ public final class Database
     
     private Database() 
     {    
-       this.startConnection();
+        //constructor
     }
     
     public static Database getInstance() 
@@ -48,14 +49,10 @@ public final class Database
     //Initialize connection with JDBC
     public void startConnection()
     {
-        //ATTENTION!
-        //WE CANNOT USE THIS connectURL FOR PRODUCTION DEPLOYMENT!!!!!!!
-        //connect to a local db for first implementation
-        
         try
         {
             Class.forName(driverName);
-            Connection conn = DriverManager.getConnection(url,username,password);
+            conn = DriverManager.getConnection(url,username,password);
             System.out.println("Driver found");
             System.out.println("Connection Established");
         }
@@ -75,47 +72,39 @@ public final class Database
     
     //Terminate connection wtih JDBC
     public void closeConnection()
-    {
-        
+    {        
         try
         {
             //rset.close();
             //stmt.close();
             conn.close();
-            System.out.println("Connection Closed");
-            
+            System.out.println("Connection Closed");            
         }
         //would put an SQL exception catcher here, but I'm not sure what we are doing with db
         catch(Exception ex)
         {
             System.out.println("Connection not closed");
-        }
-    
+        }    
     }
     
-    public ResultSet getPersonnel() throws SQLException
+    public ResultSet getPersonnel() throws SQLException, NullPointerException
     {
         ResultSet personnelData = null;
         
         //create the query
-        String employeeQuery = "SELECT * FROM personnel_data";
+        String employeeQuery = "SELECT * FROM Personnel_Data";
         
         //create the java statment
-        Statement st = null;
-        try {
-            st = conn.createStatement();
-        } 
-        catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            //execute the query, and get the result set
+        //Statement st = null;
+        try {           
+            Statement st = conn.createStatement();
             personnelData = st.executeQuery(employeeQuery);
         } 
         catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+
         
 //        //iterate through the java resultset
 //        while (personnelData.next())
