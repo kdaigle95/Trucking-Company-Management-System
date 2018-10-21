@@ -1,16 +1,12 @@
 /*
  *import java.sql.Statement;
  */
+
 package truckingcompanymanagementsystem;
 
 import java.util.*;
 import java.io.*;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,22 +18,30 @@ import java.util.logging.Logger;
 //final keyword makes it act like singleton
 //which means it won't inherit to other classes
 
-public final class Database {
+public final class Database 
+{
     
-    static private Connection conn = null;
+    private static String url = "jdbc:mysql://tcms.cidg670ru4vm.us-east-1.rds.amazonaws.com:3306/TCMS_Database?useSSL=false";
+    //private static String localUrl = "jdbc:mysql://localhost:3306/tcms?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false";
+    private static String driverName = "com.mysql.cj.jdbc.Driver";
+    private static String username = "masteruser";
+    private static String password = "thecakeisalie";
+    private static Connection conn;
     
-    private Database() {
-        
+    
+    private Database() 
+    {    
        this.startConnection();
     }
     
-    public static Database getInstance() {
+    public static Database getInstance() 
+    {
         return DatabaseHolder.INSTANCE;
     }
     
     //class to hold the instance of the database so it can be retrieved
-    private static class DatabaseHolder {
-
+    private static class DatabaseHolder 
+    { 
         private static final Database INSTANCE = new Database();
     }
     
@@ -47,37 +51,44 @@ public final class Database {
         //ATTENTION!
         //WE CANNOT USE THIS connectURL FOR PRODUCTION DEPLOYMENT!!!!!!!
         //connect to a local db for first implementation
-        String connectURL = "jdbc:mysql://localhost:3306/tcms?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false";
         
         try
         {
-            conn = DriverManager.getConnection(connectURL, "user", "pwd3");
+            Class.forName(driverName);
+            Connection conn = DriverManager.getConnection(url,username,password);
+            System.out.println("Driver found");
             System.out.println("Connection Established");
         }
         
-        catch(SQLException e)
+        catch(SQLException ex)
         {
-            e.printStackTrace();
+            ex.printStackTrace();
             System.out.println("Connection Failed");
+        }
+        
+        catch(ClassNotFoundException ex)
+        {
+            ex.printStackTrace();
+            System.out.println("Driver not found");
         }
     }
     
     //Terminate connection wtih JDBC
     public void closeConnection()
     {
-        //disconnect to a local db for first implementation
-        //example disconnect from local db - the ? would be the db
-        String connectURL = "jdbc:?://localhost:port/TCMS";
         
         try
         {
+            //rset.close();
+            //stmt.close();
+            conn.close();
             System.out.println("Connection Closed");
             
         }
         //would put an SQL exception catcher here, but I'm not sure what we are doing with db
-        catch(Exception e)
+        catch(Exception ex)
         {
-            
+            System.out.println("Connection not closed");
         }
     
     }
