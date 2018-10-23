@@ -23,7 +23,7 @@ public final class Controller {
    
     
     
-    private Controller ()
+    private Controller()
     {  
         //this.getDatabase();
         //use a logging library in future
