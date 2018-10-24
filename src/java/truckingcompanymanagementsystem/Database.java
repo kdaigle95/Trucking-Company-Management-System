@@ -100,5 +100,5 @@ public final class Database
         }
         
         return genericResultSet;
-    }
+    }    
 }

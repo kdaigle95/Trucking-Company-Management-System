@@ -16,12 +16,11 @@
         <h1>Trucking Company Management System</h1>
         <h3>"Managing your records for over 10 years"</h3>
         <div class="wrapper"> 
-            <form class="login" ACTION="personnel.jsp" METHOD="post">
+            <form class="login" ACTION="FullPageTabs.jsp" METHOD="post">
                 <%
                    Controller ctrl = Controller.getInstance();
                    ctrl.getDatabase();
                    ctrl.startDatabase();
-                   
                 %>
                 
                 <p class="title">Log in</p>
