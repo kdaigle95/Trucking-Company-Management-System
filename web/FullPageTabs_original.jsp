@@ -34,23 +34,9 @@
         <div id="Shipping" class="tabcontent">
             <h3>Shipping</h3>
             <p>Incoming and Outgoing Shipments</p>
-
             <div class="row">
-                <div class="column" style="background-color: #aaa;">
-                    <h2>Column 1 - Incoming Shipping</h2>
-                    <button class="accordion">Incoming Section</button>
-                    <div class ="panel">
-                        <p>Table stuff</p>
-                    </div>
-                    
-                </div>
-                <div class="column" style="background-color: #bbb;">
-                    <h2>Column 2 - Outgoing Shipping</h2>
-                    <button class="accordion">Outgoing Section</button>
-                    <div class ="panel">
-                        <p>Table stuff</p>
-                    </div>
-                </div>
+                <div class="column"></div>
+                <div class="column"></div>
             </div>
         </div>
         
