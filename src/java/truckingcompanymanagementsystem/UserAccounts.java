@@ -9,6 +9,8 @@ import java.io.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -17,8 +19,25 @@ import java.util.logging.Logger;
 
 public class UserAccounts 
 {
+    
+    private UserAccounts()
+    {
+        //constructor
+    }
+    
+    public static UserAccounts getInstance() 
+    {
+        return UserAccountsHolder.INSTANCE;
+    }
+    
+    
+     private static class UserAccountsHolder 
+    { 
+        private static final UserAccounts INSTANCE = new UserAccounts();
+    }
+     
     private Database db;
-   
+    
     static class User
     {
         static String username;
@@ -28,26 +47,45 @@ public class UserAccounts
     
     
     
-    private boolean userAuthentication(String username, String password) throws SQLException
+    public boolean userAuthentication(String username, String password)
     {
         
         ResultSet acceptable_username = null;
         String acceptable_username_query = "SELECT users FROM users";
+        String url = "jdbc:mysql://tcms.cidg670ru4vm.us-east-1.rds.amazonaws.com:3306/TCMS_Database?useSSL=false";
+        String driverName = "com.mysql.cj.jdbc.Driver";
+        String connectionusername = "masteruser";
+        String connectionpassword = "thecakeisalie";
+        Connection conn = null;
         try
         {
-            acceptable_username = db.getGenericResultSet(acceptable_username_query);
+           
+           
+            Class.forName(driverName);
+            conn = DriverManager.getConnection(url,connectionusername,connectionpassword);
+            Statement st = conn.createStatement();
+            acceptable_username = st.executeQuery(acceptable_username_query);
+
+
+            //acceptable_username = db.getGenericResultSet(acceptable_username_query);
         }
         catch(SQLException ex)
         {
             Logger.getLogger(UserAccounts.class.getName()).log(Level.SEVERE,null,ex);
         }
-        
+        catch(ClassNotFoundException ex)
+        {
+            
+        }
         boolean found = false;
         boolean user_authenticated = false;
-        
+        try
+        {
         while(acceptable_username.next())
         {
-            if(username == acceptable_username.getString("users"))
+            String database_username = acceptable_username.getString("users");            
+            
+            if(username.equals(database_username))
             {
                 found = true;
                 break;
@@ -56,13 +94,31 @@ public class UserAccounts
         
         if(found)
         {
+            
             ResultSet acceptable_password = null;
-            acceptable_password = db.getGenericResultSet("SELECT pass FROM Passwords WHERE users = '"+username+"'");
-            if(password == acceptable_password.getString("passwords"))
+            Statement st = conn.createStatement();
+            acceptable_password = st.executeQuery("SELECT passwords FROM users WHERE users = '"+username+"'");   
+            //acceptable_password = db.getGenericResultSet("SELECT pass FROM Passwords WHERE users = '"+username+"'");
+            while(acceptable_password.next())
             {
-                 user_authenticated = true;
+                System.out.println(password);
+                System.out.println();
+                System.out.println(acceptable_password);
+                String database_password = acceptable_password.getString("passwords");
+                if(password.equals(database_password))
+                {
+                    user_authenticated = true;
+                }
             }
+          
         } 
+        
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(UserAccounts.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        
         return user_authenticated;
     }
 }
