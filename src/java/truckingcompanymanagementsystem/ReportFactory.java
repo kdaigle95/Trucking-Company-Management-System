@@ -57,5 +57,22 @@ public class ReportFactory {
         return truckReport;
     }
     
+    public ResultSet makeMonthlyMaintenanceReport(String startDate, String endDate)
+    {
+        ResultSet monthlyMaintReport = null;
+        try 
+        {
+            monthlyMaintReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
+                    + "WHERE date BETWEEN " + startDate + " AND " + endDate + 
+                    "ORDER BY date ASC");
+        }
+        catch (SQLException e)
+        {
+            //do something
+        }
+        return monthlyMaintReport;
+        
+    }
+    
 
 }
