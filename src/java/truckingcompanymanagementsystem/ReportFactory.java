@@ -42,5 +42,20 @@ public class ReportFactory {
         return payrollReport;
     }
     
+    public ResultSet makeTruckMaintenanceReport(int truckID)
+    {
+        ResultSet truckReport = null;
+        try 
+        {
+            truckReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
+                    + "WHERE truck_id = " + truckID + " ORDER BY date ASC");
+        }
+        catch (SQLException e)
+        {
+            //do something
+        }
+        return truckReport;
+    }
     
+
 }
