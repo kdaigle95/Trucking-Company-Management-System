@@ -63,8 +63,8 @@ public class ReportFactory {
         try 
         {
             monthlyMaintReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
-                    + "WHERE date BETWEEN " + startDate + " AND " + endDate + 
-                    "ORDER BY date ASC");
+                    + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate + 
+                    "\" ORDER BY date ASC");
         }
         catch (SQLException e)
         {
