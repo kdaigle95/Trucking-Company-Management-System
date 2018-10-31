@@ -1,8 +1,17 @@
 # Trucking-Company-Management-System
 CS499 senior project
 
+NetBeans IDE 8.2
+_______________________________________________________________________________________________________
+Library files:
+	mysql-connector-java-8.0.12.jar
+		https://www.mysql.com/products/connector/
+
 When pulling down master, you will have to create a new netbeans project from exisitng sources.
-When you start with folders --> (hidden) .git, src, web, .gitignore, and this readme.
+When you start, you should see the folders --> (hidden) .git, src, web, .gitignore, and this readme.
+
+________________________________________________________________________________________________________
+If you cannot open the project in Netbeans:
 
 Steps:
 1. Create New Project
@@ -21,6 +30,7 @@ Steps:
 
 
 Troubleshooting
+_________________________________________________________________________________________________________
 
 If you are getting an error with your package name:
 
@@ -30,7 +40,7 @@ If you are getting an error with your package name:
 4. Rename the Label as needed
 5. Remove old package folder
 
-If it is still giving you problems:
+If you are still having errors with the package name (maybe it wasn't the correct parent folder):
 
 1. Right click the Source Packages folder --> Properties
 2. Categories --> Sources

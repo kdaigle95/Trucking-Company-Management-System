@@ -18,56 +18,26 @@
         <%
             Controller ctrl = Controller.getInstance();
         %>
-        <table border="1" cellspacing="10" cellpadding="30">
-            <thead>
-                <tr>
-                    <th>
-                        <%
-                            ctrl.GetPersonnelData();
-                            int id = ctrl.getEmployeeID();
-                            out.println(id);
-                        %>
-                    </th>
-                    <th>
-                        <%
-                            ctrl.GetPersonnelData();
-                            String name = ctrl.getEmployeeFirstName();
-                            out.println(name);
-                        %>
-                    </th>
-                    <th>
-                        <%
-                            ctrl.GetPersonnelData();
-                            String sirName = ctrl.getEmployeeLastName();
-                            out.println(sirName);
-                        %>
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td> 
+        <div class="tabtable">
+            <ul class="tabs">
+                <li><a href="#tab1">Tab 1</a></li>
+                <li><a href="#tab2">Tab 2</a></li>
+                <li><a href="#tab3">Tab 3</a></li>
+            </ul>
+            <div class="tabcontent">
+                <div id="tab1" class="tab">
+                    Tab 1 Contents
+                </div>
+                <div id="tab2" class="tab">
+                    Tab 2 Contents
+                </div>
+                <div id="tab3" class="tab">
+                    Tab 3 Contents
+                </div>
+            </div>
+        </div>
 
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+
 
     </body>
 </html>
