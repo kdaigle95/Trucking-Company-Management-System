@@ -18,14 +18,7 @@
         <h1>Trucking Company Management System</h1>
         <h3>"Managing your records for over a decade"</h3>
         <div class="wrapper"> 
-            <form class="login" ACTION="personnel.jsp" METHOD="POST">
-                <%
-                   Controller ctrl = Controller.getInstance();
-                   ctrl.getDatabase();
-                   ctrl.startDatabase();
-                   ctrl.getUserAccounts();
-                   ctrl.userLogin();
-                %>
+            <form class="login" ACTION="DataServlet" METHOD="GET">
                 
                 <p class="title">Log in</p>
                 <input type="text" placeholder="Username" autofocus/>

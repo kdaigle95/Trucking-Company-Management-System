@@ -1,111 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package truckingcompanymanagementsystem;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-/**
- *
- * @author justin
- */
-public class Controller extends HttpServlet {
+import java.util.ArrayList;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-        processRequest(request, response); 
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    
-    
 /**
  * @author Andrea
  */
-    private Database db;
-    private UserAccounts ua;
-    //temp member variables just to display
-    private int m_employeeID;
-    private String m_firstName;
-    private String m_middleName;
-    private String m_lastName;
-   
+public final class Controller {
     
-    private Controller()
+    private Database db;
+  
+    
+    //create the arraylist
+    private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
+    private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
+    //dynamic arraylist member variable to hold data for dynamic table population 
+    private PersonnelFactory personFactory = PersonnelFactory.getPersonnelFactory();
+    private OutgoingShippingFactory outgoingShippingFactory = OutgoingShippingFactory.getOutgoingShippingFactory();
+    
+    private Controller ()
     {  
         //this.getDatabase();
         //use a logging library in future
@@ -136,36 +55,12 @@ public class Controller extends HttpServlet {
 
     }
     
-    public void getUserAccounts()
-    {
-        this.ua = UserAccounts.getInstance();
-        System.out.println("got the ua");
-    }
-    
-    public void userLogin()
-    {
-        //these strings are hard coded for testing purposes will be pulled from jsp later
-        String username = "masterTest";
-        String password = "pass";
-        
-        boolean authenticated = ua.userAuthentication(username, password);  
-        if(authenticated == true)
-        {
-            System.out.println("User authenticated");
-        }
-        if(authenticated == false)
-        {
-            System.out.println("User unable to be authenticated");
-        }
-    }
-   
-   
-    
     public void GetPersonnelData() throws SQLException{
         
         ResultSet personnelData = null;
         //create the query for the whole table (wildcard)
         String employeeQuery = "SELECT * FROM Personnel_Data";
+       
         try {
             personnelData = db.getGenericResultSet(employeeQuery);
         } 
@@ -173,41 +68,75 @@ public class Controller extends HttpServlet {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //converting results set into an array list
+        while(personnelData.next()){
+            
+            m_DataResultsArray.add(PersonnelFactory.getPersonnelFactory().createPersonnel(
+                    
+                    personnelData.getString("employee_id_number"),
+                    personnelData.getString("first_name"),
+                    personnelData.getString("middle_name"),
+                    personnelData.getString("last_name"),
+                    personnelData.getString("street_address"),
+                    personnelData.getString("state"),
+                    personnelData.getString("city"),
+                    personnelData.getInt("zip"),
+                    personnelData.getString("home_phone_number"),
+                    personnelData.getString("cell_phone_number"),
+                    personnelData.getInt("years_with_company"),
+                    personnelData.getString("position"),
+                    personnelData.getInt("salary"),
+                    personnelData.getInt("monthly_pay_rate"),
+                    personnelData.getString("assignment")
+                  
+            ));
+            
+        }
        
-        personnelData.first();
-        m_employeeID = personnelData.getInt("employee_id_number");
-        m_firstName = personnelData.getString("first_name");
-        m_lastName = personnelData.getString("last_name");
+    }
+    
+    //method to get the arraylist out of controller
+    public ArrayList<Personnel> getPersonnelList(){
+        return m_DataResultsArray;
+    }
+    
+    /*OutgoingShippingData*/
+    
+   public void GetOutgoingShippingData() throws SQLException{
         
-    }
-    
-    //accessors
-    //_______________________________
-    public int getEmployeeID()
-    {
-        System.out.println("you have the employee ID number");
-        return m_employeeID;
-    }
-    
-    public String getEmployeeFirstName()
-    {
-        System.out.println("you have the employee first name");
-        return m_firstName;
-    }
-    
-    public String getEmployeeLastName()
-    {
-        System.out.println("you have the employee last name");
-        return m_lastName;
-    }
-    
-  
-    //mutators
-    //______________________________
-//    public void empolyeeid()
-//    {
-//        m_empolyeeID = variableTo changeQery;
-//    }
-//    
-}
+        ResultSet outgoingShippingData = null;
+        //create the query for the whole table (wildcard)
+        String outgoingshippingQuery = "SELECT * FROM TCMS_Database.Shipping_Data_Outgoing";
+       
+        try {
+            outgoingShippingData = db.getGenericResultSet(outgoingshippingQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
 
+        //converting results set into an array list
+        while(outgoingShippingData.next()){
+            
+            m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(
+                    
+                    outgoingShippingData.getString("Destination_Company"),
+                    outgoingShippingData.getString("Destination_Company_Address"),
+                    outgoingShippingData.getString("Destination_Company_State"),
+                    outgoingShippingData.getString("Destination_Company_Zip"),
+                    outgoingShippingData.getString("delivery_date")
+     
+            ));
+            
+        }
+       
+    }
+    
+    //method to get the arraylist out of controller
+    public ArrayList<OutgoingShipping> getOutgoingShippingList(){
+        return m_OutgoingShippingDataArray;
+    }
+    
+    
+}
