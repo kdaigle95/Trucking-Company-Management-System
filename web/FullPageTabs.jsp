@@ -148,9 +148,8 @@
                 </c:forEach>
             </table>
         </div>
-        
-            <script src="Javascript/FullPageTabs.js" type="text/javascript"></script>
-            <script src="Javascript/AccordionButton.js" type="text/javascript"></script>
+        <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
+        <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
           
     </body>
 </html>

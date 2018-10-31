@@ -48,20 +48,23 @@ public class DataServlet extends HttpServlet {
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
-        
         ArrayList<OutgoingShipping> outgoingShippingArray;
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
+        
+  
         
         RequestDispatcher view = request.getRequestDispatcher("FullPageTabs.jsp");
         
         response.setContentType("text/html");
        
         request.setAttribute("personnelArray", personnelArray); 
-        //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PersonnelDataServlet");
-        dispatcher.forward(request, response);
-
+        request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+        
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingDataServlet");
+//        dispatcher.forward(request, response);
+//        
+          view.forward(request, response);
         
     }
     
