@@ -17,9 +17,9 @@
         <title>TCMS</title>
     </head>
     <body>
-        <h1>User Page</h1>
+        <h1>Full Access User Page</h1>
 
-        <button class="tablink" onclick="openPage('Home', this, '#042844')">Home</button>
+        <button class="tablink" onclick="openPage('Home', this, '#042844')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Shipping', this, '#042844')" >Shipping</button>
        
@@ -60,7 +60,7 @@
                  
                     <h2>Outgoing Shipments</h2>
                     
-                      <button class="accordion" >Deliveries</button>  
+                    <button class="accordion" href="/OutgoingShippingServlet">Deliveries</button>  
                     
                     <div class ="panel">
                     
@@ -99,12 +99,33 @@
                 </div>            
 
             </div>
-
         </div>
         
         <div id="Equipment" class="tabcontent">
             <h3>Vehicles</h3>
             <p>Vehicle and Maintenance Records</p>
+            <button class="accordion">Vehicle</button> 
+            <div class ="panel">
+                <table class="table">
+                   <th>Vin</th>
+                   <th>Truck Brand</th>
+                   <th>Truck Year</th>
+                   <th>Truck Model</th>
+                   <th>Truck ID</th>
+                   <th>Driver ID</th>
+                   <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
+                   <tr class="tr">                
+                       <td>${vehicleDataArray.m_vin}</td>
+                       <td>${vehicleDataArray.m_truckBrand}</td>
+                       <td>${vehicleDataArray.m_truckYear}</td>
+                       <td>${vehicleDataArray.m_truckModel}</td>
+                       <td>${vehicleDataArray.m_truckID}</td>
+                       <td>${vehicleDataArray.m_driverID}</td>
+                    </tr>    
+                   </c:forEach> 
+                </table>
+
+            </div> 
         </div>
         
         <div id="Personnel" class="tabcontent">

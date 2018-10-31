@@ -52,6 +52,9 @@ public class OutgoingShippingServlet extends HttpServlet {
         RequestDispatcher view = request.getRequestDispatcher("FullPageTabs.jsp");
         view.forward(request, response);
         
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/DataServlet");
+        dispatcher.forward(request, response);
+        
     }
  
 }

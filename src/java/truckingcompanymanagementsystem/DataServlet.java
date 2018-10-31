@@ -48,6 +48,9 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray;
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
+        ArrayList<VehicleData> vehicleDataArray;
+        vehicleDataArray = Controller.getInstance().getVehicleDataList();
+        System.out.println(this);
         
   
         
@@ -55,15 +58,19 @@ public class DataServlet extends HttpServlet {
         
         response.setContentType("text/html");
        
-        request.setAttribute("personnelArray", personnelArray); 
+        request.setAttribute("personnelArray", personnelArray);
+        request.setAttribute("vehicleDataArray", vehicleDataArray);
         //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
         
 //        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PersonnelServlet");
 //        dispatcher.forward(request, response);
         
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
+//        dispatcher.forward(request, response);
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
-        dispatcher.forward(request, response);
-        
+        dispatcher.include(request, response);
+
         view.forward(request, response);
         
     }

@@ -12,7 +12,7 @@ public class VehicleFactory {
     
     }
     
-    public static VehicleFactory getVhicleFactory(){
+    public static VehicleFactory getVehicleFactory(){
         
         if(singletonFactory == null){
             
@@ -31,9 +31,9 @@ public class VehicleFactory {
      * @param driverID
      * @return
      */
-    public VehicleData createVehicle(String vin, String truckBrand, int truckYear, String truckModel, int driverID){
+    public VehicleData createVehicle(String vin, String truckBrand, int truckYear, String truckModel, int truckID, int driverID){
         
-        return new VehicleData(vin, truckBrand, truckYear, truckModel, driverID);
+        return new VehicleData(vin, truckBrand, truckYear, truckModel, truckID, driverID);
         
     }
 }

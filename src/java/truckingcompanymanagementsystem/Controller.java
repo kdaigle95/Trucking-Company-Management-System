@@ -20,6 +20,8 @@ public final class Controller {
     //create the arraylist
     private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
     private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
+    private ArrayList<VehicleData> m_VehicleDataArray = new ArrayList<>();
+    
     //dynamic arraylist member variable to hold data for dynamic table population 
     private PersonnelFactory personFactory = PersonnelFactory.getPersonnelFactory();
     private OutgoingShippingFactory outgoingShippingFactory = OutgoingShippingFactory.getOutgoingShippingFactory();
@@ -138,5 +140,40 @@ public final class Controller {
         return m_OutgoingShippingDataArray;
     }
     
+    public void GetVehicleData() throws SQLException{
+        
+                ResultSet vehicleData = null;
+        //create the query for the whole table (wildcard)
+        String vehicleDataQuery = "SELECT * FROM TCMS_Database.vehicle_data;";
+       
+        try {
+            vehicleData = db.getGenericResultSet(vehicleDataQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
+        //converting results set into an array list
+        while(vehicleData.next()){
+            
+       
+        m_VehicleDataArray.add(VehicleFactory.getVehicleFactory().createVehicle(
+                    vehicleData.getString("vin"),
+                    vehicleData.getString("truck_brand"),
+                    vehicleData.getInt("truck_year"),
+                    vehicleData.getString("truck_model"),
+                    vehicleData.getInt("truck_id"),
+                    vehicleData.getInt("driver_id")
+
+                ));
+
+        }
+    }
+    
+    
+    public ArrayList<VehicleData> getVehicleDataList(){
+        return m_VehicleDataArray;
+    }
     
 }

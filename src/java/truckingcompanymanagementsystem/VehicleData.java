@@ -14,6 +14,7 @@ public class VehicleData {
     private String m_truckBrand;
     private int m_truckYear;
     private String m_truckModel;
+    private int m_truckID;
     private int m_driverID;
     
     //Default Constructor
@@ -22,15 +23,18 @@ public class VehicleData {
         this.m_truckBrand = "tonka";
         this.m_truckYear = 2018;
         this.m_truckModel = "tonka3000";
+        this.m_truckID = 9999;
         this.m_driverID = 11111111;
     }
     
-    public VehicleData(String m_vin, String m_truckBrand, int m_truckYear, String m_truckModel, int m_driverID){
+    public VehicleData(String m_vin, String m_truckBrand, int m_truckYear, String m_truckModel, int m_truckID, int m_driverID){
         this.m_vin = m_vin;
         this.m_truckBrand = m_truckBrand;
         this.m_truckYear = m_truckYear;
         this.m_truckModel = m_truckModel;
-    }
+        this.m_truckID = m_truckID;
+        this.m_driverID = m_driverID;
+    }   
 
     public String getM_vin() {
         return m_vin;
@@ -64,6 +68,14 @@ public class VehicleData {
         this.m_truckModel = m_truckModel;
     }
 
+    public int getM_truckID() {
+        return m_truckID;
+    }
+
+    public void setM_truckID(int m_truckID) {
+        this.m_truckID = m_truckID;
+    }
+    
     public int getM_driverID() {
         return m_driverID;
     }
