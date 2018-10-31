@@ -36,7 +36,8 @@ public class UserAccounts
         private static final UserAccounts INSTANCE = new UserAccounts();
     }
      
-    private Database db;
+
+    Database connection = Database.getInstance();
     
     static class User
     {
@@ -52,33 +53,19 @@ public class UserAccounts
         User CurrentUser = new User();
         ResultSet acceptable_username = null;
         String acceptable_username_query = "SELECT users FROM users";
-        String url = "jdbc:mysql://tcms.cidg670ru4vm.us-east-1.rds.amazonaws.com:3306/TCMS_Database?useSSL=false";
-        String driverName = "com.mysql.cj.jdbc.Driver";
-        String connectionusername = "masteruser";
-        String connectionpassword = "thecakeisalie";
-        Connection conn = null;
         try
         {
-           
-           
-            Class.forName(driverName);
-            conn = DriverManager.getConnection(url,connectionusername,connectionpassword);
-            Statement st = conn.createStatement();
-            acceptable_username = st.executeQuery(acceptable_username_query);
-
-            //db.startConnection();
-            //acceptable_username = db.getGenericResultSet(acceptable_username_query);
+            connection.startConnection();
+            acceptable_username = connection.getGenericResultSet(acceptable_username_query);
         }
         catch(SQLException ex)
         {
             Logger.getLogger(UserAccounts.class.getName()).log(Level.SEVERE,null,ex);
         }
-        catch(ClassNotFoundException ex)
-        {
-            
-        }
+
         boolean found = false;
         boolean user_authenticated = false;
+        
         try
         {
         while(acceptable_username.next())
@@ -95,10 +82,8 @@ public class UserAccounts
         if(found)
         {
             
-            ResultSet acceptable_password = null;
-            Statement st = conn.createStatement();
-            acceptable_password = st.executeQuery("SELECT passwords FROM users WHERE users = '"+username+"'");   
-            //acceptable_password = db.getGenericResultSet("SELECT pass FROM Passwords WHERE users = '"+username+"'");
+            ResultSet acceptable_password = null;   
+            acceptable_password = connection.getGenericResultSet("SELECT passwords FROM users WHERE users = '"+username+"'");
             while(acceptable_password.next())
             {
                 String database_password = acceptable_password.getString("passwords");
