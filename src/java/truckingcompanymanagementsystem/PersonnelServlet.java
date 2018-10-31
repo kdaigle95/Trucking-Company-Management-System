@@ -17,12 +17,12 @@ import javax.servlet.http.*;
 
 
 
-public class PersonnelDataServlet extends HttpServlet {
+public class PersonnelServlet extends HttpServlet {
 
     //private static final long serialVersionUID = 1L;
     
-    private PersonnelDataServlet testdemoservlet;
-    private OutgoingShippingDataServlet shippingservlet;
+    private PersonnelServlet testdemoservlet;
+    private OutgoingShippingServlet shippingservlet;
     
     
     @Override
@@ -57,8 +57,10 @@ public class PersonnelDataServlet extends HttpServlet {
         request.setAttribute("personnelArray", personnelArray); 
         //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
         
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingDataServlet");
-        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingDataServlet");
+//        dispatcher.forward(request, response);
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServelt");
+//        dispatcher.include(request, response);
         
         view.forward(request, response);
         

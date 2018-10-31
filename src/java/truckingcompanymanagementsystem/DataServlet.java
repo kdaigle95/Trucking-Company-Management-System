@@ -25,10 +25,7 @@ import javax.servlet.http.*;
 public class DataServlet extends HttpServlet {
     
     private DataServlet dataservlet;
-    //private PersonnelDataServlet testdemoservlet;
-    //private OutgoingShippingDataServlet shippingservlet;
 
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -59,12 +56,15 @@ public class DataServlet extends HttpServlet {
         response.setContentType("text/html");
        
         request.setAttribute("personnelArray", personnelArray); 
-        request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+        //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
         
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingDataServlet");
+//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PersonnelServlet");
 //        dispatcher.forward(request, response);
-//        
-          view.forward(request, response);
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
+        dispatcher.forward(request, response);
+        
+        view.forward(request, response);
         
     }
     

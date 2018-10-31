@@ -3,6 +3,8 @@
  */
 package truckingcompanymanagementsystem;
 
+import java.io.*;
+import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,9 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Andrea
  */
-public class OutgoingShippingDataServlet extends HttpServlet {
+public class OutgoingShippingServlet extends HttpServlet {
 
-    private OutgoingShippingDataServlet shippingservlet;
+    private OutgoingShippingServlet shippingservlet;
     
     /**
      *
