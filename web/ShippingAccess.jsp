@@ -17,19 +17,24 @@
         <title>TCMS</title>
     </head>
     <body>
-        <h1>Full Access User Page</h1>
-
+        <h1>Shipping Access User</h1>
+        <p id = "date"></p>
+        <script>
+            var d = new Date();
+            document.getElementById("date").innerHTML = d;
+        </script>
         <button class="tablink" onclick="openPage('Home', this, '#042844')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Shipping', this, '#042844')" >Shipping</button>
        
         <button class="tablink" onclick="openPage('Equipment', this, '#042844')">Equipment</button>
         
-        <button class="tablink" onclick="openPage('Personnel', this, '#042844')">Personnel</button>
+        <button class="tablink" onclick="openPage('Maintenance', this, '#042844')">Maintenance</button>
 
         <div id="Home" class="tabcontent">
             <h3>Home</h3>
-            <p>Home is where the application works....</p>
+            <p>Company Info</p>
+            
         </div>
         
         <div id="Shipping" class="tabcontent" >
@@ -37,7 +42,6 @@
                 <div class="column" style="background-color: #aaa;">
                     <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
-                    
                     <div class ="panel">
                         <table class="table" border='1'>
                             <th>Source Company</th>
@@ -57,13 +61,9 @@
                     <button class="purchaseOrderButton">Purchase Order</button>
                 </div>
                 <div class="column" style="background-color: #bbb;">
-                 
                     <h2>Outgoing Shipments</h2>
-                    
-                    <button class="accordion" href="/OutgoingShippingServlet">Deliveries</button>  
-                    
-                    <div class ="panel">
-                    
+                    <button class="accordion">Deliveries</button>
+                    <div class ="panel">                  
                         <table class="table">
                            <th>Destination Company</th>
                            <th>Address</th>
@@ -96,79 +96,79 @@
                             <a href="#">Custom Report</a>
                         </div>
                     </div>
-                </div>            
-
+                </div>
             </div>
         </div>
         
         <div id="Equipment" class="tabcontent">
             <h3>Vehicles</h3>
-            <p>Vehicle and Maintenance Records</p>
-            <button class="accordion">Vehicle</button> 
-            <div class ="panel">
-                <table class="table">
-                   <th>Vin</th>
-                   <th>Truck Brand</th>
-                   <th>Truck Year</th>
-                   <th>Truck Model</th>
-                   <th>Truck ID</th>
-                   <th>Driver ID</th>
-                   <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
-                   <tr class="tr">                
-                       <td>${vehicleDataArray.m_vin}</td>
-                       <td>${vehicleDataArray.m_truckBrand}</td>
-                       <td>${vehicleDataArray.m_truckYear}</td>
-                       <td>${vehicleDataArray.m_truckModel}</td>
-                       <td>${vehicleDataArray.m_truckID}</td>
-                       <td>${vehicleDataArray.m_driverID}</td>
-                    </tr>    
-                   </c:forEach> 
-                </table>
+            <div class="row">
+                <div class="column" style="background-color: #aaa;">
+                    <h3>Vehicles</h3>
+                    <button class="accordion">Vehicle</button> 
+                    <div class ="panel">
+                        <table class="table">
+                           <th>Vin</th>
+                           <th>Truck Brand</th>
+                           <th>Truck Year</th>
+                           <th>Truck Model</th>
+                           <th>Truck ID</th>
+                           <th>Driver ID</th>
+                           <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
+                           <tr class="tr">                
+                               <td>${vehicleDataArray.m_vin}</td>
+                               <td>${vehicleDataArray.m_truckBrand}</td>
+                               <td>${vehicleDataArray.m_truckYear}</td>
+                               <td>${vehicleDataArray.m_truckModel}</td>
+                               <td>${vehicleDataArray.m_truckID}</td>
+                               <td>${vehicleDataArray.m_driverID}</td>
+                            </tr>    
+                           </c:forEach> 
+                        </table>
+                    </div>       
+                </div>
+            </div>
 
-            </div> 
         </div>
-        
-        <div id="Personnel" class="tabcontent">
-            <h3>Personnel</h3>
-            <p>Who we are.</p>
-            <table >
-                <th>Employee ID</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Street Address</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Zip</th>
-                <th>Home Phone</th>
-                <th>Cell Phone</th>
-                <th>Years at Company</th>
-                <th>Position</th>
-                <th>Salary</th>
-                <th>Pay Rate</th>
-                <th>Assignment</th>
-                
-                <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
-                <tr class="tr">                
-                    <td>${personnelArray.m_employeeID}</td>
-                    <td>${personnelArray.m_firstName}</td>
-                    <td>${personnelArray.m_middleName}</td>
-                    <td>${personnelArray.m_lastName}</td>
-                    <td>${personnelArray.m_streetAddress}</td>
-                    <td>${personnelArray.m_state}</td>
-                    <td>${personnelArray.m_city}</td>
-                    <td>${personnelArray.m_zip}</td>
-                    <td>${personnelArray.m_homePhone}</td>
-                    <td>${personnelArray.m_cellPhone}</td>
-                    <td>${personnelArray.m_years}</td>
-                    <td>${personnelArray.m_position}</td>
-                    <td>${personnelArray.m_salary}</td>
-                    <td>${personnelArray.m_payrate}</td>
-                    <td>${personnelArray.m_assignment}</td>
-                 </tr>    
-                </c:forEach>
-            </table>
+                    
+        <div id="Maintenance" class="tabcontent">
+            <h3>Maintenance Records</h3>
+            <div class="row">
+                <div class="column" style="background-color: #aaa;">
+                    <button class="accordion">Routine Maintenance Records</button> 
+                    <div class ="panel">
+                        <table class="table">
+                           <th>Service Number</th>
+                           <th>Service Type</th>
+                           <th>Date Serviced</th>
+                           <c:forEach items="${routineMaintenanceArray}" var="vehicleDataArray" begin="0">
+                           <tr class="tr">                
+                               <td>${routineMaintenanceArray.m_serviceNo}</td>
+                            </tr>    
+                           </c:forEach> 
+                        </table>
+                    </div>       
+                </div>
+            </div>
+            <div class="row">
+                <div class="column" style="background-color: #aaa;">
+                    <button class="accordion">Repair Records</button> 
+                    <div class ="panel">
+                        <table class="table">
+                           <th>Oil Changes</th>
+                           <th>Filter Changes</th>
+                           <th>Tire Rotations</th>
+                           <c:forEach items="${repairRecordsArray}" var="vehicleDataArray" begin="0">
+                           <tr class="tr">                
+                               <td>${repairRecordsArray.m_oilchanges}</td>
+                            </tr>    
+                           </c:forEach> 
+                        </table>
+                    </div>       
+                </div>
+            </div>
         </div>
+        <script src="JavaScript/ScrollableTable.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
           

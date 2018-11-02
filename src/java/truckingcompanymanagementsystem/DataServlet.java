@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -35,6 +36,7 @@ public class DataServlet extends HttpServlet {
         
         PersonnelFactory.getPersonnelFactory();
         OutgoingShippingFactory.getOutgoingShippingFactory();
+        VehicleFactory.getVehicleFactory();
         
         try {
             Controller.getInstance().GetPersonnelData();
@@ -45,35 +47,81 @@ public class DataServlet extends HttpServlet {
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
+        
         ArrayList<OutgoingShipping> outgoingShippingArray;
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
+        
         ArrayList<VehicleData> vehicleDataArray;
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);
-        
-  
-        
-        RequestDispatcher view = request.getRequestDispatcher("FullPageTabs.jsp");
+         
+        RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
         
         response.setContentType("text/html");
        
         request.setAttribute("personnelArray", personnelArray);
-        request.setAttribute("vehicleDataArray", vehicleDataArray);
-        //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+        //request.setAttribute("vehicleDataArray", vehicleDataArray);
+        request.setAttribute("outgoingShippingArray", outgoingShippingArray);
         
 //        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PersonnelServlet");
-//        dispatcher.forward(request, response);
+//       dispatcher.forward(request, response);
+//
+//for (Map.Entry<Object, Object> en : OutgoingShipping.entrySet()) {
+//            Object key = en.getKey();
+//            Object value = en.getValue();
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
+//            dispatcher.include(request, response);
+//        }
         
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
-//        dispatcher.forward(request, response);
+//       RequestDispatcher vehicledispatcher = getServletContext().getRequestDispatcher("/VehicleDataServlet");
+//       vehicledispatcher.forward(request, response);
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
-        dispatcher.include(request, response);
-
-        view.forward(request, response);
-        
+        view.forward(request, response);     
     }
     
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//
+//        
+//        processRequest(request, response);
+//    }
+//
+//    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
+//        
+//                
+//        ArrayList<Personnel> personnelArray;
+//        personnelArray = Controller.getInstance().getPersonnelList();
+//        System.out.println(this);
+//        
+//        ArrayList<OutgoingShipping> outgoingShippingArray;
+//        outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
+//        System.out.println(this);
+//        
+//        ArrayList<VehicleData> vehicleDataArray;
+//        vehicleDataArray = Controller.getInstance().getVehicleDataList();
+//        System.out.println(this);
+//        
+//        //request.setAttribute("personnelArray", personnelArray);
+//        //request.setAttribute("vehicleDataArray", vehicleDataArray);
+//        //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+//        
+//
+//    }
+    
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+
+//    public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//
+//        
+//    }
+
 
 }

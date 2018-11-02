@@ -5,11 +5,17 @@
  */
 package truckingcompanymanagementsystem;
 
+import java.util.Map;
+
 /**
  *
  * @author Andrea
  */
 public class OutgoingShipping {
+
+    static Iterable<Map.Entry<Object, Object>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private String m_destinationCompany;
     private String m_destinationCompanyAddress;

@@ -1,5 +1,5 @@
 /*
-
+    color: #DBE5FF (white gray)
 */
 /* 
     Created on : Oct 24, 2018, 1:41:57 PM
@@ -22,10 +22,16 @@ h2{
     
 }
 
+/*.homebackgroundimage{
+    background: url(tcms1.png) no-repeat center fixed;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}*/
+
 /*Style tab links */
 .tablink{
     background-color: #003399;
-    color: white;
+    color: #DBE5FF;
     float: left;
     border: none;
     outline: none;
@@ -48,6 +54,7 @@ h2{
     padding: 100px 20px;
     height: 100%;
 }
+
 
 
 /*for the shipping tab - to see incoming and outgoing
@@ -110,7 +117,7 @@ h2{
 over it (hover)*/
 
 .active, .accordion:hover{
-    background-color: #ccc;
+    background-color: #DBE5FF;
 }
 
 .accordion:after{

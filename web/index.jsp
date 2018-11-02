@@ -17,9 +17,9 @@
     <body>
         <h1>Trucking Company Management System</h1>
         <h3>"Managing your records for over a decade"</h3>
-        <div class="wrapper"> 
-            <form class="login" ACTION="DataServlet" METHOD="GET">
-                
+        
+        <div class="wrapper">
+            <form class="login" ACTION="DataServlet" METHOD="GET">  
                 <p class="title">Log in</p>
                 <input type="text" placeholder="Username" autofocus/>
                 <i class="fa fa-user"></i>
@@ -38,7 +38,7 @@
             </form>
                 <footer>
                     <a target="blank">TCMS</a>
-                </footer>    
+                </footer>
         </div>
     </body>  
 </html>
