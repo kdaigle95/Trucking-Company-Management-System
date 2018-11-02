@@ -172,7 +172,7 @@ public class Controller extends HttpServlet {
         
         ResultSet personnelData = null;
         //create the query for the whole table (wildcard)
-        String employeeQuery = "SELECT * FROM Personnel_Data";
+        String employeeQuery = "SELECT * FROM Personnel_Data ORDER BY salary DESC";
         try {
             personnelData = db.getGenericResultSet(employeeQuery);
         } 
