@@ -25,6 +25,7 @@
                    ctrl.startDatabase();
                    ctrl.getUserAccounts();
                    ctrl.userLogin();
+                   ctrl.getResourceAllocation();
                 %>
                 
                 <p class="title">Log in</p>

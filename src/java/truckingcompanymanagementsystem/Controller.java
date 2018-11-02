@@ -98,6 +98,7 @@ public class Controller extends HttpServlet {
  */
     private Database db;
     private UserAccounts ua;
+    private ResourceAllocation ra;
     //temp member variables just to display
     private int m_employeeID;
     private String m_firstName;
@@ -142,6 +143,12 @@ public class Controller extends HttpServlet {
         System.out.println("got the ua");
     }
     
+     public void getResourceAllocation()
+    {
+        this.ra = ResourceAllocation.getInstance();
+        System.out.println("got the ra");
+    }
+     
     public void userLogin()
     {
         //these strings are hard coded for testing purposes will be pulled from jsp later
