@@ -1,3 +1,4 @@
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "truckingcompanymanagementsystem.*" %>
 <%@page import = "javax.servlet.http.*,javax.servlet.*" %>
@@ -15,13 +16,15 @@
     </head>
     <body>
         <h1>Trucking Company Management System</h1>
-        <h3>"Managing your records for over 10 years"</h3>
+        <h3>"Managing your records for over a decade"</h3>
         <div class="wrapper"> 
-            <form class="login" ACTION="FullPageTabs.jsp" METHOD="post">
+            <form class="login" ACTION="personnel.jsp" METHOD="POST">
                 <%
                    Controller ctrl = Controller.getInstance();
                    ctrl.getDatabase();
                    ctrl.startDatabase();
+                   ctrl.getUserAccounts();
+                   ctrl.userLogin();
                 %>
                 
                 <p class="title">Log in</p>
