@@ -73,12 +73,11 @@
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
-                               <%-- Need this command to work at some point <td>${outgoingShippingArray.m_orderID}</td>--%>
+                               <td>${outgoingShippingArray.m_orderID}</td>
                                <td>${outgoingShippingArray.m_destinationCompany}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyState}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
-                               <td>${outgoingShippingArray.m_deliveryDate}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="delete.jsp?id=#">Delete</a></td>
                             </tr>    

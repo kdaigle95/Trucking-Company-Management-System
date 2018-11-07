@@ -22,7 +22,6 @@ public class OutgoingShipping {
     private String m_destinationCompanyAddress;
     private String m_destinationCompanyState;
     private String m_destinationCompanyZip;
-    private String m_deliveryDate;
     
     
     public OutgoingShipping(){
@@ -30,21 +29,15 @@ public class OutgoingShipping {
         this.m_destinationCompany = "TCMS";
         this.m_destinationCompanyAddress = "9 Ave";
         this.m_destinationCompanyState = "Alabama";
-        this.m_destinationCompanyZip = "35856";
-        this.m_deliveryDate = "2018-11-27";
+        this.m_destinationCompanyZip = "35856";   
     }
     
-    public OutgoingShipping(int m_orderID, String m_destinationCompany, String m_destinationCompanyAddress, String m_destinationCompanyState, String m_destinationCompanyZip, String m_deliveryDate){
+    public OutgoingShipping(int m_orderID, String m_destinationCompany, String m_destinationCompanyAddress, String m_destinationCompanyState, String m_destinationCompanyZip){
         this.m_orderID = m_orderID;
         this.m_destinationCompany = m_destinationCompany;
         this.m_destinationCompanyAddress = m_destinationCompanyAddress;
         this.m_destinationCompanyState = m_destinationCompanyState;
         this.m_destinationCompanyZip = m_destinationCompanyZip;
-        this.m_deliveryDate = m_deliveryDate;
-    }
-
-    OutgoingShipping(int orderID, String destinationCompany, String destinationCompanyAddress, String destinationCompanyState, String destinationCompanyZip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
@@ -52,7 +45,7 @@ public class OutgoingShipping {
         return m_orderID;
     }
     
-    public void setM_orderID(){
+    public void setM_orderID(int m_orderID){
         this.m_orderID = m_orderID;
     }
     
@@ -88,14 +81,5 @@ public class OutgoingShipping {
     public void setM_destinationCompanyZip(String m_destinationCompanyZip) {
         this.m_destinationCompanyZip = m_destinationCompanyZip;
     }
-
-    public String getM_deliveryDate() {
-        return m_deliveryDate;
-    }
-
-    public void setM_deliveryDate(String m_deliveryDate) {
-        this.m_deliveryDate = m_deliveryDate;
-    }
-    
     
 }
