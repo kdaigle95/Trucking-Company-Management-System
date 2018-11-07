@@ -74,5 +74,40 @@ public class ReportFactory {
         
     }
     
+    public ResultSet makeManifestReport(int orderID)
+    {
+        ResultSet manifest = null;
+        try
+        {
+            manifest = db.getGenericResultSet("SELECT items.item_name, "
+                    + "manifests.item_amount, manifests.unit_cost, "
+                    + "manifests.total_item_cost FROM items" 
+                    + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
+                    + orderID + " AND manifests.item_id = items.item_id;");
+        }
+        catch (SQLException e)
+        {
+            //do stuff
+        }
+        return manifest;
+    }
+    
+    public ResultSet makePurchaseReport(int orderID)
+    {
+        ResultSet purchase = null;
+        try
+        {
+            purchase = db.getGenericResultSet("SELECT items.item_name, "
+                    + "manifests.item_amount, manifests.unit_cost, "
+                    + "manifests.total_item_cost, items.availability FROM items" 
+                    + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
+                    + orderID + " AND manifests.item_id = items.item_id;");
+        }
+        catch (SQLException e)
+        {
+            //do stuff
+        }
+        return purchase;
+    }
 
 }
