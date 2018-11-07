@@ -27,23 +27,22 @@ public class DataServlet extends HttpServlet {
     
     private DataServlet dataservlet;
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //pull in array list
-        Controller.getInstance().getDatabase();
-        Controller.getInstance().startDatabase();
-        
-        PersonnelFactory.getPersonnelFactory();
-        OutgoingShippingFactory.getOutgoingShippingFactory();
-        VehicleFactory.getVehicleFactory();
-        
+        //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();
+            Controller.getInstance().GetVehicleData();
+            Controller.getInstance().GetOutgoingShippingData();
         } catch (SQLException ex) {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // This is where you put an if statement to figure out what information you want to display - Full Access, Maintenance, etc.
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
@@ -54,74 +53,60 @@ public class DataServlet extends HttpServlet {
         
         ArrayList<VehicleData> vehicleDataArray;
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
-        System.out.println(this);
-         
-        RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
+        System.out.println(this);                     
         
-        response.setContentType("text/html");
-       
-        request.setAttribute("personnelArray", personnelArray);
-        //request.setAttribute("vehicleDataArray", vehicleDataArray);
-        request.setAttribute("outgoingShippingArray", outgoingShippingArray);
         
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/PersonnelServlet");
-//       dispatcher.forward(request, response);
-//
-//for (Map.Entry<Object, Object> en : OutgoingShipping.entrySet()) {
-//            Object key = en.getKey();
-//            Object value = en.getValue();
-//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/OutgoingShippingServlet");
-//            dispatcher.include(request, response);
-//        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // This is where you put an if statement to figure out which "view" you want to display - Full Access, Maintenance, etc.
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
-//       RequestDispatcher vehicledispatcher = getServletContext().getRequestDispatcher("/VehicleDataServlet");
-//       vehicledispatcher.forward(request, response);
+        if (true) {         // Full access -> if user == admin
+            response.setContentType("text/html");
+            request.setAttribute("personnelArray", personnelArray);
+            request.setAttribute("vehicleDataArray", vehicleDataArray);
+            request.setAttribute("outgoingShippingArray", outgoingShippingArray);
 
-        view.forward(request, response);     
+            RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
+            view.forward(request, response);
+        }
+        else if (false) {   // Shipping access -> if user == shipping
+            response.setContentType("text/html");       
+            request.setAttribute("vehicleDataArray", vehicleDataArray);
+            request.setAttribute("outgoingShippingArray", outgoingShippingArray);               
+
+            RequestDispatcher view = request.getRequestDispatcher("ShippingAccess.jsp");
+            view.forward(request, response);
+        }
+        else if (false) {      // Maintenance access -> if user == maintenance
+            response.setContentType("text/html");       
+            request.setAttribute("vehicleDataArray", vehicleDataArray);
+
+            RequestDispatcher view = request.getRequestDispatcher("MaintenanceAccess.jsp");
+            view.forward(request, response);
+        }
+        else if (false) {       // Driver access -> if user == driver
+            response.setContentType("text/html");       
+            request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+
+            RequestDispatcher view = request.getRequestDispatcher("DriverAccess.jsp");
+            view.forward(request, response);
+        }
+        else {                  // Not valid user
+            response.setContentType("text/html");                      
+            RequestDispatcher view = request.getRequestDispatcher("AccessDenied.jsp");
+            view.forward(request, response);
+        }            
     }
     
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        
-//        processRequest(request, response);
-//    }
-//
-//    private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-//        
-//                
-//        ArrayList<Personnel> personnelArray;
-//        personnelArray = Controller.getInstance().getPersonnelList();
-//        System.out.println(this);
-//        
-//        ArrayList<OutgoingShipping> outgoingShippingArray;
-//        outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
-//        System.out.println(this);
-//        
-//        ArrayList<VehicleData> vehicleDataArray;
-//        vehicleDataArray = Controller.getInstance().getVehicleDataList();
-//        System.out.println(this);
-//        
-//        //request.setAttribute("personnelArray", personnelArray);
-//        //request.setAttribute("vehicleDataArray", vehicleDataArray);
-//        //request.setAttribute("outgoingShippingArray", outgoingShippingArray);
-//        
-//
-//    }
+    //Forward HTTP methods to processRequest()
     
-    /**
-     *
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
-     */
-
-//    public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//
-//        
-//    }
-
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
+        processRequest(request, response);        
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
+        processRequest(request, response);
+    }
 }

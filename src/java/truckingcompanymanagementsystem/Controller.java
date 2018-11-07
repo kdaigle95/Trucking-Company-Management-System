@@ -28,9 +28,10 @@ public final class Controller {
     
     private Controller ()
     {  
-        //this.getDatabase();
+        this.getDatabase();
+        this.startDatabase();
         //use a logging library in future
-        System.out.println("Controller Created");
+        System.out.println("Controller Created - Connection established");
 
     }
     
@@ -56,7 +57,11 @@ public final class Controller {
         System.out.println("started connection");
 
     }
+   
     
+    /////////////////////////////////////
+    // Personnel Data Methods
+    ////////////////////////////////////
     public void GetPersonnelData() throws SQLException{
         
         ResultSet personnelData = null;
@@ -108,7 +113,7 @@ public final class Controller {
         
         ResultSet outgoingShippingData = null;
         //create the query for the whole table (wildcard)
-        String outgoingshippingQuery = "SELECT * FROM TCMS_Database.Shipping_Data_Outgoing";
+        String outgoingshippingQuery = "SELECT * FROM TCMS_Database.outgoing_shipping";
        
         try {
             outgoingShippingData = db.getGenericResultSet(outgoingshippingQuery);
@@ -120,14 +125,13 @@ public final class Controller {
 
         //converting results set into an array list
         while(outgoingShippingData.next()){
-            
-            m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(
-                    
-                    outgoingShippingData.getString("Destination_Company"),
-                    outgoingShippingData.getString("Destination_Company_Address"),
-                    outgoingShippingData.getString("Destination_Company_State"),
-                    outgoingShippingData.getString("Destination_Company_Zip"),
-                    outgoingShippingData.getString("delivery_date")
+     
+            m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(  
+                    outgoingShippingData.getInt("order_id"),
+                    outgoingShippingData.getString("destination_company"),
+                    outgoingShippingData.getString("address"),
+                    outgoingShippingData.getString("state"),
+                    outgoingShippingData.getString("zip")
      
             ));
             
@@ -142,7 +146,7 @@ public final class Controller {
     
     public void GetVehicleData() throws SQLException{
         
-                ResultSet vehicleData = null;
+        ResultSet vehicleData = null;
         //create the query for the whole table (wildcard)
         String vehicleDataQuery = "SELECT * FROM TCMS_Database.vehicle_data;";
        

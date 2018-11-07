@@ -24,7 +24,11 @@ public class OutgoingShippingFactory {
         return singletonFactory;
     }
     
-    public OutgoingShipping createOutgoingShipping(String destinationCompany, String destinationCompanyAddress, String destinationCompanyState, String destinationCompanyZip, String deliveryDate){
-        return new OutgoingShipping(destinationCompany, destinationCompanyAddress, destinationCompanyState, destinationCompanyZip, deliveryDate);
+    public OutgoingShipping createOutgoingShipping(int orderID, String destinationCompany, String destinationCompanyAddress, String destinationCompanyState, String destinationCompanyZip){
+        return new OutgoingShipping(orderID, destinationCompany, destinationCompanyAddress, destinationCompanyState, destinationCompanyZip);
+    }
+    
+    public void getMessage(){
+    System.out.println("OutgoingShipping Factory created");
     }
 }
