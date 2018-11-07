@@ -72,12 +72,15 @@
                            <th>Delivery Date</th>
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
-                           <tr class="tr">                
+                           <tr class="tr">
+                               <%-- Need this command to work at some point <td>${outgoingShippingArray.m_orderID}</td>--%>
                                <td>${outgoingShippingArray.m_destinationCompany}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyState}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
                                <td>${outgoingShippingArray.m_deliveryDate}</td>
+                               <td><a href="edit.jsp?id=#">Edit</a></td>
+                               <td><a href="delete.jsp?id=#">Delete</a></td>
                             </tr>    
                            </c:forEach> 
                            
@@ -122,6 +125,7 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
+                               <td><a href="delete.jsp?id=${vehicleDataArray.m_truckID}">Delete</a></td>
                             </tr>    
                            </c:forEach> 
                         </table>
@@ -187,6 +191,8 @@
                         <td>${personnelArray.m_salary}</td>
                         <td>${personnelArray.m_payrate}</td>
                         <td>${personnelArray.m_assignment}</td>
+                        <td><a href="edit.jsp?id=${personnelArray.m_employeeID}">Edit</a></td>
+                        <td><a href="delete.jsp?id=${personnelArray.m_employeeID}">Delete</a></td>
                      </tr>    
                     </c:forEach>
                      
