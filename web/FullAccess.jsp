@@ -39,7 +39,7 @@
         
         <div id="Shipping" class="tabcontent" >
             <div class="row">
-                <div class="column" style="background-color: #aaa;">
+                <div class="column" style="background-color: #bbb;">
                     <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
@@ -52,9 +52,24 @@
                             <th>Departure Date</th>
                             <th>Estimated Arrival Date</th>
                             <th>Has Arrived</th>
-                            <tr>
-                                <td>Info</td>    
-                            </tr>
+                           <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
+                           <tr class="tr">
+                               <td>${incomingShippingArray.m_orderID}</td>
+                               <td>${incomingShippingArray.m_sourceCompany}</td>
+                               <td>${incomingShippingArray.m_address}</td>
+                               <td>${incomingShippingArray.m_city}</td>
+                               <td>${incomingShippingArray.m_state}</td>
+                               <td>${incomingShippingArray.m_zip}</td>
+                               <td>${incomingShippingArray.m_truckID}</td>
+                               <td>${incomingShippingArray.m_departureDate}</td>
+                               <td>${incomingShippingArray.m_estArrival}</td>
+                               <td>${incomingShippingArray.m_arrivalConf}</td>
+                               <td>${incomingShippingArray.m_driverID}</td>
+                               <td>${incomingShippingArray.m_paymentConf}</td>
+                               <td><a href="edit.jsp?id=#">Edit</a></td>
+                               <td><a href="delete.jsp?id=#">Delete</a></td>
+                            </tr>    
+                           </c:forEach>
                         </table>
                     </div>
                     <button class="addShipmentButton">Add Shipment</button>
@@ -103,10 +118,9 @@
         </div>
         
         <div id="Equipment" class="tabcontent">
-            <h3>Vehicle and Maintenance Records</h3>
             <div class="row">
                 <div class="column" style="background-color: #aaa;">
-                    <h3>Vehicles</h3>
+                    <h2>Vehicles</h2>
                     <button class="accordion">Vehicle</button> 
                     <div class ="panel">
                         <table class="table">
@@ -133,7 +147,7 @@
             </div>
             <div class="row">
                 <div class="column" style="background-color: #aaa;">
-                    <h3>Maintenance</h3>
+                    <h2>Maintenance</h2>
                     <button class="accordion">Routine Maintenance and Repairs</button> 
                     <div class ="panel">
                         <table class="table">

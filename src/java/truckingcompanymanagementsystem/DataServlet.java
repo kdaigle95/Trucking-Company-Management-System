@@ -33,6 +33,7 @@ public class DataServlet extends HttpServlet {
         try {
             Controller.getInstance().GetPersonnelData();
             Controller.getInstance().GetVehicleData();
+            Controller.getInstance().GetIncomingShippingData();
             Controller.getInstance().GetOutgoingShippingData();
         } catch (SQLException ex) {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,6 +46,10 @@ public class DataServlet extends HttpServlet {
         
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
+        System.out.println(this);
+        
+        ArrayList<IncomingShipping> incomingShippingArray;
+        incomingShippingArray = Controller.getInstance().getIncomingShippingList();
         System.out.println(this);
         
         ArrayList<OutgoingShipping> outgoingShippingArray;
@@ -64,6 +69,7 @@ public class DataServlet extends HttpServlet {
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
+            request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
 
             RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
@@ -72,6 +78,7 @@ public class DataServlet extends HttpServlet {
         else if (false) {   // Shipping access -> if user == shipping
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
+            request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);               
 
             RequestDispatcher view = request.getRequestDispatcher("ShippingAccess.jsp");

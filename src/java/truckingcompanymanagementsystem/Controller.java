@@ -19,12 +19,15 @@ public final class Controller {
     
     //create the arraylist
     private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
+    private ArrayList<IncomingShipping> m_IncomingShippingDataArray = new ArrayList<>();
     private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
     private ArrayList<VehicleData> m_VehicleDataArray = new ArrayList<>();
     
+    
+    //I don't think this is being used here --> To be removed
     //dynamic arraylist member variable to hold data for dynamic table population 
-    private PersonnelFactory personFactory = PersonnelFactory.getPersonnelFactory();
-    private OutgoingShippingFactory outgoingShippingFactory = OutgoingShippingFactory.getOutgoingShippingFactory();
+   // private PersonnelFactory personFactory = PersonnelFactory.getPersonnelFactory();
+   // private OutgoingShippingFactory outgoingShippingFactory = OutgoingShippingFactory.getOutgoingShippingFactory();
     
     private Controller ()
     {  
@@ -60,8 +63,12 @@ public final class Controller {
    
     
     /////////////////////////////////////
-    // Personnel Data Methods
+    // Data Queries
     ////////////////////////////////////
+    
+    //___________________________________________________
+    //Personnel Data Query
+    //___________________________________________________
     public void GetPersonnelData() throws SQLException{
         
         ResultSet personnelData = null;
@@ -107,8 +114,54 @@ public final class Controller {
         return m_DataResultsArray;
     }
     
-    /*OutgoingShippingData*/
+   
+    //___________________________________________________
+    //IncomingShipping Data Query
+    //___________________________________________________
+
+    public void GetIncomingShippingData() throws SQLException{
+        
+        ResultSet incomingShippingData = null;
+        //create the query for the whole table
+        String incomingshippingQuery = "SELECT * FROM TCMS_Database.incoming_shipping";
+        
+        try{
+            incomingShippingData = db.getGenericResultSet(incomingshippingQuery);
+        }
+        catch(SQLException ex){
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //while through all the rows
+        while(incomingShippingData.next()){
+        
+            m_IncomingShippingDataArray.add(IncomingShippingFactory.getIncomingShippingFactory().createIncomingShipping(
+                incomingShippingData.getInt("order_id"),
+                incomingShippingData.getString("source_company"),
+                incomingShippingData.getString("address"),
+                incomingShippingData.getString("city"),
+                incomingShippingData.getString("state"),
+                incomingShippingData.getInt("zip"),
+                incomingShippingData.getString("truck_id"),
+                incomingShippingData.getString("departure_date_time"),
+                incomingShippingData.getString("estimated_arrival"),
+                incomingShippingData.getString("arrival_confirmation"),
+                incomingShippingData.getInt("driver_id"),
+                incomingShippingData.getString("payment_confirmation")
+            ));
+            
+        }
+    }
     
+    //method to get the arraylist out of controller
+    public ArrayList<IncomingShipping> getIncomingShippingList(){
+        return m_IncomingShippingDataArray;
+    }
+    
+    
+   //___________________________________________________
+    //OutgoingShipping Data Query
+    //___________________________________________________
    public void GetOutgoingShippingData() throws SQLException{
         
         ResultSet outgoingShippingData = null;
@@ -144,6 +197,9 @@ public final class Controller {
         return m_OutgoingShippingDataArray;
     }
     
+    //___________________________________________________
+    //Vehicle Data Query
+    //___________________________________________________
     public void GetVehicleData() throws SQLException{
         
         ResultSet vehicleData = null;

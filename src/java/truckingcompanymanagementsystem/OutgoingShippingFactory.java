@@ -1,10 +1,10 @@
 /*
- * 10/29/18
+ * 
  */
 package truckingcompanymanagementsystem;
 
 /**
- *
+ * 10/29/18
  * @author Andrea
  */
 public class OutgoingShippingFactory {

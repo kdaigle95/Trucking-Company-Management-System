@@ -3,7 +3,7 @@
     Author     : Andrea
 */
 
-/* Main /ogin page style sheet
+/* Main login page style sheet
     $primary: #2196F3; is this a java script call -- how to use?
 */
 
@@ -11,12 +11,12 @@
 body{
     font-family: "Open Sans", sans-serif;
     height: 100vh;
-    background-color: cadetblue;
+    background-color: #DBE5FF;
     background-size: cover;
 }
 h1{
     color: #ffffff;
-    text-shadow:2px 2px #000000;
+    text-shadow:3px 3px #000000;
     text-align: center;
 }
 h3{
@@ -29,8 +29,7 @@ form{
     padding-left: 50px;
 }
 p{
-    color: #333333;
-    
+    color: #DBE5FF; 
 }
 @keyframe spinner{
     0% { transform: rotateZ(0deg); }
