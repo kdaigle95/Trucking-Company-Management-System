@@ -16,13 +16,16 @@ public final class Controller {
     
     private Database db;
   
-    
     //create the arraylist
     private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
     private ArrayList<IncomingShipping> m_IncomingShippingDataArray = new ArrayList<>();
     private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
     private ArrayList<Vehicle> m_VehicleDataArray = new ArrayList<>();
     private ArrayList<Maintenance> m_MaintenanceDataArray = new ArrayList<>();
+  
+    private UserAccounts ua;
+    private ResourceAllocation ra;
+   
 
     
     private Controller ()
@@ -56,7 +59,36 @@ public final class Controller {
         System.out.println("started connection");
 
     }
-   
+
+    
+    public void getUserAccounts()
+    {
+        this.ua = UserAccounts.getInstance();
+        System.out.println("got the ua");
+    }
+    
+     public void getResourceAllocation()
+    {
+        this.ra = ResourceAllocation.getInstance();
+        System.out.println("got the ra");
+    }
+     
+    public void userLogin()
+    {
+        //these strings are hard coded for testing purposes will be pulled from jsp later
+        String username = "masterTest";
+        String password = "pass";
+        
+        boolean authenticated = ua.userAuthentication(username, password);  
+        if(authenticated == true)
+        {
+            System.out.println("User authenticated");
+        }
+        if(authenticated == false)
+        {
+            System.out.println("User unable to be authenticated");
+        }
+    }
     
     /////////////////////////////////////
     // Data Queries
