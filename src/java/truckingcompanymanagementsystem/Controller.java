@@ -1,116 +1,39 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package truckingcompanymanagementsystem;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-/**
- *
- * @author justin
- */
-public class Controller extends HttpServlet {
+import java.util.ArrayList;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-        processRequest(request, response); 
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    
-    
 /**
  * @author Andrea
  */
+public final class Controller {
+    
     private Database db;
+  
+    //create the arraylist
+    private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
+    private ArrayList<IncomingShipping> m_IncomingShippingDataArray = new ArrayList<>();
+    private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
+    private ArrayList<Vehicle> m_VehicleDataArray = new ArrayList<>();
+    private ArrayList<Maintenance> m_MaintenanceDataArray = new ArrayList<>();
+  
     private UserAccounts ua;
     private ResourceAllocation ra;
-    //temp member variables just to display
-    private int m_employeeID;
-    private String m_firstName;
-    private String m_middleName;
-    private String m_lastName;
    
+
     
-    private Controller()
+    private Controller ()
     {  
-        //this.getDatabase();
+        this.getDatabase();
+        this.startDatabase();
         //use a logging library in future
-        System.out.println("Controller Created");
+        System.out.println("Controller Created - Connection established");
 
     }
     
@@ -136,6 +59,7 @@ public class Controller extends HttpServlet {
         System.out.println("started connection");
 
     }
+
     
     public void getUserAccounts()
     {
@@ -165,14 +89,20 @@ public class Controller extends HttpServlet {
             System.out.println("User unable to be authenticated");
         }
     }
-   
-   
     
+    /////////////////////////////////////
+    // Data Queries
+    ////////////////////////////////////
+    
+    //___________________________________________________
+    //Personnel Data Query
+    //___________________________________________________
     public void GetPersonnelData() throws SQLException{
         
         ResultSet personnelData = null;
         //create the query for the whole table (wildcard)
         String employeeQuery = "SELECT * FROM Personnel_Data";
+       
         try {
             personnelData = db.getGenericResultSet(employeeQuery);
         } 
@@ -180,41 +110,197 @@ public class Controller extends HttpServlet {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        //converting results set into an array list
+        while(personnelData.next()){
+            
+            m_DataResultsArray.add(PersonnelFactory.getPersonnelFactory().createPersonnel(
+                    
+                    personnelData.getString("employee_id_number"),
+                    personnelData.getString("first_name"),
+                    personnelData.getString("middle_name"),
+                    personnelData.getString("last_name"),
+                    personnelData.getString("street_address"),
+                    personnelData.getString("state"),
+                    personnelData.getString("city"),
+                    personnelData.getInt("zip"),
+                    personnelData.getString("home_phone_number"),
+                    personnelData.getString("cell_phone_number"),
+                    personnelData.getInt("years_with_company"),
+                    personnelData.getString("position"),
+                    personnelData.getInt("salary"),
+                    personnelData.getInt("monthly_pay_rate"),
+                    personnelData.getString("assignment")
+                  
+            ));
+            
+        }
        
-        personnelData.first();
-        m_employeeID = personnelData.getInt("employee_id_number");
-        m_firstName = personnelData.getString("first_name");
-        m_lastName = personnelData.getString("last_name");
-        
     }
     
-    //accessors
-    //_______________________________
-    public int getEmployeeID()
-    {
-        System.out.println("you have the employee ID number");
-        return m_employeeID;
+    //method to get the arraylist out of controller
+    public ArrayList<Personnel> getPersonnelList(){
+        return m_DataResultsArray;
     }
     
-    public String getEmployeeFirstName()
-    {
-        System.out.println("you have the employee first name");
-        return m_firstName;
-    }
-    
-    public String getEmployeeLastName()
-    {
-        System.out.println("you have the employee last name");
-        return m_lastName;
-    }
-    
-  
-    //mutators
-    //______________________________
-//    public void empolyeeid()
-//    {
-//        m_empolyeeID = variableTo changeQery;
-//    }
-//    
-}
+   
+    //___________________________________________________
+    //IncomingShipping Data Query
+    //___________________________________________________
 
+    public void GetIncomingShippingData() throws SQLException{
+        
+        ResultSet incomingShippingData = null;
+        //create the query for the whole table
+        String incomingshippingQuery = "SELECT * FROM TCMS_Database.incoming_shipping";
+        
+        try{
+            incomingShippingData = db.getGenericResultSet(incomingshippingQuery);
+        }
+        catch(SQLException ex){
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //while through all the rows
+        while(incomingShippingData.next()){
+        
+            m_IncomingShippingDataArray.add(IncomingShippingFactory.getIncomingShippingFactory().createIncomingShipping(
+                incomingShippingData.getInt("order_id"),
+                incomingShippingData.getString("source_company"),
+                incomingShippingData.getString("address"),
+                incomingShippingData.getString("city"),
+                incomingShippingData.getString("state"),
+                incomingShippingData.getInt("zip"),
+                incomingShippingData.getString("truck_id"),
+                incomingShippingData.getString("departure_date_time"),
+                incomingShippingData.getString("estimated_arrival"),
+                incomingShippingData.getString("arrival_confirmation"),
+                incomingShippingData.getInt("driver_id"),
+                incomingShippingData.getString("payment_confirmation")
+            ));
+            
+        }
+    }
+    
+    //method to get the arraylist out of controller
+    public ArrayList<IncomingShipping> getIncomingShippingList(){
+        return m_IncomingShippingDataArray;
+    }
+    
+    
+   //___________________________________________________
+    //OutgoingShipping Data Query
+    //___________________________________________________
+   public void GetOutgoingShippingData() throws SQLException{
+        
+        ResultSet outgoingShippingData = null;
+        //create the query for the whole table (wildcard)
+        String outgoingshippingQuery = "SELECT * FROM TCMS_Database.outgoing_shipping";
+       
+        try {
+            outgoingShippingData = db.getGenericResultSet(outgoingshippingQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
+        //converting results set into an array list
+        while(outgoingShippingData.next()){
+     
+            m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(  
+                    outgoingShippingData.getInt("order_id"),
+                    outgoingShippingData.getString("destination_company"),
+                    outgoingShippingData.getString("address"),
+                    outgoingShippingData.getString("state"),
+                    outgoingShippingData.getString("zip")
+     
+            ));
+            
+        }
+       
+    }
+    
+    //method to get the arraylist out of controller
+    public ArrayList<OutgoingShipping> getOutgoingShippingList(){
+        return m_OutgoingShippingDataArray;
+    }
+    
+    //___________________________________________________
+    //Vehicle Data Query
+    //___________________________________________________
+    public void GetVehicleData() throws SQLException{
+        
+        ResultSet vehicleData = null;
+        //create the query for the whole table (wildcard)
+        String vehicleDataQuery = "SELECT * FROM TCMS_Database.vehicle_data;";
+       
+        try {
+            vehicleData = db.getGenericResultSet(vehicleDataQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
+        //converting results set into an array list
+        while(vehicleData.next()){
+            
+       
+        m_VehicleDataArray.add(VehicleFactory.getVehicleFactory().createVehicle(
+                    vehicleData.getString("vin"),
+                    vehicleData.getString("truck_brand"),
+                    vehicleData.getInt("truck_year"),
+                    vehicleData.getString("truck_model"),
+                    vehicleData.getInt("truck_id"),
+                    vehicleData.getInt("driver_id")
+
+                ));
+
+        }
+    }
+
+    public ArrayList<Vehicle> getVehicleDataList(){
+        return m_VehicleDataArray;
+    }
+    
+    //___________________________________________________
+    //Maintenance Data Query
+    //___________________________________________________
+    public void GetMaintenanceData() throws SQLException{
+        
+        ResultSet maintenanceData = null;
+        //create the query for the whole table (wildcard)
+        String maintenanceDataQuery = "SELECT * FROM TCMS_Database.maintenance_data";
+       
+        try {
+            maintenanceData = db.getGenericResultSet(maintenanceDataQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
+        //converting results set into an array list
+        while(maintenanceData.next()){
+            
+       
+        m_MaintenanceDataArray.add(MaintenanceFactory.getMaintenanceFactory().createMaintenance(
+                    maintenanceData.getInt("work_order"),
+                    maintenanceData.getInt("truck_id"),
+                    maintenanceData.getString("truck_vin"),
+                    maintenanceData.getString("maintenance_id"),
+                    maintenanceData.getString("date"),
+                    maintenanceData.getString("job_done"),
+                    maintenanceData.getString("parts"),
+                    maintenanceData.getString("cost"),
+                    maintenanceData.getString("detailed_report")
+                
+                ));
+
+        }
+    }
+
+    public ArrayList<Maintenance> getMaintenanceDataList(){
+        return m_MaintenanceDataArray;
+    }
+}

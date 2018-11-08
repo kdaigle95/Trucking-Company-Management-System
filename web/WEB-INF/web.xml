@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>UserAccountsTest</servlet-name>
-        <servlet-class>truckingcompanymanagementsystem.UserAccountsTest</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Controller</servlet-name>
-        <servlet-class>truckingcompanymanagementsystem.Controller</servlet-class>
+        <servlet-name>DataServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.DataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UserAccountsTest</servlet-name>
-        <url-pattern>/UserAccountsTest</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Controller</servlet-name>
-        <url-pattern>/Controller</url-pattern>
+        <servlet-name>DataServlet</servlet-name>
+        <url-pattern>/DataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            100
         </session-timeout>
     </session-config>
 </web-app>

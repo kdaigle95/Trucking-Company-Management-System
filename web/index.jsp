@@ -3,31 +3,20 @@
 <%@page import = "truckingcompanymanagementsystem.*" %>
 <%@page import = "javax.servlet.http.*,javax.servlet.*" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Trucking Company Management System</title>    
         <link href="style.css/style.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="Javascript/LoginButton.js" type="text/javascript"></script>
     </head>
     <body>
         <h1>Trucking Company Management System</h1>
         <h3>"Managing your records for over a decade"</h3>
-        <div class="wrapper"> 
-            <form class="login" ACTION="personnel.jsp" METHOD="POST">
-                <%
-                   Controller ctrl = Controller.getInstance();
-                   ctrl.getDatabase();
-                   ctrl.startDatabase();
-                   ctrl.getUserAccounts();
-                   ctrl.userLogin();
-                   ctrl.getResourceAllocation();
-                %>
-                
+        <div class="wrapper">
+            <form class="login" ACTION="DataServlet" METHOD="GET">  
+
                 <p class="title">Log in</p>
                 <input type="text" placeholder="Username" autofocus/>
                 <i class="fa fa-user"></i>
@@ -46,7 +35,7 @@
             </form>
                 <footer>
                     <a target="blank">TCMS</a>
-                </footer>    
+                </footer>
         </div>
     </body>  
 </html>
