@@ -3,9 +3,6 @@
     Author     : Andrea
 */
 
-/* Main login page style sheet
-    $primary: #2196F3; is this a java script call -- how to use?
-*/
 
 
 body{
@@ -29,7 +26,7 @@ form{
     padding-left: 50px;
 }
 p{
-    color: #DBE5FF; 
+    color: #042844; 
 }
 @keyframe spinner{
     0% { transform: rotateZ(0deg); }

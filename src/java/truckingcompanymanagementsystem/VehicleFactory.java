@@ -31,9 +31,9 @@ public class VehicleFactory {
      * @param driverID
      * @return
      */
-    public VehicleData createVehicle(String vin, String truckBrand, int truckYear, String truckModel, int truckID, int driverID){
+    public Vehicle createVehicle(String vin, String truckBrand, int truckYear, String truckModel, int truckID, int driverID){
         
-        return new VehicleData(vin, truckBrand, truckYear, truckModel, truckID, driverID);
+        return new Vehicle(vin, truckBrand, truckYear, truckModel, truckID, driverID);
         
     }
 }

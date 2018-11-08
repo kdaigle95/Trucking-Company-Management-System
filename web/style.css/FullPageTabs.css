@@ -117,7 +117,8 @@ h2{
 over it (hover)*/
 
 .active, .accordion:hover{
-    background-color: #DBE5FF;
+    background-color: #003399;
+    color: white;
 }
 
 .accordion:after{

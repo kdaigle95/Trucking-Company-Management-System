@@ -35,6 +35,7 @@ public class DataServlet extends HttpServlet {
             Controller.getInstance().GetVehicleData();
             Controller.getInstance().GetIncomingShippingData();
             Controller.getInstance().GetOutgoingShippingData();
+            Controller.getInstance().GetMaintenanceData();
         } catch (SQLException ex) {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
@@ -56,10 +57,13 @@ public class DataServlet extends HttpServlet {
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
         
-        ArrayList<VehicleData> vehicleDataArray;
+        ArrayList<Vehicle> vehicleDataArray;
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);                     
-        
+
+        ArrayList<Maintenance> maintenanceDataArray;
+        maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
+        System.out.println(this);         
         
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // This is where you put an if statement to figure out which "view" you want to display - Full Access, Maintenance, etc.
@@ -71,6 +75,7 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+            request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
             RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
             view.forward(request, response);
@@ -80,13 +85,15 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);               
-
+            request.setAttribute("maintenanceDataArray", maintenanceDataArray);
+            
             RequestDispatcher view = request.getRequestDispatcher("ShippingAccess.jsp");
             view.forward(request, response);
         }
         else if (false) {      // Maintenance access -> if user == maintenance
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
+            request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
             RequestDispatcher view = request.getRequestDispatcher("MaintenanceAccess.jsp");
             view.forward(request, response);

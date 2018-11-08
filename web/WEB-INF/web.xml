@@ -12,10 +12,6 @@
         <servlet-name>OutgoingShippingServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.OutgoingShippingServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>VehicleDataServlet</servlet-name>
-        <servlet-class>truckingcompanymanagementsystem.VehicleDataServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
@@ -27,10 +23,6 @@
     <servlet-mapping>
         <servlet-name>OutgoingShippingServlet</servlet-name>
         <url-pattern>/OutgoingShippingServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VehicleDataServlet</servlet-name>
-        <url-pattern>/VehicleDataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

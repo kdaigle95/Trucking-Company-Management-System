@@ -21,13 +21,9 @@ public final class Controller {
     private ArrayList<Personnel> m_DataResultsArray = new ArrayList<>();
     private ArrayList<IncomingShipping> m_IncomingShippingDataArray = new ArrayList<>();
     private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
-    private ArrayList<VehicleData> m_VehicleDataArray = new ArrayList<>();
-    
-    
-    //I don't think this is being used here --> To be removed
-    //dynamic arraylist member variable to hold data for dynamic table population 
-   // private PersonnelFactory personFactory = PersonnelFactory.getPersonnelFactory();
-   // private OutgoingShippingFactory outgoingShippingFactory = OutgoingShippingFactory.getOutgoingShippingFactory();
+    private ArrayList<Vehicle> m_VehicleDataArray = new ArrayList<>();
+    private ArrayList<Maintenance> m_MaintenanceDataArray = new ArrayList<>();
+
     
     private Controller ()
     {  
@@ -230,10 +226,49 @@ public final class Controller {
 
         }
     }
-    
-    
-    public ArrayList<VehicleData> getVehicleDataList(){
+
+    public ArrayList<Vehicle> getVehicleDataList(){
         return m_VehicleDataArray;
     }
     
+    //___________________________________________________
+    //Maintenance Data Query
+    //___________________________________________________
+    public void GetMaintenanceData() throws SQLException{
+        
+        ResultSet maintenanceData = null;
+        //create the query for the whole table (wildcard)
+        String maintenanceDataQuery = "SELECT * FROM TCMS_Database.maintenance_data";
+       
+        try {
+            maintenanceData = db.getGenericResultSet(maintenanceDataQuery);
+        } 
+        catch (SQLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+
+        //converting results set into an array list
+        while(maintenanceData.next()){
+            
+       
+        m_MaintenanceDataArray.add(MaintenanceFactory.getMaintenanceFactory().createMaintenance(
+                    maintenanceData.getInt("work_order"),
+                    maintenanceData.getInt("truck_id"),
+                    maintenanceData.getString("truck_vin"),
+                    maintenanceData.getString("maintenance_id"),
+                    maintenanceData.getString("date"),
+                    maintenanceData.getString("job_done"),
+                    maintenanceData.getString("parts"),
+                    maintenanceData.getString("cost"),
+                    maintenanceData.getString("detailed_report")
+                
+                ));
+
+        }
+    }
+
+    public ArrayList<Maintenance> getMaintenanceDataList(){
+        return m_MaintenanceDataArray;
+    }
 }

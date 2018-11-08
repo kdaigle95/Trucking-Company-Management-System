@@ -8,7 +8,7 @@ package truckingcompanymanagementsystem;
  * @author Andrea
  * 10/30/2018
  */
-public class VehicleData {
+public class Vehicle {
     
     private String m_vin;
     private String m_truckBrand;
@@ -18,7 +18,7 @@ public class VehicleData {
     private int m_driverID;
     
     //Default Constructor
-    public VehicleData(){
+    public Vehicle(){
         this.m_vin = "333ABC444";
         this.m_truckBrand = "tonka";
         this.m_truckYear = 2018;
@@ -27,7 +27,7 @@ public class VehicleData {
         this.m_driverID = 11111111;
     }
     
-    public VehicleData(String m_vin, String m_truckBrand, int m_truckYear, String m_truckModel, int m_truckID, int m_driverID){
+    public Vehicle(String m_vin, String m_truckBrand, int m_truckYear, String m_truckModel, int m_truckID, int m_driverID){
         this.m_vin = m_vin;
         this.m_truckBrand = m_truckBrand;
         this.m_truckYear = m_truckYear;

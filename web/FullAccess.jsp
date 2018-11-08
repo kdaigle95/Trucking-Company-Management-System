@@ -12,7 +12,6 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="style.css/FullPageTabs.css" rel="stylesheet" type="text/css"/>
         <title>TCMS</title>
     </head>
@@ -44,14 +43,18 @@
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table" border='1'>
+                            <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
+                            <th>City</th>
                             <th>State</th>
                             <th>Zip</th>
-                            <th>Vehicle ID</th>
+                            <th>Truck ID</th>
                             <th>Departure Date</th>
                             <th>Estimated Arrival Date</th>
                             <th>Has Arrived</th>
+                            <th>Driver ID</th>
+                            <th>Has Paid</th>
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
                                <td>${incomingShippingArray.m_orderID}</td>
@@ -80,11 +83,18 @@
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">
+                           <th>Order ID</th>
                            <th>Destination Company</th>
                            <th>Address</th>
+                           <th>City</th>
                            <th>State</th>
                            <th>Zip</th>
-                           <th>Delivery Date</th>
+                           <th>Truck ID</th>
+                           <th>Departure Date</th>
+                           <th>Estimated Arrival</th>
+                           <th>Has Arrived</th>
+                           <th>Driver ID</th>
+                           <th>Has Paid</th>
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
@@ -151,15 +161,26 @@
                     <button class="accordion">Routine Maintenance and Repairs</button> 
                     <div class ="panel">
                         <table class="table">
-                           <th>Oil Change</th>
-                           <th>Radiator</th>
-                           <th>Tires</th>
-                           <th>Engine</th>
-                           <th>Drive Train</th>
-                           <th>Electronics</th>
-                           <c:forEach items="${maintenanceArray}" var="vehicleDataArray" begin="0">
-                           <tr class="tr">                
-                               <td></td>
+                           <th>Work Order</th>
+                           <th>Truck ID</th>
+                            <th>Truck Vin</th>
+                           <th>Maintenance ID</th>
+                           <th>Date</th>
+                           <th>Job Type</th>
+                           <th>Parts</th>
+                           <th>Cost</th>
+                           <th>Report Details</th>
+                           <c:forEach items="${maintenanceDataArray}" var="maintenanceDataArray" begin="0">
+                           <tr class="tr"> 
+                               <td>${maintenanceDataArray.m_workOrder}</td>
+                               <td>${maintenanceDataArray.m_truckID}</td>
+                               <td>${maintenanceDataArray.m_vin}</td>
+                               <td>${maintenanceDataArray.m_maintenanceID}</td>
+                               <td>${maintenanceDataArray.m_date}</td>
+                               <td>${maintenanceDataArray.m_jobDone}</td>
+                               <td>${maintenanceDataArray.m_parts}</td>
+                               <td>${maintenanceDataArray.m_cost}</td>
+                               <td>${maintenanceDataArray.m_report}</td>
                             </tr>    
                            </c:forEach> 
                         </table>

@@ -37,9 +37,6 @@ public class PersonnelFactory {
        System.out.println("Personnel Factory created");
    }
 
-
-    
-
 }
 
 
