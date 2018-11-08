@@ -211,9 +211,16 @@ public final class Controller {
                     outgoingShippingData.getInt("order_id"),
                     outgoingShippingData.getString("destination_company"),
                     outgoingShippingData.getString("address"),
-                    outgoingShippingData.getString("state"),
-                    outgoingShippingData.getString("zip")
-     
+                    outgoingShippingData.getString("city"),
+                    outgoingShippingData.getString("state"),                    
+                    outgoingShippingData.getInt("zip"),
+                    outgoingShippingData.getString("truck_id"),
+                    outgoingShippingData.getString("departure_date_time"),
+                    outgoingShippingData.getString("estimated_arrival"),
+                    outgoingShippingData.getString("arrival_confirmation"),
+                    outgoingShippingData.getInt("driver_id"),
+                    outgoingShippingData.getString("payment_confirmation")
+
             ));
             
         }

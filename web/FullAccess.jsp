@@ -101,8 +101,15 @@
                                <td>${outgoingShippingArray.m_orderID}</td>
                                <td>${outgoingShippingArray.m_destinationCompany}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
+                               <td>${outgoingShippingArray.m_destinationCompanyCity}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyState}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
+                               <td>${outgoingShippingArray.m_truckID}</td>
+                               <td>${outgoingShippingArray.m_departureDate}</td>
+                               <td>${outgoingShippingArray.m_estArrival}</td>
+                               <td>${outgoingShippingArray.m_arrivalConf}</td>
+                               <td>${outgoingShippingArray.m_driverID}</td>
+                               <td>${outgoingShippingArray.m_paymentConf}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="delete.jsp?id=#">Delete</a></td>
                             </tr>    
