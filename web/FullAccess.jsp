@@ -22,6 +22,9 @@
             var d = new Date();
             document.getElementById("date").innerHTML = d;
         </script>
+        <div id="overlay" onclick="off()">
+            <h1 id="text">Overlay Data</h1>
+        </div>
         <button class="tablink" onclick="openPage('Home', this, '#003399')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Shipping', this, '#003399')" >Shipping</button>
@@ -32,16 +35,17 @@
 
         <div id="Home" class="tabcontent">
             <h3 style="color: #DBE5FF">Home</h3>
-            <p style="color: #DBE5FF">Company Info</p>
-            
+            <p style="color: #DBE5FF">Company Info</p>            
         </div>
         
         <div id="Shipping" class="tabcontent" >
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Incoming Shipments</h2>
-                    <button class="accordion">Shipment pick-ups</button> 
+                    <button class="accordion">Pick-ups</button>
+                    
                     <div class ="panel">
+                        
                         <table class="table">
                             <th>Order ID</th>
                             <th>Source Company</th>
@@ -55,6 +59,10 @@
                             <th>Has Arrived</th>
                             <th>Driver ID</th>
                             <th>Has Paid</th>
+                            <th>Modify Contents</th>
+                            <th>Delete</th>
+                            <th>Link to Purchase Order</th>
+                            
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
                                <td>${incomingShippingArray.m_orderID}</td>
@@ -71,12 +79,15 @@
                                <td>${incomingShippingArray.m_paymentConf}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="delete.jsp?id=#">Delete</a></td>
+                               <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                             </tr>    
                            </c:forEach>
+                            
+                            <div id="overlay" onclick="off()">
+                                <h1 id="text">Overlay Data</h1>
+                            </div>
                         </table>
-                    </div>
-                    <button class="addShipmentButton">Add Shipment</button>
-                    <button class="purchaseOrderButton" onclick="on()">Purchase Order</button>
+                    </div> 
                 </div>
                 <div class="column" style="background-color: #717e99;">
                     <h2>Outgoing Shipments</h2>
@@ -122,15 +133,7 @@
                             </tr>    
                            </c:forEach>  
                         </table>
-                        <div id="overlay" onclick="off()">
-                            <h1 id="text">Overlay Data</h1>
-                            <table id="text">
-                                <th>Info</th>
-                                <tr>Info</tr>
-                                <tr></tr>
-                                <tr></tr>
-                            </table>
-                        </div>
+
                     </div>                
                     <%--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_button_split --%>
                     <button class="reportButton">Reports</button>
@@ -152,7 +155,7 @@
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Vehicles</h2>
-                    <button class="accordion">Vehicle</button> 
+                    <button class="accordion">Active Vehicles</button> 
                     <div class ="panel">
                         <table class="table">
                            <th style="text-align: left; padding: 15px">Vin</th>
