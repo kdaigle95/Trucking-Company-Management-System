@@ -22,17 +22,17 @@
             var d = new Date();
             document.getElementById("date").innerHTML = d;
         </script>
-        <button class="tablink" onclick="openPage('Home', this, '#042844')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('Home', this, '#003399')" id="defaultOpen">Home</button>
        
-        <button class="tablink" onclick="openPage('Shipping', this, '#042844')" >Shipping</button>
+        <button class="tablink" onclick="openPage('Shipping', this, '#003399')" >Shipping</button>
        
-        <button class="tablink" onclick="openPage('Equipment', this, '#042844')">Equipment</button>
+        <button class="tablink" onclick="openPage('Equipment', this, '#003399')">Equipment</button>
         
-        <button class="tablink" onclick="openPage('Personnel', this, '#042844')">Personnel</button>
+        <button class="tablink" onclick="openPage('Personnel', this, '#003399')">Personnel</button>
 
         <div id="Home" class="tabcontent">
-            <h3>Home</h3>
-            <p>Company Info</p>
+            <h3 style="color: #DBE5FF">Home</h3>
+            <p style="color: #DBE5FF">Company Info</p>
             
         </div>
         
@@ -42,7 +42,7 @@
                     <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
-                        <table class="table" border='1'>
+                        <table class="table">
                             <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
@@ -121,7 +121,7 @@
                     <%--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_button_split --%>
                     <button class="reportButton">Reports</button>
                     <div class="dropdown">
-                        <button class="reportButton" style="border-left: 1px solid navy">
+                        <button class="reportButton">
                             <i class="fa fa-caret-down"></i>
                         </button>
                         <div class="dropdown-content">
@@ -141,7 +141,7 @@
                     <button class="accordion">Vehicle</button> 
                     <div class ="panel">
                         <table class="table">
-                           <th>Vin</th>
+                           <th style="text-align: left; padding: 15px">Vin</th>
                            <th>Truck Brand</th>
                            <th>Truck Year</th>
                            <th>Truck Model</th>
@@ -170,7 +170,7 @@
                         <table class="table">
                            <th>Work Order</th>
                            <th>Truck ID</th>
-                            <th>Truck Vin</th>
+                           <th>Truck Vin</th>
                            <th>Maintenance ID</th>
                            <th>Date</th>
                            <th>Job Type</th>
@@ -198,14 +198,14 @@
         
         <div id="Personnel" class="tabcontent">
             <h3>Personnel</h3>
-            <table class="tablelistjs" id="clients" >
+            <table class="table" >
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
                 <th>Street Address</th>
-                <th>State</th>
                 <th>City</th>
+                <th>State</th>
                 <th>Zip</th>
                 <th>Home Phone</th>
                 <th>Cell Phone</th>
@@ -214,7 +214,6 @@
                 <th>Salary</th>
                 <th>Pay Rate</th>
                 <th>Assignment</th>
-               <%-- <div contenteditable='true'--%>
                     <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
                     <tr class="tr">                
                         <td>${personnelArray.m_employeeID}</td>
@@ -222,8 +221,8 @@
                         <td>${personnelArray.m_middleName}</td>
                         <td>${personnelArray.m_lastName}</td>
                         <td>${personnelArray.m_streetAddress}</td>
-                        <td>${personnelArray.m_state}</td>
                         <td>${personnelArray.m_city}</td>
+                        <td>${personnelArray.m_state}</td>
                         <td>${personnelArray.m_zip}</td>
                         <td>${personnelArray.m_homePhone}</td>
                         <td>${personnelArray.m_cellPhone}</td>
@@ -236,8 +235,6 @@
                         <td><a href="delete.jsp?id=${personnelArray.m_employeeID}">Delete</a></td>
                      </tr>    
                     </c:forEach>
-                     
-               <%-- </div> --%>
             </table>
         </div>
         <script src="JavaScript/ScrollableTable.js" type="text/javascript"></script>

@@ -8,7 +8,7 @@
 body{
     font-family: "Open Sans", sans-serif;
     height: 100vh;
-    background-color: #DBE5FF;
+    background-color: #003399;
     background-size: cover;
 }
 h1{
@@ -45,9 +45,15 @@ p{
     width: 100%;
     min-height: 100%;
     padding: 5px;
+    border-top-left-radius: initial;
+    border-top-style: inset;
+    border-width: thick;
+    border-top-color: #DBE5FF;
     /*background: rgba(darken($primary, 40%), 0.85);
     */
     background: #042844;
+
+    border-style: inset;
 }
 
 .login {
