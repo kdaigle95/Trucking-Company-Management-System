@@ -15,10 +15,19 @@ body, html {
     font-family: Arial;
 }
 
+h1{
+    
+    font-family: Arial;
+    color: black;
+    text-shadow: 1px 1px white;
+}
 h2{
     height: 50%;
     margin: 10px;
     font-family: Arial;
+    color: white;
+    text-shadow: 1px 1px #000000;
+
     
 }
 
@@ -78,7 +87,7 @@ h2{
     max-width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    padding: inherit;
+    padding: 20px;
     border-style: double;
     display: inline-table;
     border-top: #042844;
@@ -104,7 +113,7 @@ h2{
 }
 
 .tr:nth-child(odd){
-    background-color: #717e99;
+    background-color: #99aed8;
 }
 
 
@@ -226,6 +235,46 @@ over it (hover)*/
 .purchaseOrderButton:hover{
     background-color: #003399;
 }
+
+.manifestButton{
+    background-color: #042844;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.manifestButton:hover{
+    background-color: #003399;
+}
+
+#overlay{
+    
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+
 
 #Home {background-color: #003399;}
 #Shipping {background-color: #f6f6f6;}

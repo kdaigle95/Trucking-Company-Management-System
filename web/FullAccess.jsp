@@ -2,7 +2,7 @@
     Document   : personnel
     Created on : Oct 18, 2018, 9:00:09 PM
     Author     : Andrea
-    https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
+    Reference  : https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
 --%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -38,7 +38,7 @@
         
         <div id="Shipping" class="tabcontent" >
             <div class="row">
-                <div class="column" style="background-color: #bbb;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
@@ -76,13 +76,14 @@
                         </table>
                     </div>
                     <button class="addShipmentButton">Add Shipment</button>
-                    <button class="purchaseOrderButton">Purchase Order</button>
+                    <button class="purchaseOrderButton" onclick="on()">Purchase Order</button>
                 </div>
-                <div class="column" style="background-color: #bbb;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Outgoing Shipments</h2>
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">
+                            
                            <th>Order ID</th>
                            <th>Destination Company</th>
                            <th>Address</th>
@@ -95,6 +96,10 @@
                            <th>Has Arrived</th>
                            <th>Driver ID</th>
                            <th>Has Paid</th>
+                           <th>Modify Contents</th>
+                           <th>Delete</th>
+                           <th>Link to Shipping Manifest</th>
+                           <th>Link to Purchase Order</th>
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
@@ -109,14 +114,23 @@
                                <td>${outgoingShippingArray.m_estArrival}</td>
                                <td>${outgoingShippingArray.m_arrivalConf}</td>
                                <td>${outgoingShippingArray.m_driverID}</td>
-                               <td>${outgoingShippingArray.m_paymentConf}</td>
+                               <td>${outgoingShippingArray.m_paymentConf}</td>                               
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="delete.jsp?id=#">Delete</a></td>
+                               <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
+                               <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                             </tr>    
-                           </c:forEach> 
-                           
+                           </c:forEach>  
                         </table>
-                    
+                        <div id="overlay" onclick="off()">
+                            <h1 id="text">Overlay Data</h1>
+                            <table id="text">
+                                <th>Info</th>
+                                <tr>Info</tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </table>
+                        </div>
                     </div>                
                     <%--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_button_split --%>
                     <button class="reportButton">Reports</button>
@@ -136,7 +150,7 @@
         
         <div id="Equipment" class="tabcontent">
             <div class="row">
-                <div class="column" style="background-color: #aaa;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Vehicles</h2>
                     <button class="accordion">Vehicle</button> 
                     <div class ="panel">
@@ -163,7 +177,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="column" style="background-color: #aaa;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Maintenance</h2>
                     <button class="accordion">Routine Maintenance and Repairs</button> 
                     <div class ="panel">
@@ -237,6 +251,7 @@
                     </c:forEach>
             </table>
         </div>
+        <script src="JavaScript/Overlay.js" type="text/javascript"></script>
         <script src="JavaScript/ScrollableTable.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
