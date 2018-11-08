@@ -4,25 +4,9 @@
         <servlet-name>DataServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.DataServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>PersonnelServlet</servlet-name>
-        <servlet-class>truckingcompanymanagementsystem.PersonnelServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>OutgoingShippingServlet</servlet-name>
-        <servlet-class>truckingcompanymanagementsystem.OutgoingShippingServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PersonnelServlet</servlet-name>
-        <url-pattern>/PersonnelServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>OutgoingShippingServlet</servlet-name>
-        <url-pattern>/OutgoingShippingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
