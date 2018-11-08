@@ -54,6 +54,8 @@ h2{
     padding: 100px 20px;
     height: 100%;
     align-content: flex-start;
+    overflow: scroll;
+    animation: cubic-bezier;
 }
 
 .column{
@@ -102,7 +104,7 @@ h2{
 }
 
 .tr:nth-child(odd){
-    background-color: #678ffe;
+    background-color: #717e99;
 }
 
 
