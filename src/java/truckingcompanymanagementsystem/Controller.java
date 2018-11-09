@@ -1,6 +1,3 @@
-/*
- * 
- */
 package truckingcompanymanagementsystem;
 
 import java.sql.ResultSet;

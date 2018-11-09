@@ -1,5 +1,5 @@
 <%-- 
-    Document   : personnel
+    Document   : FullAccess.jsp
     Created on : Oct 18, 2018, 9:00:09 PM
     Author     : Andrea
     Reference  : https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
@@ -13,18 +13,26 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>TCMS</title>
     </head>
     <body>
         <h1>Full Access User</h1>
-        <p id = "date"></p>
+        <i class="fa fa-truck">
+        <p id = "date"></i></p>
+        
         <script>
             var d = new Date();
             document.getElementById("date").innerHTML = d;
         </script>
-        <div id="overlay" onclick="off()">
-            <h1 id="text">Overlay Data</h1>
+        <div class= "contanier" id="overlay" onclick="off()">
+            <div class="middle">
+                <div class="textOverlay">
+                    <h1 id="text">Overlay Data</h1>     
+                </div>
+            </div>
         </div>
+        
         <button class="tablink" onclick="openPage('Home', this, '#003399')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Shipping', this, '#003399')" >Shipping</button>
@@ -81,11 +89,7 @@
                                <td><a href="delete.jsp?id=#">Delete</a></td>
                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                             </tr>    
-                           </c:forEach>
-                            
-                            <div id="overlay" onclick="off()">
-                                <h1 id="text">Overlay Data</h1>
-                            </div>
+                           </c:forEach>  
                         </table>
                     </div> 
                 </div>
@@ -255,7 +259,6 @@
             </table>
         </div>
         <script src="JavaScript/Overlay.js" type="text/javascript"></script>
-        <script src="JavaScript/ScrollableTable.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
           
