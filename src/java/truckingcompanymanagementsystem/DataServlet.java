@@ -49,30 +49,6 @@ public class DataServlet extends HttpServlet {
         boolean user_authenticated = ua.userAuthentication(username, password);
         RequestDispatcher view = null;
         
-        //if(user_authenticated == true)
-        //{
-            
-        //    if(User.access_level == "full")
-        //    {
-        //        view = request.getRequestDispatcher("FullAccess.jsp");
-        //    }
-        //    if(User.access_level == "shipping")
-        //    {
-        //        view = request.getRequestDispatcher("ShippingAccess.jsp");
-        //    }
-        //    if(User.access_level == "maint")
-        //    {
-        //        view = request.getRequestDispatcher("MaintenanceAccess.jsp");
-        //    }
-        //    if(User.access_level == "driver")
-        //    {
-        //        view = request.getRequestDispatcher("DriverAccess.jsp");
-        //    }
-        //}
-        //else
-        //{
-        //    view = request.getRequestDispatcher("index.jsp");
-        //}
         
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
@@ -94,9 +70,7 @@ public class DataServlet extends HttpServlet {
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This is where you put an if statement to figure out which "view" you want to display - Full Access, Maintenance, etc.
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
     if(user_authenticated == true)
     {
         
