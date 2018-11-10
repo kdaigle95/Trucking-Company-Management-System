@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package truckingcompanymanagementsystem;
+
 import java.sql.*;
 
 /**
@@ -11,19 +12,16 @@ import java.sql.*;
  * @author Kyle
  */
 public class DataModification {
-    
+
     private static Database db;
     private static String sql;
-    
-    protected DataModification() 
-    {
+
+    protected DataModification() {
         db = db.getInstance();
     }
-    
-    protected void updateRowString(String tableName, long primaryKey, String columnName, String newData)
-    {
-        switch(tableName)
-        {
+
+    protected void updateRowString(String tableName, long primaryKey, String columnName, String newData) {
+        switch (tableName) {
             case "Personnel_Data":
                 sql = "UPDATE Personnel_Data "
                         + "SET " + columnName + " = \"" + newData + "\" "
@@ -48,48 +46,44 @@ public class DataModification {
                 sql = "UPDATE outgoing_shipping "
                         + "SET " + columnName + " = \"" + newData + "\" "
                         + "WHERE order_number = " + primaryKey + ";";
-                break;                       
-               
+                break;
+
         }
     }
-    
-    protected void updateRowVal(String tableName, long primaryKey, String columnName, long newData)
-    {
-        switch(tableName)
-        {
+
+    protected void updateRowVal(String tableName, int primaryKey, String columnName, int newData) {
+        switch (tableName) {
             case "Personnel_Data":
                 sql = "UPDATE Personnel_Data "
-                        + "SET " + columnName + " = " + newData  
+                        + "SET " + columnName + " = " + newData
                         + " WHERE employee_id_number = " + primaryKey + ";";
                 break;
             case "vehicle_data":
                 sql = "UPDATE vehicle_data "
-                        + "SET " + columnName + " = " + newData 
+                        + "SET " + columnName + " = " + newData
                         + " WHERE truck_id = " + primaryKey + ";";
                 break;
             case "maintenance_data":
                 sql = "UPDATE maintenance_data "
-                        + "SET " + columnName + " = " + newData 
+                        + "SET " + columnName + " = " + newData
                         + " WHERE work_order = " + primaryKey + ";";
                 break;
             case "incoming_shipping":
                 sql = "UPDATE incoming_shipping "
-                        + "SET " + columnName + " = " + newData 
+                        + "SET " + columnName + " = " + newData
                         + " WHERE order_number = " + primaryKey + ";";
                 break;
             case "outgoing_shipping":
                 sql = "UPDATE outgoing_shipping "
-                        + "SET " + columnName + " = " + newData 
+                        + "SET " + columnName + " = " + newData
                         + " WHERE order_number = " + primaryKey + ";";
-                break;                       
-               
+                break;
+
         }
     }
-    
-    protected String deleteRow(String tableName, long primaryKey)
-    {
-        switch(tableName)
-        {
+
+    protected String deleteRow(String tableName, long primaryKey) {
+        switch (tableName) {
             case "Personnel_Data":
                 sql = "DELETE FROM Personnel_Data WHERE employee_id_number = " + primaryKey + ";";
                 break;
@@ -104,16 +98,15 @@ public class DataModification {
                 break;
             case "outgoing_shipping":
                 sql = "DELETE FROM outgoing_shipping WHERE order_id = " + primaryKey + ";";
-                break;                       
+                break;
         }
         return sql;
     }
-    
-    protected String addPersonnel(int id, String first, String middle, 
-            String last, String streetAddr, String city, String state, int zip, 
-            String homeNum, String cellNum, int years, String position, 
-            int salary, String assignment)
-    {
+
+    protected String addPersonnel(int id, String first, String middle,
+            String last, String streetAddr, String city, String state, int zip,
+            String homeNum, String cellNum, int years, String position,
+            int salary, String assignment) {
         sql = "INSERT INTO Personnel_Data "
                 + "VALUES ('" + id + "', "
                 + "'" + first + "', "
@@ -129,27 +122,88 @@ public class DataModification {
                 + "'" + position + "', "
                 + "'" + salary + "', "
                 + "'" + salary / 12 + "', "
-                + "'" + assignment + "', "
+                + "'" + assignment
                 + ");";
-        
+
         return sql;
-                
+
     }
-    
-    protected String addTruck(String vin, String make, String year, 
-            String model, String truckID, String driverID)
-    {
-        sql = "INSERT INTO Personnel_Data "
+
+    protected String addTruck(String vin, String make, String year,
+            String model, String truckID, String driverID, String partsList) {
+        sql = "INSERT INTO vehicle_data "
                 + "VALUES ('" + vin + "', "
                 + "'" + make + "', "
                 + "'" + year + "', "
                 + "'" + model + "', "
                 + "'" + truckID + "', "
                 + "'" + driverID + "', "
+                + "'" + partsList
                 + ");";
-        
+
         return sql;
-                
+
     }
-    
+
+    protected String addMaintenance(int workOrder, int truckID, String truckVin,
+            int maintID, String date, String job, String parts, String cost, String desc) {
+        sql = "INSERT INTO maintenance_data "
+                + "VALUES (" + workOrder + ", "
+                + truckID + ", '"
+                + truckVin + "', "
+                + maintID + ", '"
+                + date + "', '"
+                + job + "', '"
+                + parts + "', '"
+                + cost + "', '"
+                + desc + ");";
+        return sql;
+    }
+
+    protected String addOutgoing(int orderID, String dest, String addr, String city,
+            String state, int zip, String departure, String arrival, String arrivalConf,
+            String paymentConf) {
+        sql = "INSERT INTO outgoing_shipping (order_id, destination_company, "
+                + "address, city, state, zip, departure_date_time, estimated_arrival,"
+                + "arrival_confirmation, payment_confirmation) "
+                + "VALUES (" + orderID + ", '"
+                + dest + "', '"
+                + addr + "', '"
+                + state + "', "
+                + zip + ", '"
+                + departure + "', '"
+                + arrival + "', '"
+                + arrivalConf + "', '"
+                + paymentConf + "');"
+                + "\n"
+                + "UPDATE Personnel_Data"
+                + "SET assignment = "
+                + orderID
+                + "WHERE position = 'Driver' AND assignment = 0 "
+                + "ORDER BY assignment ASC LIMIT 1;"
+                + "\n"
+                + "UPDATE vehicle_data"
+                + "SET `availability` = "
+                + orderID
+                + "WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1;"
+                + "\n"
+                + "UPDATE vehicle_data"
+                + "SET `driver_id` = (SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
+                + orderID
+                + "WHERE EXISTS (SELECT assignment FROM Personnel_Data WHERE assignment = "
+                + orderID + ") AND availability = "
+                + orderID + ";"
+                + "\n"
+                + "UPDATE outgoing_shipping"
+                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
+                + orderID + "), "
+                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
+                + orderID + ")"
+                + "WHERE order_id = "
+                + orderID + ";";
+                       
+                        
+                        
+        return sql;
+    }
 }
