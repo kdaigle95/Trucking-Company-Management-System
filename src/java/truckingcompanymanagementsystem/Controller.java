@@ -22,7 +22,6 @@ public final class Controller {
   
     private UserAccounts ua;
     private ResourceAllocation ra;
-   
 
     
     private Controller ()
