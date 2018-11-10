@@ -59,36 +59,20 @@ public final class Controller {
         System.out.println("started connection");
 
     }
-
-    
-    public void getUserAccounts()
-    {
-        this.ua = UserAccounts.getInstance();
-        System.out.println("got the ua");
-    }
     
      public void getResourceAllocation()
     {
         this.ra = ResourceAllocation.getInstance();
         System.out.println("got the ra");
     }
-     
-    public void userLogin()
+    
+    public UserAccounts getUserAccounts()
     {
-        //these strings are hard coded for testing purposes will be pulled from jsp later
-        String username = "masterTest";
-        String password = "pass";
-        
-        boolean authenticated = ua.userAuthentication(username, password);  
-        if(authenticated == true)
-        {
-            System.out.println("User authenticated");
-        }
-        if(authenticated == false)
-        {
-            System.out.println("User unable to be authenticated");
-        }
+        this.ua = UserAccounts.getInstance();
+        System.out.println("got the ua");
+        return ua;
     }
+    
     
     /////////////////////////////////////
     // Data Queries
