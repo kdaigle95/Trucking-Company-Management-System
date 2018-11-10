@@ -12,7 +12,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="style.css/FullPageTabs.css" rel="stylesheet" type="text/css"/>
+        <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
         <title>TCMS</title>
     </head>
     <body>
@@ -76,7 +76,6 @@
                                <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyState}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
-                               <td>${outgoingShippingArray.m_deliveryDate}</td>
                             </tr>    
                            </c:forEach> 
                            

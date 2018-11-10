@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import truckingcompanymanagementsystem.UserAccounts.User;
 
 /**
  *
@@ -41,9 +42,13 @@ public class DataServlet extends HttpServlet {
             ex.printStackTrace();
         }
         
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This is where you put an if statement to figure out what information you want to display - Full Access, Maintenance, etc.
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Setup for starting the login process and authentication
+        UserAccounts ua = Controller.getInstance().getUserAccounts();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean user_authenticated = ua.userAuthentication(username, password);
+        RequestDispatcher view = null;
+        
         
         ArrayList<Personnel> personnelArray;
         personnelArray = Controller.getInstance().getPersonnelList();
@@ -65,11 +70,12 @@ public class DataServlet extends HttpServlet {
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This is where you put an if statement to figure out which "view" you want to display - Full Access, Maintenance, etc.
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+    if(user_authenticated == true)
+    {
         
-        if (true) {         // Full access -> if user == admin
+    
+        if (User.access_level == "full") {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
@@ -77,39 +83,40 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
-            RequestDispatcher view = request.getRequestDispatcher("FullAccess.jsp");
+            view = request.getRequestDispatcher("FullAccess.jsp");
             view.forward(request, response);
         }
-        else if (false) {   // Shipping access -> if user == shipping
+        else if (User.access_level == "shipping") {   // Shipping access -> if user == shipping
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);               
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
             
-            RequestDispatcher view = request.getRequestDispatcher("ShippingAccess.jsp");
+            view = request.getRequestDispatcher("ShippingAccess.jsp");
             view.forward(request, response);
         }
-        else if (false) {      // Maintenance access -> if user == maintenance
+        else if (User.access_level == "maint") {      // Maintenance access -> if user == maintenance
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
-            RequestDispatcher view = request.getRequestDispatcher("MaintenanceAccess.jsp");
+            view = request.getRequestDispatcher("MaintenanceAccess.jsp");
             view.forward(request, response);
         }
-        else if (false) {       // Driver access -> if user == driver
+        else if (User.access_level == "driver") {       // Driver access -> if user == driver
             response.setContentType("text/html");       
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
 
-            RequestDispatcher view = request.getRequestDispatcher("DriverAccess.jsp");
+            view = request.getRequestDispatcher("DriverAccess.jsp");
             view.forward(request, response);
         }
         else {                  // Not valid user
             response.setContentType("text/html");                      
-            RequestDispatcher view = request.getRequestDispatcher("AccessDenied.jsp");
+            view = request.getRequestDispatcher("AccessDenied.jsp");
             view.forward(request, response);
-        }            
+        }
+    }
     }
     
     //Forward HTTP methods to processRequest()

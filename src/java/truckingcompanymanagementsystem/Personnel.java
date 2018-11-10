@@ -15,8 +15,8 @@ public class Personnel {
     private String m_middleName;
     private String m_lastName;
     private String m_streetAddress;
-    private String m_state;
     private String m_city;
+    private String m_state;
     private int m_zip;
     private String m_homePhone;
     private String m_cellPhone;
@@ -34,8 +34,8 @@ public class Personnel {
         this.m_middleName = "Joline";
         this.m_lastName = "Jacobson";
         this.m_streetAddress = "90210";
-        this.m_state = "AL";
         this.m_city = "RocketCity";
+        this.m_state = "AL";
         this.m_zip = 99999;
         this.m_homePhone ="256-345-8779";
         this.m_cellPhone = "256-356-9814";
@@ -48,14 +48,14 @@ public class Personnel {
     }
     
     
-    public Personnel(String m_employeeID, String m_firstName, String m_middleName, String m_lastName, String m_streetAddress, String m_state, String m_city, int m_zip, String m_homePhone, String m_cellPhone, int m_years, String m_position, int m_salary, int m_payrate, String m_assignment) {
+    public Personnel(String m_employeeID, String m_firstName, String m_middleName, String m_lastName, String m_streetAddress, String m_city, String m_state, int m_zip, String m_homePhone, String m_cellPhone, int m_years, String m_position, int m_salary, int m_payrate, String m_assignment) {
         this.m_employeeID = m_employeeID;
         this.m_firstName = m_firstName;
         this.m_middleName = m_middleName;
         this.m_lastName = m_lastName;
         this.m_streetAddress = m_streetAddress;
-        this.m_state = m_state;
         this.m_city = m_city;
+        this.m_state = m_state;
         this.m_zip = m_zip;
         this.m_homePhone = m_homePhone;
         this.m_cellPhone = m_cellPhone;

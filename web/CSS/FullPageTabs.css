@@ -4,7 +4,7 @@
 /* 
     Created on : Oct 24, 2018, 1:41:57 PM
     Author     : Andrea
-    https://www.w3schools.com
+    References from: https://www.w3schools.com
 */
 
 /* Set height of body and the document to 100% to enable "full page tabs" */
@@ -15,10 +15,19 @@ body, html {
     font-family: Arial;
 }
 
+h1{
+    
+    font-family: Arial;
+    color: black;
+    text-shadow: 1px 1px white;
+}
 h2{
     height: 50%;
     margin: 10px;
     font-family: Arial;
+    color: white;
+    text-shadow: 1px 1px #000000;
+
     
 }
 
@@ -30,7 +39,7 @@ h2{
 
 /*Style tab links */
 .tablink{
-    background-color: #003399;
+    background-color: #042844;
     color: #DBE5FF;
     float: left;
     border: none;
@@ -43,22 +52,21 @@ h2{
 
 /*Style tab links */
 .tablink:hover{
-    background-color: #777;
+    background-color: #003399;
 }
 
 /*Style the tab content (and add height: 100% for full page content)*/
 .tabcontent{
-    color: #030a0e;
+    color: #000000;
     column-count: 1;
     display: none;
     padding: 100px 20px;
     height: 100%;
+    align-content: flex-start;
+    overflow: scroll;
+    animation: cubic-bezier;
 }
 
-
-
-/*for the shipping tab - to see incoming and outgoing
- Why is it not side by side???*/
 .column{
     float: left;
     width: 95%;
@@ -72,15 +80,32 @@ h2{
 }
 
 .table{
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #add;
+  
+    border: 1px solid #042844;
+    border-width: 1px;
+    overflow-style: scrollbar;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-style: double;
+    display: inline-table;
+    border-top: #042844;
+    border-top-style: groove;
+    margin-top: auto;
+    border-radius: inherit;
 }
 
-.th,td{
+.th{
     text-align: left;
-    padding: 16px;
+    padding: 20px;
+    border: #000000;
+    border-bottom: #042844;
+}
+
+.td{
+    text-align: left;
+    padding: 20px; 
 }
 
 .tr:nth-child(even){
@@ -88,7 +113,7 @@ h2{
 }
 
 .tr:nth-child(odd){
-    background-color: #8db3c4;
+    background-color: #99aed8;
 }
 
 
@@ -102,6 +127,7 @@ h2{
 /*Style the buttons that are used to open and close the accordion panel*/
 .accordion{
     background-color: #eee;
+    font-size: 17px;
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -148,7 +174,6 @@ over it (hover)*/
     color: white;
     padding: 16px;
     font-size: 16px;
-    border: none;
     outline: none;
 }
 
@@ -167,14 +192,14 @@ over it (hover)*/
 }
 
 .dropdown-content a{
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
 .dropdown-content a:hover{
-    background-color: #0b7dda;
+    background-color: #003399;
 }
 
 .dropdown:hover .dropdown-content{
@@ -182,7 +207,7 @@ over it (hover)*/
 }
 
 .reportButton:hover, .dropdown:hover .reportButton{
-    background-color: #0b7dda;
+    background-color: #003399;
 }
 
 .addShipmentButton{
@@ -195,7 +220,7 @@ over it (hover)*/
 }
 
 .addShipmentButton:hover{
-    background-color: #0b7dda;
+    background-color: #003399;
 }
 
 .purchaseOrderButton{
@@ -208,9 +233,50 @@ over it (hover)*/
 }
 
 .purchaseOrderButton:hover{
-    background-color: #0b7dda;
+    background-color: #003399;
 }
-#Home {background-color: #042844;}
+
+.manifestButton{
+    background-color: #042844;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.manifestButton:hover{
+    background-color: #003399;
+}
+
+#overlay{
+    
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+
+
+#Home {background-color: #003399;}
 #Shipping {background-color: #f6f6f6;}
 #Equipment {background-color: #f6f6f6;}
 #Personnel {background-color: #f6f6f6;}
