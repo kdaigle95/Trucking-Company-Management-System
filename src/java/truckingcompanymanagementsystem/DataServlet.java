@@ -50,23 +50,23 @@ public class DataServlet extends HttpServlet {
         RequestDispatcher view = null;
         
         
-        ArrayList<Personnel> personnelArray;
+        ArrayList<Personnel> personnelArray = null;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
         
-        ArrayList<IncomingShipping> incomingShippingArray;
+        ArrayList<IncomingShipping> incomingShippingArray = null;
         incomingShippingArray = Controller.getInstance().getIncomingShippingList();
         System.out.println(this);
         
-        ArrayList<OutgoingShipping> outgoingShippingArray;
+        ArrayList<OutgoingShipping> outgoingShippingArray = null;
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
         
-        ArrayList<Vehicle> vehicleDataArray;
+        ArrayList<Vehicle> vehicleDataArray = null;
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);                     
 
-        ArrayList<Maintenance> maintenanceDataArray;
+        ArrayList<Maintenance> maintenanceDataArray = null;
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
