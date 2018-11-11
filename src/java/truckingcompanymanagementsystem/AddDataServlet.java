@@ -1,0 +1,150 @@
+/*
+ * 
+ */
+package truckingcompanymanagementsystem;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * 11/10/18
+ * @author Andrea
+ */
+public class AddDataServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        DataModification datamod = new DataModification();
+        String personnelSQLQuery = null;      
+
+        String tableName = request.getParameter("generic_table");
+       
+
+        Database db = Database.getInstance();
+        
+        switch(tableName.trim()){
+            
+            case "incoming_shipping":
+                    //String query = "INSERT from TCMS_Database." + id + " where order_id = " + id;
+                    String incomingSQLString;
+//                    datamod.addIncoming(request.getParameter("m_orderID"),
+//                                        request.getParameter("m_sourceCompany"), 
+//                                        String addr, 
+//                                        String city,
+//                                        String state, 
+//                                        int zip, 
+//                                        String departure, 
+//                                        String arrival,
+//                                        String arrivalConf,
+//                                        String paymentConf);
+                break;
+                
+            case "outgoing_shipping":
+            
+                break;
+                
+            case "vehicle_data":
+                 
+                break;
+                
+            case "maintenance_data":
+            
+                break;
+                
+            case "Personnel_Data":
+                    personnelSQLQuery = datamod.addPersonnel(
+                            Integer.parseInt(request.getParameter("m_employeeID")),
+                            request.getParameter("m_firstName"),
+                            request.getParameter("m_middleName"),
+                            request.getParameter("m_lastName"),
+                            request.getParameter("m_streetAddress"),
+                            request.getParameter("m_city"),
+                            request.getParameter("m_state"),
+                            Integer.parseInt(request.getParameter("m_zip")),
+                            request.getParameter("m_homePhone"),
+                            request.getParameter("m_cellPhone"),
+                            Integer.parseInt(request.getParameter("m_years")),
+                            request.getParameter("m_position"),
+                            Integer.parseInt(request.getParameter("m_salary")),
+                            Integer.parseInt(request.getParameter("m_payrate")),
+                            request.getParameter("m_assignment")
+                    );
+                break;
+     
+        }
+        
+        try {
+            System.out.println(personnelSQLQuery);
+            //db.getGenericResultSet(personnelSQLQuery);
+            db.AddData(personnelSQLQuery);
+            System.out.println(tableName);
+        } catch (NullPointerException ex) {
+            Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        response.setContentType("text/html");                      
+        RequestDispatcher view = request.getRequestDispatcher("DataServlet");
+        view.forward(request, response);
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

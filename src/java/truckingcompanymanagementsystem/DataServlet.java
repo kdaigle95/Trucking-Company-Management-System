@@ -28,6 +28,13 @@ public class DataServlet extends HttpServlet {
     private DataServlet dataservlet;
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Personnel> personnelArray = null;
+        ArrayList<IncomingShipping> incomingShippingArray = null;
+        ArrayList<OutgoingShipping> outgoingShippingArray = null;
+        ArrayList<Vehicle> vehicleDataArray = null;
+        ArrayList<Maintenance> maintenanceDataArray = null;
+        
+        
         
         //Get updated version of data
         try {
@@ -40,35 +47,24 @@ public class DataServlet extends HttpServlet {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-        
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This is where you put an if statement to figure out what information you want to display - Full Access, Maintenance, etc.
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        ArrayList<Personnel> personnelArray;
+
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
-        
-        ArrayList<IncomingShipping> incomingShippingArray;
+
         incomingShippingArray = Controller.getInstance().getIncomingShippingList();
         System.out.println(this);
-        
-        ArrayList<OutgoingShipping> outgoingShippingArray;
+
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
-        
-        ArrayList<Vehicle> vehicleDataArray;
+
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);                     
 
-        ArrayList<Maintenance> maintenanceDataArray;
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This is where you put an if statement to figure out which "view" you want to display - Full Access, Maintenance, etc.
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
+
         if (true) {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
@@ -109,7 +105,10 @@ public class DataServlet extends HttpServlet {
             response.setContentType("text/html");                      
             RequestDispatcher view = request.getRequestDispatcher("AccessDenied.jsp");
             view.forward(request, response);
-        }            
+        }
+        
+        //added clearLists method 11/11/18
+       clearLists(personnelArray, incomingShippingArray, outgoingShippingArray, vehicleDataArray, maintenanceDataArray); 
     }
     
     //Forward HTTP methods to processRequest()
@@ -122,5 +121,28 @@ public class DataServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         processRequest(request, response);
+    }
+    
+    protected void clearLists( ArrayList<Personnel> personnelArray, ArrayList<IncomingShipping> incomingShippingArray, ArrayList<OutgoingShipping> outgoingShippingArray, ArrayList<Vehicle> vehicleDataArray, ArrayList<Maintenance> maintenanceDataArray){
+        
+        if(!(personnelArray.isEmpty())){
+            personnelArray.clear();
+        }
+        
+        if(!(incomingShippingArray.isEmpty())){
+            incomingShippingArray.clear();
+        }
+        
+        if(!(outgoingShippingArray.isEmpty())){
+            outgoingShippingArray.clear();
+        }
+        
+        if(!(vehicleDataArray.isEmpty())){
+            vehicleDataArray.clear();
+        }
+        
+        if(!(maintenanceDataArray.isEmpty())){
+            maintenanceDataArray.clear();
+        }
     }
 }

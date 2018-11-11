@@ -4,13 +4,30 @@
         <servlet-name>DataServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.DataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteDataServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.DeleteDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddDataServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.AddDataServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDataServlet</servlet-name>
+        <url-pattern>/DeleteDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDataServlet</servlet-name>
+        <url-pattern>/AddDataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             100
         </session-timeout>
     </session-config>
+
 </web-app>

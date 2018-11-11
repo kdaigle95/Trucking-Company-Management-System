@@ -100,5 +100,20 @@ public final class Database
         }
         
         return genericResultSet;
-    }    
+    }
+    
+    public boolean AddData(String dataQuery) throws SQLException, NullPointerException
+    {
+        boolean addDataQuery = false;
+        
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(dataQuery);
+            addDataQuery = true;
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return addDataQuery;
+    }
 }
