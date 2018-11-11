@@ -265,7 +265,7 @@ public class DataModification {
 
     }
     
-    protcted String outgoingArrived(int orderID)
+    protected String outgoingArrived(int orderID)
     {
         sql = "UPDATE outgoing_shipping "
                 + "SET arrival_confirmation = 'true' "
