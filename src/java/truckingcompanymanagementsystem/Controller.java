@@ -94,7 +94,7 @@ public final class Controller {
         catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        m_DataResultsArray.clear();
         //converting results set into an array list
         while(personnelData.next()){
             
@@ -144,7 +144,7 @@ public final class Controller {
         catch(SQLException ex){
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        m_IncomingShippingDataArray.clear();
         //while through all the rows
         while(incomingShippingData.next()){
         
@@ -188,10 +188,9 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_OutgoingShippingDataArray.clear();
         //converting results set into an array list
         while(outgoingShippingData.next()){
-     
             m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(  
                     outgoingShippingData.getInt("order_id"),
                     outgoingShippingData.getString("destination_company"),
@@ -233,7 +232,7 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_VehicleDataArray.clear();
         //converting results set into an array list
         while(vehicleData.next()){
             
@@ -271,7 +270,7 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_MaintenanceDataArray.clear();
         //converting results set into an array list
         while(maintenanceData.next()){
             
