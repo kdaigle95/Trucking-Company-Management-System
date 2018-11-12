@@ -14,12 +14,12 @@ body{
 }
 h1{
     color: #ffffff;
-    text-shadow:3px 3px #000000;
+    text-shadow:3px 4px #000000;
     text-align: center;
 }
 h3{
     color: #cccccc;
-    text-shadow:1px 1px #000000;
+    text-shadow:1px 2px #000000;
     text-align: center;
 }
 form{
@@ -50,9 +50,9 @@ p{
     border-top-style: inset;
     border-width: thick;
     border-top-color: #DBE5FF;
-    /*background: rgba(darken($primary, 40%), 0.85);
-    */
-    background: #042844;
+    border-right-color: #DBE5FF;
+    border-left-color: #DBE5FF;
+    background: #091534;
 
     border-style: inset;
 }

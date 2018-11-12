@@ -82,6 +82,7 @@ public class DataModification {
         }
     }
 
+    //why does the key need to be a long - this is just more work
     protected String deleteRow(String tableName, long primaryKey) {
         switch (tableName) {
             case "Personnel_Data":

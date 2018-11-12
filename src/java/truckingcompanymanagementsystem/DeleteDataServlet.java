@@ -4,7 +4,7 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -31,21 +31,52 @@ public class DeleteDataServlet extends HttpServlet {
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //String id = request.getQueryString();
-        String id = request.getParameter("id");
+        DataModification datamod = new DataModification();
+        String personnelSQLQuery = null;
+        String incomingSQLQuery = null;
+        String outgoingSQLQuery = null;
+        String vehicleSQLQuery = null;
+        String maintenanceSQLQuery = null;
         
-        //get an additional parameter to determine which table to send the query
-        String query = "DELETE from TCMS_Database.outgoing_shipping where order_id = " + id;
+        String primary_key = request.getParameter("primary_key");
         
+        String tableName = request.getParameter("generic_table");
         Database db = Database.getInstance();
         
+        switch(tableName.trim()){
+            
+            case "incoming_shipping":
+
+                break;
+                
+            case "outgoing_shipping":
+            
+                break;
+                
+            case "vehicle_data":
+                 
+                break;
+                
+            case "maintenance_data":
+            
+                break;
+                
+            case "Personnel_Data":
+                
+                    personnelSQLQuery = datamod.deleteRow("Personnel_Data", Long.parseLong(primary_key));
+                break;
+     
+        }
+        
         try {
-            //db.getGenericResultSet(query);
-            System.out.println(query);
-            System.out.println(id);
+            System.out.println(personnelSQLQuery);
+            db.DeleteData(personnelSQLQuery);
+            System.out.println(tableName);
         } catch (NullPointerException ex) {
             Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex) {
+           Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+       }
 
         response.setContentType("text/html");                      
         RequestDispatcher view = request.getRequestDispatcher("DataServlet");

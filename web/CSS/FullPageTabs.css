@@ -13,13 +13,15 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial;
+    background-color: #DBE5FF;
 }
 
 h1{
     
     font-family: Arial;
-    color: black;
+    color: #091534;
     text-shadow: 1px 1px white;
+    
 }
 h2{
     height: 50%;
@@ -27,9 +29,20 @@ h2{
     font-family: Arial;
     color: white;
     text-shadow: 1px 1px #000000;
-
-    
+   
 }
+
+h3{
+    color: #DBE5FF;
+    text-shadow: 1px 1px #091534;
+}
+
+p{
+    color: #DBE5FF;
+    text-shadow: 1px 1px #091534;
+}
+
+
 
 /*.homebackgroundimage{
     background: url(tcms1.png) no-repeat center fixed;
@@ -39,7 +52,7 @@ h2{
 
 /*Style tab links */
 .tablink{
-    background-color: #042844;
+    background-color: #091534;
     color: #DBE5FF;
     float: left;
     border: none;
@@ -78,7 +91,7 @@ h2{
 }
 
 .table{
-    border: 1px solid #042844;
+    border: 1px solid #091534;
     border-width: 1px;
     display: table; 
     max-width: fit-content;
@@ -86,7 +99,7 @@ h2{
     margin-right: auto;
     padding: 20px;
     border-style: double;
-    border-top: #042844;
+    border-top: #091534;
     border-top-style: groove;
     margin-top: auto;
     page: auto;
@@ -95,7 +108,7 @@ h2{
 .th{
     text-align: left;
     padding: 20px;
-    border: 1px #042844;
+    border: 1px #091534;
 }
 
 .td{
@@ -191,7 +204,7 @@ over it (hover)*/
 
 /*Dropdown Report Button*/
 .reportButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -232,7 +245,7 @@ over it (hover)*/
 }
 
 .addShipmentButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -245,7 +258,7 @@ over it (hover)*/
 }
 
 .purchaseOrderButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -259,7 +272,7 @@ over it (hover)*/
 }
 
 .manifestButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;

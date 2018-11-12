@@ -33,9 +33,7 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
-        
-        
-        
+
         //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();

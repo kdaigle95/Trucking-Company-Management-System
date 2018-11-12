@@ -9,9 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Delete JSP</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Delete Data</h1>
+        <form action="DeleteDataServlet">
+            <input type="hidden" name="primary_key" value="<%=request.getParameter("id")%>"/>
+            <input type="hidden" name="generic_table" value="<%=request.getParameter("generic_table")%>"/>
+            <input type="submit" value="submit">
+        </form>
     </body>
 </html>

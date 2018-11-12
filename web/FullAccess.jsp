@@ -17,13 +17,8 @@
         <title>TCMS</title>
     </head>
     <body>
-        <h1>Full Access User</h1>
-        <i class="fa fa-truck">
-        <p id = "date"></i></p>
-        <script>
-            var d = new Date();
-            document.getElementById("date").innerHTML = d;
-        </script>
+        <h1>Full Access User  <i class="fa fa-truck"></i></h1>
+        
         <div class= "contanier" id="overlay" onclick="off()">
             <div class="middle">
                 <div class="textOverlay">
@@ -40,22 +35,25 @@
         <button class="tablink" onclick="openPage('Personnel', this, '#003399')">Personnel</button>
 
         <div id="Home" class="tabcontent">
-            <h3 style="color: #DBE5FF">Trucking Company Management System</h3>
-            <p style="color: #DBE5FF">To protect the privacy and security of the company information, users of the system will have access to information only on a "need to know" basis.</p>
+            <h3>Trucking Company Management System</h3>
+            <p id = "date"></p>
+            <p>To protect the privacy and security of the company information, users of the system will have access to information only on a "need to know" basis.</p>
+            
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Company Reports</h2>
-                    <div>
-                        <a href=#>
-                        <button>Generate Report</button>       
-                        </a>
-                    </div>
                     <button class="accordion">Reports</button> 
                     <div class ="panel">
-                        <th>Monthly Payroll Report</th><br>
-                        <th>Maintenance Report</th><br>
-                        <th>Summary of incoming Shipments</th><br>
-                        <th>Summary of outgoing Shipments</th><br>
+                        <table class="table">
+                            <th>Monthly Payroll Report</th>
+                            <td><a href=#><button>Generate Report</button></a></td>
+                            <th>Maintenance Report</th>
+                            <td><a href=#><button>Generate Report</button></a></td>
+                            <th>Summary of incoming Shipments</th>
+                            <td><a href=#><button>Generate Report</button></a></td>
+                            <th>Summary of outgoing Shipments</th>
+                            <td><a href=#><button>Generate Report</button></a></td>
+                        </table>
                     </div>       
                 </div>
             </div>
@@ -284,7 +282,7 @@
                                     <td>${personnelArray.m_payrate}</td>
                                     <td>${personnelArray.m_assignment}</td>
                                     <td><a href="edit.jsp?id=${personnelArray.m_employeeID}">Edit</a></td>
-                                    <td><a href="DeleteDataServlet?id=${personnelArray.m_employeeID}">Delete</a></td>
+                                    <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>
                                 </tr>    
                                 </c:forEach>
                         </table>
@@ -295,6 +293,7 @@
         <script src="JavaScript/Overlay.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
+        <script src="JavaScript/Date.js" type="text/javascript"></script>
           
     </body>
 </html>

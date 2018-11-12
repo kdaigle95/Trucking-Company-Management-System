@@ -116,4 +116,19 @@ public final class Database
         }
         return addDataQuery;
     }
+    
+    public boolean DeleteData(String dataQuery) throws SQLException, NullPointerException
+    {
+        boolean deleteDataQuery = false;
+        
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(dataQuery);
+            deleteDataQuery = true;
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return deleteDataQuery;
+    }
 }

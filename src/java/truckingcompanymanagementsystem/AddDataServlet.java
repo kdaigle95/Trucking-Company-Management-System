@@ -34,7 +34,11 @@ public class AddDataServlet extends HttpServlet {
             throws ServletException, IOException {
         
         DataModification datamod = new DataModification();
-        String personnelSQLQuery = null;      
+        String personnelSQLQuery = null;
+        String incomingSQLQuery = null;
+        String outgoingSQLQuery = null;
+        String vehicleSQLQuery = null;
+        String maintenanceSQLQuery = null;
 
         String tableName = request.getParameter("generic_table");
        
@@ -44,18 +48,7 @@ public class AddDataServlet extends HttpServlet {
         switch(tableName.trim()){
             
             case "incoming_shipping":
-                    //String query = "INSERT from TCMS_Database." + id + " where order_id = " + id;
-                    String incomingSQLString;
-//                    datamod.addIncoming(request.getParameter("m_orderID"),
-//                                        request.getParameter("m_sourceCompany"), 
-//                                        String addr, 
-//                                        String city,
-//                                        String state, 
-//                                        int zip, 
-//                                        String departure, 
-//                                        String arrival,
-//                                        String arrivalConf,
-//                                        String paymentConf);
+
                 break;
                 
             case "outgoing_shipping":
