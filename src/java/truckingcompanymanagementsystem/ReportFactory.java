@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class ReportFactory {
     
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
+    ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
+    ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
     
     private static ReportFactory instance = null;
     private Database db = Database.getInstance();
@@ -58,35 +60,66 @@ public class ReportFactory {
         return payroll;
     }
     
-    public ResultSet makeTruckMaintenanceReport(int truckID)
+    public ArrayList makeTruckMaintenanceReport(int truckID)
     {
+        truckMaint.clear();
         ResultSet truckReport = null;
         try 
         {
             truckReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
                     + "WHERE truck_id = " + truckID + " ORDER BY date ASC");
+            
+            while(truckReport.next())
+            {
+                monthlyMaint.add(new MaintenanceReport(
+                        truckReport.getInt("work_order"),
+                        truckReport.getInt("truck_id"),
+                        truckReport.getString("truck_vin"),
+                        truckReport.getInt("maintenance_id"),
+                        truckReport.getString("date"),
+                        truckReport.getString("job_done"),
+                        truckReport.getString("parts"),
+                        truckReport.getString("cost"),
+                        truckReport.getString("detailed_report")
+                ));
+            }
         }
         catch (SQLException e)
         {
             //do something
         }
-        return truckReport;
+        return truckMaint;
     }
     
-    public ResultSet makeMonthlyMaintenanceReport(String startDate, String endDate)
+    public ArrayList makeMonthlyMaintenanceReport(String startDate, String endDate)
     {
+        monthlyMaint.clear();
         ResultSet monthlyMaintReport = null;
         try 
         {
             monthlyMaintReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
                     + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate + 
                     "\" ORDER BY date ASC");
+            while(monthlyMaintReport.next())
+            {
+                monthlyMaint.add(new MaintenanceReport(
+                        monthlyMaintReport.getInt("work_order"),
+                        monthlyMaintReport.getInt("truck_id"),
+                        monthlyMaintReport.getString("truck_vin"),
+                        monthlyMaintReport.getInt("maintenance_id"),
+                        monthlyMaintReport.getString("date"),
+                        monthlyMaintReport.getString("job_done"),
+                        monthlyMaintReport.getString("parts"),
+                        monthlyMaintReport.getString("cost"),
+                        monthlyMaintReport.getString("detailed_report")
+                ));
+            }
         }
         catch (SQLException e)
         {
             //do something
         }
-        return monthlyMaintReport;
+        return monthlyMaint;
         
     }
     
@@ -125,5 +158,18 @@ public class ReportFactory {
         }
         return purchase;
     }
+    
+    public ArrayList<PayrollReport> getPayroll() {
+        return payroll;
+    }
+
+    public ArrayList<MaintenanceReport> getMonthlyMaint() {
+        return monthlyMaint;
+    }
+
+    public ArrayList<MaintenanceReport> getTruckMaint() {
+        return truckMaint;
+    }
+    
 
 }
