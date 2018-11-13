@@ -23,7 +23,7 @@ public class IncomingShippingFactory {
         return singletonFactory;
     }
     
-    public IncomingShipping createIncomingShipping(int orderID, String sourceCompany, String address, String city, String state, int zip, String truckID, String departureDate, String estArrival, String arrivalConf, int driverID, String paymentConf){
+    public IncomingShipping createIncomingShipping(int orderID, String sourceCompany, String address, String city, String state, int zip, int truckID, String departureDate, String estArrival, String arrivalConf, int driverID, String paymentConf){
         return new IncomingShipping(orderID, sourceCompany, address, city, state, zip, truckID, departureDate, estArrival, arrivalConf, driverID, paymentConf);
     }
 }

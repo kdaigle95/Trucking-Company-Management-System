@@ -12,7 +12,7 @@ public class Maintenance {
     private int m_workOrder;
     private int m_truckID;
     private String m_vin;
-    private String m_maintenanceID;
+    private int m_maintenanceID;
     private String m_date;
     private String m_jobDone;
     private String m_parts;
@@ -24,7 +24,7 @@ public class Maintenance {
         this.m_workOrder = 0;
         this.m_truckID = 9999;
         this.m_vin = "vin";
-        this.m_maintenanceID = "maintenance ID";
+        this.m_maintenanceID = 999999;
         this.m_date = "date";
         this.m_jobDone = "job";
         this.m_parts = "parts";
@@ -33,7 +33,7 @@ public class Maintenance {
         
     }
 
-    public Maintenance(int m_workOrder, int m_truckID, String m_vin, String m_maintenanceID, String m_date, String m_jobDone, String m_parts, String m_cost, String m_report) {
+    public Maintenance(int m_workOrder, int m_truckID, String m_vin, int m_maintenanceID, String m_date, String m_jobDone, String m_parts, String m_cost, String m_report) {
         this.m_workOrder = m_workOrder;
         this.m_truckID = m_truckID;
         this.m_vin = m_vin;
@@ -69,11 +69,11 @@ public class Maintenance {
         this.m_vin = m_vin;
     }
 
-    public String getM_maintenanceID() {
+    public int getM_maintenanceID() {
         return m_maintenanceID;
     }
 
-    public void setM_maintenanceID(String m_maintenanceID) {
+    public void setM_maintenanceID(int m_maintenanceID) {
         this.m_maintenanceID = m_maintenanceID;
     }
 

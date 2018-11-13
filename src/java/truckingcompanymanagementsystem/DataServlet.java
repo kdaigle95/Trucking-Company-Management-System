@@ -105,7 +105,7 @@ public class DataServlet extends HttpServlet {
             view.forward(request, response);
         }
         
-        //added clearLists method 11/11/18
+        //@Andrea added clearLists method 11/11/18
        clearLists(personnelArray, incomingShippingArray, outgoingShippingArray, vehicleDataArray, maintenanceDataArray); 
     }
     

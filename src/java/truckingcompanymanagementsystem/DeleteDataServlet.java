@@ -58,19 +58,23 @@ public class DeleteDataServlet extends HttpServlet {
                 break;
                 
             case "maintenance_data":
-            
+                   maintenanceSQLQuery = datamod.deleteRow("maintenance_data", Long.parseLong(primary_key));
                 break;
                 
             case "Personnel_Data":
                 
-                    personnelSQLQuery = datamod.deleteRow("Personnel_Data", Long.parseLong(primary_key));
+                   personnelSQLQuery = datamod.deleteRow("Personnel_Data", Long.parseLong(primary_key));
                 break;
      
         }
         
         try {
             System.out.println(personnelSQLQuery);
+            System.out.println(maintenanceSQLQuery);
+            
             db.DeleteData(personnelSQLQuery);
+            db.DeleteData(maintenanceSQLQuery);
+            
             System.out.println(tableName);
         } catch (NullPointerException ex) {
             Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);

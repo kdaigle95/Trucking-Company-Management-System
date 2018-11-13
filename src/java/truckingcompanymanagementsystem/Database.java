@@ -113,6 +113,7 @@ public final class Database
         }
         catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Check if you are trying to enter duplicate data.");
         }
         return addDataQuery;
     }

@@ -5,6 +5,7 @@ package truckingcompanymanagementsystem;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -34,6 +35,10 @@ public class AddDataServlet extends HttpServlet {
             throws ServletException, IOException {
         
         DataModification datamod = new DataModification();
+        
+        //trying to handle possible date format issue
+        //DateFormat df = new SimpleDataFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        
         String personnelSQLQuery = null;
         String incomingSQLQuery = null;
         String outgoingSQLQuery = null;
@@ -48,8 +53,32 @@ public class AddDataServlet extends HttpServlet {
         switch(tableName.trim()){
             
             case "incoming_shipping":
+                   incomingSQLQuery = datamod.addIncoming(
+                           Integer.parseInt(request.getParameter("m_orderID")), 
+                           request.getParameter("m_sourceCompany"), 
+                           request.getParameter("m_address"), 
+                           request.getParameter("m_city"), 
+                           request.getParameter("m_state"), 
+                           Integer.parseInt(request.getParameter("m_zip")),
+                           Integer.parseInt(request.getParameter("m_truckID")),
+                           request.getParameter("m_departureDate"), 
+                           request.getParameter("m_estArrival"), 
+                           request.getParameter("m_arrivalConf"),
+                           Integer.parseInt(request.getParameter("m_driverID")),
+                           request.getParameter("m_paymentConf")
+                    );
+                           try {
+                                System.out.println(incomingSQLQuery);
 
-                break;
+                                db.AddData(incomingSQLQuery);
+
+                                System.out.println(tableName);
+
+                            }catch (SQLException ex) {
+                                Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                           break;
                 
             case "outgoing_shipping":
             
@@ -60,8 +89,34 @@ public class AddDataServlet extends HttpServlet {
                 break;
                 
             case "maintenance_data":
-            
-                break;
+                    maintenanceSQLQuery = datamod.addMaintenance(
+                            Integer.parseInt(request.getParameter("m_workOrder")),
+                            Integer.parseInt(request.getParameter("m_truckID")),
+                            request.getParameter("m_vin"),
+                            Integer.parseInt(request.getParameter("m_maintenanceID")),
+                            request.getParameter("m_date"), 
+                            request.getParameter("m_jobDone"), 
+                            request.getParameter("m_parts"), 
+                            request.getParameter("m_cost"), 
+                            request.getParameter("m_report")
+                    );
+                    
+                    try {
+
+                        System.out.println(maintenanceSQLQuery);          
+
+                        db.AddData(maintenanceSQLQuery);
+
+                        System.out.println(tableName);
+
+                        } 
+                    catch (SQLException ex) {
+                            Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                    break;
+             
+                    
                 
             case "Personnel_Data":
                     personnelSQLQuery = datamod.addPersonnel(
@@ -81,20 +136,21 @@ public class AddDataServlet extends HttpServlet {
                             Integer.parseInt(request.getParameter("m_payrate")),
                             request.getParameter("m_assignment")
                     );
-                break;
+                    
+                        try {
+                            System.out.println(personnelSQLQuery);
+
+                            db.AddData(personnelSQLQuery);
+
+                            System.out.println(tableName);
+            
+                            } catch (SQLException ex) {
+                                Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                                    break;
      
         }
         
-        try {
-            System.out.println(personnelSQLQuery);
-            //db.getGenericResultSet(personnelSQLQuery);
-            db.AddData(personnelSQLQuery);
-            System.out.println(tableName);
-        } catch (NullPointerException ex) {
-            Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         response.setContentType("text/html");                      
         RequestDispatcher view = request.getRequestDispatcher("DataServlet");

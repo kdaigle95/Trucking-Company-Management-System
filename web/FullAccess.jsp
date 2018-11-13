@@ -26,11 +26,11 @@
                 </div>
             </div>
         </div>
-        <button class="tablink" onclick="openPage('Home', this, '#003399')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('Home', this, '#032A96')" id="defaultOpen">Home</button>
        
-        <button class="tablink" onclick="openPage('Shipping', this, '#003399')" >Shipping</button>
+        <button class="tablink" onclick="openPage('Shipping', this, '#032A96')" >Shipping</button>
        
-        <button class="tablink" onclick="openPage('Equipment', this, '#003399')">Equipment</button>
+        <button class="tablink" onclick="openPage('Equipment', this, '#032A96')">Equipment</button>
         
         <button class="tablink" onclick="openPage('Personnel', this, '#003399')">Personnel</button>
 
@@ -192,7 +192,7 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
-                               <td><a href="delete.jsp?id=${vehicleDataArray.m_truckID}">Delete</a></td>
+                               <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}">Delete</a></td>
                             </tr>    
                            </c:forEach> 
                         </table>
@@ -230,6 +230,8 @@
                                <td>${maintenanceDataArray.m_parts}</td>
                                <td>${maintenanceDataArray.m_cost}</td>
                                <td>${maintenanceDataArray.m_report}</td>
+                               <td><a href="edit.jsp?id=${maintenanceDataArray.m_workOrder}">Edit</a></td>
+                               <td><a href="DeleteData.jsp?id=${maintenanceDataArray.m_workOrder}&generic_table=maintenance_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 
                         </table>

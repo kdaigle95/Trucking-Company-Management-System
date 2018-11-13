@@ -85,12 +85,12 @@
                                 Work Order:<input type="text" name="m_workOrder" placeholder="Work Order Number" autofocus/><br>
                                 Truck ID:<input type="text" name="m_truckID" placeholder="Truck ID" autofocus/><br>
                                 Vin Number:<input type="text" name="m_vin" placeholder="Vin" autofocus/><br>
-                                Maintenance ID Record:<input type="text" name="Record ID" placeholder="City" autofocus/><br>
+                                Maintenance ID Record:<input type="text" name="m_maintenanceID" placeholder="Record ID number" autofocus/><br>
                                 Date:<input type="text" name="m_date" placeholder="YYYY-MM-DD" autofocus/><br>
                                 Routine Inspection:<input type="text" name="m_jobDone" placeholder="Job Type" autofocus/><br>
                                 Parts:<input type="text" name="m_parts" placeholder="List all parts" autofocus/><br>
-                                Cost:<input type="text" name="m_cost" placeholder="YYYY-MM-DD" autofocus/><br>
-                                Detailed Report:<input type="text" name="m_reports" placeholder="Details of Inspection" autofocus/><br>
+                                Cost:<input type="text" name="m_cost" placeholder="Dollar Amount" autofocus/><br>
+                                Detailed Report:<input type="text" name="m_report" placeholder="Details of Inspection" autofocus/><br>
                                 <input type="submit" value="submit">
                         </form>
                     <%
