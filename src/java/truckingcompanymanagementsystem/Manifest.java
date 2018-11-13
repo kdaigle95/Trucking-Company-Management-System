@@ -25,7 +25,7 @@ public class Manifest
         this.total_item_cost = 0;
     }
     
-    public Manifest(String item_name, int item_amount, float unit_cost, float total_item_cost, String availability)
+    public Manifest(String item_name, int item_amount, float unit_cost, float total_item_cost)
     {
         this.item_name = item_name;
         this.item_amount = item_amount;
@@ -72,6 +72,5 @@ public class Manifest
     {
         this.total_item_cost = total_item_cost;
     }
-    
 }
 

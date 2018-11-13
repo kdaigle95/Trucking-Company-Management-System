@@ -28,6 +28,7 @@ public class VehicleFactory {
      * @param truckBrand
      * @param truckYear
      * @param truckModel
+     * @param truckID
      * @param driverID
      * @return
      */
