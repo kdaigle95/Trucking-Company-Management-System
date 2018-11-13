@@ -41,10 +41,10 @@ public class PurchaseOrderFactory
      */
     
     
-     public PurchaseOrder createPurchaseOrder(String item_name, int item_amount, float unit_cost, float total_item_cost)
+     public PurchaseOrder createPurchaseOrder(String item_name, int item_amount, float unit_cost, float total_item_cost, String availability)
     {
         
-        return new Manifest(item_name, item_amount, unit_cost, total_item_cost, availability);
+        return new PurchaseOrder(item_name, item_amount, unit_cost, total_item_cost, availability);
         
     }
 }

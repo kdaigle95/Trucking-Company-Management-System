@@ -13,64 +13,58 @@ import java.util.ArrayList;
  * @author kdaig
  */
 public class ReportFactory {
-    
+
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
     ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
-    
+    ArrayList<PartList> partList = new ArrayList<PartList>();
+
     private static ReportFactory instance = null;
     private Database db = Database.getInstance();
-    
-    public ReportFactory() 
-    {
-        
+
+    public ReportFactory() {
+
     }
-    
-    public ReportFactory getInstance()
-    {
-        if(instance == null)
+
+    public ReportFactory getInstance() {
+        if (instance == null) {
             instance = new ReportFactory();
-        
+        }
+
         return instance;
     }
-    
-    public ArrayList makePayrollReport()
-    {
+
+    public ArrayList<PayrollReport> makePayrollReport() {
         payroll.clear();
         ResultSet payrollReport = null;
-        try{
+        try {
             payrollReport = db.getGenericResultSet("SELECT employee_id_number, last_name, "
                     + "first_name, position, monthly_pay_rate FROM Personnel_Data ORDER BY monthly_pay_rate DESC");
-        
-            while(payrollReport.next())
-            {
+
+            while (payrollReport.next()) {
                 payroll.add(new PayrollReport(
-                        payrollReport.getInt("employee_id_number"), 
-                        payrollReport.getString("last_name"), 
+                        payrollReport.getInt("employee_id_number"),
+                        payrollReport.getString("last_name"),
                         payrollReport.getString("first_name"),
                         payrollReport.getString("position"),
                         payrollReport.getString("monthly_pay_rate")
                 ));
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             //do something
         }
-        
+
         return payroll;
     }
-    
-    public ArrayList makeTruckMaintenanceReport(int truckID)
-    {
+
+    public ArrayList<MaintenanceReport> makeTruckMaintenanceReport(int truckID) {
         truckMaint.clear();
         ResultSet truckReport = null;
-        try 
-        {
+        try {
             truckReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
                     + "WHERE truck_id = " + truckID + " ORDER BY date ASC");
-            
-            while(truckReport.next())
-            {
+
+            while (truckReport.next()) {
                 monthlyMaint.add(new MaintenanceReport(
                         truckReport.getInt("work_order"),
                         truckReport.getInt("truck_id"),
@@ -83,25 +77,20 @@ public class ReportFactory {
                         truckReport.getString("detailed_report")
                 ));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             //do something
         }
         return truckMaint;
     }
-    
-    public ArrayList makeMonthlyMaintenanceReport(String startDate, String endDate)
-    {
+
+    public ArrayList<MaintenanceReport> makeMonthlyMaintenanceReport(String startDate, String endDate) {
         monthlyMaint.clear();
         ResultSet monthlyMaintReport = null;
-        try 
-        {
+        try {
             monthlyMaintReport = db.getGenericResultSet("SELECT * FROM maintenance_data "
-                    + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate + 
-                    "\" ORDER BY date ASC");
-            while(monthlyMaintReport.next())
-            {
+                    + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate
+                    + "\" ORDER BY date ASC");
+            while (monthlyMaintReport.next()) {
                 monthlyMaint.add(new MaintenanceReport(
                         monthlyMaintReport.getInt("work_order"),
                         monthlyMaintReport.getInt("truck_id"),
@@ -114,51 +103,71 @@ public class ReportFactory {
                         monthlyMaintReport.getString("detailed_report")
                 ));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             //do something
         }
         return monthlyMaint;
-        
+
     }
-    
-    public ResultSet makeManifestReport(int orderID)
-    {
-        ResultSet manifest = null;
-        try
+
+    public ArrayList<PartList> makePartsList(int truckID) {
+        partList.clear();
+        ResultSet parts = null;
+        try {
+            parts = db.getGenericResultSet("SELECT parts.part_name, "
+                    + "truck_parts.parts_count, truck_parts.part_source, "
+                    + "truck_parts.cost, truck_parts.installation_date "
+                    + "FROM parts "
+                    + "INNER JOIN truck_parts ON truck_parts.truck_id ="
+                    + truckID
+                    + " AND truck_parts.part_id = parts.part_id;");
+            
+            while(parts.next())
+            {
+                partList.add(new PartList(
+                        parts.getString("part_name"),
+                        parts.getInt("parts_count"),
+                        parts.getString("part_source"),
+                        parts.getString("cost"),
+                        parts.getString("installation_date")
+                ));
+            }
+        } catch (SQLException e)
         {
+            //print
+        }
+
+        return partList;
+    }
+
+    public ResultSet makeManifestReport(int orderID) {
+        ResultSet manifest = null;
+        try {
             manifest = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
-                    + "manifests.total_item_cost FROM items" 
+                    + "manifests.total_item_cost FROM items"
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             //do stuff
         }
         return manifest;
     }
-    
-    public ResultSet makePurchaseReport(int orderID)
-    {
+
+    public ResultSet makePurchaseReport(int orderID) {
         ResultSet purchase = null;
-        try
-        {
+        try {
             purchase = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
-                    + "manifests.total_item_cost, items.availability FROM items" 
+                    + "manifests.total_item_cost, items.availability FROM items"
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             //do stuff
         }
         return purchase;
     }
-    
+
     public ArrayList<PayrollReport> getPayroll() {
         return payroll;
     }
@@ -171,5 +180,9 @@ public class ReportFactory {
         return truckMaint;
     }
     
+    public ArrayList<PartList> getPartsList()
+    {
+        return partList;
+    }
 
 }
