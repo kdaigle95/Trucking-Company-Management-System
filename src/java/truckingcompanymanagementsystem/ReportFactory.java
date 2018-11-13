@@ -6,12 +6,15 @@
 package truckingcompanymanagementsystem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author kdaig
  */
 public class ReportFactory {
+    
+    ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
     
     private static ReportFactory instance = null;
     private Database db = Database.getInstance();
@@ -29,17 +32,30 @@ public class ReportFactory {
         return instance;
     }
     
-    public ResultSet makePayrollReport()
+    public ArrayList makePayrollReport()
     {
+        payroll.clear();
         ResultSet payrollReport = null;
         try{
-        payrollReport = db.getGenericResultSet("SELECT employee_id_number, last_name, "
-                + "first_name, position, monthly_pay_rate FROM Personnel_Data ORDER BY monthly_pay_rate DESC");
+            payrollReport = db.getGenericResultSet("SELECT employee_id_number, last_name, "
+                    + "first_name, position, monthly_pay_rate FROM Personnel_Data ORDER BY monthly_pay_rate DESC");
+        
+            while(payrollReport.next())
+            {
+                payroll.add(new PayrollReport(
+                        payrollReport.getInt("employee_id_number"), 
+                        payrollReport.getString("last_name"), 
+                        payrollReport.getString("first_name"),
+                        payrollReport.getString("position"),
+                        payrollReport.getString("monthly_pay_rate")
+                ));
+            }
         }
         catch (SQLException e){
             //do something
         }
-        return payrollReport;
+        
+        return payroll;
     }
     
     public ResultSet makeTruckMaintenanceReport(int truckID)
