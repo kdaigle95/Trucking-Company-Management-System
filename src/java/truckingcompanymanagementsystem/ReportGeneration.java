@@ -12,23 +12,23 @@ import java.util.ArrayList;
  *
  * @author kdaig
  */
-public class ReportFactory {
+public class ReportGeneration {
 
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
     ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
 
-    private static ReportFactory instance = null;
+    private static ReportGeneration instance = null;
     private Database db = Database.getInstance();
 
-    public ReportFactory() {
+    public ReportGeneration() {
 
     }
 
-    public ReportFactory getInstance() {
+    public ReportGeneration getInstance() {
         if (instance == null) {
-            instance = new ReportFactory();
+            instance = new ReportGeneration();
         }
 
         return instance;
