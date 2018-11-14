@@ -26,7 +26,7 @@ public class IncomingShipping {
     public IncomingShipping(){
         this.m_orderID = 1;
         this.m_sourceCompany = "Target";
-        this.m_address = "Electric Blvd";
+        this.m_address = "Electric Ave";
         this.m_city = "Mobile";
         this.m_state = "AL";
         this.m_zip = 90210;

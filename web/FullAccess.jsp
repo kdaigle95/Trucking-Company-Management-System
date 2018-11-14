@@ -66,7 +66,7 @@
                     <h2>Incoming Shipments</h2>           
                         <div>
                             <a href="AddData.jsp?incoming_shipping">
-                              <button>Add</button>  
+                                <button class="button">Add New Shipment</button>  
                             </a>
                         </div>
                     <button class="accordion">Pick-ups</button>
@@ -105,7 +105,7 @@
                                <td>${incomingShippingArray.m_driverID}</td>
                                <td>${incomingShippingArray.m_paymentConf}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
-                               <td><a href="DeleteDataServlet?id=${incomingShippingArray.m_orderID}">Delete</a></td>
+                               <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                             </tr>    
                            </c:forEach>  
@@ -116,7 +116,7 @@
                     <h2>Outgoing Shipments</h2>
                         <div>
                             <a href="AddData.jsp?outgoing_shipping">
-                            <button>Add</button>       
+                            <button class="button">Add Delivery</button>       
                             </a>
                         </div>
                     <button class="accordion">Deliveries</button>
@@ -154,7 +154,7 @@
                                <td>${outgoingShippingArray.m_driverID}</td>
                                <td>${outgoingShippingArray.m_paymentConf}</td>                               
                                <td><a href="edit.jsp?id=#">Edit</a></td>
-                               <td><a href="delete.jsp?id=#">Delete</a></td>
+                               <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
                                <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                             </tr>    
@@ -172,7 +172,7 @@
                     <h2>Vehicles</h2>
                     <div>
                         <a href="AddData.jsp?vehicle_data">
-                        <button>Add</button>       
+                        <button class="button">Add Active Vehicle</button>       
                         </a>
                     </div>
                     <button class="accordion">Active Vehicles</button> 
@@ -192,7 +192,7 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
-                               <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}">Delete</a></td>
+                               <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 
                         </table>
@@ -204,7 +204,7 @@
                     <h2>Maintenance</h2>
                     <div>
                         <a href="AddData.jsp?maintenance_data">
-                        <button>Add</button>       
+                        <button class="button">Add New Record</button>       
                         </a>
                     </div>
                     <button class="accordion">Routine Maintenance and Repairs</button> 
@@ -245,7 +245,7 @@
                     <h2>List of Personnel</h2>
                     <div>
                         <a href="AddData.jsp?Personnel_Data">
-                        <button>Add</button>       
+                        <button class="button">Add New Personnel</button>       
                         </a>
                     </div>
                     <button class="accordion">People in the Company</button> 

@@ -23,6 +23,7 @@ h1{
     text-shadow: 1px 1px white;
     
 }
+
 h2{
     height: 50%;
     margin: 10px;
@@ -64,6 +65,7 @@ p{
     padding: 14px 16px;
     font-size: 20px;
     width: 25%;
+    border-radius: 2px 2px 0px 0px;
 }
 
 /*Style tab links */
@@ -85,6 +87,7 @@ p{
     float: left;
     width: 95%;
     padding: 10px;
+    outline-style: inset;
     outline-color: rgba(9,21,52,0.2);
     outline-width: 2px;
 }
@@ -158,9 +161,9 @@ p{
     width: 100%;
     text-align: left;
     border: none;
-    outline-style: ridge;
     outline-color: rgba(9,21,52,0.2);
     outline-width: 2px;
+    border-radius: 2px 2px 5px 5px;
     transition: 0.4s;
 }
 
@@ -220,7 +223,17 @@ over it (hover)*/
 }
 /*________________Overlay Attempted Stuff______________________*/
 
-/*Dropdown Report Button*/
+.button{
+    color: rgba(9,21,52,0.98);
+    border-radius: 2px 2px 5px 5px;
+}
+
+.button:hover{
+    background-color: #006699;
+    color: white;
+}
+
+/*________________Dropdown Report Button_______________________*/
 .reportButton{
     background-color: #091534;
     color: white;

@@ -16,9 +16,6 @@ import java.sql.Statement;
  * @author Andrea
  */
 
-//final keyword makes it act like singleton
-//which means it won't inherit to other classes
-
 public final class Database 
 {
     
@@ -126,6 +123,7 @@ public final class Database
             Statement st = conn.createStatement();
             st.executeUpdate(dataQuery);
             deleteDataQuery = true;
+            System.out.print("deletDataQuery");
         }
         catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

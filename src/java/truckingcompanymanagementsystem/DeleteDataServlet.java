@@ -1,6 +1,3 @@
-/*
- * 
- */
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
@@ -32,6 +29,7 @@ public class DeleteDataServlet extends HttpServlet {
             throws ServletException, IOException {
         
         DataModification datamod = new DataModification();
+        
         String personnelSQLQuery = null;
         String incomingSQLQuery = null;
         String outgoingSQLQuery = null;
@@ -41,46 +39,79 @@ public class DeleteDataServlet extends HttpServlet {
         String primary_key = request.getParameter("primary_key");
         
         String tableName = request.getParameter("generic_table");
+        
         Database db = Database.getInstance();
         
         switch(tableName.trim()){
             
             case "incoming_shipping":
-
+                        incomingSQLQuery = datamod.deleteRow("incoming_shipping", Long.parseLong(primary_key));
+                    
+                    try{
+                        System.out.println(incomingSQLQuery);
+                        db.DeleteData(incomingSQLQuery);
+                    }
+                    catch(SQLException ex) {
+                        Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
                 break;
                 
             case "outgoing_shipping":
-            
+                        outgoingSQLQuery = datamod.deleteRow("outgoing_shipping", Long.parseLong(primary_key));
+                    
+                    try{
+                        System.out.println(outgoingSQLQuery);
+                        db.DeleteData(outgoingSQLQuery);
+                    }
+                    catch(SQLException ex) {
+                        Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }            
                 break;
                 
             case "vehicle_data":
-                 
+                        vehicleSQLQuery = datamod.deleteRow("vehicle_data", Long.parseLong(primary_key));
+                    
+                    try{
+                        System.out.println(vehicleSQLQuery);
+                        db.DeleteData(vehicleSQLQuery);
+                    }
+                    catch(SQLException ex) {
+                        Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
                 break;
                 
             case "maintenance_data":
-                   maintenanceSQLQuery = datamod.deleteRow("maintenance_data", Long.parseLong(primary_key));
+                        maintenanceSQLQuery = datamod.deleteRow("maintenance_data", Long.parseLong(primary_key));
+                   
+                    try{
+                        System.out.println(maintenanceSQLQuery);
+                        db.DeleteData(maintenanceSQLQuery);
+                    }
+                    catch (SQLException ex) {
+                        Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }          
                 break;
                 
             case "Personnel_Data":
-                
-                   personnelSQLQuery = datamod.deleteRow("Personnel_Data", Long.parseLong(primary_key));
+                        personnelSQLQuery = datamod.deleteRow("Personnel_Data", Long.parseLong(primary_key));
+                   
+                   try{
+                        System.out.println(personnelSQLQuery);
+                        db.DeleteData(personnelSQLQuery);
+                   }
+                   catch (SQLException ex) {
+                        Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 break;
      
         }
         
         try {
-            System.out.println(personnelSQLQuery);
-            System.out.println(maintenanceSQLQuery);
-            
-            db.DeleteData(personnelSQLQuery);
-            db.DeleteData(maintenanceSQLQuery);
-            
-            System.out.println(tableName);
-        } catch (NullPointerException ex) {
-            Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-           Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }
+                System.out.println(tableName);
+        } 
+        catch (NullPointerException ex) {
+                Logger.getLogger(DeleteDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         response.setContentType("text/html");                      
         RequestDispatcher view = request.getRequestDispatcher("DataServlet");

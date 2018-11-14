@@ -82,7 +82,6 @@ public class DataModification {
         }
     }
 
-    //why does the key need to be a long - this is just more work
     protected String deleteRow(String tableName, long primaryKey) {
         switch (tableName) {
             case "Personnel_Data":
@@ -95,7 +94,7 @@ public class DataModification {
                 sql = "DELETE FROM maintenance_data WHERE work_order = " + primaryKey + ";";
                 break;
             case "incoming_shipping":
-                sql = "DELTE FROM incoming_shipping WHERE order_id = " + primaryKey + ";";
+                sql = "DELETE FROM incoming_shipping WHERE order_id = " + primaryKey + ";";
                 break;
             case "outgoing_shipping":
                 sql = "DELETE FROM outgoing_shipping WHERE order_id = " + primaryKey + ";";

@@ -154,9 +154,5 @@ public class OutgoingShipping {
     public void setM_paymentConf(String m_paymentConf) {
         this.m_paymentConf = m_paymentConf;
     }
-    
 
-    
-
-    
 }
