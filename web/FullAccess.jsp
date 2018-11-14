@@ -13,11 +13,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <title>TCMS</title>
     </head>
     <body>
-        <h1>Full Access User  <i class="fa fa-truck"></i></h1>
+        <h1>Full Access User</h1>
         
         <div class= "contanier" id="overlay" onclick="off()">
             <div class="middle">
@@ -26,13 +26,13 @@
                 </div>
             </div>
         </div>
-        <button class="tablink" onclick="openPage('Home', this, '#032A96')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
        
-        <button class="tablink" onclick="openPage('Shipping', this, '#032A96')" >Shipping</button>
+        <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" >Shipping</button>
        
-        <button class="tablink" onclick="openPage('Equipment', this, '#032A96')">Equipment</button>
+        <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">Equipment</button>
         
-        <button class="tablink" onclick="openPage('Personnel', this, '#003399')">Personnel</button>
+        <button class="tablink" onclick="openPage('Personnel', this, 'rgba(9,21,52,0.98)')">Personnel</button>
 
         <div id="Home" class="tabcontent">
             <h3>Trucking Company Management System</h3>

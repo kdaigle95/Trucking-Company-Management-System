@@ -215,16 +215,16 @@ public class DataModification {
                 + "address, city, state, zip, truck_id, departure_date_time, estimated_arrival, "
                 + "arrival_confirmation, driver_id, payment_confirmation) "
                 + "VALUES (" + orderID + ", " 
-                + dest + "', "
-                + addr + "', "
-                + state + "', "
-                + zip + "', "
-                + truck_id + "', "
-                + departure + "', "
-                + arrival + "', "
-                + arrivalConf + "', "
-                + driverID + "', "
-                + paymentConf + ")";
+                + "'" + dest + "', "
+                + "'" + addr + "', "
+                + "'" + state + "', "
+                + "'" + zip + "', "
+                + "'" + truck_id + "', "
+                + "'" + departure + "', "
+                + "'" + arrival + "', "
+                + "'" + arrivalConf + "', "
+                + "'" + driverID + "', "
+                + "'" + paymentConf + "')";
         
         return sql;
     }

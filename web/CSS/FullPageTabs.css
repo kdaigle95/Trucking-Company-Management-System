@@ -13,7 +13,7 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial;
-    background-color: #DBE5FF;
+    background-color: whitesmoke;
 }
 
 h1{
@@ -52,20 +52,23 @@ p{
 
 /*Style tab links */
 .tablink{
-    background-color: #091534;
-    color: #DBE5FF;
+    background-color: #717e99;
+    color: white;
     float: left;
-    border: none;
-    outline: none;
+    border: none;   
+    outline-style: inset;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
+    text-shadow: 1px #091534;
     cursor: pointer;
     padding: 14px 16px;
-    font-size: 17px;
+    font-size: 20px;
     width: 25%;
 }
 
 /*Style tab links */
 .tablink:hover{
-    background-color: #678FFE;
+    background-color: #006699;
 }
 
 /*Style the tab content (and add height: 100% for full page content)*/
@@ -82,6 +85,8 @@ p{
     float: left;
     width: 95%;
     padding: 10px;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
 }
 /*Clear floats after the columns*/
 .row:after{
@@ -105,6 +110,7 @@ p{
     page: auto;
 }
 
+
 .th{
     text-align: left;
     padding: 20px;
@@ -120,8 +126,18 @@ p{
     background-color: #DBE5FF;
 }
 
+.tr:nth-child(even):hover{
+    background-color: rgba(0,102,153,1);
+    color: white;
+}
+
 .tr:nth-child(odd){
-    background-color: #99aed8;
+    background-color: rgba(0,102,153,0.4);
+}
+
+.tr:nth-child(odd):hover{
+    background-color: rgba(0,102,153,1);
+    color: white;
 }
 
 
@@ -142,7 +158,9 @@ p{
     width: 100%;
     text-align: left;
     border: none;
-    outline: none;
+    outline-style: ridge;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
     transition: 0.4s;
 }
 
@@ -151,7 +169,7 @@ p{
 over it (hover)*/
 
 .active, .accordion:hover{
-    background-color: #678FFE;
+    background-color: #006699;
     color: white;
 }
 
@@ -233,7 +251,7 @@ over it (hover)*/
 }
 
 .dropdown-content a:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .dropdown:hover .dropdown-content{
@@ -241,7 +259,7 @@ over it (hover)*/
 }
 
 .reportButton:hover, .dropdown:hover .reportButton{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .addShipmentButton{
@@ -254,7 +272,7 @@ over it (hover)*/
 }
 
 .addShipmentButton:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .purchaseOrderButton{
@@ -267,8 +285,7 @@ over it (hover)*/
 }
 
 .purchaseOrderButton:hover{
-    background-color: #003399;
-    opacity: 0.3;
+    background-color: #006699;
 }
 
 .manifestButton{
@@ -281,7 +298,7 @@ over it (hover)*/
 }
 
 .manifestButton:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 #overlay{
@@ -311,7 +328,7 @@ over it (hover)*/
 }
 
 
-#Home {background-color: #003399;}
-#Shipping {background-color: #003399;}
-#Equipment {background-color: #003399;}
-#Personnel {background-color: #003399;}
+#Home {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Shipping {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Equipment {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Personnel {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
