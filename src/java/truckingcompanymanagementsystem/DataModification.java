@@ -1,6 +1,8 @@
 package truckingcompanymanagementsystem;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -159,7 +161,7 @@ public class DataModification {
     }
 
     protected String addOutgoing(int orderID, String dest, String addr, String city,
-            String state, int zip, int truckID, String departure, String arrival, 
+            String state, int zip, int truckID, String departure, String arrival,
             String arrivalConf, int driverID, String paymentConf) {
         arrivalConf = arrivalConf.toLowerCase();
         paymentConf = paymentConf.toLowerCase();
@@ -167,9 +169,10 @@ public class DataModification {
                 + "VALUES (" + orderID + ", '"
                 + dest + "', '"
                 + addr + "', '"
+                + city + "', '"
                 + state + "', "
                 + zip + ", "
-                + truckID +", '"
+                + truckID + ", '"
                 + departure + "', '"
                 + arrival + "', '"
                 + arrivalConf + "', "
@@ -234,7 +237,7 @@ public class DataModification {
     }
 
     protected String addDriverAssignment(int orderID) {
-        sql = "UPDATE Personnel_Data"
+        sql = "UPDATE Personnel_Data "
                 + "SET assignment = "
                 + orderID
                 + " WHERE position = 'Driver' AND assignment = 0 "
@@ -246,40 +249,81 @@ public class DataModification {
         sql = "UPDATE vehicle_data "
                 + "SET `availability` = "
                 + orderID
-                + "WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1; ";
+                + " WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1; ";
         return sql;
     }
 
     protected String addDriverToVehicle(int orderID) {
-        sql = "UPDATE vehicle_data "
-                + "SET `driver_id` = (SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
-                + orderID
-                + "WHERE EXISTS (SELECT assignment FROM Personnel_Data WHERE assignment = "
-                + orderID + ") AND availability = "
-                + orderID + ";";
-        return sql;
+        int driver = 0;
+        try {
+            System.out.println("add driver break 1 reached");
+            ResultSet result = db.getGenericResultSet("SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
+                    + orderID + ";");
+            System.out.println("add driver break 2 reached");
+            while (result.next()) {
+                driver = result.getInt("employee_id_number");
+                System.out.println(driver);
+            }
+
+           // System.out.println(driver);
+            sql = "UPDATE vehicle_data "
+                    + "SET `driver_id` = " + driver
+                    + " WHERE availability = "
+                    + orderID + ";";
+            System.out.println("Add driver 3 reached");
+            return sql;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     protected String addDriverAndVehicleOutgoing(int orderID) {
-        sql = "UPDATE outgoing_shipping"
-                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
-                + orderID + "), "
-                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
-                + orderID + ")"
-                + "WHERE order_id = "
-                + orderID + ";";
-        return sql;
+        int driver = 0;
+        int truck = 0;
+        try {
+            ResultSet result = db.getGenericResultSet("SELECT driver_id, truck_id FROM vehicle_data WHERE availability = "
+                    + orderID + ";");
+            while(result.next())
+            {
+                driver = result.getInt("driver_id");
+            truck = result.getInt("truck_id");
+            }      
+            sql = "UPDATE outgoing_shipping "
+                    + "SET driver_id = " + driver + ", "
+                    + "truck_id = " + truck
+                    + " WHERE order_id = "
+                    + orderID + ";";
+            return sql;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
     }
 
     protected String addDriverAndVehicleIncoming(int orderID) {
-        sql = "UPDATE incoming_shipping "
-                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
-                + orderID + "), "
-                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
-                + orderID + ")"
-                + "WHERE order_id = "
-                + orderID + ";";
-        return sql;
+        int driver = 0;
+        int truck = 0;
+        try {
+            ResultSet result = db.getGenericResultSet("SELECT driver_id, truck_id FROM vehicle_data WHERE availability = "
+                    + orderID + ";");
+            while(result.next())
+            {
+                driver = result.getInt("driver_id");
+                truck = result.getInt("truck_id");
+            }
+            
+            sql = "UPDATE incoming_shipping "
+                    + "SET driver_id = " + driver + ", "
+                    + "truck_id = " + truck
+                    + " WHERE order_id = "
+                    + orderID + ";";
+            return sql;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
 }

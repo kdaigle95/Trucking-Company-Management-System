@@ -127,7 +127,9 @@ public final class Database {
                 stmt.executeUpdate(dataMod.addDriverAndVehicleIncoming(orderID));
             } else if (orderType.toLowerCase() == "outgoing") {
                 stmt.executeUpdate(dataMod.addDriverAndVehicleOutgoing(orderID));
+                System.out.println("outgoing break reached");
             }
+            System.out.println("break reached");
             allocated = true;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
