@@ -10,14 +10,12 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Statement;
+import java.sql.SQLException;
 
 /**
  *
  * @author Andrea
  */
-
-//final keyword makes it act like singleton
-//which means it won't inherit to other classes
 
 public final class Database 
 {
@@ -100,5 +98,45 @@ public final class Database
         }
         
         return genericResultSet;
-    }    
+    }
+    
+    public boolean AddData(String dataQuery) throws SQLException, NullPointerException
+    {
+        boolean addDataQuery = false;
+        
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(dataQuery);
+            addDataQuery = true;
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Check if you are trying to enter duplicate data.");
+        }
+        return addDataQuery;
+    }
+    
+    public boolean DeleteData(String dataQuery) throws SQLException, NullPointerException
+    {
+        boolean deleteDataQuery = false;
+        
+        try{
+            Statement st = conn.createStatement();
+            st.executeUpdate(dataQuery);
+            deleteDataQuery = true;
+            System.out.print("deletDataQuery");
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return deleteDataQuery;
+    }
+  
+    //for future use
+//    public boolean EditData(String dataQuery)throws SQLException, NullPointerExceptoin
+//    {
+//        
+//    }
+    
+    
 }

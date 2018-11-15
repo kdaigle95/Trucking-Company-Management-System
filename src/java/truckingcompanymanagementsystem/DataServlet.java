@@ -6,14 +6,12 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -29,7 +27,12 @@ public class DataServlet extends HttpServlet {
     private DataServlet dataservlet;
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        ArrayList<Personnel> personnelArray = null;
+        ArrayList<IncomingShipping> incomingShippingArray = null;
+        ArrayList<OutgoingShipping> outgoingShippingArray = null;
+        ArrayList<Vehicle> vehicleDataArray = null;
+        ArrayList<Maintenance> maintenanceDataArray = null;
+
         //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();
@@ -41,6 +44,25 @@ public class DataServlet extends HttpServlet {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
+
+        personnelArray = Controller.getInstance().getPersonnelList();
+        System.out.println(this);
+
+        incomingShippingArray = Controller.getInstance().getIncomingShippingList();
+        System.out.println(this);
+
+        outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
+        System.out.println(this);
+
+        vehicleDataArray = Controller.getInstance().getVehicleDataList();
+        System.out.println(this);                     
+
+        maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
+        System.out.println(this);         
+        
+        
+
+        if (true) {         // Full access -> if user == admin
         
         //Setup for starting the login process and authentication
         UserAccounts ua = Controller.getInstance().getUserAccounts();
@@ -71,11 +93,13 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);         
         
  
-    if(user_authenticated == true)
-    {
+    //if(user_authenticated == true)
+    //{
         
-    
-        if (User.access_level == "full") {         // Full access -> if user == admin
+    //only keeping full if statement for user access level in comments to quickly iterate through functionality
+    //after edit functionality, and the report and purchase/manifest buttons work we can start testing users fully
+    //or alternatively you could run just the one file by right clicking
+        //if (User.access_level == "full") {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
@@ -116,7 +140,9 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("AccessDenied.jsp");
             view.forward(request, response);
         }
-    }
+        
+        //@Andrea added clearLists method 11/11/18
+       clearLists(personnelArray, incomingShippingArray, outgoingShippingArray, vehicleDataArray, maintenanceDataArray); 
     }
     
     //Forward HTTP methods to processRequest()
@@ -129,5 +155,28 @@ public class DataServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         processRequest(request, response);
+    }
+    
+    protected void clearLists( ArrayList<Personnel> personnelArray, ArrayList<IncomingShipping> incomingShippingArray, ArrayList<OutgoingShipping> outgoingShippingArray, ArrayList<Vehicle> vehicleDataArray, ArrayList<Maintenance> maintenanceDataArray){
+        
+        if(!(personnelArray.isEmpty())){
+            personnelArray.clear();
+        }
+        
+        if(!(incomingShippingArray.isEmpty())){
+            incomingShippingArray.clear();
+        }
+        
+        if(!(outgoingShippingArray.isEmpty())){
+            outgoingShippingArray.clear();
+        }
+        
+        if(!(vehicleDataArray.isEmpty())){
+            vehicleDataArray.clear();
+        }
+        
+        if(!(maintenanceDataArray.isEmpty())){
+            maintenanceDataArray.clear();
+        }
     }
 }

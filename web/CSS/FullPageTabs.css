@@ -13,23 +13,37 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial;
+    background-color: whitesmoke;
 }
 
 h1{
     
     font-family: Arial;
-    color: black;
+    color: #091534;
     text-shadow: 1px 1px white;
+    
 }
+
 h2{
     height: 50%;
     margin: 10px;
     font-family: Arial;
     color: white;
     text-shadow: 1px 1px #000000;
-
-    
+   
 }
+
+h3{
+    color: #DBE5FF;
+    text-shadow: 1px 1px #091534;
+}
+
+p{
+    color: #DBE5FF;
+    text-shadow: 1px 1px #091534;
+}
+
+
 
 /*.homebackgroundimage{
     background: url(tcms1.png) no-repeat center fixed;
@@ -39,31 +53,33 @@ h2{
 
 /*Style tab links */
 .tablink{
-    background-color: #042844;
-    color: #DBE5FF;
+    background-color: #717e99;
+    color: white;
     float: left;
-    border: none;
-    outline: none;
+    border: none;   
+    outline-style: inset;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
+    text-shadow: 1px #091534;
     cursor: pointer;
     padding: 14px 16px;
-    font-size: 17px;
+    font-size: 20px;
     width: 25%;
+    border-radius: 2px 2px 0px 0px;
 }
 
 /*Style tab links */
 .tablink:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 /*Style the tab content (and add height: 100% for full page content)*/
 .tabcontent{
     color: #000000;
-    column-count: 1;
-    display: none;
+    display: table;
     padding: 100px 20px;
     height: 100%;
-    align-content: flex-start;
-    overflow: scroll;
+    overflow: auto;
     animation: cubic-bezier;
 }
 
@@ -71,6 +87,9 @@ h2{
     float: left;
     width: 95%;
     padding: 10px;
+    outline-style: inset;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
 }
 /*Clear floats after the columns*/
 .row:after{
@@ -80,47 +99,57 @@ h2{
 }
 
 .table{
-  
-    border: 1px solid #042844;
+    border: 1px solid #091534;
     border-width: 1px;
-    overflow-style: scrollbar;
-    max-width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    display: table; 
+    max-width: 100%;
+    word-spacing: 2px;
+    word-wrap: normal;
     padding: 20px;
-    border-style: double;
-    display: inline-table;
-    border-top: #042844;
-    border-top-style: groove;
-    margin-top: auto;
-    border-radius: inherit;
+    border-top: #091534;
+    border-style: groove;
+    page: auto;
 }
+
 
 .th{
     text-align: left;
+    height: 25px;
     padding: 20px;
-    border: #000000;
-    border-bottom: #042844;
+    border: 1px #091534;
 }
 
-.td{
+.tr{
     text-align: left;
-    padding: 20px; 
+    height: 5px;
+    vertical-align: central;
+    padding: 20px;
+    border-bottom: 1px solid #091534;
 }
 
 .tr:nth-child(even){
     background-color: #DBE5FF;
 }
 
+.tr:nth-child(even):hover{
+    background-color: rgba(0,102,153,1);
+    color: white;
+}
+
 .tr:nth-child(odd){
-    background-color: #99aed8;
+    background-color: rgba(0,102,153,0.4);
+}
+
+.tr:nth-child(odd):hover{
+    background-color: rgba(0,102,153,1);
+    color: white;
 }
 
 
 /*Responsive layout */
 @media screen and (max-width:600px){
     .column{
-        width: 50%;
+        width: 80%;
     }
 }
 
@@ -134,7 +163,9 @@ h2{
     width: 100%;
     text-align: left;
     border: none;
-    outline: none;
+    outline-color: rgba(9,21,52,0.2);
+    outline-width: 2px;
+    border-radius: 2px 2px 5px 5px;
     transition: 0.4s;
 }
 
@@ -143,7 +174,7 @@ h2{
 over it (hover)*/
 
 .active, .accordion:hover{
-    background-color: #003399;
+    background-color: #006699;
     color: white;
 }
 
@@ -165,12 +196,48 @@ over it (hover)*/
     padding: 0 18px;
     background-color: white;
     display: none;
-    overflow: hidden;
+    overflow: scroll;
 }
 
-/*Dropdown Report Button*/
+/*________________Overlay Attempted Stuff______________________*/
+
+.contanier{
+    position: relative;
+    width: 50%;
+}
+
+.middle{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.textOverlay{
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    padding: 16px 32px;
+}
+/*________________Overlay Attempted Stuff______________________*/
+
+.button{
+    color: rgba(9,21,52,0.98);
+    border-radius: 2px 2px 5px 5px;
+}
+
+.button:hover{
+    background-color: #006699;
+    color: white;
+}
+
+/*________________Dropdown Report Button_______________________*/
 .reportButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -199,7 +266,7 @@ over it (hover)*/
 }
 
 .dropdown-content a:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .dropdown:hover .dropdown-content{
@@ -207,11 +274,11 @@ over it (hover)*/
 }
 
 .reportButton:hover, .dropdown:hover .reportButton{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .addShipmentButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -220,11 +287,11 @@ over it (hover)*/
 }
 
 .addShipmentButton:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .purchaseOrderButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -233,11 +300,11 @@ over it (hover)*/
 }
 
 .purchaseOrderButton:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 .manifestButton{
-    background-color: #042844;
+    background-color: #091534;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -246,7 +313,7 @@ over it (hover)*/
 }
 
 .manifestButton:hover{
-    background-color: #003399;
+    background-color: #006699;
 }
 
 #overlay{
@@ -259,7 +326,8 @@ over it (hover)*/
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.5);
+    transition: .5s ease;
     z-index: 2;
     cursor: pointer;
 }
@@ -275,8 +343,7 @@ over it (hover)*/
 }
 
 
-
-#Home {background-color: #003399;}
-#Shipping {background-color: #f6f6f6;}
-#Equipment {background-color: #f6f6f6;}
-#Personnel {background-color: #f6f6f6;}
+#Home {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Shipping {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Equipment {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Personnel {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
