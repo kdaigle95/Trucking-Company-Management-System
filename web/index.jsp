@@ -18,9 +18,9 @@
             <form class="login" ACTION="DataServlet" METHOD="GET">  
 
                 <p class="title">Log in</p>
-                <input type="text" placeholder="Username" autofocus/>
+                <input type="text" placeholder="Username" name ="username"autofocus/>
                 <i class="fa fa-user"></i>
-                <input type="password" placeholder="Password" autofocus/>
+                <input type="password" placeholder="Password" name="password" autofocus/>
                 <i class="fa fa-key"></i>
 
                 <p >

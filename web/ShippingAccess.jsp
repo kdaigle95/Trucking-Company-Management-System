@@ -77,7 +77,6 @@
                                <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyState}</td>
                                <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
-                               <td>${outgoingShippingArray.m_deliveryDate}</td>
                             </tr>    
                            </c:forEach> 
                            

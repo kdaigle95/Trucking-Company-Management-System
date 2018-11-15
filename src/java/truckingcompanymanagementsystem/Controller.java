@@ -55,36 +55,20 @@ public final class Controller {
         System.out.println("started connection");
 
     }
-
-    
-    public void getUserAccounts()
-    {
-        this.ua = UserAccounts.getInstance();
-        System.out.println("got the ua");
-    }
     
      public void getResourceAllocation()
     {
         this.ra = ResourceAllocation.getInstance();
         System.out.println("got the ra");
     }
-     
-    public void userLogin()
+    
+    public UserAccounts getUserAccounts()
     {
-        //these strings are hard coded for testing purposes will be pulled from jsp later
-        String username = "masterTest";
-        String password = "pass";
-        
-        boolean authenticated = ua.userAuthentication(username, password);  
-        if(authenticated == true)
-        {
-            System.out.println("User authenticated");
-        }
-        if(authenticated == false)
-        {
-            System.out.println("User unable to be authenticated");
-        }
+        this.ua = UserAccounts.getInstance();
+        System.out.println("got the ua");
+        return ua;
     }
+    
     
     /////////////////////////////////////
     // Data Queries
@@ -97,15 +81,16 @@ public final class Controller {
         
         ResultSet personnelData = null;
         //create the query for the whole table (wildcard)
-        String employeeQuery = "SELECT * FROM Personnel_Data";
-       
+
+        String employeeQuery = "SELECT * FROM Personnel_Data ORDER BY salary DESC";
+
         try {
             personnelData = db.getGenericResultSet(employeeQuery);
         } 
         catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        m_DataResultsArray.clear();
         //converting results set into an array list
         while(personnelData.next()){
             
@@ -155,7 +140,7 @@ public final class Controller {
         catch(SQLException ex){
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        m_IncomingShippingDataArray.clear();
         //while through all the rows
         while(incomingShippingData.next()){
         
@@ -199,10 +184,9 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_OutgoingShippingDataArray.clear();
         //converting results set into an array list
         while(outgoingShippingData.next()){
-     
             m_OutgoingShippingDataArray.add(OutgoingShippingFactory.getOutgoingShippingFactory().createOutgoingShipping(  
                     outgoingShippingData.getInt("order_id"),
                     outgoingShippingData.getString("destination_company"),
@@ -244,7 +228,7 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_VehicleDataArray.clear();
         //converting results set into an array list
         while(vehicleData.next()){
             
@@ -284,7 +268,7 @@ public final class Controller {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-
+        m_MaintenanceDataArray.clear();
         //converting results set into an array list
         while(maintenanceData.next()){
             
