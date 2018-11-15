@@ -21,9 +21,15 @@ public class OutgoingShipping {
     private String m_destinationCompanyCity;
     private String m_destinationCompanyState;
     private int m_destinationCompanyZip;
-    private String m_truckID;
-    private String m_departureDate;
-    private String m_estArrival;
+    private int m_truckID;
+    
+    //private String m_departureDate;
+    private java.util.Date m_departureDate;
+    
+    //private String m_estArrival;
+    private java.util.Date m_estArrival;
+    
+    
     private String m_arrivalConf;
     private int m_driverID;
     private String m_paymentConf;
@@ -36,15 +42,15 @@ public class OutgoingShipping {
         this.m_destinationCompanyCity = "Mobile";
         this.m_destinationCompanyState = "AL";
         this.m_destinationCompanyZip = 90210;
-        this.m_truckID = "99999";
-        this.m_departureDate = "2000-01-01 00:00:01";
-        this.m_estArrival = "2000-01-01 00:00:01";
+        this.m_truckID = 99999;
+        this.m_departureDate = null;
+        this.m_estArrival = null;
         this.m_arrivalConf = "TBD";
         this.m_driverID = 99999;
         this.m_paymentConf = "TBD";
     }
 
-    public OutgoingShipping(int m_orderID, String m_destinationCompany, String m_destinationCompanyAddress, String m_destinationCompanyCity, String m_destinationCompanyState, int m_destinationCompanyZip, String m_truckID, String m_departureDate, String m_estArrival, String m_arrivalConf, int m_driverID, String m_paymentConf) {
+    public OutgoingShipping(int m_orderID, String m_destinationCompany, String m_destinationCompanyAddress, String m_destinationCompanyCity, String m_destinationCompanyState, int m_destinationCompanyZip, int m_truckID, java.util.Date m_departureDate, java.util.Date m_estArrival, String m_arrivalConf, int m_driverID, String m_paymentConf) {
         this.m_orderID = m_orderID;
         this.m_destinationCompany = m_destinationCompany;
         this.m_destinationCompanyAddress = m_destinationCompanyAddress;
@@ -107,27 +113,27 @@ public class OutgoingShipping {
         this.m_destinationCompanyZip = m_destinationCompanyZip;
     }
 
-    public String getM_truckID() {
+    public int getM_truckID() {
         return m_truckID;
     }
 
-    public void setM_truckID(String m_truckID) {
+    public void setM_truckID(int m_truckID) {
         this.m_truckID = m_truckID;
     }
 
-    public String getM_departureDate() {
+    public java.util.Date getM_departureDate() {
         return m_departureDate;
     }
 
-    public void setM_departureDate(String m_departureDate) {
+    public void setM_departureDate(java.util.Date m_departureDate) {
         this.m_departureDate = m_departureDate;
     }
 
-    public String getM_estArrival() {
+    public java.util.Date getM_estArrival() {
         return m_estArrival;
     }
 
-    public void setM_estArrival(String m_estArrival) {
+    public void setM_estArrival(java.util.Date m_estArrival) {
         this.m_estArrival = m_estArrival;
     }
 

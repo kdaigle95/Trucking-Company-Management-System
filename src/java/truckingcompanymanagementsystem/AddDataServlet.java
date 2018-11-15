@@ -44,10 +44,9 @@ public class AddDataServlet extends HttpServlet {
         String outgoingSQLQuery = null;
         String vehicleSQLQuery = null;
         String maintenanceSQLQuery = null;
+        
 
         String tableName = request.getParameter("generic_table");
-       
-
         Database db = Database.getInstance();
         
         switch(tableName.trim()){
@@ -61,7 +60,7 @@ public class AddDataServlet extends HttpServlet {
                            request.getParameter("m_state"), 
                            Integer.parseInt(request.getParameter("m_zip")),
                            Integer.parseInt(request.getParameter("m_truckID")),
-                           request.getParameter("m_departureDate"), 
+                           request.getParameter("m_departureDate"),
                            request.getParameter("m_estArrival"), 
                            request.getParameter("m_arrivalConf"),
                            Integer.parseInt(request.getParameter("m_driverID")),
@@ -78,13 +77,59 @@ public class AddDataServlet extends HttpServlet {
                                 Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             
-                           break;
+                break;
                 
             case "outgoing_shipping":
-            
+                    outgoingSQLQuery = datamod.addOutgoing(
+                           Integer.parseInt(request.getParameter("m_orderID")), 
+                           request.getParameter("m_destinationCompany"), 
+                           request.getParameter("m_destinationCompanyAddress"), 
+                           request.getParameter("m_destinationCompanyCity"),
+                           request.getParameter("m_destinationCompanyState"), 
+                           Integer.parseInt(request.getParameter("m_destinationCompanyZip")),
+                           Integer.parseInt(request.getParameter("m_truckID")),
+                           request.getParameter("m_departureDate"),
+                           request.getParameter("m_estArrival"), 
+                           request.getParameter("m_arrivalConf"),
+                           Integer.parseInt(request.getParameter("m_driverID")),
+                           request.getParameter("m_paymentConf")
+                    );
+                           try {
+                                System.out.println(outgoingSQLQuery);
+
+                                db.AddData(outgoingSQLQuery);
+
+                                System.out.println(tableName);
+
+                            }catch (SQLException ex) {
+                                Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                 break;
                 
             case "vehicle_data":
+                    vehicleSQLQuery = datamod.addTruck(
+                            request.getParameter("m_vin"), 
+                            request.getParameter("m_truckBrand"), 
+                            Integer.parseInt(request.getParameter("m_truckYear")), 
+                            request.getParameter("m_truckModel"), 
+                            Integer.parseInt(request.getParameter("m_truckID")), 
+                            Integer.parseInt(request.getParameter("m_driverID")),
+                            Integer.parseInt(request.getParameter("m_availability")),
+                            request.getParameter("m_partsList")
+                    );
+
+                    try {
+
+                        System.out.println(vehicleSQLQuery);          
+
+                        db.AddData(vehicleSQLQuery);
+
+                        System.out.println(tableName);
+
+                        } 
+                    catch (SQLException ex) {
+                            Logger.getLogger(AddDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                  
                 break;
                 

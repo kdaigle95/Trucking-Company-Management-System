@@ -167,8 +167,8 @@ public final class Controller {
                 incomingShippingData.getString("state"),
                 incomingShippingData.getInt("zip"),
                 incomingShippingData.getInt("truck_id"),
-                incomingShippingData.getString("departure_date_time"),
-                incomingShippingData.getString("estimated_arrival"),
+                incomingShippingData.getDate("departure_date_time"),
+                incomingShippingData.getDate("estimated_arrival"),
                 incomingShippingData.getString("arrival_confirmation"),
                 incomingShippingData.getInt("driver_id"),
                 incomingShippingData.getString("payment_confirmation")
@@ -210,9 +210,9 @@ public final class Controller {
                     outgoingShippingData.getString("city"),
                     outgoingShippingData.getString("state"),                    
                     outgoingShippingData.getInt("zip"),
-                    outgoingShippingData.getString("truck_id"),
-                    outgoingShippingData.getString("departure_date_time"),
-                    outgoingShippingData.getString("estimated_arrival"),
+                    outgoingShippingData.getInt("truck_id"),
+                    outgoingShippingData.getDate("departure_date_time"),
+                    outgoingShippingData.getDate("estimated_arrival"),
                     outgoingShippingData.getString("arrival_confirmation"),
                     outgoingShippingData.getInt("driver_id"),
                     outgoingShippingData.getString("payment_confirmation")
@@ -255,7 +255,9 @@ public final class Controller {
                     vehicleData.getInt("truck_year"),
                     vehicleData.getString("truck_model"),
                     vehicleData.getInt("truck_id"),
-                    vehicleData.getInt("driver_id")
+                    vehicleData.getInt("driver_id"),
+                    vehicleData.getInt("availability"),
+                    vehicleData.getString("parts_list")
 
                 ));
 

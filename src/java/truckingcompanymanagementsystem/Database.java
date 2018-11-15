@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Statement;
+import java.sql.SQLException;
 
 /**
  *
@@ -130,4 +131,12 @@ public final class Database
         }
         return deleteDataQuery;
     }
+  
+    //for future use
+//    public boolean EditData(String dataQuery)throws SQLException, NullPointerExceptoin
+//    {
+//        
+//    }
+    
+    
 }

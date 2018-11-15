@@ -24,7 +24,7 @@ public class OutgoingShippingFactory {
         return singletonFactory;
     }
     
-    public OutgoingShipping createOutgoingShipping(int orderID, String destinationCompany, String destinationCompanyAddress, String destinationCompanyCity, String destinationCompanyState, int destinationCompanyZip, String truckID, String departureDate, String estArrival, String arrivalConf, int driverID, String paymentConf){
+    public OutgoingShipping createOutgoingShipping(int orderID, String destinationCompany, String destinationCompanyAddress, String destinationCompanyCity, String destinationCompanyState, int destinationCompanyZip, int truckID, java.util.Date departureDate, java.util.Date estArrival, String arrivalConf, int driverID, String paymentConf){
         return new OutgoingShipping(orderID, destinationCompany, destinationCompanyAddress, destinationCompanyCity, destinationCompanyState, destinationCompanyZip, truckID, departureDate, estArrival, arrivalConf, driverID, paymentConf);
     }
     

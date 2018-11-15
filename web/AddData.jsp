@@ -30,8 +30,8 @@
                                 State:<input type="text" name="m_state" placeholder="State" autofocus/><br>
                                 Zip:<input type="text" name="m_zip" placeholder="Zip" autofocus/><br>
                                 Truck ID:<input type="text" name="m_truckID" placeholder="Truck ID" autofocus/><br>
-                                Departure Date:<input type="text" name="m_departureData" placeholder="Departure Date" autofocus/><br>
-                                Estimated Arrival Date:<input type="text" name="m_estArrival" placeholder="Estimated Arrival Date" autofocus/><br>
+                                Departure Date:<input type="text" name="m_departureDate" placeholder="YYYY-MM-DD" autofocus/><br>
+                                Estimated Arrival Date:<input type="text" name="m_estArrival" placeholder="YYYY-MM-DD" autofocus/><br>
                                 Has Arrived:<input type="text" name="m_arrivalConf" placeholder="True or False" autofocus/><br>
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
                                 Has Paid:<input type="text" name="m_paymentConf" placeholder="True or False" autofocus/><br>
@@ -51,8 +51,8 @@
                                 State:<input type="text" name="m_destinationCompanyState" placeholder="State" autofocus/><br>
                                 Zip:<input type="text" name="m_destinationCompanyZip" placeholder="Zip" autofocus/><br>
                                 Truck ID:<input type="text" name="m_truckID" placeholder="Truck ID" autofocus/><br>
-                                Departure Date:<input type="text" name="m_departureDate" placeholder="Departure Date" autofocus/><br>
-                                Estimated Arrival Date:<input type="text" name="m_estArrival" placeholder="Estimated Arrival Date" autofocus/><br>
+                                Departure Date:<input type="text" name="m_departureDate" placeholder="YYYY-MM-DD" autofocus/><br>
+                                Estimated Arrival Date:<input type="text" name="m_estArrival" placeholder="YYYY-MM-DD" autofocus/><br>
                                 Has Arrived:<input type="text" name="m_arrivalConf" placeholder="True or False" autofocus/><br>
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
                                 Has Paid:<input type="text" name="m_paymentConf" placeholder="True or False" autofocus/><br>
@@ -71,8 +71,8 @@
                                 Truck Model:<input type="text" name="m_truckModel" placeholder="Truck Model" autofocus/><br>
                                 Truck ID:<input type="text" name="m_truckID" placeholder="Truck ID" autofocus/><br>
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
-                                Availability:<input type="text" name="" placeholder="Availability" autofocus/><br>
-                                Parts List:<input type="text" name="" placeholder="Parts List" autofocus/><br>
+                                Availability:<input type="text" name="m_availability" placeholder="Availability" autofocus/><br>
+                                Parts List:<input type="text" name="m_partsList" placeholder="Parts List" autofocus/><br>
                                 <input type="submit" value="submit">
                         </form>
                     <%

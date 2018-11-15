@@ -178,12 +178,14 @@
                     <button class="accordion">Active Vehicles</button> 
                     <div class ="panel">
                         <table class="table">
-                           <th style="text-align: left; padding: 15px">Vin</th>
+                           <th>Vin</th>
                            <th>Truck Brand</th>
                            <th>Truck Year</th>
                            <th>Truck Model</th>
                            <th>Truck ID</th>
                            <th>Driver ID</th>
+                           <th>Availability</th>
+                           <th>Parts List</th>
                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
                            <tr class="tr">                
                                <td>${vehicleDataArray.m_vin}</td>
@@ -192,6 +194,8 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
+                               <td>${vehicleDataArray.m_availability}</td>
+                               <td>${vehicleDataArray.m_partsList}</td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 
