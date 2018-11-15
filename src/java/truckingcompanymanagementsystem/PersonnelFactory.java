@@ -27,7 +27,7 @@ public class PersonnelFactory {
     
     
     
-    public Personnel createPersonnel(String employeeID, String firstName, String middleName, String lastName, String streetAddress, String city, String state, int zip, String homePhone, String cellPhone, int years, String position, int salary, int payrate, String assignment){
+    public Personnel createPersonnel(String employeeID, String firstName, String middleName, String lastName, String streetAddress, String city, String state, int zip, String homePhone, String cellPhone, int years, String position, int salary, int payrate, int assignment){
 
         return new Personnel(employeeID, firstName, middleName, lastName, streetAddress, city, state, zip, homePhone, cellPhone, years, position, salary, payrate, assignment);
     }

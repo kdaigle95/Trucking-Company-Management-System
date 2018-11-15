@@ -92,7 +92,7 @@
                             
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
-                               <td>${incomingShippingArray.m_orderID}</td>
+                               <td><input type="type" name="m_orderID" value=${incomingShippingArray.m_orderID}></td>
                                <td>${incomingShippingArray.m_sourceCompany}</td>
                                <td>${incomingShippingArray.m_address}</td>
                                <td>${incomingShippingArray.m_city}</td>

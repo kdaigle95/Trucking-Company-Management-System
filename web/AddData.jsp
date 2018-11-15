@@ -35,7 +35,7 @@
                                 Has Arrived:<input type="text" name="m_arrivalConf" placeholder="True or False" autofocus/><br>
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
                                 Has Paid:<input type="text" name="m_paymentConf" placeholder="True or False" autofocus/><br>
-                                <input type="submit" value="submit">
+                                <input type="submit" value="submit" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')">
                         </form>
                     <%
                         break;
@@ -56,7 +56,7 @@
                                 Has Arrived:<input type="text" name="m_arrivalConf" placeholder="True or False" autofocus/><br>
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
                                 Has Paid:<input type="text" name="m_paymentConf" placeholder="True or False" autofocus/><br>
-                                <input type="submit" value="submit">
+                                <input type="submit" value="submit" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')">
                         </form>
                     <%
                         break;
@@ -73,7 +73,7 @@
                                 Driver ID:<input type="text" name="m_driverID" placeholder="Driver ID" autofocus/><br>
                                 Availability:<input type="text" name="m_availability" placeholder="Availability" autofocus/><br>
                                 Parts List:<input type="text" name="m_partsList" placeholder="Parts List" autofocus/><br>
-                                <input type="submit" value="submit">
+                                <input type="submit" value="submit" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">
                         </form>
                     <%
                         break;
@@ -91,7 +91,7 @@
                                 Parts:<input type="text" name="m_parts" placeholder="List all parts" autofocus/><br>
                                 Cost:<input type="text" name="m_cost" placeholder="Dollar Amount" autofocus/><br>
                                 Detailed Report:<input type="text" name="m_report" placeholder="Details of Inspection" autofocus/><br>
-                                <input type="submit" value="submit">
+                                <input type="submit" value="submit" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">
                         </form>
                     <%
                         break;
@@ -115,7 +115,7 @@
                                 Salary:<input type="text" name="m_salary" placeholder="Salary" autofocus/><br>
                                 Monthly Pay Rate:<input type="text" name="m_payrate" placeholder="Pay Rate" autofocus/><br>
                                 Assignment:<input type="text" name="m_assignment" placeholder="Assignment" autofocus/><br>
-                                <input type="submit" value="submit">
+                                <input type="submit" value="submit" onclick="openPage('Personnel', this, 'rgba(9,21,52,0.98)')">
                         </form>
                     <%
                         break;
