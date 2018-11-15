@@ -163,6 +163,8 @@ public class DataModification {
     protected String addOutgoing(int orderID, String dest, String addr, String city,
             String state, int zip, String departure, String arrival, String arrivalConf,
             String paymentConf) {
+        arrivalConf = arrivalConf.toLowerCase();
+        paymentConf = paymentConf.toLowerCase();
         sql = "INSERT INTO outgoing_shipping (order_id, destination_company, "
                 + "address, city, state, zip, departure_date_time, estimated_arrival,"
                 + "arrival_confirmation, payment_confirmation) "
@@ -174,40 +176,16 @@ public class DataModification {
                 + departure + "', '"
                 + arrival + "', '"
                 + arrivalConf + "', '"
-                + paymentConf + "');"
-                + "\n"
-                + "UPDATE Personnel_Data"
-                + "SET assignment = "
-                + orderID
-                + "WHERE position = 'Driver' AND assignment = 0 "
-                + "ORDER BY assignment ASC LIMIT 1;"
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET `availability` = "
-                + orderID
-                + "WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1;"
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET `driver_id` = (SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
-                + orderID
-                + "WHERE EXISTS (SELECT assignment FROM Personnel_Data WHERE assignment = "
-                + orderID + ") AND availability = "
-                + orderID + ";"
-                + "\n"
-                + "UPDATE outgoing_shipping"
-                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
-                + orderID + "), "
-                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
-                + orderID + ")"
-                + "WHERE order_id = "
-                + orderID + ";";
+                + paymentConf + "');";
         return sql;
     }
 
     protected String addIncoming(int orderID, String dest, String addr, String city,
             String state, int zip, String departure, String arrival, String arrivalConf,
             String paymentConf) {
-        sql = "INSERT INTO incoming_shipping (order_id, destination_company, "
+        arrivalConf = arrivalConf.toLowerCase();
+        paymentConf = paymentConf.toLowerCase();
+        sql = "INSERT INTO incoming_shipping (order_id, source_company, "
                 + "address, city, state, zip, departure_date_time, estimated_arrival, "
                 + "arrival_confirmation, payment_confirmation) "
                 + "VALUES (" + orderID + ", '"
@@ -218,33 +196,7 @@ public class DataModification {
                 + departure + "', '"
                 + arrival + "', '"
                 + arrivalConf + "', '"
-                + paymentConf + "'); "
-                + "\n"
-                + "UPDATE Personnel_Data "
-                + "SET assignment = "
-                + orderID
-                + "WHERE position = 'Driver' AND assignment = 0 "
-                + "ORDER BY assignment ASC LIMIT 1; "
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET `availability` = "
-                + orderID
-                + "WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1; "
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET `driver_id` = (SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
-                + orderID
-                + "WHERE EXISTS (SELECT assignment FROM Personnel_Data WHERE assignment = "
-                + orderID + ") AND availability = "
-                + orderID + ";"
-                + "\n"
-                + "UPDATE incoming_shipping "
-                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
-                + orderID + "), "
-                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
-                + orderID + ")"
-                + "WHERE order_id = "
-                + orderID + ";";
+                + paymentConf + "'); ";
         return sql;
     }
 
@@ -278,6 +230,60 @@ public class DataModification {
                 + "UPDATE Personnel_Data "
                 + "SET assignment = 0 "
                 + "WHERE assignment = "
+                + orderID + ";";
+        return sql;
+    }
+    
+    protected String addDriverAssignment(int orderID)
+    {
+        sql = "UPDATE Personnel_Data"
+                + "SET assignment = "
+                + orderID
+                + " WHERE position = 'Driver' AND assignment = 0 "
+                + "ORDER BY assignment ASC LIMIT 1;";
+                return sql;
+    }
+    
+    protected String addVehicleAssignment(int orderID)
+    {
+        sql = "UPDATE vehicle_data "
+                + "SET `availability` = "
+                + orderID
+                + "WHERE `availability` = 0 ORDER BY `availability` ASC LIMIT 1; ";
+        return sql;
+    }
+    
+    protected String addDriverToVehicle(int orderID)
+    {
+        sql = "UPDATE vehicle_data "
+                + "SET `driver_id` = (SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
+                + orderID
+                + "WHERE EXISTS (SELECT assignment FROM Personnel_Data WHERE assignment = "
+                + orderID + ") AND availability = "
+                + orderID + ";";
+        return sql;
+    }
+    
+    protected String addDriverAndVehicleOutgoing(int orderID)
+    {
+        sql = "UPDATE outgoing_shipping"
+                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
+                + orderID + "), "
+                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
+                + orderID + ")"
+                + "WHERE order_id = "
+                + orderID + ";";
+        return sql;
+    }
+    
+    protected String addDriverAndVehicleIncoming(int orderID)
+    {
+        sql = "UPDATE incoming_shipping "
+                + "SET driver_id = (SELECT driver_id FROM vehicle_data WHERE availability = "
+                + orderID + "), "
+                + "truck_id = (SELECT truck_id FROM vehicle_data WHERE availability = "
+                + orderID + ")"
+                + "WHERE order_id = "
                 + orderID + ";";
         return sql;
     }
