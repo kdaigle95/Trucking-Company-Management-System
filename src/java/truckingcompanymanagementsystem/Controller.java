@@ -20,13 +20,11 @@ public final class Controller {
     private ArrayList<Vehicle> m_VehicleDataArray = new ArrayList<>();
     private ArrayList<Maintenance> m_MaintenanceDataArray = new ArrayList<>();
     private ArrayList<Manifest> m_ManifestDataArray = new ArrayList<>();
-    private ArrayList<PurchaseOrder> m_PurchaseOrder = new ArrayList<>();
-    
+    private ArrayList<PurchaseOrder> m_PurchaseOrderDataArray = new ArrayList<>();
     
     private UserAccounts ua;
     private ResourceAllocation ra;
-
-    
+    ReportGeneration rg = new ReportGeneration();
     private Controller ()
     {  
         this.getDatabase();
@@ -295,11 +293,11 @@ public final class Controller {
     public ArrayList<Maintenance> getMaintenanceDataList(){
         return m_MaintenanceDataArray;
     }
-/*
-    public void GetManifestData()throws SQLException
+
+    public void GetManifestData(int orderID)throws SQLException
     {  
         
-        ResultSet manifestData = makeManifestReport(orderID);
+        ResultSet manifestData = rg.makeManifestReport(orderID);
         m_ManifestDataArray.clear();
         
         while(manifestData.next())
@@ -319,5 +317,30 @@ public final class Controller {
     {
         return m_ManifestDataArray;
     }
-*/
+    
+     public void GetPurchaseOrderData(int orderID)throws SQLException
+    {  
+        
+        ResultSet purchaseOrderData = rg.makePurchaseReport(orderID);
+        m_PurchaseOrderDataArray.clear();
+        
+        while(purchaseOrderData.next())
+        {
+            m_PurchaseOrderDataArray.add(PurchaseOrderFactory.getPurchaseOrderFactory().createPurchaseOrder(
+                    purchaseOrderData.getString(""),
+                    purchaseOrderData.getInt(""),
+                    purchaseOrderData.getFloat(""),
+                    purchaseOrderData.getFloat(""),
+                    purchaseOrderData.getString("")
+                ));
+                    
+        }
+        
+    }
+
+    public ArrayList<PurchaseOrder> getPurchaseOrderDataList()
+    {
+        return m_PurchaseOrderDataArray;
+    }
+
 }
