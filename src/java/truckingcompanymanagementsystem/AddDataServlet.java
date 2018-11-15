@@ -70,6 +70,7 @@ public class AddDataServlet extends HttpServlet {
                                 System.out.println(incomingSQLQuery);
 
                                 db.AddData(incomingSQLQuery);
+                                db.AllocateOrders("incoming", Integer.parseInt(request.getParameter("m_orderID")));
 
                                 System.out.println(tableName);
 
@@ -98,6 +99,7 @@ public class AddDataServlet extends HttpServlet {
                                 System.out.println(outgoingSQLQuery);
 
                                 db.AddData(outgoingSQLQuery);
+                                db.AllocateOrders("outgoing", Integer.parseInt(request.getParameter("m_orderID")));
 
                                 System.out.println(tableName);
 

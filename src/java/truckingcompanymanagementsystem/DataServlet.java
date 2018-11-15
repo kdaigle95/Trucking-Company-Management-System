@@ -91,6 +91,16 @@ public class DataServlet extends HttpServlet {
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
+        /*
+        ArrayList<Manifest> manifestDataArray = null;
+        manifestDataArray = Controller.getInstance().getmanifestDataList();
+        System.out.println(this);
+        
+        ArrayList<Manifest> purchaseOrderDataArray = null;
+        purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
+        System.out.println(this);
+        */
+        
  
     if(user_authenticated == true)
     {

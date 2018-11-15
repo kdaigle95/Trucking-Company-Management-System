@@ -19,7 +19,10 @@ public final class Controller {
     private ArrayList<OutgoingShipping> m_OutgoingShippingDataArray = new ArrayList<>();
     private ArrayList<Vehicle> m_VehicleDataArray = new ArrayList<>();
     private ArrayList<Maintenance> m_MaintenanceDataArray = new ArrayList<>();
-  
+    private ArrayList<Manifest> m_ManifestDataArray = new ArrayList<>();
+    private ArrayList<PurchaseOrder> m_PurchaseOrder = new ArrayList<>();
+    
+    
     private UserAccounts ua;
     private ResourceAllocation ra;
 
@@ -292,4 +295,29 @@ public final class Controller {
     public ArrayList<Maintenance> getMaintenanceDataList(){
         return m_MaintenanceDataArray;
     }
+/*
+    public void GetManifestData()throws SQLException
+    {  
+        
+        ResultSet manifestData = makeManifestReport(orderID);
+        m_ManifestDataArray.clear();
+        
+        while(manifestData.next())
+        {
+            m_ManifestDataArray.add(ManifestFactory.getManifestFactory().createManifest(
+                    manifestData.getString(""),
+                    manifestData.getInt(""),
+                    manifestData.getFloat(""),
+                    manifestData.getFloat("")
+                ));
+                    
+        }
+        
+    }
+
+    public ArrayList<Manifest> getManifestDataList()
+    {
+        return m_ManifestDataArray;
+    }
+*/
 }
