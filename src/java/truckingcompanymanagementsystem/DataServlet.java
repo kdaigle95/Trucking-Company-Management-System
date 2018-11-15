@@ -6,14 +6,12 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
@@ -29,7 +27,12 @@ public class DataServlet extends HttpServlet {
     private DataServlet dataservlet;
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        ArrayList<Personnel> personnelArray = null;
+        ArrayList<IncomingShipping> incomingShippingArray = null;
+        ArrayList<OutgoingShipping> outgoingShippingArray = null;
+        ArrayList<Vehicle> vehicleDataArray = null;
+        ArrayList<Maintenance> maintenanceDataArray = null;
+
         //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();
@@ -41,32 +44,50 @@ public class DataServlet extends HttpServlet {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
+
+        personnelArray = Controller.getInstance().getPersonnelList();
+        System.out.println(this);
+
+        incomingShippingArray = Controller.getInstance().getIncomingShippingList();
+        System.out.println(this);
+
+        outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
+        System.out.println(this);
+
+        vehicleDataArray = Controller.getInstance().getVehicleDataList();
+        System.out.println(this);                     
+
+        maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
+        System.out.println(this);         
         
-        //Setup for starting the login process and authentication
+        
         UserAccounts ua = Controller.getInstance().getUserAccounts();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+
+        //user name and password is not cached
+        //this means you can only view the dataservlet the one time
+        //hard coding for now
+        //String username = request.getParameter("username");
+        //String password = request.getParameter("password");
+        
+        String username = "masterTest";
+        String password = "pass";
+        
         boolean user_authenticated = ua.userAuthentication(username, password);
         RequestDispatcher view = null;
         
         
-        ArrayList<Personnel> personnelArray = null;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
         
-        ArrayList<IncomingShipping> incomingShippingArray = null;
         incomingShippingArray = Controller.getInstance().getIncomingShippingList();
         System.out.println(this);
-        
-        ArrayList<OutgoingShipping> outgoingShippingArray = null;
+
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
-        
-        ArrayList<Vehicle> vehicleDataArray = null;
+
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);                     
 
-        ArrayList<Maintenance> maintenanceDataArray = null;
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
@@ -83,8 +104,6 @@ public class DataServlet extends HttpServlet {
  
     if(user_authenticated == true)
     {
-        
-    
         if (User.access_level == "full") {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
@@ -112,7 +131,7 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
             view = request.getRequestDispatcher("MaintenanceAccess.jsp");
-            view.forward(request, response);
+             view.forward(request, response);
         }
         else if (User.access_level == "driver") {       // Driver access -> if user == driver
             response.setContentType("text/html");       
@@ -126,9 +145,11 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("AccessDenied.jsp");
             view.forward(request, response);
         }
+        
+        //@Andrea added clearLists method 11/11/18
+       clearLists(personnelArray, incomingShippingArray, outgoingShippingArray, vehicleDataArray, maintenanceDataArray); 
     }
-    }
-    
+}
     //Forward HTTP methods to processRequest()
     
     @Override
@@ -139,5 +160,28 @@ public class DataServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         processRequest(request, response);
+    }
+    
+    protected void clearLists( ArrayList<Personnel> personnelArray, ArrayList<IncomingShipping> incomingShippingArray, ArrayList<OutgoingShipping> outgoingShippingArray, ArrayList<Vehicle> vehicleDataArray, ArrayList<Maintenance> maintenanceDataArray){
+        
+        if(!(personnelArray.isEmpty())){
+            personnelArray.clear();
+        }
+        
+        if(!(incomingShippingArray.isEmpty())){
+            incomingShippingArray.clear();
+        }
+        
+        if(!(outgoingShippingArray.isEmpty())){
+            outgoingShippingArray.clear();
+        }
+        
+        if(!(vehicleDataArray.isEmpty())){
+            vehicleDataArray.clear();
+        }
+        
+        if(!(maintenanceDataArray.isEmpty())){
+            maintenanceDataArray.clear();
+        }
     }
 }

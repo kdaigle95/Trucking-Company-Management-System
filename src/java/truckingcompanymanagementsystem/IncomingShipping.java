@@ -3,6 +3,8 @@
  */
 package truckingcompanymanagementsystem;
 
+import java.util.Date;
+
 /**
  * 11/07/18
  * @author Andrea
@@ -15,9 +17,14 @@ public class IncomingShipping {
     private String m_city;
     private String m_state;
     private int m_zip;
-    private String m_truckID;
-    private String m_departureDate;
-    private String m_estArrival;
+    private int m_truckID;
+    
+    //private String m_departureDate;
+    private java.util.Date m_departureDate;
+    
+    //private String m_estArrival;
+    private java.util.Date m_estArrival;
+    
     private String m_arrivalConf;
     private int m_driverID;
     private String m_paymentConf;
@@ -26,20 +33,20 @@ public class IncomingShipping {
     public IncomingShipping(){
         this.m_orderID = 1;
         this.m_sourceCompany = "Target";
-        this.m_address = "Electric Blvd";
+        this.m_address = "Electric Ave";
         this.m_city = "Mobile";
         this.m_state = "AL";
         this.m_zip = 90210;
-        this.m_truckID = "99999";
-        this.m_departureDate = "2000-01-01 00:00:01";
-        this.m_estArrival = "2000-01-01 00:00:01";
+        this.m_truckID = 99999;
+        this.m_departureDate = null;
+        this.m_estArrival = null;
         this.m_arrivalConf = "TBD";
         this.m_driverID = 99999;
         this.m_paymentConf = "TBD";
                  
     }
 
-    public IncomingShipping(int m_orderID, String m_sourceCompany, String m_address, String m_city, String m_state, int m_zip, String m_truckID, String m_departureDate, String m_estArrival, String m_arrivalConf, int m_driverID, String m_paymentConf) {
+    public IncomingShipping(int m_orderID, String m_sourceCompany, String m_address, String m_city, String m_state, int m_zip, int m_truckID, java.util.Date m_departureDate, java.util.Date m_estArrival, String m_arrivalConf, int m_driverID, String m_paymentConf) {
         this.m_orderID = m_orderID;
         this.m_sourceCompany = m_sourceCompany;
         this.m_address = m_address;
@@ -102,27 +109,27 @@ public class IncomingShipping {
         this.m_zip = m_zip;
     }
 
-    public String getM_truckID() {
+    public int getM_truckID() {
         return m_truckID;
     }
 
-    public void setM_truckID(String m_truckID) {
+    public void setM_truckID(int m_truckID) {
         this.m_truckID = m_truckID;
     }
 
-    public String getM_departureDate() {
+    public java.util.Date getM_departureDate() {
         return m_departureDate;
     }
 
-    public void setM_departureDate(String m_departureDate) {
+    public void setM_departureDate(java.util.Date m_departureDate) {
         this.m_departureDate = m_departureDate;
     }
 
-    public String getM_estArrival() {
+    public java.util.Date getM_estArrival() {
         return m_estArrival;
     }
 
-    public void setM_estArrival(String m_estArrival) {
+    public void setM_estArrival(java.util.Date m_estArrival) {
         this.m_estArrival = m_estArrival;
     }
 

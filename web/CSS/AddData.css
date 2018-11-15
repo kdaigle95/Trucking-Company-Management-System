@@ -1,0 +1,21 @@
+/*
+    Formatting and style for forms to add data
+*/
+/* 
+    Created on : Nov 11, 2018, 9:38:06 AM
+    Author     : Andrea
+*/
+
+.contanier{
+    
+    width: 500px;
+    clear: both;
+    
+}
+
+.contanier input{
+    
+    width: 100%;
+    clear: both;
+}
+

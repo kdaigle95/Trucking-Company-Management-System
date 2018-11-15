@@ -24,7 +24,7 @@ public class MaintenanceFactory {
         return singletonFactory;
     }
     
-    public Maintenance createMaintenance(int workOrder, int truckID, String vin, String maintenanceID, String date, String jobDone, String parts, String cost, String report){
+    public Maintenance createMaintenance(int workOrder, int truckID, String vin, int maintenanceID, String date, String jobDone, String parts, String cost, String report){
 
         return new Maintenance(workOrder, truckID, vin, maintenanceID, date, jobDone, parts, cost, report);
     }
