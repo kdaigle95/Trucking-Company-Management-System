@@ -32,7 +32,9 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
-
+        ArrayList<Manifest> manifestDataArray = null;
+        ArrayList<Manifest> purchaseOrderDataArray = null;
+        
         //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();
@@ -91,15 +93,13 @@ public class DataServlet extends HttpServlet {
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
-        /*
-        ArrayList<Manifest> manifestDataArray = null;
-        manifestDataArray = Controller.getInstance().getmanifestDataList();
+        
+        manifestDataArray = Controller.getInstance().getManifestDataList();
         System.out.println(this);
         
-        ArrayList<Manifest> purchaseOrderDataArray = null;
-        purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
-        System.out.println(this);
-        */
+        //purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
+        //System.out.println(this);
+        
         
  
     if(user_authenticated == true)

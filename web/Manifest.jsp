@@ -31,6 +31,7 @@
     </style>
     <body>
         <h1>Manifest</h1>
+        <button type="button" name="back" onclick="history.back()">back</button>
         <table>
           <tr>
             <th>Item Name</th>
@@ -45,7 +46,5 @@
             <td>Test Value</td>
           </tr>
         </table>
-    <body>
-        <h1>Hello World!</h1>
     </body>
 </html>

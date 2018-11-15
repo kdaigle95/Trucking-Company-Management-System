@@ -31,6 +31,7 @@
     </style>
     <body>
         <h1>Purchase Order</h1>
+        <button type="button" name="back" onclick="history.back()">back</button>
         <table>
           <tr>
             <th>Item Name</th>
