@@ -61,45 +61,40 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);         
         
         
-
-        if (true) {         // Full access -> if user == admin
-        
-        //Setup for starting the login process and authentication
         UserAccounts ua = Controller.getInstance().getUserAccounts();
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+
+        //user name and password is not cached
+        //this means you can only view the dataservlet the one time
+        //hard coding for now
+        //String username = request.getParameter("username");
+        //String password = request.getParameter("password");
+        
+        String username = "masterTest";
+        String password = "pass";
+        
         boolean user_authenticated = ua.userAuthentication(username, password);
         RequestDispatcher view = null;
         
         
-        ArrayList<Personnel> personnelArray = null;
         personnelArray = Controller.getInstance().getPersonnelList();
         System.out.println(this);
         
-        ArrayList<IncomingShipping> incomingShippingArray = null;
         incomingShippingArray = Controller.getInstance().getIncomingShippingList();
         System.out.println(this);
-        
-        ArrayList<OutgoingShipping> outgoingShippingArray = null;
+
         outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
         System.out.println(this);
-        
-        ArrayList<Vehicle> vehicleDataArray = null;
+
         vehicleDataArray = Controller.getInstance().getVehicleDataList();
         System.out.println(this);                     
 
-        ArrayList<Maintenance> maintenanceDataArray = null;
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);         
         
  
-    //if(user_authenticated == true)
-    //{
-        
-    //only keeping full if statement for user access level in comments to quickly iterate through functionality
-    //after edit functionality, and the report and purchase/manifest buttons work we can start testing users fully
-    //or alternatively you could run just the one file by right clicking
-        //if (User.access_level == "full") {         // Full access -> if user == admin
+    if(user_authenticated == true)
+    {
+        if (User.access_level == "full") {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
@@ -126,7 +121,7 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
             view = request.getRequestDispatcher("MaintenanceAccess.jsp");
-            view.forward(request, response);
+             view.forward(request, response);
         }
         else if (User.access_level == "driver") {       // Driver access -> if user == driver
             response.setContentType("text/html");       
@@ -144,7 +139,7 @@ public class DataServlet extends HttpServlet {
         //@Andrea added clearLists method 11/11/18
        clearLists(personnelArray, incomingShippingArray, outgoingShippingArray, vehicleDataArray, maintenanceDataArray); 
     }
-    
+}
     //Forward HTTP methods to processRequest()
     
     @Override

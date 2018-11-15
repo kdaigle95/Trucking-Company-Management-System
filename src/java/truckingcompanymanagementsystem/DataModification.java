@@ -213,7 +213,7 @@ public class DataModification {
         sql = "INSERT INTO incoming_shipping (order_id, source_company, "
                 + "address, city, state, zip, truck_id, departure_date_time, estimated_arrival, "
                 + "arrival_confirmation, driver_id, payment_confirmation) "
-                + "VALUES (" + orderID + ", " 
+                + "VALUES ('" + orderID + "', "
                 + "'" + source + "', "
                 + "'" + addr + "', "
                 + "'" + city + "', "
