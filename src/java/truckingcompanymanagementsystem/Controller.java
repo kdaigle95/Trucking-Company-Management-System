@@ -113,7 +113,7 @@ public final class Controller {
                     personnelData.getString("position"),
                     personnelData.getInt("salary"),
                     personnelData.getInt("monthly_pay_rate"),
-                    personnelData.getString("assignment")
+                    personnelData.getInt("assignment")
                   
             ));
             

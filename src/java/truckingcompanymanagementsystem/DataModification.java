@@ -103,7 +103,7 @@ public class DataModification {
     protected String addPersonnel(int id, String first, String middle,
             String last, String streetAddr, String city, String state, int zip,
             String homeNum, String cellNum, int years, String position,
-            int salary, int payrate, String assignment) {
+            int salary, int payrate, int assignment) {
         sql = "INSERT INTO Personnel_Data "
                 + "VALUES ('" + id + "', "
                 + "'" + first + "', "
@@ -118,8 +118,6 @@ public class DataModification {
                 + "'" + years + "', "
                 + "'" + position + "', "
                 + "'" + salary + "', "
-                //illegal expression - SQL is not turing complete language                
-                //+ "'" + salary / 12 + "', "
                 + "'" + payrate + "', "
                 + "'" + assignment + "'"
                 + ");";

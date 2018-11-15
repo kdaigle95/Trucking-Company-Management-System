@@ -6,10 +6,39 @@
     Author     : Andrea
 */
 
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+    background-color: whitesmoke;
+}
+h1{
+    
+    font-family: Arial;
+    color: #091534;
+    text-shadow: 1px 1px white;
+    
+}
+
+h2{
+    height: 10%;
+    margin: 10px;
+    font-family: Arial;
+    color: #091534;
+    text-shadow: 1px 1px #000000;
+   
+}
+
+
+p{
+    color: #DBE5FF;
+    text-shadow: 1px 1px #091534;
+}
 .contanier{
     
     width: 500px;
     clear: both;
+    align-content: center;
     
 }
 
@@ -17,5 +46,11 @@
     
     width: 100%;
     clear: both;
+    align-content: center;
+}
+
+.form{
+    
+    align-content: center;
 }
 
