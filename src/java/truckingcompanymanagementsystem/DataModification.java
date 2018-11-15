@@ -206,16 +206,7 @@ public class DataModification {
     protected String incomingArrived(int orderID) {
         sql = "UPDATE incoming_shipping "
                 + "SET arrival_confirmation = 'true' "
-                + "WHERE order_id = 1139;"
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET availability = 0, driver_id = 0 "
-                + "WHERE availability = 1139; "
-                + "\n"
-                + "UPDATE Personnel_Data "
-                + "SET assignment = 0 "
-                + "WHERE assignment = "
-                + orderID + ";";
+                + "WHERE order_id = 1139;";
         return sql;
 
     }
@@ -223,16 +214,7 @@ public class DataModification {
     protected String outgoingArrived(int orderID) {
         sql = "UPDATE outgoing_shipping "
                 + "SET arrival_confirmation = 'true' "
-                + "WHERE order_id = 1139;"
-                + "\n"
-                + "UPDATE vehicle_data "
-                + "SET availability = 0, driver_id = 0 "
-                + "WHERE availability = 1139; "
-                + "\n"
-                + "UPDATE Personnel_Data "
-                + "SET assignment = 0 "
-                + "WHERE assignment = "
-                + orderID + ";";
+                + "WHERE order_id = 1139;";
         return sql;
     }
 
@@ -256,21 +238,17 @@ public class DataModification {
     protected String addDriverToVehicle(int orderID) {
         int driver = 0;
         try {
-            System.out.println("add driver break 1 reached");
+
             ResultSet result = db.getGenericResultSet("SELECT employee_id_number FROM Personnel_Data WHERE assignment = "
                     + orderID + ";");
-            System.out.println("add driver break 2 reached");
             while (result.next()) {
                 driver = result.getInt("employee_id_number");
-                System.out.println(driver);
             }
-
-           // System.out.println(driver);
             sql = "UPDATE vehicle_data "
                     + "SET `driver_id` = " + driver
                     + " WHERE availability = "
                     + orderID + ";";
-            System.out.println("Add driver 3 reached");
+
             return sql;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -284,11 +262,10 @@ public class DataModification {
         try {
             ResultSet result = db.getGenericResultSet("SELECT driver_id, truck_id FROM vehicle_data WHERE availability = "
                     + orderID + ";");
-            while(result.next())
-            {
+            while (result.next()) {
                 driver = result.getInt("driver_id");
-            truck = result.getInt("truck_id");
-            }      
+                truck = result.getInt("truck_id");
+            }
             sql = "UPDATE outgoing_shipping "
                     + "SET driver_id = " + driver + ", "
                     + "truck_id = " + truck
@@ -308,12 +285,11 @@ public class DataModification {
         try {
             ResultSet result = db.getGenericResultSet("SELECT driver_id, truck_id FROM vehicle_data WHERE availability = "
                     + orderID + ";");
-            while(result.next())
-            {
+            while (result.next()) {
                 driver = result.getInt("driver_id");
                 truck = result.getInt("truck_id");
             }
-            
+
             sql = "UPDATE incoming_shipping "
                     + "SET driver_id = " + driver + ", "
                     + "truck_id = " + truck
@@ -324,6 +300,22 @@ public class DataModification {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+
+    protected String unassignDriver(int orderID) {
+        sql = "UPDATE Personnel_Data "
+                + "SET assignment = 0 "
+                + "WHERE assignment = "
+                + orderID + ";";
+        return sql;
+    }
+
+    protected String unassignTruck(int orderID) {
+        sql = "UPDATE vehicle_data "
+                + "SET availability = 0, driver_id = 0 "
+                + "WHERE availability = "
+                + orderID + "; ";
+        return sql;
     }
 
 }

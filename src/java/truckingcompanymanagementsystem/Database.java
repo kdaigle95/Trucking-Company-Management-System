@@ -116,6 +116,7 @@ public final class Database {
 //        
 //    }
     public boolean AllocateOrders(String orderType, int orderID) {
+        orderType = orderType.toLowerCase();
         boolean allocated = false;
         try {
             Statement stmt = conn.createStatement();
@@ -136,6 +137,26 @@ public final class Database {
         }
 
         return allocated;
+    }
+
+    public boolean deallocateOrders(String orderType, int orderID) {
+        orderType = orderType.toLowerCase();
+        boolean deallocated = false;
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(dataMod.unassignDriver(orderID));
+            stmt.executeUpdate(dataMod.unassignTruck(orderID));
+            if (orderType == "incoming") {
+                stmt.executeUpdate(dataMod.incomingArrived(orderID));
+            } else if (orderType == "outgoing") {
+                stmt.executeUpdate(dataMod.outgoingArrived(orderID));
+            }
+            deallocated = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return deallocated;
     }
 
 }

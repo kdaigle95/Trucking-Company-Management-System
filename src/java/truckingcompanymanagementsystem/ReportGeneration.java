@@ -7,6 +7,8 @@ package truckingcompanymanagementsystem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -50,8 +52,8 @@ public class ReportGeneration {
                         payrollReport.getString("monthly_pay_rate")
                 ));
             }
-        } catch (SQLException e) {
-            //do something
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return payroll;
@@ -77,8 +79,8 @@ public class ReportGeneration {
                         truckReport.getString("detailed_report")
                 ));
             }
-        } catch (SQLException e) {
-            //do something
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return truckMaint;
     }
@@ -103,8 +105,8 @@ public class ReportGeneration {
                         monthlyMaintReport.getString("detailed_report")
                 ));
             }
-        } catch (SQLException e) {
-            //do something
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return monthlyMaint;
 
@@ -121,9 +123,8 @@ public class ReportGeneration {
                     + "INNER JOIN truck_parts ON truck_parts.truck_id ="
                     + truckID
                     + " AND truck_parts.part_id = parts.part_id;");
-            
-            while(parts.next())
-            {
+
+            while (parts.next()) {
                 partList.add(new PartList(
                         parts.getString("part_name"),
                         parts.getInt("parts_count"),
@@ -132,9 +133,8 @@ public class ReportGeneration {
                         parts.getString("installation_date")
                 ));
             }
-        } catch (SQLException e)
-        {
-            //print
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return partList;
@@ -148,8 +148,8 @@ public class ReportGeneration {
                     + "manifests.total_item_cost FROM items"
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
-        } catch (SQLException e) {
-            //do stuff
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return manifest;
     }
@@ -162,8 +162,8 @@ public class ReportGeneration {
                     + "manifests.total_item_cost, items.availability FROM items"
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
-        } catch (SQLException e) {
-            //do stuff
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
         return purchase;
     }
@@ -179,9 +179,8 @@ public class ReportGeneration {
     public ArrayList<MaintenanceReport> getTruckMaint() {
         return truckMaint;
     }
-    
-    public ArrayList<PartList> getPartsList()
-    {
+
+    public ArrayList<PartList> getPartsList() {
         return partList;
     }
 
