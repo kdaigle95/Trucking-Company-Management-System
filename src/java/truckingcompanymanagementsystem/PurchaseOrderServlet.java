@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author justin
@@ -64,8 +65,8 @@ public class PurchaseOrderServlet extends HttpServlet {
         ReportGeneration rg = new ReportGeneration();
         
         purchaseOrderDataArray = rg.makePurchaseReport(orderID);
-        System.out.println("testtesttesttesttest" + purchaseOrderDataArray.toString());
-        
+        System.out.println("testtesttesttesttest");
+        System.out.println(purchaseOrderDataArray.toString());
         
         
         
