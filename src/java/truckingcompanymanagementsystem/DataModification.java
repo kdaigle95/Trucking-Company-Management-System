@@ -127,7 +127,7 @@ public class DataModification {
     }
 
     protected String addTruck(String vin, String make, int year,
-            String model, int truckID, int driverID, int availability, String partsList) {
+            String model, int truckID, int driverID, int availability) {
         sql = "INSERT INTO vehicle_data "
                 + "VALUES ('" + vin + "', "
                 + "'" + make + "', "
@@ -135,8 +135,7 @@ public class DataModification {
                 + "'" + model + "', "
                 + "'" + truckID + "', "
                 + "'" + driverID + "', "
-                + "'" + availability + "', "
-                + "'" + partsList + "'"
+                + "'" + availability + "'"
                 + ");";
 
         return sql;
