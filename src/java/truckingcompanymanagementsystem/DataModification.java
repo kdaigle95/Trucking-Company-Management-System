@@ -79,6 +79,65 @@ public class DataModification {
         }
     }
 
+    protected String updatePersonnel(int id, String first, String middle,
+            String last, String streetAddr, String city, String state, int zip,
+            String homeNum, String cellNum, String position,
+            int salary) {
+        int payrate = salary / 12;
+        int years = 0;
+        int assignment = 1;
+        if (position.toLowerCase() == "driver") {
+            assignment = 0;
+        }
+        sql = "UPDATE Personnel_Data "
+                + "SET first_name = '" + first + "'"
+                + ", middle_name = '" + middle + "'"
+                + ", last_name = '" + last + "'"
+                + ", street_address = '" + streetAddr + "'"
+                + ", city = '" + city + "'"
+                + ", state = '" + state + "'"
+                + ", zip = " + zip
+                + ", home_phone_number = '" + homeNum + "'"
+                + ", cell_phone_number = '" + cellNum + "'"
+                + ", years_with_company = " + years
+                + ", position = '" + position + "'"
+                + ", salary = " + salary
+                + ", monthly_pay_rate = " + payrate
+                + ", assignment = " + assignment
+                + " WHERE employee_id_number = " + id + ";";
+        return sql;
+    }
+
+    protected String updateTruck(String vin, String make, int year,
+            String model, int truckID) {
+        int availability = 0;
+        int driverID = 0;
+        sql = "UPDATE vehicle_data "
+                + "SET vin = '" + vin + "'"
+                + ", truck_brand = '" + make + "'"
+                + ", truck_year = " + year
+                + ", truck_model = " + model + "'"
+                + ", driver_id = " + driverID
+                + ", availability = " + availability
+                + " WHERE truck_id = " + truckID + ";";
+        return sql;
+    }
+
+    protected String updateMaintenance(int workOrder, int truckID, String truckVin,
+            int maintID, String date, String job, String parts, String cost, String desc) {
+        sql = "UPDATE maintenance_data "
+                + "SET truck_id = " + truckID
+                        + ", vin = '" + truckVin + "'"
+                        + ", maintenance_id = " + maintID
+                        + ", date = '" + date + "'"
+                        + ", job_done = '" + job + "'"
+                        + ", parts = '" + parts + "'"
+                        + ", cost = '" + cost + "'"
+                        + ", detailed_report = '" + desc + "'"
+                        + " WHERE work_order = " + workOrder + ";";                      
+        return sql;
+    }
+
     protected String deleteRow(String tableName, long primaryKey) {
         switch (tableName) {
             case "Personnel_Data":
@@ -127,7 +186,7 @@ public class DataModification {
     }
 
     protected String addTruck(String vin, String make, int year,
-            String model, int truckID, int driverID, int availability, String partsList) {
+            String model, int truckID, int driverID, int availability) {
         sql = "INSERT INTO vehicle_data "
                 + "VALUES ('" + vin + "', "
                 + "'" + make + "', "
@@ -135,12 +194,10 @@ public class DataModification {
                 + "'" + model + "', "
                 + "'" + truckID + "', "
                 + "'" + driverID + "', "
-                + "'" + availability + "', "
-                + "'" + partsList + "'"
+                + "'" + availability + "'"
                 + ");";
 
         return sql;
-
     }
 
     protected String addMaintenance(int workOrder, int truckID, String truckVin,

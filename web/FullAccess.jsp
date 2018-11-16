@@ -171,8 +171,7 @@
                     </div>                
                 </div>
             </div>
-        </div>
-        
+        </div>       
         <div id="Equipment" class="tabcontent">
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
@@ -306,6 +305,6 @@
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
         <script src="JavaScript/Date.js" type="text/javascript"></script>
-          
+        <script src="jquery-3.3.1.js" type="text/javascript"></script>
     </body>
 </html>
