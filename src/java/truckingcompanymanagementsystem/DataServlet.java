@@ -68,13 +68,18 @@ public class DataServlet extends HttpServlet {
         //user name and password is not cached
         //this means you can only view the dataservlet the one time
         //hard coding for now
-        //String username = request.getParameter("username");
-        //String password = request.getParameter("password");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         
-        String username = "masterTest";
-        String password = "pass";
+        //String username = "masterTest";
+        //String password = "pass";
         
-        boolean user_authenticated = ua.userAuthentication(username, password);
+        boolean user_authenticated = false;
+        if(User.has_logged_in != true)
+        {
+            user_authenticated = ua.userAuthentication(username, password);
+        }
+        
         RequestDispatcher view = null;
         
         

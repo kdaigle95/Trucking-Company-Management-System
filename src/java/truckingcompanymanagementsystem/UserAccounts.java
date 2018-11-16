@@ -42,6 +42,7 @@ public class UserAccounts
         static String username;
         static String position;
         static String access_level;
+        static boolean has_logged_in = false;
     }
     
     
@@ -88,6 +89,7 @@ public class UserAccounts
                 if(password.equals(database_password))
                 {
                     user_authenticated = true;
+                    CurrentUser.has_logged_in = true;
                     CurrentUser.username = username;
                     switch(CurrentUser.username)
                     {
