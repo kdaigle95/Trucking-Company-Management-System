@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author justin
  */
 
-public class UserAccounts 
+public final class UserAccounts 
 {
     
     private UserAccounts()
@@ -42,17 +42,15 @@ public class UserAccounts
     static String position;
     static String access_level;
     static boolean has_logged_in = false;
+    static boolean user_authenticated = false;
         
-    public boolean gethas_logged_in()
-    {
-        return this.has_logged_in;
-    }
+    
         
     
     
     
     
-    public boolean userAuthentication(String username, String password)
+    public void userAuthentication(String username, String password)
     {
         //User CurrentUser = new User();
         ResultSet acceptable_username = null;
@@ -68,7 +66,7 @@ public class UserAccounts
         }
 
         boolean found = false;
-        boolean user_authenticated = false;
+        user_authenticated = false;
         
         try
         {
@@ -126,7 +124,7 @@ public class UserAccounts
             Logger.getLogger(UserAccounts.class.getName()).log(Level.SEVERE,null,ex);
         }
         
-        return user_authenticated;
+        
     }
     
     
