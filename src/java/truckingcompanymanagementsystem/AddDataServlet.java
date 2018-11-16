@@ -116,9 +116,8 @@ public class AddDataServlet extends HttpServlet {
                             request.getParameter("m_truckModel"), 
                             Integer.parseInt(request.getParameter("m_truckID")), 
                             Integer.parseInt(request.getParameter("m_driverID")),
-                            Integer.parseInt(request.getParameter("m_availability")),
-                            request.getParameter("m_partsList")
-                    );
+                            Integer.parseInt(request.getParameter("m_availability"))
+                            );
 
                     try {
 
