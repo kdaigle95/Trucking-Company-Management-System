@@ -147,7 +147,7 @@ public class ReportGeneration {
             manifest = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
                     + "manifests.total_item_cost FROM items"
-                    + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
+                    + " INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -177,7 +177,7 @@ public class ReportGeneration {
             purchase_results = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
                     + "manifests.total_item_cost, items.availability FROM items"
-                    + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
+                    + " INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
 
             while (purchase_results.next()) {
