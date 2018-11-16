@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author kdaig
+ * manifest and purchase order functions updated by Justin on 11/16/18
  */
 public class ReportGeneration {
 
@@ -20,6 +21,7 @@ public class ReportGeneration {
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
     ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
+    ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
     private static ReportGeneration instance = null;
     private Database db = Database.getInstance();
 
@@ -152,7 +154,7 @@ public class ReportGeneration {
         }
         return manifest;
     }
-
+/*
     public ResultSet makePurchaseReport(int orderID) {
         ResultSet purchase = null;
         try {
@@ -166,7 +168,39 @@ public class ReportGeneration {
         }
         return purchase;
     }
+  */
+    
+     public ArrayList<PurchaseOrder> makePurchaseReport(int orderID) {
+        purchaseList.clear();
+        ResultSet purchase_results = null;
+        try {
+            purchase_results = db.getGenericResultSet("SELECT items.item_name, "
+                    + "manifests.item_amount, manifests.unit_cost, "
+                    + "manifests.total_item_cost, items.availability FROM items"
+                    + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
+                    + orderID + " AND manifests.item_id = items.item_id;");
 
+            while (purchase_results.next()) {
+                purchaseList.add(new PurchaseOrder(
+                        purchase_results.getString("item_name"),
+                        purchase_results.getInt("item_amount"),
+                        purchase_results.getFloat("unit_cost"),
+                        purchase_results.getFloat("total_item_cost"),
+                        purchase_results.getString("availability")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return purchaseList;
+    }
+    
+     
+    public ArrayList<PurchaseOrder> getPurchaseList()
+    {
+        return purchaseList;
+    }
     public ArrayList<PayrollReport> getPayroll() {
         return payroll;
     }

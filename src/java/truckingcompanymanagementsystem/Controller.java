@@ -316,7 +316,7 @@ public final class Controller {
     {
         return m_ManifestDataArray;
     }
-    
+    /*
      public void GetPurchaseOrderData(int orderID)throws SQLException
     {  
         
@@ -336,7 +336,7 @@ public final class Controller {
         }
         
     }
-
+    */
     public ArrayList<PurchaseOrder> getPurchaseOrderDataList()
     {
         return m_PurchaseOrderDataArray;

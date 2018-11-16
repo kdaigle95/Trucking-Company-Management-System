@@ -48,21 +48,23 @@ public class PurchaseOrderServlet extends HttpServlet {
         
         String orderID_string = request.getParameter("orderID");
         int orderID = Integer.parseInt(orderID_string);
-        
+        /*
         try 
         {
             Controller.getInstance().GetPurchaseOrderData(orderID);
+            
         }
         catch (SQLException ex) 
         {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
+        */
         
+        ReportGeneration rg = new ReportGeneration();
         
-        
-        purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
-        System.out.println(this);
+        purchaseOrderDataArray = rg.makePurchaseReport(orderID);
+        System.out.println("testtesttesttesttest" + purchaseOrderDataArray.toString());
         
         
         
