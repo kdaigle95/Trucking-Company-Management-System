@@ -20,7 +20,6 @@ public class ReportGeneration {
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
     ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
-
     private static ReportGeneration instance = null;
     private Database db = Database.getInstance();
 

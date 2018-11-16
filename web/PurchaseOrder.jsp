@@ -31,14 +31,13 @@
         }
     </style>
     <body>
-        <form action="DataServlet">
-            <input type="hidden" name="orderID" value="<%=request.getParameter("m_orderID")%>"/>
+        <form action="PurchaseOrderServlet">
+            <h1>Click Submit to Generate Purchase Order</h1>
+            <input type="hidden" name="orderID" value="<%=request.getParameter("id")%>"/>
             <input type="hidden" name="generic_table" value="<%=request.getParameter("generic_table")%>"/>
             <input type="submit" value="submit">
-        
-            
         <h1>Purchase Order</h1>
-        <button type="button" name="back" onclick="history.back()">back</button>
+        
         <table>
             <th>Item Name</th>
             <th>Item Amount</th>
@@ -53,14 +52,9 @@
                 <td>${purchaseOrderDataArray.total_item_cost}</td>
                 <td>${purchaseOrderDataArray.availability}</td>
             </c:forEach>
-          <tr>
-            <td>Test Value</td>
-            <td>Test Value</td>
-            <td>Test Value</td>
-            <td>Test Value</td>
-            <td>Test Value</td>
-          </tr>
+              
         </table>
+        <button type="button" name="back" onclick="history.back()">back</button>
         </form>
     </body>
 </html>

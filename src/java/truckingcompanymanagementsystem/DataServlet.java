@@ -32,11 +32,9 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
-        ArrayList<Manifest> manifestDataArray = null;
-        ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
+        //ArrayList<Manifest> manifestDataArray = null;
+        //ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
         
-        //String orderID_string = request.getParameter("orderID");
-        //int orderID = Integer.parseInt(orderID_string);
         
         //Get updated version of data
         try {
@@ -105,11 +103,11 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);         
         
         
-        manifestDataArray = Controller.getInstance().getManifestDataList();
-        System.out.println(this);
+        //manifestDataArray = Controller.getInstance().getManifestDataList();
+        //System.out.println(this);
         
-        purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
-        System.out.println(this);
+        //purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
+        //System.out.println(this);
         
         
  
