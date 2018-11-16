@@ -293,24 +293,24 @@ public final class Controller {
         return m_MaintenanceDataArray;
     }
 
-    public void GetManifestData(int orderID)throws SQLException
-    {  
-        
-        ResultSet manifestData = rg.makeManifestReport(orderID);
-        m_ManifestDataArray.clear();
-        
-        while(manifestData.next())
-        {
-            m_ManifestDataArray.add(ManifestFactory.getManifestFactory().createManifest(
-                    manifestData.getString(""),
-                    manifestData.getInt(""),
-                    manifestData.getFloat(""),
-                    manifestData.getFloat("")
-                ));
-                    
-        }
-        
-    }
+//    public void GetManifestData(int orderID)throws SQLException
+//    {  
+//        
+//        m_ManifestDataArray = rg.makeManifestReport(orderID);
+//        m_ManifestDataArray.clear();
+//        
+//        while(manifestData.next())
+//        {
+//            m_ManifestDataArray.add(ManifestFactory.getManifestFactory().createManifest(
+//                    manifestData.getString(""),
+//                    manifestData.getInt(""),
+//                    manifestData.getFloat(""),
+//                    manifestData.getFloat("")
+//                ));
+//                    
+//        }
+//        
+//    }
 
     public ArrayList<Manifest> getManifestDataList()
     {
