@@ -111,7 +111,7 @@ public final class Controller {
                     personnelData.getString("position"),
                     personnelData.getInt("salary"),
                     personnelData.getInt("monthly_pay_rate"),
-                    personnelData.getString("assignment")
+                    personnelData.getInt("assignment")
                   
             ));
             
@@ -241,8 +241,7 @@ public final class Controller {
                     vehicleData.getString("truck_model"),
                     vehicleData.getInt("truck_id"),
                     vehicleData.getInt("driver_id"),
-                    vehicleData.getInt("availability"),
-                    vehicleData.getString("parts_list")
+                    vehicleData.getInt("availability")
 
                 ));
 

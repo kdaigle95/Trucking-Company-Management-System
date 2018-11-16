@@ -24,7 +24,7 @@ public class Personnel {
     private String m_position;
     private int m_salary;
     private int m_payrate;
-    private String m_assignment;
+    private int m_assignment;
     
 
     //Default Constructor
@@ -43,12 +43,12 @@ public class Personnel {
         this.m_position = "Office Worker";
         this.m_salary = 80000;
         this.m_payrate = 4000;
-        this.m_assignment = "none";
+        this.m_assignment = 0;
 
     }
     
     
-    public Personnel(String m_employeeID, String m_firstName, String m_middleName, String m_lastName, String m_streetAddress, String m_city, String m_state, int m_zip, String m_homePhone, String m_cellPhone, int m_years, String m_position, int m_salary, int m_payrate, String m_assignment) {
+    public Personnel(String m_employeeID, String m_firstName, String m_middleName, String m_lastName, String m_streetAddress, String m_city, String m_state, int m_zip, String m_homePhone, String m_cellPhone, int m_years, String m_position, int m_salary, int m_payrate, int m_assignment) {
         this.m_employeeID = m_employeeID;
         this.m_firstName = m_firstName;
         this.m_middleName = m_middleName;
@@ -182,11 +182,11 @@ public class Personnel {
         this.m_payrate = m_payrate;
     }
 
-    public String getM_assignment() {
+    public int getM_assignment() {
         return m_assignment;
     }
 
-    public void setM_assignment(String m_assignment) {
+    public void setM_assignment(int m_assignment) {
         this.m_assignment = m_assignment;
     }
     

@@ -128,11 +128,11 @@ p{
 }
 
 .tr:nth-child(even){
-    background-color: #DBE5FF;
+    background-color: rgba(0,102,153,0.2);
 }
 
 .tr:nth-child(even):hover{
-    background-color: rgba(0,102,153,1);
+    background-color: rgba(0,102,153,0.8);
     color: white;
 }
 
@@ -141,7 +141,7 @@ p{
 }
 
 .tr:nth-child(odd):hover{
-    background-color: rgba(0,102,153,1);
+    background-color: rgba(0,102,153,0.8);
     color: white;
 }
 
@@ -199,7 +199,7 @@ over it (hover)*/
     overflow: scroll;
 }
 
-/*________________Overlay Attempted Stuff______________________*/
+/*________________Overlay Attempted Stuff__________BEGIN____________*/
 
 .contanier{
     position: relative;
@@ -223,8 +223,37 @@ over it (hover)*/
     font-size: 16px;
     padding: 16px 32px;
 }
-/*________________Overlay Attempted Stuff______________________*/
 
+#overlay{
+    
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    transition: .5s ease;
+    z-index: 2;
+    cursor: pointer;
+}
+
+#text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+/*________________Overlay Attempted Stuff________END______________*/
+
+
+/*________________Buttons_______________________*/
 .button{
     color: rgba(9,21,52,0.98);
     border-radius: 2px 2px 5px 5px;
@@ -316,34 +345,13 @@ over it (hover)*/
     background-color: #006699;
 }
 
-#overlay{
-    
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    transition: .5s ease;
-    z-index: 2;
-    cursor: pointer;
-}
 
-#text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-}
 
 
 #Home {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
 #Shipping {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
 #Equipment {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
 #Personnel {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Maintenance {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Navigate {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}
+#Safety {background-image: linear-gradient(to top, rgba(0,102,153,0.75), rgba(9,21,52,0.98));}

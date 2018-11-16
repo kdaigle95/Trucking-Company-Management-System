@@ -11,38 +11,34 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
         <title>TCMS</title>
     </head>
     <body>
         <h1>Driver Access User</h1>
-        <p id = "date"></p>
-        <script>
-            var d = new Date();
-            document.getElementById("date").innerHTML = d;
-        </script>
-        <button class="tablink" onclick="openPage('Home', this, '#042844')" id="defaultOpen">Home</button>
-       
-        <button class="tablink" onclick="openPage('Shipments', this, '#042844')" >Shipments</button>
-       
-        <button class="tablink" onclick="openPage('Navigate', this, '#042844')">Navigate</button>
         
-        <button class="tablink" onclick="openPage('Safety', this, '#042844')">Safety</button>
+        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
+       
+        <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" >Shipments</button>
+       
+        <button class="tablink" onclick="openPage('Navigate', this, 'rgba(9,21,52,0.98)')">Navigate</button>
+        
+        <button class="tablink" onclick="openPage('Safety', this, 'rgba(9,21,52,0.98)')">Safety</button>
 
         <div id="Home" class="tabcontent">
             <h3>Home</h3>
-            <p>Company Info</p>
-            
+            <p id = "date"></p>
+            <p>Company Info</p>      
         </div>
         
-        <div id="Shipments" class="tabcontent" >
+        <div id="Shipping" class="tabcontent" >
             <div class="row">
-                <div class="column" style="background-color: #aaa;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
-                        <table class="table" border='1'>
+                        <table class="table">
                             <th>Source Company</th>
                             <th>Address</th>
                             <th>State</th>
@@ -52,14 +48,12 @@
                             <th>Estimated Arrival Date</th>
                             <th>Has Arrived</th>
                             <tr>
-                                <td>Info</td>    
+                                <td></td>    
                             </tr>
                         </table>
                     </div>
-                    <button class="addShipmentButton">Add Shipment</button>
-                    <button class="purchaseOrderButton">Purchase Order</button>
                 </div>
-                <div class="column" style="background-color: #bbb;">
+                <div class="column" style="background-color: #717e99;">
                     <h2>Outgoing Shipments</h2>
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
@@ -80,20 +74,7 @@
                            </c:forEach> 
                            
                         </table>
-                    
                     </div>                
-                    <%--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_button_split --%>
-                    <button class="reportButton">Reports</button>
-                    <div class="dropdown">
-                        <button class="reportButton" style="border-left: 1px solid navy">
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="#">Incoming Report</a>
-                            <a href="#">Outgoing Report</a>
-                            <a href="#">Custom Report</a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -101,19 +82,33 @@
         <div id="Navigate" class="tabcontent">
             <h3>Home</h3>
             <p>Google Maps API</p>
-            
         </div>
                     
         <div id="Safety" class="tabcontent">
-            <h3>Stay Safe!</h3>
-            <p>Ways to keep safe on the road.</p>
-            
+            <h3>Safety Checks</h3>
+            <p>Ways to prevent accidents and stay safe on the road:</p>
+            <div class="row">
+                <div class="column" style="background-color: #717e99;">
+                    <button class="accordion">Checklist</button> 
+                    <div class ="panel">
+                        <table class="table">
+                           <th>On the Road</th>
+                           <tr class="tr">                
+                            <td>
+                             <br>Wear Your Seatbelt<br>
+                             <br>Avoid Using Your Cell Phone<br>
+                             <br>Be Aware of Speed Limits<br>
+                             <br>Slow Down for Turns/Curves<br>
+                             <br>Maintain a Proper Stopping Distance<br>
+                            </td>
+                            </tr>     
+                        </table>
+                    </div>       
+                </div>
+            </div>
         </div>
-        
-     
-        <script src="JavaScript/ScrollableTable.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
-          
+        <script src="JavaScript/Date.js" type="text/javascript"></script> 
     </body>
 </html>

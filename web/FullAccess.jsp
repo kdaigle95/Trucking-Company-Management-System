@@ -92,7 +92,7 @@
                             
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
-                               <td>${incomingShippingArray.m_orderID}</td>
+                               <td><input type="type" name="m_orderID" value=${incomingShippingArray.m_orderID}></td>
                                <td>${incomingShippingArray.m_sourceCompany}</td>
                                <td>${incomingShippingArray.m_address}</td>
                                <td>${incomingShippingArray.m_city}</td>
@@ -192,7 +192,7 @@
                            <th>Truck ID</th>
                            <th>Driver ID</th>
                            <th>Availability</th>
-                           <th>Parts List</th>
+                           <th>Delete</th>
                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
                            <tr class="tr">                
                                <td>${vehicleDataArray.m_vin}</td>
@@ -201,8 +201,7 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
-                               <td>${vehicleDataArray.m_availability}</td>
-                               <td>${vehicleDataArray.m_partsList}</td>
+                               <td>${vehicleDataArray.m_availability}</td>                              
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 

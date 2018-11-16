@@ -181,7 +181,7 @@ public class AddDataServlet extends HttpServlet {
                             request.getParameter("m_position"),
                             Integer.parseInt(request.getParameter("m_salary")),
                             Integer.parseInt(request.getParameter("m_payrate")),
-                            request.getParameter("m_assignment")
+                            Integer.parseInt(request.getParameter("m_assignment"))
                     );
                     
                         try {
