@@ -128,11 +128,11 @@ p{
 }
 
 .tr:nth-child(even){
-    background-color: #DBE5FF;
+    background-color: rgba(0,102,153,0.2);
 }
 
 .tr:nth-child(even):hover{
-    background-color: rgba(0,102,153,1);
+    background-color: rgba(0,102,153,0.8);
     color: white;
 }
 
@@ -141,7 +141,7 @@ p{
 }
 
 .tr:nth-child(odd):hover{
-    background-color: rgba(0,102,153,1);
+    background-color: rgba(0,102,153,0.8);
     color: white;
 }
 

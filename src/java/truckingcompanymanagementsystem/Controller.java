@@ -243,8 +243,7 @@ public final class Controller {
                     vehicleData.getString("truck_model"),
                     vehicleData.getInt("truck_id"),
                     vehicleData.getInt("driver_id"),
-                    vehicleData.getInt("availability"),
-                    vehicleData.getString("parts_list")
+                    vehicleData.getInt("availability")
 
                 ));
 
