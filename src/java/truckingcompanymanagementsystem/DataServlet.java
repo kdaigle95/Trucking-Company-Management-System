@@ -33,7 +33,7 @@ public class DataServlet extends HttpServlet {
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
         ArrayList<Manifest> manifestDataArray = null;
-        ArrayList<Manifest> purchaseOrderDataArray = null;
+        ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
         
         //Get updated version of data
         try {
@@ -68,17 +68,17 @@ public class DataServlet extends HttpServlet {
         //user name and password is not cached
         //this means you can only view the dataservlet the one time
         //hard coding for now
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        //String username = request.getParameter("username");
+        //String password = request.getParameter("password");
         
-        //String username = "masterTest";
-        //String password = "pass";
+        String username = "masterTest";
+        String password = "pass";
         
         boolean user_authenticated = false;
-        if(User.has_logged_in != true)
-        {
+        //if(User.has_logged_in != true)
+        //{
             user_authenticated = ua.userAuthentication(username, password);
-        }
+        //}
         
         RequestDispatcher view = null;
         
@@ -102,8 +102,8 @@ public class DataServlet extends HttpServlet {
         manifestDataArray = Controller.getInstance().getManifestDataList();
         System.out.println(this);
         
-        //purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
-        //System.out.println(this);
+        purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
+        System.out.println(this);
         
         
  
@@ -147,7 +147,7 @@ public class DataServlet extends HttpServlet {
         }
         else {                  // Not valid user
             response.setContentType("text/html");                      
-            view = request.getRequestDispatcher("AccessDenied.jsp");
+            view = request.getRequestDispatcher("AccesDenied.jsp");
             view.forward(request, response);
         }
         
