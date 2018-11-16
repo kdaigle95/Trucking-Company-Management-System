@@ -37,19 +37,24 @@ public class UserAccounts
 
     Database connection = Database.getInstance();
     
-    static class User
+
+    static String stored_username;
+    static String position;
+    static String access_level;
+    static boolean has_logged_in = false;
+        
+    public boolean gethas_logged_in()
     {
-        static String username;
-        static String position;
-        static String access_level;
-        static boolean has_logged_in = false;
+        return this.has_logged_in;
     }
+        
+    
     
     
     
     public boolean userAuthentication(String username, String password)
     {
-        User CurrentUser = new User();
+        //User CurrentUser = new User();
         ResultSet acceptable_username = null;
         String acceptable_username_query = "SELECT users FROM users";
         try
@@ -89,25 +94,25 @@ public class UserAccounts
                 if(password.equals(database_password))
                 {
                     user_authenticated = true;
-                    CurrentUser.has_logged_in = true;
-                    CurrentUser.username = username;
-                    switch(CurrentUser.username)
+                    has_logged_in = true;
+                    stored_username = username;
+                    switch(stored_username)
                     {
                         case "masterTest":
                             
-                            CurrentUser.access_level = "full";
+                            access_level = "full";
                             break;
                             
                         case "shippingTest":
-                            CurrentUser.access_level = "shipping";
+                            access_level = "shipping";
                             break;
                             
                         case "maintTest":
-                            CurrentUser.access_level = "maint";
+                            access_level = "maint";
                             break;
                             
                         case "truckTest":
-                            CurrentUser.access_level = "driver";
+                            access_level = "driver";
                             break;
                     }
                 }

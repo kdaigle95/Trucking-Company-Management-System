@@ -109,7 +109,7 @@
                                <!--<td><a href="PurchaseOrder.jsp">Purchase Order</a></td>
                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                                <td><button type="button" onclick="document.forms[0].action = 'PurchaseOrder.jsp'; return true;">Purchase Order</button></td>-->
-                               <td><a href="PurchaseOrder.jsp"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                               <td><a href="PurchaseOrder.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
                             </tr>    
                            </c:forEach>  
                         </table>
@@ -159,7 +159,7 @@
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
                                <td><a href="Manifest.jsp"><input type="button" value="Manifest" name="Manifest"/></a></td>
-                               <td><a href="PurchaseOrder.jsp"><input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
+                               <td><a href="PurchaseOrder.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
                                <!--<td><a href="Manifest.jsp">Manifest</a></td>
                                <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
                                <td><a href="PurchaseOrder.jsp">Purchase Order</a></td>
