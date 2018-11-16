@@ -108,7 +108,7 @@ public class DataModification {
         return sql;
     }
     
-    protected String addTruck(String vin, String make, int year,
+    protected String updateTruck(String vin, String make, int year,
             String model, int truckID) {
         int availability = 0;
         int driverID = 0;
@@ -185,7 +185,11 @@ public class DataModification {
                 + ");";
 
         return sql;
-
+    }
+    
+    protected String updateMaintenance(int workOrder, int truckID, String truckVin,
+            int maintID, String date, String job, String parts, String cost, String desc) {
+        return sql;
     }
 
     protected String addMaintenance(int workOrder, int truckID, String truckVin,
