@@ -81,14 +81,9 @@ public class DataModification {
 
     protected String updatePersonnel(int id, String first, String middle,
             String last, String streetAddr, String city, String state, int zip,
-            String homeNum, String cellNum, String position,
+            String homeNum, String cellNum, int years, String position, int assignment,
             int salary) {
         int payrate = salary / 12;
-        int years = 0;
-        int assignment = 1;
-        if (position.toLowerCase() == "driver") {
-            assignment = 0;
-        }
         sql = "UPDATE Personnel_Data "
                 + "SET first_name = '" + first + "'"
                 + ", middle_name = '" + middle + "'"
@@ -109,9 +104,7 @@ public class DataModification {
     }
 
     protected String updateTruck(String vin, String make, int year,
-            String model, int truckID) {
-        int availability = 0;
-        int driverID = 0;
+            String model, int truckID, int driverID, int availability) {
         sql = "UPDATE vehicle_data "
                 + "SET vin = '" + vin + "'"
                 + ", truck_brand = '" + make + "'"
@@ -127,15 +120,55 @@ public class DataModification {
             int maintID, String date, String job, String parts, String cost, String desc) {
         sql = "UPDATE maintenance_data "
                 + "SET truck_id = " + truckID
-                        + ", vin = '" + truckVin + "'"
-                        + ", maintenance_id = " + maintID
-                        + ", date = '" + date + "'"
-                        + ", job_done = '" + job + "'"
-                        + ", parts = '" + parts + "'"
-                        + ", cost = '" + cost + "'"
-                        + ", detailed_report = '" + desc + "'"
-                        + " WHERE work_order = " + workOrder + ";";                      
+                + ", vin = '" + truckVin + "'"
+                + ", maintenance_id = " + maintID
+                + ", date = '" + date + "'"
+                + ", job_done = '" + job + "'"
+                + ", parts = '" + parts + "'"
+                + ", cost = '" + cost + "'"
+                + ", detailed_report = '" + desc + "'"
+                + " WHERE work_order = " + workOrder + ";";
         return sql;
+    }
+
+    protected String updateIncoming(int orderID, String source, String addr, String city,
+            String state, int zip, int truckID, String departure, String arrival,
+            String arrivalConf, int driverID, String paymentConf) {
+        sql = "UPDATE incoming_shipping "
+                + "SET order_id = " + orderID + ", "
+                + "source_company = '" + source + "', "
+                + "address = '" + addr + "', "
+                + "city = '" + city + "', "
+                + "state = '" + state + "', "
+                + "zip = " + zip + ", "
+                + "truck_id = " + truckID + ", "
+                + "departure_date_time = '" + departure + "', "
+                + "estimated_arrival = '" + arrival + "', "
+                + "arrival_confirmation = '" + arrivalConf + "', "
+                + "driver_id = " + driverID + ", "
+                + "payment_confirmation = '" + paymentConf + "';";
+        return sql;
+
+    }
+    
+    protected String updateOutgoing(int orderID, String dest, String addr, String city,
+            String state, int zip, int truckID, String departure, String arrival,
+            String arrivalConf, int driverID, String paymentConf) {
+        sql = "UPDATE outgoing_shipping "
+                + "SET order_id = " + orderID + ", "
+                + "destination_company = '" + dest + "', "
+                + "address = '" + addr + "', "
+                + "city = '" + city + "', "
+                + "state = '" + state + "', "
+                + "zip = " + zip + ", "
+                + "truck_id = " + truckID + ", "
+                + "departure_date_time = '" + departure + "', "
+                + "estimated_arrival = '" + arrival + "', "
+                + "arrival_confirmation = '" + arrivalConf + "', "
+                + "driver_id = " + driverID + ", "
+                + "payment_confirmation = '" + paymentConf + "';";
+        return sql;
+
     }
 
     protected String deleteRow(String tableName, long primaryKey) {
