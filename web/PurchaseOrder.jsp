@@ -37,21 +37,22 @@
             <input type="submit" value="submit">
         <h1>Purchase Order</h1>
         
-        <table>
-            <th>Item Name</th>
-            <th>Item Amount</th>
-            <th>Unit Cost</th>
-            <th>Total Cost</th>
-            <th>Availability</th> 
+        <table class = "table">
+            <tr>Item Name</tr>
+            <tr>Item Amount</tr>
+            <tr>Unit Cost</tr>
+            <tr>Total Cost</tr>
+            <tr>Availability</tr> 
         
             <c:forEach items="${purchaseOrderDataArray}" var="purchaseOrderDataArray" begin="0">
+                <tr class="tr">
                 <td>${purchaseOrderDataArray.item_name}</td>
                 <td>${purchaseOrderDataArray.item_amount}</td>
                 <td>${purchaseOrderDataArray.unit_cost}</td>
                 <td>${purchaseOrderDataArray.total_item_cost}</td>
                 <td>${purchaseOrderDataArray.availability}</td>
+                </tr>
             </c:forEach>
-              
         </table>
         <button type="button" name="back" onclick="history.back()">back</button>
         </form>

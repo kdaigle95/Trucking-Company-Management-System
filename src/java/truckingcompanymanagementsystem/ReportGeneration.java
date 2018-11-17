@@ -178,7 +178,7 @@ public class ReportGeneration {
                     + orderID + " AND manifests.item_id = items.item_id;");
 
             while (purchase_results.next()) {
-                purchaseList.add(new PurchaseOrder(
+                purchaseList.add(PurchaseOrderFactory.getPurchaseOrderFactory().createPurchaseOrder(
                         purchase_results.getString("item_name"),
                         purchase_results.getInt("item_amount"),
                         purchase_results.getFloat("unit_cost"),
