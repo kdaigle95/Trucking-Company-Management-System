@@ -58,12 +58,12 @@ p{
     text-shadow: 2px #091534;
     float: left;
     border: none;
-    border-radius: 4px 4px 0px 0px;   
+    border-radius: 5px 5px 0px 0px;   
     outline-style:outset;
     outline-color: rgba(9,21,52,0.25);
     outline-width: 2px;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 15px 25px;
     font-size: 20px;
     width: 25%;
     
@@ -79,18 +79,18 @@ p{
     color: #000000;
     display: table;
     padding: 100px 20px;
+    width:auto;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
     animation: cubic-bezier;
 }
 
 .column{
-    float: left;
-    width: 95%;
-    padding: 14px;
+    width: 100%;
+    padding: 15px;
     outline-style: ridge;
     outline-color: rgba(9,21,52,0.5);
-    outline-width: 3px;
+    outline-width: 5px;
 }
 /*Clear floats after the columns*/
 .row:after{
@@ -100,20 +100,18 @@ p{
 }
 
 .table{
-    border: 1px solid #091534;
-    border-bottom: 1px solid #ddd;
-    border-width: 1px;
     border-top: #091534;
-    border-style: groove;
+    border-bottom: #091534;
+    border-right: #091534;
+    border-left: #091534;
+    border-style: ridge;
     display: table; 
     max-width: 100%;
-    word-spacing: 2px;
-    word-wrap: normal;
+    word-spacing: 3px;
     padding: 10px;
-
+    overflow-x: auto;
     page: auto;
 }
-
 
 .th{
     text-align: left;
@@ -131,23 +129,31 @@ p{
 }
 
 .tr:nth-child(even){
-    background-color: rgba(0,102,153,0.2);
+    background-color: rgba(0,102,153,0.3);
 }
 
 .tr:nth-child(even):hover{
-    background-color: rgba(0,102,153,0.8);
+    background-color: rgba(0,102,153,0.5);
     color: white;
 }
 
 .tr:nth-child(odd){
-    background-color: rgba(0,102,153,0.4);
+    background-color: rgba(0,102,153,0.1);
 }
 
 .tr:nth-child(odd):hover{
-    background-color: rgba(0,102,153,0.8);
+    background-color: rgba(0,102,153,0.5);
     color: white;
 }
 
+input[type=text] {
+    background-color: rgba(0,102,153,0.01);
+    padding-left: 1px;
+    padding-right: 3px;
+    width: 170px;
+    word-wrap: initial;
+    border-style: hidden;
+}
 
 /*Responsive layout */
 @media screen and (max-width:600px){
@@ -197,65 +203,26 @@ over it (hover)*/
 
 /*Style the accordion panel. Note: hidden by default*/
 .panel{
-    padding: 0 18px;
+    padding: 10px;
     background-color: white;
     display: none;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
-/*________________Overlay Attempted Stuff__________BEGIN____________*/
-
-.contanier{
-    position: relative;
-    width: 50%;
+#draggable{
+    width: border-box; 
+    height: border-box; 
+    padding: 0.5em; 
+    float: left; 
+    margin: 0 10px 10px 0;
 }
 
-.middle{
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    text-align: center;
+#containment-wrapper { 
+    width: 100%; 
+    height:100%; 
+    border:2px solid #ccc; 
+    padding: 10px; 
 }
-
-.textOverlay{
-    background-color: white;
-    color: black;
-    font-size: 16px;
-    padding: 16px 32px;
-}
-
-#overlay{
-    
-    position: fixed;
-    display: none;
-    width: 100%;
-    height: 100%;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
-    transition: .5s ease;
-    z-index: 2;
-    cursor: pointer;
-}
-
-#text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-}
-
-/*________________Overlay Attempted Stuff________END______________*/
-
 
 /*________________Buttons_______________________*/
 .button{

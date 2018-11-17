@@ -12,7 +12,6 @@ body, html {
     font-family: Arial;
     background-image: linear-gradient(to bottom, rgba(0,102,153,0.75), rgba(9,21,52,0.98));
     overflow: hidden;
-    font-family: 'Open Sans', sans-serif;
 }
 
 h1{
@@ -28,15 +27,14 @@ h3{
     font-family: Arial;
     color: white;
     text-shadow: 1px 1px #091534;
-    text-align: center;
-   
+    text-align: center;  
 }
 
 .title{
     color: #091534;
-    text-align: left;
-    
+    text-align: left;  
 }
+
 form{
     color: #ffffff;
     align-content: center;
@@ -58,21 +56,20 @@ form{
     align-content: center;
     flex-direction: column;
     justify-content: center;
-    min-height: 60%;
+    min-height: 80%;
     background-color: #091534;
     border-style: ridge;
 }
 
 .login {
-    border-radius: 2px 2px 5px 5px;
+    border-radius: 3px 3px 5px 5px;
     padding: 10px 10px 10px 10px;
     width: 60%;
-    max-width: 320px;
+    max-width: 300px;
     background: #ffffff;
     align-content: center;
     position: relative;
-    padding-bottom: 60px;
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+    padding-bottom: 90px;
     
 
 &.loading{
@@ -346,6 +343,7 @@ input{
 footer{
     display: block;
     padding-top: 50px;
+    padding-bottom: 50px;
     text-align: center;
     color: #ddd;
     font-weight: normal;

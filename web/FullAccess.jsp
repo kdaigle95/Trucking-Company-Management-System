@@ -12,7 +12,6 @@
 --%>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -28,27 +27,19 @@
         <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         
         <title>TCMS</title>
     </head>
     <body>
-        <jsp:element name="xmlElement">
         <h1>Full Access User</h1>
-        
-        <div class= "contanier" id="overlay" onclick="off()">
-            <div class="middle">
-                <div class="textOverlay">
-                    <h1 id="text">Overlay Data</h1>     
-                </div>
-            </div>
-        </div>
-        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
+        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id=${homeOpen}>Home</button>
        
-        <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" >Shipping</button>
+        <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" id=${shippingOpen} >Shipping</button>
        
-        <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">Equipment</button>
+        <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')" id=${equipmentOpen}>Equipment</button>
         
-        <button class="tablink" onclick="openPage('Personnel', this, 'rgba(9,21,52,0.98)')">Personnel</button>
+        <button class="tablink" onclick="openPage('Personnel', this, 'rgba(9,21,52,0.98)')" id=${personnelOpen}>Personnel</button>
         
         <div id="Home" class="tabcontent">
             <h3>Trucking Company Management System</h3>
@@ -239,17 +230,20 @@
                            <th>Report Details</th>
                            <c:forEach items="${maintenanceDataArray}" var="maintenanceDataArray" begin="0">
                            <tr class="tr"> 
-                               <td>${maintenanceDataArray.m_workOrder}</td>
-                               <td>${maintenanceDataArray.m_truckID}</td>
-                               <td>${maintenanceDataArray.m_vin}</td>
-                               <td>${maintenanceDataArray.m_maintenanceID}</td>
-                               <td>${maintenanceDataArray.m_date}</td>
-                               <td>${maintenanceDataArray.m_jobDone}</td>
-                               <td>${maintenanceDataArray.m_parts}</td>
-                               <td>${maintenanceDataArray.m_cost}</td>
-                               <td>${maintenanceDataArray.m_report}</td>
-                               <td><a href="edit.jsp?id=${maintenanceDataArray.m_workOrder}">Edit</a></td>
-                               <td><a href="DeleteData.jsp?id=${maintenanceDataArray.m_workOrder}&generic_table=maintenance_data">Delete</a></td>
+                            <form action="UpdateDataServlet" method="post">
+                                <input type="hidden" name="generic_table" value="maintenance_data"/> 
+                                <td><input type="text" name="m_workOrder" value="${maintenanceDataArray.m_workOrder}"></td>
+                                <td><input type="text" name="m_truckID" value="${maintenanceDataArray.m_truckID}"></td>
+                                <td><input type="text" name="m_vin" value="${maintenanceDataArray.m_vin}"></td>
+                                <td><input type="text" name="m_maintenanceID" value="${maintenanceDataArray.m_maintenanceID}"></td>
+                                <td><input type="text" name="m_date" value="${maintenanceDataArray.m_date}"></td>
+                                <td><input type="text" name="m_jobDone" value="${maintenanceDataArray.m_jobDone}"></td>
+                                <td><input type="text" name="m_parts" value="${maintenanceDataArray.m_parts}"></td>
+                                <td><input type="text" name="m_cost" value="${maintenanceDataArray.m_cost}"></td>
+                                <td><input type="text" name="m_report" value="${maintenanceDataArray.m_report}"></td>
+                                <td><input type="submit" value="Update"></td>
+                                <td><a href="DeleteData.jsp?id=${maintenanceDataArray.m_workOrder}&generic_table=maintenance_data">Delete</a></td>
+                            </form>
                             </tr>    
                            </c:forEach> 
                         </table>
@@ -268,13 +262,14 @@
                         <button class="button">Add New Personnel</button>       
                         </a>
                     </div>
-                    <button class="accordion">People in the Company</button> 
-                    <div class ="panel">
-
+                    <button class="accordion">People in the Company</button>
+                     
+                    <div class ="panel" id="containment-wrapper">
+                        
+                       
+                        <div id="draggable" class=" draggable ui-widget-content">
                         <table class="table" >
-                            
-           
-                            
+  
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
@@ -290,44 +285,42 @@
                             <th>Salary</th>
                             <th>Pay Rate</th>
                             <th>Assignment</th>
-                            
                      
                                 <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
-                                <tr class="tr" contenteditable="true">                
-                         
-                                    <td><c:out value="${personnelArray.m_employeeID}"/></td>
-                                    
-                                    <td>${personnelArray.m_firstName}</td>
-                                    
-                                    <td>${personnelArray.m_middleName}</td>
-                                    <td>${personnelArray.m_lastName}</td>
-                                    <td>${personnelArray.m_streetAddress}</td>
-                                    <td>${personnelArray.m_city}</td>
-                                    <td>${personnelArray.m_state}</td>
-                                    <td>${personnelArray.m_zip}</td>
-                                    <td>${personnelArray.m_homePhone}</td>
-                                    <td>${personnelArray.m_cellPhone}</td>
-                                    <td>${personnelArray.m_years}</td>
-                                    <td>${personnelArray.m_position}</td>
-                                    <td>${personnelArray.m_salary}</td>
-                                    <td>${personnelArray.m_payrate}</td>
-                                    <td>${personnelArray.m_assignment}</td>
-                                    <td><a href="edit.jsp?id=${personnelArray.m_employeeID}">Edit</a></td>
-                                    <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>                                   
+                                <tr class="tr">                
+                                <form action="UpdateDataServlet" method="post">
+                                    <input type="hidden" name="generic_table" value="Personnel_Data"/>
+                                    <td><input type="text" name="m_employeeID" value="${personnelArray.m_employeeID}"></td>                                    
+                                    <td><input type="text" name="m_firstName" value="${personnelArray.m_firstName}"></td>                                    
+                                    <td><input type="text" name="m_middleName" value="${personnelArray.m_middleName}"></td>
+                                    <td><input type="text" name="m_lastName" value="${personnelArray.m_lastName}"></td>
+                                    <td><input type="text" name="m_streetAddress" value="${personnelArray.m_streetAddress}"></td>
+                                    <td><input type="text" name="m_city" value="${personnelArray.m_city}"></td>
+                                    <td><input type="text" name="m_state" value="${personnelArray.m_state}"></td>
+                                    <td><input type="text" name="m_zip" value="${personnelArray.m_zip}"></td>
+                                    <td><input type="text" name="m_homePhone" value="${personnelArray.m_homePhone}"></td>
+                                    <td><input type="text" name="m_cellPhone" value="${personnelArray.m_cellPhone}"></td>
+                                    <td><input type="text" name="m_years" value="${personnelArray.m_years}"></td>
+                                    <td><input type="text" name="m_position" value="${personnelArray.m_position}"></td>
+                                    <td><input type="text" name="m_salary" value="${personnelArray.m_salary}"></td>
+                                    <td><input type="text" name="m_payrate" value="${personnelArray.m_payrate}"></td>
+                                    <td><input type="text" name="m_assignment" value="${personnelArray.m_assignment}"></td>
+                                    <td><input type="submit" value="Update"></td>
+                                    <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>        
+                                </form>
                                 </tr>
                                 </c:forEach>
-
                         </table>
-                    </div>       
+                    </div>
+                        
+                     </div>   
                 </div>
             </div> 
         </div>
-
-        <script src="JavaScript/Overlay.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
         <script src="JavaScript/Date.js" type="text/javascript"></script>
         <script src="jquery-3.3.1.js" type="text/javascript"></script>
-        </jsp:element>
+        <script src="JavaScript/draggable.js" type="text/javascript"></script>
     </body>
 </html>
