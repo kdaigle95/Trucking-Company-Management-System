@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.servlet.RequestDispatcher;
 /**
  *
  * @author justin
@@ -69,7 +70,11 @@ public class PurchaseOrderServlet extends HttpServlet {
         System.out.println(purchaseOrderDataArray.toString());
         
         
-        
+        response.setContentType("text/html");
+        request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
+        RequestDispatcher view = null;
+        view = request.getRequestDispatcher("PurchaseOrder.jsp");
+        view.forward(request, response);
         
     }
 

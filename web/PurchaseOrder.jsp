@@ -34,7 +34,6 @@
         <form action="PurchaseOrderServlet">
             <h1>Click Submit to Generate Purchase Order</h1>
             <input type="hidden" name="orderID" value="<%=request.getParameter("id")%>"/>
-            <input type="hidden" name="generic_table" value="<%=request.getParameter("generic_table")%>"/>
             <input type="submit" value="submit">
         <h1>Purchase Order</h1>
         
