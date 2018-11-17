@@ -14,11 +14,21 @@
     <body>
         <h1>Trucking Company Management System</h1>
         <h3>"Managing your records for over a decade"</h3>
-        <div class="wrapper">
+        <div class="loop-wrapper">
+            <div class="mountain"></div>
+            <div class="hill"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="tree"></div>
+            <div class="rock"></div>
+            <div class="truck"></div>
+            <div class="wheels"></div>
+        </div> 
+        <div class="loginwrapper">
             <form class="login" ACTION="DataServlet" METHOD="GET">  
 
                 <p class="title">Log in</p>
-                <input type="text" placeholder="Username" name ="username"autofocus/>
+                <input type="text" placeholder="Username" name ="username"autofocus/><br>
                 <i class="fa fa-user"></i>
                 <input type="password" placeholder="Password" name="password" autofocus/>
                 <i class="fa fa-key"></i>

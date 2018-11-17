@@ -101,14 +101,16 @@ p{
 
 .table{
     border: 1px solid #091534;
+    border-bottom: 1px solid #ddd;
     border-width: 1px;
+    border-top: #091534;
+    border-style: groove;
     display: table; 
     max-width: 100%;
     word-spacing: 2px;
     word-wrap: normal;
-    padding: 20px;
-    border-top: #091534;
-    border-style: groove;
+    padding: 10px;
+
     page: auto;
 }
 

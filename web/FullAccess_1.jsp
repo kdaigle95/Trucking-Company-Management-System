@@ -3,36 +3,21 @@
     Created on : Oct 18, 2018, 9:00:09 PM
     Author     : Andrea
     Reference  : https://www.w3schools.com/howto/howto_js_full_page_tabs.asp
-
 --%>
-
-<%--
-<?xml version="1.0" encoding="UTF-8"?>
-<%@page contentType="application/xml" pageEncoding="UTF-8"%>
---%>
-
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
-
 <%@page import = "truckingcompanymanagementsystem.*" %>
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
-      xmlns:jsp="http://java.sun.com/JSP/Page">
+<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="CSS/FullPageTabs.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         
         <title>TCMS</title>
     </head>
     <body>
-        <jsp:element name="xmlElement">
         <h1>Full Access User</h1>
         
         <div class= "contanier" id="overlay" onclick="off()">
@@ -257,8 +242,6 @@
                 </div>
             </div>
         </div>
-        
-            
         <div id="Personnel" class="tabcontent">
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
@@ -270,11 +253,7 @@
                     </div>
                     <button class="accordion">People in the Company</button> 
                     <div class ="panel">
-
                         <table class="table" >
-                            
-           
-                            
                             <th>ID</th>
                             <th>First Name</th>
                             <th>Middle Name</th>
@@ -290,15 +269,10 @@
                             <th>Salary</th>
                             <th>Pay Rate</th>
                             <th>Assignment</th>
-                            
-                     
                                 <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
-                                <tr class="tr" contenteditable="true">                
-                         
-                                    <td><c:out value="${personnelArray.m_employeeID}"/></td>
-                                    
+                                <tr class="tr">                
+                                    <td>${personnelArray.m_employeeID}</td>
                                     <td>${personnelArray.m_firstName}</td>
-                                    
                                     <td>${personnelArray.m_middleName}</td>
                                     <td>${personnelArray.m_lastName}</td>
                                     <td>${personnelArray.m_streetAddress}</td>
@@ -313,21 +287,18 @@
                                     <td>${personnelArray.m_payrate}</td>
                                     <td>${personnelArray.m_assignment}</td>
                                     <td><a href="edit.jsp?id=${personnelArray.m_employeeID}">Edit</a></td>
-                                    <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>                                   
-                                </tr>
+                                    <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>
+                                </tr>    
                                 </c:forEach>
-
                         </table>
                     </div>       
                 </div>
             </div> 
         </div>
-
         <script src="JavaScript/Overlay.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
         <script src="JavaScript/AccordionButton.js" type="text/javascript"></script>
         <script src="JavaScript/Date.js" type="text/javascript"></script>
         <script src="jquery-3.3.1.js" type="text/javascript"></script>
-        </jsp:element>
     </body>
 </html>
