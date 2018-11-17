@@ -16,13 +16,11 @@
         <h3>"Managing your records for over a decade"</h3>
         <div class="wrapper">
             <form class="login" ACTION="DataServlet" METHOD="GET">  
-
                 <p class="title">Log in</p>
                 <input type="text" placeholder="Username" name ="username"autofocus/>
                 <i class="fa fa-user"></i>
                 <input type="password" placeholder="Password" name="password" autofocus/>
                 <i class="fa fa-key"></i>
-
                 <p >
                 <a class="a" href="#">Forgot your password?</a>
                 </p>

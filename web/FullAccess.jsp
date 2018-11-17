@@ -18,7 +18,11 @@
     </head>
     <body>
         <h1>Full Access User</h1>
-        
+        <div align ="right">
+            <form action="Logout.jsp">
+                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+            </form>
+        </div>    
         <div class= "contanier" id="overlay" onclick="off()">
             <div class="middle">
                 <div class="textOverlay">
