@@ -21,8 +21,19 @@
         <servlet-class>truckingcompanymanagementsystem.ManifestServlet</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>TruckMaintenanceServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.TruckMaintenanceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PartsListServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.PartsListServlet</servlet-class>
+        </servlet
+
+<servlet>
         <servlet-name>PayrollServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.PayrollServlet</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
@@ -45,8 +56,17 @@
         <url-pattern>/ManifestServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+        <servlet-name>TruckMaintenanceServlet</servlet-name>
+        <url-pattern>/TruckMaintenanceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PartsListServlet</servlet-name>
+        <url-pattern>/PartsListServlet</url-pattern>
+=======
         <servlet-name>PayrollServlet</servlet-name>
         <url-pattern>/PayrollServlet</url-pattern>
+>>>>>>> 4b8da906337998574728b94522b81e2588dc5dfe
     </servlet-mapping>
     <session-config>
         <session-timeout>

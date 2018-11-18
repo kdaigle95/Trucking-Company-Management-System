@@ -7,8 +7,6 @@ package truckingcompanymanagementsystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author justi
+ * @author kdaig
  */
-public class ManifestServlet extends HttpServlet {
+public class PartsListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,47 +29,25 @@ public class ManifestServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-     
-        
-        
-        ArrayList<Manifest> manifestDataArray = null;
-        
-        String orderID_string = request.getParameter("orderID");
-        int orderID = Integer.parseInt(orderID_string);
-       
-        
-        ReportGeneration rg = new ReportGeneration();
-        
-        manifestDataArray = rg.makeManifestReport(orderID);
-       
-      
-       double subtotal = 0.0;
-        for (int i = 0; i < manifestDataArray.size(); i++) {
-            subtotal += manifestDataArray.get(i).getTotal_item_cost();
-        }
-        subtotal = BigDecimal.valueOf(subtotal)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double shippingCost = BigDecimal.valueOf(subtotal * 0.01)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double tax = BigDecimal.valueOf(subtotal * 0.09)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+         ArrayList<PartList> partsDataArray = null;
 
-        
-        request.setAttribute("subtotal", subtotal);
-        request.setAttribute("shippingCost", shippingCost);
-        request.setAttribute("tax", tax);
-        request.setAttribute("total", total);
+        String truckID_string = request.getParameter("truckID");
+        int truckID = Integer.parseInt(truckID_string);
+
+        ReportGeneration rg = new ReportGeneration();
+        System.out.println(truckID);
+        partsDataArray = rg.makePartsList(truckID);
+        System.out.println(partsDataArray.toString());
 
         response.setContentType("text/html");
-        request.setAttribute("manifestDataArray", manifestDataArray);
+        request.setAttribute("partsDataArray", partsDataArray);
+
         RequestDispatcher view = null;
-        view = request.getRequestDispatcher("Manifest.jsp");
+        view = request.getRequestDispatcher("PartsList.jsp");
         view.forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
