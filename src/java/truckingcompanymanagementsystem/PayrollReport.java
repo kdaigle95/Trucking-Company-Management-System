@@ -26,7 +26,7 @@ public class PayrollReport {
         this.pay = pay;
     }
 
-    public int getEmployeeid() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
@@ -34,7 +34,7 @@ public class PayrollReport {
         this.employeeID = employeeID;
     }
 
-    public String getlname() {
+    public String getlName() {
         return lName;
     }
 
@@ -42,7 +42,7 @@ public class PayrollReport {
         this.lName = lName;
     }
 
-    public String getfname() {
+    public String getfName() {
         return fName;
     }
 
