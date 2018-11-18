@@ -33,7 +33,23 @@
     </head>
     <body>
         <h1>Full Access User</h1>
+
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id=${homeOpen}>Home</button>
+
+        <div align ="right">
+            <form action="Logout.jsp">
+                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+            </form>
+        </div>    
+<!--        <div class= "contanier" id="overlay" onclick="off()">
+            <div class="middle">
+                <div class="textOverlay">
+                    <h1 id="text">Overlay Data</h1>     
+                </div>
+            </div>
+        </div>-->
+        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
+
        
         <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" id=${shippingOpen} >Shipping</button>
        
@@ -99,6 +115,7 @@
                             
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
+<!--<<<<<<< HEAD-->
                                 <form action="UpdateDataServlet" method="post">
                                 <input type="hidden" name="generic_table" value="incoming_shipping"/>
                                 <td><input type="text" name="m_orderID" value="${incomingShippingArray.m_orderID}"></td>
@@ -117,6 +134,26 @@
                                 <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
                                 <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                                 </form>
+<!--=======
+                               <td><input type="type" name="m_orderID" value=${incomingShippingArray.m_orderID}></td>
+                               <td>${incomingShippingArray.m_sourceCompany}</td>
+                               <td>${incomingShippingArray.m_address}</td>
+                               <td>${incomingShippingArray.m_city}</td>
+                               <td>${incomingShippingArray.m_state}</td>
+                               <td>${incomingShippingArray.m_zip}</td>
+                               <td>${incomingShippingArray.m_truckID}</td>
+                               <td>${incomingShippingArray.m_departureDate}</td>
+                               <td>${incomingShippingArray.m_estArrival}</td>
+                               <td>${incomingShippingArray.m_arrivalConf}</td>
+                               <td>${incomingShippingArray.m_driverID}</td>
+                               <td>${incomingShippingArray.m_paymentConf}</td>
+                               <td><a href="edit.jsp?id=#">Edit</a></td>
+                               <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
+                               <td><a href="PurchaseOrder.jsp">Purchase Order</a></td>
+                               <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                               <td><button type="button" onclick="document.forms[0].action = 'PurchaseOrder.jsp'; return true;">Purchase Order</button></td>
+                               <td><a href="PurchaseOrder.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+>>>>>>> origin/logout-->
                             </tr>    
                            </c:forEach>  
                         </table>
@@ -151,6 +188,7 @@
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
+<!--<<<<<<< HEAD-->
                                 <form action="UpdateDataServlet" method="post">
                                 <input type="hidden" name="generic_table" value="outgoing_shipping"/> 
                                 <td><input type="text" name="m_truckID" value="${outgoingShippingArray.m_orderID}"></td>
@@ -170,6 +208,28 @@
                                 <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
                                 <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                                 </form>
+<!--=======
+                               <td>${outgoingShippingArray.m_orderID}</td>
+                               <td>${outgoingShippingArray.m_destinationCompany}</td>
+                               <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
+                               <td>${outgoingShippingArray.m_destinationCompanyCity}</td>
+                               <td>${outgoingShippingArray.m_destinationCompanyState}</td>
+                               <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
+                               <td>${outgoingShippingArray.m_truckID}</td>
+                               <td>${outgoingShippingArray.m_departureDate}</td>
+                               <td>${outgoingShippingArray.m_estArrival}</td>
+                               <td>${outgoingShippingArray.m_arrivalConf}</td>
+                               <td>${outgoingShippingArray.m_driverID}</td>
+                               <td>${outgoingShippingArray.m_paymentConf}</td>                               
+                               <td><a href="edit.jsp?id=#">Edit</a></td>
+                               <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
+                               <td><a href="Manifest.jsp"><input type="button" value="Manifest" name="Manifest"/></a></td>
+                               <td><a href="PurchaseOrder.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
+                               <td><a href="Manifest.jsp">Manifest</a></td>
+                               <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
+                               <td><a href="PurchaseOrder.jsp">Purchase Order</a></td>
+                               <!--<td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>-->
+
                             </tr>    
                            </c:forEach>
                         </table>

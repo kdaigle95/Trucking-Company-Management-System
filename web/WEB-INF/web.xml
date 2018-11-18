@@ -16,6 +16,14 @@
         <servlet-name>UpdateDataServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.UpdateDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PurchaseOrderServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.PurchaseOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
@@ -31,6 +39,15 @@
     <servlet-mapping>
         <servlet-name>UpdateDataServlet</servlet-name>
         <url-pattern>/UpdateDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PurchaseOrderServlet</servlet-name>
+        <url-pattern>/PurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

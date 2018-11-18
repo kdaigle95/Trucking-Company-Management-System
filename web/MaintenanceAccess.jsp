@@ -18,7 +18,11 @@
     </head>
     <body>
         <h1>Maintenance Access User</h1>
-        
+        <div align ="right">
+            <form action="Logout.jsp">
+                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+            </form>
+        </div>    
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">Equipment</button>

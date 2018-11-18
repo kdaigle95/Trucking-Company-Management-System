@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author justin
  */
 
-public class UserAccounts 
+public final class UserAccounts 
 {
     
     private UserAccounts()
@@ -37,18 +37,22 @@ public class UserAccounts
 
     Database connection = Database.getInstance();
     
-    static class User
+
+    static String stored_username;
+    static String position;
+    static String access_level;
+    static boolean has_logged_in = false;
+    static boolean user_authenticated = false;
+        
+    
+        
+    
+    
+    
+    
+    public void userAuthentication(String username, String password)
     {
-        static String username;
-        static String position;
-        static String access_level;
-    }
-    
-    
-    
-    public boolean userAuthentication(String username, String password)
-    {
-        User CurrentUser = new User();
+        //User CurrentUser = new User();
         ResultSet acceptable_username = null;
         String acceptable_username_query = "SELECT users FROM users";
         try
@@ -62,7 +66,7 @@ public class UserAccounts
         }
 
         boolean found = false;
-        boolean user_authenticated = false;
+        user_authenticated = false;
         
         try
         {
@@ -88,24 +92,25 @@ public class UserAccounts
                 if(password.equals(database_password))
                 {
                     user_authenticated = true;
-                    CurrentUser.username = username;
-                    switch(CurrentUser.username)
+                    has_logged_in = true;
+                    stored_username = username;
+                    switch(stored_username)
                     {
                         case "masterTest":
                             
-                            CurrentUser.access_level = "full";
+                            access_level = "full";
                             break;
                             
                         case "shippingTest":
-                            CurrentUser.access_level = "shipping";
+                            access_level = "shipping";
                             break;
                             
                         case "maintTest":
-                            CurrentUser.access_level = "maint";
+                            access_level = "maint";
                             break;
                             
                         case "truckTest":
-                            CurrentUser.access_level = "driver";
+                            access_level = "driver";
                             break;
                     }
                 }
@@ -119,7 +124,7 @@ public class UserAccounts
             Logger.getLogger(UserAccounts.class.getName()).log(Level.SEVERE,null,ex);
         }
         
-        return user_authenticated;
+        
     }
     
     

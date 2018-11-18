@@ -7,7 +7,7 @@ package truckingcompanymanagementsystem;
 
 /**
  *
- * @author justi
+ * @author justin
  */
 public class PurchaseOrderFactory 
 {

@@ -18,7 +18,11 @@
     </head>
     <body>
         <h1>Shipping Access User</h1>
-        
+        <div align ="right">
+            <form action="Logout.jsp">
+                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+            </form>
+        </div>    
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
        
         <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" >Shipping</button>
@@ -167,7 +171,6 @@
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
                                <td>${vehicleDataArray.m_availability}</td>
-                               <td>${vehicleDataArray.m_partsList}</td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 

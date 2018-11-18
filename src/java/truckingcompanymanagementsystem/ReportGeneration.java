@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author kdaig
+ * manifest and purchase order functions updated by Justin on 11/16/18
  */
 public class ReportGeneration {
 
@@ -20,7 +21,8 @@ public class ReportGeneration {
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
     ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
-
+    ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
+    ArrayList<Manifest> manifestList = new ArrayList<Manifest>();
     private static ReportGeneration instance = null;
     private Database db = Database.getInstance();
 
@@ -120,7 +122,7 @@ public class ReportGeneration {
                     + "truck_parts.parts_count, truck_parts.part_source, "
                     + "truck_parts.cost, truck_parts.installation_date "
                     + "FROM parts "
-                    + "INNER JOIN truck_parts ON truck_parts.truck_id ="
+                    + "INNER JOIN truck_parts ON truck_parts.truck_id = "
                     + truckID
                     + " AND truck_parts.part_id = parts.part_id;");
 
@@ -140,34 +142,62 @@ public class ReportGeneration {
         return partList;
     }
 
-    public ResultSet makeManifestReport(int orderID) {
+    public ArrayList<Manifest> makeManifestReport(int orderID) {
+        manifestList.clear();
         ResultSet manifest = null;
         try {
             manifest = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
-                    + "manifests.total_item_cost FROM items"
+                    + "manifests.total_item_cost FROM items "
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
+            
+            while(manifest.next())
+            {
+                manifestList.add(new Manifest(
+                        manifest.getString("item_name"),
+                        manifest.getInt("item_amount"),
+                        manifest.getFloat("unit_cost"),
+                        manifest.getFloat("total_item_cost")
+                ));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return manifest;
+        return manifestList;
     }
 
-    public ResultSet makePurchaseReport(int orderID) {
-        ResultSet purchase = null;
+     public ArrayList<PurchaseOrder> makePurchaseReport(int orderID) {
+        purchaseList.clear();
+        ResultSet purchase_results = null;
         try {
-            purchase = db.getGenericResultSet("SELECT items.item_name, "
+            purchase_results = db.getGenericResultSet("SELECT items.item_name, "
                     + "manifests.item_amount, manifests.unit_cost, "
-                    + "manifests.total_item_cost, items.availability FROM items"
+                    + "manifests.total_item_cost, items.availability FROM items "
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
+
+            while (purchase_results.next()) {
+                purchaseList.add(new PurchaseOrder(
+                        purchase_results.getString("item_name"),
+                        purchase_results.getInt("item_amount"),
+                        purchase_results.getFloat("unit_cost"),
+                        purchase_results.getFloat("total_item_cost"),
+                        purchase_results.getString("availability")
+                ));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return purchase;
-    }
 
+        return purchaseList;
+    }
+    
+     
+    public ArrayList<PurchaseOrder> getPurchaseList()
+    {
+        return purchaseList;
+    }
     public ArrayList<PayrollReport> getPayroll() {
         return payroll;
     }
