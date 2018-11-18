@@ -6,15 +6,15 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.servlet.RequestDispatcher;
+
 /**
  *
  * @author justin
@@ -30,32 +30,43 @@ public class PurchaseOrderServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {
-       
-        
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-        ArrayList<TotalCosts> totalCostsArray = new ArrayList<TotalCosts>();
-        
+
         String orderID_string = request.getParameter("orderID");
         int orderID = Integer.parseInt(orderID_string);
-        
-        
+
         ReportGeneration rg = new ReportGeneration();
-        
+
         purchaseOrderDataArray = rg.makePurchaseReport(orderID);
         System.out.println("testtesttesttesttest");
         System.out.println(purchaseOrderDataArray.toString());
-        
-        
-        totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
-        
+
+        double subtotal = 0.0;
+        for (int i = 0; i < purchaseOrderDataArray.size(); i++) {
+            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
+        }
+        subtotal = BigDecimal.valueOf(subtotal)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double shippingCost = BigDecimal.valueOf(subtotal * 0.01)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double tax = BigDecimal.valueOf(subtotal * 0.09)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
+        request.setAttribute("subtotal", subtotal);
+        request.setAttribute("shippingCost", shippingCost);
+        request.setAttribute("tax", tax);
+        request.setAttribute("total", total);
+
         RequestDispatcher view = null;
         view = request.getRequestDispatcher("PurchaseOrder.jsp");
         view.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,43 +107,5 @@ public class PurchaseOrderServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    
-    class TotalCosts
-    {
-        double subtotal;
-        double shippingCost;
-        double tax;
-        double total;
-        
-        public TotalCosts(ArrayList<PurchaseOrder> purchaseOrderDataArray) {
-            double subtotal = 0.0;
-        for(int i = 0; i < purchaseOrderDataArray.size(); i++) {
-            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
-        }
-        double shippingCost = subtotal * .15;
-        double tax = subtotal * 0.09;
-        double total = subtotal + shippingCost + tax;
-        }
-
-        public double getSubtotal() {
-            return subtotal;
-        }
-
-        public double getShippingcost() {
-            return shippingCost;
-        }
-
-        public double getTax() {
-            return tax;
-        }
-
-        public double getTotal() {
-            return total;
-        }
-        
-        
-        
-        
-    }
 }
+

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Purchase Order</title>
     </head>
     <style>
         table, td, th 
@@ -62,14 +62,14 @@
                 <tr>Shipping and Handling</tr>
                 <tr>Total Cost</tr>
 
-                <c:forEach items="${totalCostsArray}" var="totalCostsArray" begin="0">
+               
                     <tr class="tr">
-                        <td>${totalCostsArray.subtotal}</td>
-                        <td>${totalCostsArray.tax}</td>
-                        <td>${totalCostsArray.shippingCost}</td>
-                        <td>${totalCostsArray.total}</td>
+                        <td>${subtotal}</td>
+                        <td>${tax}</td>
+                        <td>${shippingCost}</td>
+                        <td>${total}</td>
                     </tr>
-                </c:forEach>
+            </table>
                 <button type="button" name="back" onclick="history.back()">back</button>
         </form>
     </body>
