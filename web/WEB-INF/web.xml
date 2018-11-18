@@ -32,6 +32,10 @@
         <servlet-name>PayrollServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.PayrollServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MonthlyMaintenanceServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.MonthlyMaintenanceServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>PayrollServlet</servlet-name>
         <url-pattern>/PayrollServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MonthlyMaintenanceServlet</servlet-name>
+        <url-pattern>/MonthlyMaintenanceServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
