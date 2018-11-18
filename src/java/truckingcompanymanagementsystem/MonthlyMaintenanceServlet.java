@@ -40,6 +40,7 @@ public class MonthlyMaintenanceServlet extends HttpServlet {
          endDate = request.getParameter("endDate");
          ReportGeneration rg = new ReportGeneration();
          ArrayList<Maintenance> maintenanceDataArray = null;
+         
          maintenanceDataArray = rg.makeMonthlyMaintenanceReport(startDate, endDate);
         
         response.setContentType("text/html");

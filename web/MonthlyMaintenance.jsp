@@ -41,7 +41,7 @@
             <table class="table">
                 <th>Work Order</th>
                 <th>Truck ID</th>
-                <th>Truck Vin</th>
+                <th>Truck VIN</th>
                 <th>Maintenance ID</th>
                 <th>Date</th>
                 <th>Job Type</th>
