@@ -42,7 +42,7 @@ function dragElement(elmnt) {
     document.onmouseup = null;
     document.onmousemove = null;
   }
-
+  }
 
 //  $( function() {
 //    $( "#draggable" ).draggable();

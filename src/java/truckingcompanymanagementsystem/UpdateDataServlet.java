@@ -51,7 +51,28 @@ public class UpdateDataServlet extends HttpServlet {
         
         switch(tableName.trim()){
             case "incoming_shipping":
+                incomingSQLQuery = datamod.updateIncoming(
+                       Integer.parseInt(request.getParameter("m_orderID")),
+                       request.getParameter("m_sourceCompany"), 
+                       request.getParameter("m_address"),
+                       request.getParameter("m_city"), 
+                       request.getParameter("m_state"), 
+                       Integer.parseInt(request.getParameter("m_zip")), 
+                       Integer.parseInt(request.getParameter("m_truckID")),
+                       request.getParameter("m_departureDate"),
+                       request.getParameter("m_estArrival"),
+                       request.getParameter("m_arrivalConf"),
+                       Integer.parseInt(request.getParameter("m_driverID")),
+                       request.getParameter("m_paymentConf")
+                    );
 
+                System.out.println(incomingSQLQuery);
+                try {
+                    db.EditData(incomingSQLQuery);
+                } catch (SQLException | NullPointerException ex) {
+                    Logger.getLogger(UpdateDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println(tableName);
                 break;
                 
             case "outgoing_shipping":

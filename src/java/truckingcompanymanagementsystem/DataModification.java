@@ -111,26 +111,22 @@ public class DataModification {
         }
     }
 
-    protected String updateIncoming(int id, String first, String middle,
-            String last, String streetAddr, String city, String state, int zip,
-            String homeNum, String cellNum, int years, String position,
-            int salary, int payrate, int assignment) {
+    protected String updateIncoming(int id, String source, String address,
+            String city, String state, int zip, int truckID, String departureDate,
+            String estArrival, String arrivalConf, int driverID, String paymentConf) {
         sql = "UPDATE incoming_shipping "
-              + "SET " + "first_name = " + "'" + first + "', "
-                + "middle_name = " + "'" + middle + "', "
-                + "last_name = " + "'" + last + "', "
-                + "street_address = " + "'" + streetAddr + "', "
+              + "SET " + "source_company = " + "'" + source + "', "
+                + "address = " + "'" + address + "', "
                 + "city = " + "'" + city + "', "
                 + "state = " + "'" + state + "', "
                 + "zip = " + "'" + zip + "', "
-                + "home_phone_number = " + "'" + homeNum + "', "
-                + "cell_phone_number = " + "'" + cellNum + "', "
-                + "years_with_company = " + "'" + years + "', "
-                + "position = " + "'" + position + "', "
-                + "salary = " + "'" + salary + "', "
-                + "monthly_pay_rate = " + "'" + payrate + "', "
-                + "assignment = " + "'" + assignment + "'"
-                + " WHERE employee_id_number = " + id + ";";
+                + "truck_id = " + "'" + truckID + "', "
+                + "departure_date_time = " + "'" + departureDate + "', "
+                + "estimated_arrival = " + "'" + estArrival + "', "
+                + "arrival_confirmation = " + "'" + arrivalConf + "', "
+                + "driver_id = " + "'" + driverID + "', "
+                + "payment_confirmation = " + "'" + paymentConf + "'"
+                + " WHERE order_id = " + id + ";";
         return sql;
     }
     

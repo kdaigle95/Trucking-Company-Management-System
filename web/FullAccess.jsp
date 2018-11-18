@@ -99,21 +99,24 @@
                             
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
-                               <td><input type="type" name="m_orderID" value=${incomingShippingArray.m_orderID}></td>
-                               <td>${incomingShippingArray.m_sourceCompany}</td>
-                               <td>${incomingShippingArray.m_address}</td>
-                               <td>${incomingShippingArray.m_city}</td>
-                               <td>${incomingShippingArray.m_state}</td>
-                               <td>${incomingShippingArray.m_zip}</td>
-                               <td>${incomingShippingArray.m_truckID}</td>
-                               <td>${incomingShippingArray.m_departureDate}</td>
-                               <td>${incomingShippingArray.m_estArrival}</td>
-                               <td>${incomingShippingArray.m_arrivalConf}</td>
-                               <td>${incomingShippingArray.m_driverID}</td>
-                               <td>${incomingShippingArray.m_paymentConf}</td>
-                               <td><a href="edit.jsp?id=#">Edit</a></td>
-                               <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
-                               <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                <form action="UpdateDataServlet" method="post">
+                                <input type="hidden" name="generic_table" value="incoming_shipping"/>
+                                <td><input type="text" name="m_orderID" value="${incomingShippingArray.m_orderID}"></td>
+                                <td><input type="text" name="m_sourceCompany" value="${incomingShippingArray.m_sourceCompany}"></td>
+                                <td><input type="text" name="m_address" value="${incomingShippingArray.m_address}"></td>
+                                <td><input type="text" name="m_city" value="${incomingShippingArray.m_city}"></td>
+                                <td><input type="text" name="m_state" value="${incomingShippingArray.m_state}"></td>
+                                <td><input type="text" name="m_zip" value="${incomingShippingArray.m_zip}"></td>
+                                <td><input type="text" name="m_truckID" value="${incomingShippingArray.m_truckID}"></td>
+                                <td><input type="text" name="m_departureDate" value="${incomingShippingArray.m_departureDate}"></td>
+                                <td><input type="text" name="m_estArrival" value="${incomingShippingArray.m_estArrival}"></td>
+                                <td><input type="text" name="m_arrivalConf" value="${incomingShippingArray.m_arrivalConf}"></td>
+                                <td><input type="text" name="m_driverID" value="${incomingShippingArray.m_driverID}"></td>
+                                <td><input type="text" name="m_paymentConf" value="${incomingShippingArray.m_paymentConf}"></td>
+                                <td><input type="submit" value="Update"></td>
+                                <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
+                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                </form>
                             </tr>    
                            </c:forEach>  
                         </table>
