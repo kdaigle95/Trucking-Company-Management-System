@@ -4,6 +4,7 @@
     Author     : justi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,9 +32,9 @@
     </style>
     <body>
         <form action="PayrollServlet">
-            <h1>Monthly Payroll Report</h1>
-            <input type="hidden" name="truckID" value="<%=request.getParameter("id")%>"/>
-            <input type="submit" value="submit">
+                        <h1>Monthly Payroll Report</h1>
+                        <input type="hidden" name="truckID" >
+                        <input type="submit" value="submit">
 
             <table class="table">
                 <th>ID</th>
@@ -41,17 +42,17 @@
                 <th>First Name</th>
                 <th>Position</th>
                 <th>Pay</th>
-                    <c:forEach items="${payrollReportDataArray}" var="partsDataArray" begin="0">
+                <c:forEach items="${payrollReportDataArray}" var="payrollReportDataArray" begin="0">
                     <tr class="tr"> 
-                        <td>${payrollReportDataArray.id}</td>
-                        <td>${payrollReportDataArray.last}</td>
-                        <td>${payrollReportDataArray.first}</td>
+                        <td>${payrollReportDataArray.employeeID}</td>
+                        <td>${payrollReportDataArray.lName}</td>
+                        <td>${payrollReportDataArray.fName}</td>
                         <td>${payrollReportDataArray.position}</td>
                         <td>${payrollReportDataArray.pay}</td>
                     </tr>    
                 </c:forEach> 
             </table>
-                    <button type="button" name="back" onclick="history.back()">back</button>
+            <button type="button" name="back" onclick="history.back()">back</button>
         </form>
     </body>
 </html>
