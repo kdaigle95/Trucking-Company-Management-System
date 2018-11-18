@@ -6,7 +6,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Kyle edits Andrea 11/11-14/2018
+ * @author Kyle 
+ * edits Andrea 11/11-17/2018
  */
 public class DataModification {
 
@@ -18,6 +19,37 @@ public class DataModification {
     }
 
     protected void updateRowString(String tableName, long primaryKey, String columnName, String newData) {
+        switch (tableName) {
+            case "Personnel_Data":
+                sql = "UPDATE Personnel_Data "
+                        + "SET " + columnName + " = \"" + newData + "\" "
+                        + "WHERE employee_id_number = " + primaryKey + ";";
+                break;
+            case "vehicle_data":
+                sql = "UPDATE vehicle_data "
+                        + "SET " + columnName + " = \"" + newData + "\" "
+                        + "WHERE truck_id = " + primaryKey + ";";
+                break;
+            case "maintenance_data":
+                sql = "UPDATE maintenance_data "
+                        + "SET " + columnName + " = \"" + newData + "\" "
+                        + "WHERE work_order = " + primaryKey + ";";
+                break;
+            case "incoming_shipping":
+                sql = "UPDATE incoming_shipping "
+                        + "SET " + columnName + " = \"" + newData + "\" "
+                        + "WHERE order_number = " + primaryKey + ";";
+                break;
+            case "outgoing_shipping":
+                sql = "UPDATE outgoing_shipping "
+                        + "SET " + columnName + " = \"" + newData + "\" "
+                        + "WHERE order_number = " + primaryKey + ";";
+                break;
+
+        }
+    }
+    
+    protected void updateRow(String tableName, long primaryKey, String columnName, String newData) {
         switch (tableName) {
             case "Personnel_Data":
                 sql = "UPDATE Personnel_Data "
@@ -78,97 +110,96 @@ public class DataModification {
 
         }
     }
-
-    protected String updatePersonnel(int id, String first, String middle,
-            String last, String streetAddr, String city, String state, int zip,
-            String homeNum, String cellNum, int years, String position, int assignment,
-            int salary) {
-        int payrate = salary / 12;
-        sql = "UPDATE Personnel_Data "
-                + "SET first_name = '" + first + "'"
-                + ", middle_name = '" + middle + "'"
-                + ", last_name = '" + last + "'"
-                + ", street_address = '" + streetAddr + "'"
-                + ", city = '" + city + "'"
-                + ", state = '" + state + "'"
-                + ", zip = " + zip
-                + ", home_phone_number = '" + homeNum + "'"
-                + ", cell_phone_number = '" + cellNum + "'"
-                + ", years_with_company = " + years
-                + ", position = '" + position + "'"
-                + ", salary = " + salary
-                + ", monthly_pay_rate = " + payrate
-                + ", assignment = " + assignment
-                + " WHERE employee_id_number = " + id + ";";
-        return sql;
-    }
-
-    protected String updateTruck(String vin, String make, int year,
-            String model, int truckID, int driverID, int availability) {
-        sql = "UPDATE vehicle_data "
-                + "SET vin = '" + vin + "'"
-                + ", truck_brand = '" + make + "'"
-                + ", truck_year = " + year
-                + ", truck_model = " + model + "'"
-                + ", driver_id = " + driverID
-                + ", availability = " + availability
-                + " WHERE truck_id = " + truckID + ";";
-        return sql;
-    }
-
-    protected String updateMaintenance(int workOrder, int truckID, String truckVin,
-            int maintID, String date, String job, String parts, String cost, String desc) {
-        sql = "UPDATE maintenance_data "
-                + "SET truck_id = " + truckID
-                + ", vin = '" + truckVin + "'"
-                + ", maintenance_id = " + maintID
-                + ", date = '" + date + "'"
-                + ", job_done = '" + job + "'"
-                + ", parts = '" + parts + "'"
-                + ", cost = '" + cost + "'"
-                + ", detailed_report = '" + desc + "'"
-                + " WHERE work_order = " + workOrder + ";";
-        return sql;
-    }
-
-    protected String updateIncoming(int orderID, String source, String addr, String city,
-            String state, int zip, int truckID, String departure, String arrival,
-            String arrivalConf, int driverID, String paymentConf) {
+  
+    protected String updateIncoming(int id, String source, String address,
+            String city, String state, int zip, int truckID, String departureDate,
+            String estArrival, String arrivalConf, int driverID, String paymentConf) {
         sql = "UPDATE incoming_shipping "
-                + "SET order_id = " + orderID + ", "
-                + "source_company = '" + source + "', "
-                + "address = '" + addr + "', "
-                + "city = '" + city + "', "
-                + "state = '" + state + "', "
-                + "zip = " + zip + ", "
-                + "truck_id = " + truckID + ", "
-                + "departure_date_time = '" + departure + "', "
-                + "estimated_arrival = '" + arrival + "', "
-                + "arrival_confirmation = '" + arrivalConf + "', "
-                + "driver_id = " + driverID + ", "
-                + "payment_confirmation = '" + paymentConf + "';";
+              + "SET " + "source_company = " + "'" + source + "', "
+                + "address = " + "'" + address + "', "
+                + "city = " + "'" + city + "', "
+                + "state = " + "'" + state + "', "
+                + "zip = " + "'" + zip + "', "
+                + "truck_id = " + "'" + truckID + "', "
+                + "departure_date_time = " + "'" + departureDate + "', "
+                + "estimated_arrival = " + "'" + estArrival + "', "
+                + "arrival_confirmation = " + "'" + arrivalConf + "', "
+                + "driver_id = " + "'" + driverID + "', "
+                + "payment_confirmation = " + "'" + paymentConf + "'"
+                + " WHERE order_id = " + id + ";";
         return sql;
-
     }
     
-    protected String updateOutgoing(int orderID, String dest, String addr, String city,
-            String state, int zip, int truckID, String departure, String arrival,
-            String arrivalConf, int driverID, String paymentConf) {
+    protected String updateOutgoing(int id, String desCompany, String address,
+            String city, String state, int zip, int truckID,
+            String date, String estimate_arrival, String arrivalConf,
+            int driver_id, String payment_confirmation) {
         sql = "UPDATE outgoing_shipping "
-                + "SET order_id = " + orderID + ", "
-                + "destination_company = '" + dest + "', "
-                + "address = '" + addr + "', "
-                + "city = '" + city + "', "
-                + "state = '" + state + "', "
-                + "zip = " + zip + ", "
-                + "truck_id = " + truckID + ", "
-                + "departure_date_time = '" + departure + "', "
-                + "estimated_arrival = '" + arrival + "', "
-                + "arrival_confirmation = '" + arrivalConf + "', "
-                + "driver_id = " + driverID + ", "
-                + "payment_confirmation = '" + paymentConf + "';";
+              + "SET " + "destination_company = " + "'" + desCompany + "', "
+                + "address = " + "'" + address + "', "
+                + "city = " + "'" + city + "', "
+                + "state = " + "'" + state + "', "
+                + "zip = " + "'" + zip + "', "
+                + "truck_id = " + "'" + truckID + "', "
+                + "departure_date_time = " + "'" + date + "', "
+                + "estimated_arrival = " + "'" + estimate_arrival + "', "
+                + "arrival_confirmation = " + "'" + arrivalConf + "', "
+                + "driver_id = " + "'" + driver_id + "', "
+                + "payment_confirmation = " + "'" + payment_confirmation + "'"
+                + " WHERE order_id = " + id + ";";
         return sql;
-
+    }
+    
+    protected String updateVehicle(int id, String vin, String make, int year,
+        String model, int driverID, int availability) {
+    sql = "UPDATE vehicle_data "
+            + "SET vin = " + "'" + vin + "', "
+            + "truck_brand = " + "'" + make + "', "
+            + "truck_year = " + "'" + year + "', "
+            + "truck_model = " + "'" + model + "', "
+            + "driver_id = " + "'" + driverID + "', "
+            + "availability = " + "'" + availability + "'"
+            + " WHERE truck_id = " + id + ";";
+    return sql;
+    }  
+    
+    protected String updateMaintenance(int id, int truckID, String truckVin,
+            int maintenanceID, String date, String jobType, String parts, 
+            String cost, String reportDetails){
+        sql = "UPDATE maintenance_data "
+              + "SET " + "truck_id = " + "'" + truckID + "', "
+                + "truck_vin = " + "'" + truckVin + "', "
+                + "maintenance_id = " + "'" + maintenanceID + "', "
+                + "date = " + "'" + date + "', "
+                + "job_done = " + "'" + jobType + "', "
+                + "parts = " + "'" + parts + "', "
+                + "cost = " + "'" + cost + "', "
+                + "detailed_report = " + "'" + reportDetails + "'"
+                + " WHERE work_order = " + id + ";";
+        return sql;
+    }    
+    
+    protected String updatePersonnel(int id, String first, String middle,
+            String last, String streetAddr, String city, String state, int zip,
+            String homeNum, String cellNum, int years, String position,
+            int salary, int payrate, int assignment) {
+        sql = "UPDATE Personnel_Data "
+              + "SET " + "first_name = " + "'" + first + "', "
+                + "middle_name = " + "'" + middle + "', "
+                + "last_name = " + "'" + last + "', "
+                + "street_address = " + "'" + streetAddr + "', "
+                + "city = " + "'" + city + "', "
+                + "state = " + "'" + state + "', "
+                + "zip = " + "'" + zip + "', "
+                + "home_phone_number = " + "'" + homeNum + "', "
+                + "cell_phone_number = " + "'" + cellNum + "', "
+                + "years_with_company = " + "'" + years + "', "
+                + "position = " + "'" + position + "', "
+                + "salary = " + "'" + salary + "', "
+                + "monthly_pay_rate = " + "'" + payrate + "', "
+                + "assignment = " + "'" + assignment + "'"
+                + " WHERE employee_id_number = " + id + ";";
+        return sql;
     }
 
     protected String deleteRow(String tableName, long primaryKey) {

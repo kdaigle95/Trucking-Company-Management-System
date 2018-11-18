@@ -110,11 +110,22 @@ public final class Database {
         return deleteDataQuery;
     }
 
-    //for future use
-//    public boolean EditData(String dataQuery)throws SQLException, NullPointerExceptoin
-//    {
-//        
-//    }
+//    for future use
+    public boolean EditData(String dataQuery)throws SQLException, NullPointerException
+    {
+        boolean updateDataQuery = false;
+
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate(dataQuery);
+            updateDataQuery = true;
+            System.out.print("deletDataQuery");
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return updateDataQuery;        
+    }
+    
     public boolean AllocateOrders(String orderType, int orderID) {
         orderType = orderType.toLowerCase();
         boolean allocated = false;

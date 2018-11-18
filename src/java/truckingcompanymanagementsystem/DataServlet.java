@@ -32,6 +32,17 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
+        
+        String defaultOpen = "defaultOpen";
+        String defaultClosed = "defaultClosed";
+        
+        String tableName;
+        try{
+            tableName = request.getParameter("tableName").trim();
+        }
+        catch(NullPointerException ex){
+            tableName = "";
+        }
 
         //Get updated version of data
         try {
@@ -101,6 +112,51 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);
         */
         
+        switch(tableName){
+            
+            case "incoming_shipping":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultOpen);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "outgoing_shipping":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultOpen);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "vehicle_data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultOpen);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "maintenance_data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultOpen);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+
+            case "Personnel_Data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultOpen);
+                break;
+                
+            default:
+                request.setAttribute("homeOpen", defaultOpen);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+     
+        }       
  
     if(user_authenticated == true)
     {
@@ -111,6 +167,8 @@ public class DataServlet extends HttpServlet {
             request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
+            
+
 
             view = request.getRequestDispatcher("FullAccess.jsp");
             view.forward(request, response);
@@ -154,7 +212,9 @@ public class DataServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
-        processRequest(request, response);        
+        processRequest(request, response);
+        
+
     }
     
     @Override

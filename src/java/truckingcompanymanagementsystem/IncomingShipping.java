@@ -18,13 +18,8 @@ public class IncomingShipping {
     private String m_state;
     private int m_zip;
     private int m_truckID;
-    
-    //private String m_departureDate;
     private java.util.Date m_departureDate;
-    
-    //private String m_estArrival;
-    private java.util.Date m_estArrival;
-    
+    private java.util.Date m_estArrival; 
     private String m_arrivalConf;
     private int m_driverID;
     private String m_paymentConf;
