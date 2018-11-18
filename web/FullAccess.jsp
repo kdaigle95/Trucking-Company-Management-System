@@ -33,24 +33,14 @@
     </head>
     <body>
         <h1>Full Access User</h1>
-
-        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id=${homeOpen}>Home</button>
-
         <div align ="right">
             <form action="Logout.jsp">
                 <input type ="submit" value="logout" name ="logout" id="form_submit"/>
             </form>
-        </div>    
-<!--        <div class= "contanier" id="overlay" onclick="off()">
-            <div class="middle">
-                <div class="textOverlay">
-                    <h1 id="text">Overlay Data</h1>     
-                </div>
-            </div>
-        </div>-->
-        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
+        </div>   
+        
+        <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id=${homeOpen}>Home</button>
 
-       
         <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" id=${shippingOpen} >Shipping</button>
        
         <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')" id=${equipmentOpen}>Equipment</button>
