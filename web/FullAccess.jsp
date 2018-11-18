@@ -47,7 +47,7 @@
                         <table class="table">
                             <th>Monthly Payroll Report</th>
                             <td><a href=#><button>Generate Report</button></a></td>
-                            <th>Maintenance Report</th>
+                            <th>Monthly Maintenance Report</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of incoming Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
@@ -191,6 +191,8 @@
                            <th>Truck ID</th>
                            <th>Driver ID</th>
                            <th>Availability</th>
+                           <th>Parts List</th>
+                           <th>Maintenance Report</th>
                            <th>Delete</th>
                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
                            <tr class="tr">                
@@ -200,7 +202,9 @@
                                <td>${vehicleDataArray.m_truckModel}</td>
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
-                               <td>${vehicleDataArray.m_availability}</td>                              
+                               <td>${vehicleDataArray.m_availability}</td>
+                               <td><a href="PartsList.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                               <td><a href="TruckMaintenance.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 

@@ -19,7 +19,7 @@ public class ReportGeneration {
 
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
     ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
-    ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
+    ArrayList<Maintenance> truckMaint = new ArrayList<Maintenance>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
     ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
     ArrayList<Manifest> manifestList = new ArrayList<Manifest>();
@@ -61,7 +61,7 @@ public class ReportGeneration {
         return payroll;
     }
 
-    public ArrayList<MaintenanceReport> makeTruckMaintenanceReport(int truckID) {
+    public ArrayList<Maintenance> makeTruckMaintenanceReport(int truckID) {
         truckMaint.clear();
         ResultSet truckReport = null;
         try {
@@ -69,7 +69,7 @@ public class ReportGeneration {
                     + "WHERE truck_id = " + truckID + " ORDER BY date ASC");
 
             while (truckReport.next()) {
-                monthlyMaint.add(new MaintenanceReport(
+                truckMaint.add(new Maintenance(
                         truckReport.getInt("work_order"),
                         truckReport.getInt("truck_id"),
                         truckReport.getString("truck_vin"),
@@ -80,6 +80,8 @@ public class ReportGeneration {
                         truckReport.getString("cost"),
                         truckReport.getString("detailed_report")
                 ));
+                
+                System.out.println(truckMaint.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,7 +208,7 @@ public class ReportGeneration {
         return monthlyMaint;
     }
 
-    public ArrayList<MaintenanceReport> getTruckMaint() {
+    public ArrayList<Maintenance> getTruckMaint() {
         return truckMaint;
     }
 

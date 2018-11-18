@@ -38,11 +38,11 @@
             <h1>Purchase Order</h1>
 
             <table class = "table">
-                <tr>Item Name</tr>
-                <tr>Item Amount</tr>
-                <tr>Unit Cost</tr>
-                <tr>Total Cost</tr>
-                <tr>Availability</tr> 
+                <th>Item Name</th>
+                <th>Item Amount</th>
+                <th>Unit Cost</th>
+                <th>Total Cost</th>
+                <th>Availability</th> 
 
                 <c:forEach items="${purchaseOrderDataArray}" var="purchaseOrderDataArray" begin="0">
                     <tr class="tr">
@@ -57,10 +57,10 @@
             </table>
 
             <table class = "table">
-                <tr>Subtotal</tr>
-                <tr>Sales Tax</tr>
-                <tr>Shipping and Handling</tr>
-                <tr>Total Cost</tr>
+                <th>Subtotal</th>
+                <th>Sales Tax</th>
+                <th>Shipping and Handling</th>
+                <th>Total Cost</th>
 
                
                     <tr class="tr">

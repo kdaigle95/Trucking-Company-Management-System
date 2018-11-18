@@ -35,7 +35,7 @@ public class MaintenanceReport {
         this.desc = desc;
     }
 
-    protected int getWorkOrder() {
+    protected int getWorkorder() {
         return workOrder;
     }
 
@@ -43,7 +43,7 @@ public class MaintenanceReport {
         this.workOrder = workOrder;
     }
 
-    protected int getTruckID() {
+    protected int getTruckid() {
         return truckID;
     }
 
@@ -59,7 +59,7 @@ public class MaintenanceReport {
         this.vin = vin;
     }
 
-    protected int getMaintenanceID() {
+    protected int getMaintenanceid() {
         return maintenanceID;
     }
 
@@ -75,7 +75,7 @@ public class MaintenanceReport {
         this.date = date;
     }
 
-    protected String getJobDone() {
+    protected String getJobdone() {
         return jobDone;
     }
 
