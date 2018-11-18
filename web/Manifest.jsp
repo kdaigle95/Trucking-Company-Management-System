@@ -46,5 +46,20 @@
             <td>Test Value</td>
           </tr>
         </table>
+        
+        <table class = "table">
+                <tr>Subtotal</tr>
+                <tr>Sales Tax</tr>
+                <tr>Shipping and Handling</tr>
+                <tr>Total Cost</tr>
+
+               
+                    <tr class="tr">
+                        <td>${subtotal}</td>
+                        <td>${tax}</td>
+                        <td>${shippingCost}</td>
+                        <td>${total}</td>
+                    </tr>
+            </table>
     </body>
 </html>
