@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ReportGeneration {
 
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
-    ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
+    ArrayList<Maintenance> monthlyMaint = new ArrayList<Maintenance>();
     ArrayList<Maintenance> truckMaint = new ArrayList<Maintenance>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
     ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
@@ -89,7 +89,7 @@ public class ReportGeneration {
         return truckMaint;
     }
 
-    public ArrayList<MaintenanceReport> makeMonthlyMaintenanceReport(String startDate, String endDate) {
+    public ArrayList<Maintenance> makeMonthlyMaintenanceReport(String startDate, String endDate) {
         monthlyMaint.clear();
         ResultSet monthlyMaintReport = null;
         try {
@@ -97,7 +97,7 @@ public class ReportGeneration {
                     + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate
                     + "\" ORDER BY date ASC");
             while (monthlyMaintReport.next()) {
-                monthlyMaint.add(new MaintenanceReport(
+                monthlyMaint.add(new Maintenance(
                         monthlyMaintReport.getInt("work_order"),
                         monthlyMaintReport.getInt("truck_id"),
                         monthlyMaintReport.getString("truck_vin"),
@@ -204,7 +204,7 @@ public class ReportGeneration {
         return payroll;
     }
 
-    public ArrayList<MaintenanceReport> getMonthlyMaint() {
+    public ArrayList<Maintenance> getMonthlyMaint() {
         return monthlyMaint;
     }
 

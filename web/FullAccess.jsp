@@ -49,7 +49,8 @@
                             <td><a href="PayrollReport.jsp"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
                             <!--<td><a href=#><button>Generate Report</button></a></td>-->
                             <th>Maintenance Report</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
+                             <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
+                            <!--<td><a href=#><button>Generate Report</button></a></td>-->
                             <th>Summary of incoming Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of outgoing Shipments</th>
