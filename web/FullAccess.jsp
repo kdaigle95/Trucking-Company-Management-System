@@ -18,61 +18,62 @@
     </head>
     <body>
         <h1>Full Access User</h1>
-        
+
         <div class= "contanier" id="overlay" onclick="off()">
             <div class="middle">
                 <div class="textOverlay">
-                    <h1 id="text">Overlay Data</h1>     
+                    <h1 id="text">Overlay Data</h1>
                 </div>
             </div>
         </div>
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
-       
+
         <button class="tablink" onclick="openPage('Shipping', this, 'rgba(9,21,52,0.98)')" >Shipping</button>
-       
+
         <button class="tablink" onclick="openPage('Equipment', this, 'rgba(9,21,52,0.98)')">Equipment</button>
-        
+
         <button class="tablink" onclick="openPage('Personnel', this, 'rgba(9,21,52,0.98)')">Personnel</button>
 
         <div id="Home" class="tabcontent">
             <h3>Trucking Company Management System</h3>
             <p id = "date"></p>
             <p>To protect the privacy and security of the company information, users of the system will have access to information only on a "need to know" basis.</p>
-            
+
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Company Reports</h2>
-                    <button class="accordion">Reports</button> 
+                    <button class="accordion">Reports</button>
                     <div class ="panel">
                         <table class="table">
                             <th>Monthly Payroll Report</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
-                            <th>Monthly Maintenance Report</th>
+                            <td><a href="PayrollReport.jsp"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
+                            <!--<td><a href=#><button>Generate Report</button></a></td>-->
+                            <th>Maintenance Report</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of incoming Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of outgoing Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                         </table>
-                    </div>       
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div id="Shipping" class="tabcontent" >
 
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Incoming Shipments</h2>           
+                    <h2>Incoming Shipments</h2>
                         <div>
                             <a href="AddData.jsp?incoming_shipping">
-                                <button class="button">Add New Shipment</button>  
+                                <button class="button">Add New Shipment</button>
                             </a>
                         </div>
                     <button class="accordion">Pick-ups</button>
-                    
+
                     <div class ="panel">
-                        
+
                         <table class="table">
                             <th>Order ID</th>
                             <th>Source Company</th>
@@ -89,7 +90,7 @@
                             <th>Modify Contents</th>
                             <th>Delete</th>
                             <th>Link to Purchase Order</th>
-                            
+
                            <c:forEach items="${incomingShippingArray}" var="incomingShippingArray" begin="0">
                            <tr class="tr">
                                <td><input type="type" name="m_orderID" value=${incomingShippingArray.m_orderID}></td>
@@ -110,21 +111,21 @@
                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
                                <td><button type="button" onclick="document.forms[0].action = 'PurchaseOrder.jsp'; return true;">Purchase Order</button></td>-->
                                <td><a href="PurchaseOrder.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
-                            </tr>    
-                           </c:forEach>  
+                            </tr>
+                           </c:forEach>
                         </table>
-                    </div> 
+                    </div>
                 </div>
                 <div class="column" style="background-color: #717e99;">
                     <h2>Outgoing Shipments</h2>
                         <div>
                             <a href="AddData.jsp?outgoing_shipping">
-                            <button class="button">Add Delivery</button>       
+                            <button class="button">Add Delivery</button>
                             </a>
                         </div>
                     <button class="accordion">Deliveries</button>
-                    <div class ="panel">                  
-                        <table class="table">   
+                    <div class ="panel">
+                        <table class="table">
                            <th>Order ID</th>
                            <th>Destination Company</th>
                            <th>Address</th>
@@ -141,7 +142,7 @@
                            <th>Delete</th>
                            <th>Link to Shipping Manifest</th>
                            <th>Link to Purchase Order</th>
-                           
+
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
                                <td>${outgoingShippingArray.m_orderID}</td>
@@ -155,7 +156,7 @@
                                <td>${outgoingShippingArray.m_estArrival}</td>
                                <td>${outgoingShippingArray.m_arrivalConf}</td>
                                <td>${outgoingShippingArray.m_driverID}</td>
-                               <td>${outgoingShippingArray.m_paymentConf}</td>                               
+                               <td>${outgoingShippingArray.m_paymentConf}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
                                <td><a href="Manifest.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Manifest" name="Manifest"/></a></td>
@@ -164,24 +165,24 @@
                                <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
                                <td><a href="PurchaseOrder.jsp">Purchase Order</a></td>
                                <!--<td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>-->
-                            </tr>    
+                            </tr>
                            </c:forEach>
                         </table>
-                        
-                    </div>                
+
+                    </div>
                 </div>
             </div>
-        </div>       
+        </div>
         <div id="Equipment" class="tabcontent">
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Vehicles</h2>
                     <div>
                         <a href="AddData.jsp?vehicle_data">
-                        <button class="button">Add Active Vehicle</button>       
+                        <button class="button">Add Active Vehicle</button>
                         </a>
                     </div>
-                    <button class="accordion">Active Vehicles</button> 
+                    <button class="accordion">Active Vehicles</button>
                     <div class ="panel">
                         <table class="table">
                            <th>Vin</th>
@@ -195,7 +196,7 @@
                            <th>Maintenance Report</th>
                            <th>Delete</th>
                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
-                           <tr class="tr">                
+                           <tr class="tr">
                                <td>${vehicleDataArray.m_vin}</td>
                                <td>${vehicleDataArray.m_truckBrand}</td>
                                <td>${vehicleDataArray.m_truckYear}</td>
@@ -206,10 +207,10 @@
                                <td><a href="PartsList.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
                                <td><a href="TruckMaintenance.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
-                            </tr>    
-                           </c:forEach> 
+                            </tr>
+                           </c:forEach>
                         </table>
-                    </div>       
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -217,10 +218,10 @@
                     <h2>Maintenance</h2>
                     <div>
                         <a href="AddData.jsp?maintenance_data">
-                        <button class="button">Add New Record</button>       
+                        <button class="button">Add New Record</button>
                         </a>
                     </div>
-                    <button class="accordion">Routine Maintenance and Repairs</button> 
+                    <button class="accordion">Routine Maintenance and Repairs</button>
                     <div class ="panel">
                         <table class="table">
                            <th>Work Order</th>
@@ -233,7 +234,7 @@
                            <th>Cost</th>
                            <th>Report Details</th>
                            <c:forEach items="${maintenanceDataArray}" var="maintenanceDataArray" begin="0">
-                           <tr class="tr"> 
+                           <tr class="tr">
                                <td>${maintenanceDataArray.m_workOrder}</td>
                                <td>${maintenanceDataArray.m_truckID}</td>
                                <td>${maintenanceDataArray.m_vin}</td>
@@ -245,10 +246,10 @@
                                <td>${maintenanceDataArray.m_report}</td>
                                <td><a href="edit.jsp?id=${maintenanceDataArray.m_workOrder}">Edit</a></td>
                                <td><a href="DeleteData.jsp?id=${maintenanceDataArray.m_workOrder}&generic_table=maintenance_data">Delete</a></td>
-                            </tr>    
-                           </c:forEach> 
+                            </tr>
+                           </c:forEach>
                         </table>
-                    </div>       
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,10 +259,10 @@
                     <h2>List of Personnel</h2>
                     <div>
                         <a href="AddData.jsp?Personnel_Data">
-                        <button class="button">Add New Personnel</button>       
+                        <button class="button">Add New Personnel</button>
                         </a>
                     </div>
-                    <button class="accordion">People in the Company</button> 
+                    <button class="accordion">People in the Company</button>
                     <div class ="panel">
                         <table class="table" >
                             <th>ID</th>
@@ -280,7 +281,7 @@
                             <th>Pay Rate</th>
                             <th>Assignment</th>
                                 <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
-                                <tr class="tr">                
+                                <tr class="tr">
                                     <td>${personnelArray.m_employeeID}</td>
                                     <td>${personnelArray.m_firstName}</td>
                                     <td>${personnelArray.m_middleName}</td>
@@ -298,12 +299,12 @@
                                     <td>${personnelArray.m_assignment}</td>
                                     <td><a href="edit.jsp?id=${personnelArray.m_employeeID}">Edit</a></td>
                                     <td><a href="DeleteData.jsp?id=${personnelArray.m_employeeID}&generic_table=Personnel_Data">Delete</a></td>
-                                </tr>    
+                                </tr>
                                 </c:forEach>
                         </table>
-                    </div>       
+                    </div>
                 </div>
-            </div> 
+            </div>
         </div>
         <script src="JavaScript/Overlay.js" type="text/javascript"></script>
         <script src="JavaScript/FullPageTabs.js" type="text/javascript"></script>
