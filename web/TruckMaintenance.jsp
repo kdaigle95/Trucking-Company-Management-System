@@ -61,7 +61,8 @@
                     </tr>    
                 </c:forEach> 
             </table>
-
+            <button type="button" name="back" onclick="history.back()">back</button>
+        </form>
     </body>
 </html>
 

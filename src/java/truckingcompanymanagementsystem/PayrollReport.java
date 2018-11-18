@@ -26,27 +26,27 @@ public class PayrollReport {
         this.pay = pay;
     }
 
-    public int getEmployeeID() {
+    public int getEmployeeid() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeid(int employeeID) {
         this.employeeID = employeeID;
     }
 
-    public String getlName() {
+    public String getlname() {
         return lName;
     }
 
-    public void setlName(String lName) {
+    public void setlname(String lName) {
         this.lName = lName;
     }
 
-    public String getfName() {
+    public String getfname() {
         return fName;
     }
 
-    public void setfName(String fName) {
+    public void setfname(String fName) {
         this.fName = fName;
     }
 

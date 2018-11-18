@@ -9,9 +9,50 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Parts List</title>
     </head>
+    <style>
+        table, td, th
+        {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table
+        {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td
+        {
+            padding: 15px;
+        }
+    </style>
     <body>
-        <h1>Hello World!</h1>
+        <form action="PayrollServlet">
+            <h1>Monthly Payroll Report</h1>
+            <input type="hidden" name="truckID" value="<%=request.getParameter("id")%>"/>
+            <input type="submit" value="submit">
+
+            <table class="table">
+                <th>ID</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Position</th>
+                <th>Pay</th>
+                    <c:forEach items="${payrollReportDataArray}" var="partsDataArray" begin="0">
+                    <tr class="tr"> 
+                        <td>${payrollReportDataArray.id}</td>
+                        <td>${payrollReportDataArray.last}</td>
+                        <td>${payrollReportDataArray.first}</td>
+                        <td>${payrollReportDataArray.position}</td>
+                        <td>${payrollReportDataArray.pay}</td>
+                    </tr>    
+                </c:forEach> 
+            </table>
+                    <button type="button" name="back" onclick="history.back()">back</button>
+        </form>
     </body>
 </html>
+
