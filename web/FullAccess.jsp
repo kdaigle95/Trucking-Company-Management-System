@@ -46,7 +46,8 @@
                     <div class ="panel">
                         <table class="table">
                             <th>Monthly Payroll Report</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
+                            <td><a href="PayrollReport.jsp"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
+                            <!--<td><a href=#><button>Generate Report</button></a></td>-->
                             <th>Maintenance Report</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of incoming Shipments</th>
