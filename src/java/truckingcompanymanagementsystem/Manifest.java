@@ -33,42 +33,42 @@ public class Manifest
         this.total_item_cost = total_item_cost;        
     }
 
-    public String getItem_Name()
+    public String getItem_name()
     {
         return item_name;
     }
 
-    public void setItem_Name()
+    public void setItem_name()
     {
         this.item_name = item_name;
     }
     
-    public int getItem_Amount()
+    public int getItem_amount()
     {
         return item_amount;
     }
     
-    public void setItem_Amount()
+    public void setItem_amount()
     {
         this.item_amount = item_amount;
     }
     
-    public float getUnit_Cost()
+    public float getUnit_cost()
     {
         return unit_cost;
     }
     
-    public void setUnit_Cost()
+    public void setUnit_cost()
     {
         this.unit_cost = unit_cost;
     }
     
-    public float getTotal_Item_Cost()
+    public float getTotal_item_cost()
     {
         return total_item_cost;
     }
     
-    public void setTotal_Item_Cost()
+    public void setTotal_item_cost()
     {
         this.total_item_cost = total_item_cost;
     }

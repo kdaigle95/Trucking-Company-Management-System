@@ -167,7 +167,6 @@
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
                                <td>${vehicleDataArray.m_availability}</td>
-                               <td>${vehicleDataArray.m_partsList}</td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 

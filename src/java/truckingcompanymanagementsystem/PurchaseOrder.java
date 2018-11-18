@@ -42,7 +42,7 @@ public class PurchaseOrder
         return item_name;
     }
 
-    public void setItem_Name()
+    public void setItem_name()
     {
         this.item_name = item_name;
     }
@@ -52,7 +52,7 @@ public class PurchaseOrder
         return item_amount;
     }
     
-    public void setItem_Amount()
+    public void setItem_amount()
     {
         this.item_amount = item_amount;
     }
@@ -62,7 +62,7 @@ public class PurchaseOrder
         return unit_cost;
     }
     
-    public void setUnit_Cost()
+    public void setUnit_cost()
     {
         this.unit_cost = unit_cost;
     }
@@ -72,17 +72,17 @@ public class PurchaseOrder
         return total_item_cost;
     }
     
-    public void setTotal_item_iost()
+    public void setTotal_item_cost()
     {
         this.total_item_cost = total_item_cost;
     }
     
-    public String getAvailability()
+    public String getavailability()
     {
         return availability;
     }
     
-    public void setAvailability()
+    public void setavailability()
     {
         this.availability = availability;
     }
