@@ -53,22 +53,24 @@
                         <td>${purchaseOrderDataArray.availability}</td>
                     </tr>
                 </c:forEach>
-                        
+
             </table>
-            
+
             <table class = "table">
                 <tr>Subtotal</tr>
                 <tr>Sales Tax</tr>
                 <tr>Shipping and Handling</tr>
                 <tr>Total Cost</tr>
-                <tr class="tr">
-                    <td>${subtotal}</td>
-                    <td>${tax}</td>
-                    <td>${shippingCost}</td>
-                    <td>${total}</td>
-                        
-                </tr>
-            <button type="button" name="back" onclick="history.back()">back</button>
+
+                <c:forEach items="${totalCostsArray}" var="totalCostsArray" begin="0">
+                    <tr class="tr">
+                        <td>${totalCostsArray.subtotal}</td>
+                        <td>${totalCostsArray.tax}</td>
+                        <td>${totalCostsArray.shippingCost}</td>
+                        <td>${totalCostsArray.total}</td>
+                    </tr>
+                </c:forEach>
+                <button type="button" name="back" onclick="history.back()">back</button>
         </form>
     </body>
 </html>

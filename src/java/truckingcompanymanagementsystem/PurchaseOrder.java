@@ -37,7 +37,7 @@ public class PurchaseOrder
         this.availability = availability;        
     }
 
-    public String getItem_Name()
+    public String getItem_name()
     {
         return item_name;
     }
@@ -47,7 +47,7 @@ public class PurchaseOrder
         this.item_name = item_name;
     }
     
-    public int getItem_Amount()
+    public int getItem_amount()
     {
         return item_amount;
     }
@@ -57,7 +57,7 @@ public class PurchaseOrder
         this.item_amount = item_amount;
     }
     
-    public float getUnit_Cost()
+    public float getUnit_cost()
     {
         return unit_cost;
     }
@@ -67,12 +67,12 @@ public class PurchaseOrder
         this.unit_cost = unit_cost;
     }
     
-    public float getTotal_Item_Cost()
+    public float getTotal_item_cost()
     {
         return total_item_cost;
     }
     
-    public void setTotal_Item_Cost()
+    public void setTotal_item_iost()
     {
         this.total_item_cost = total_item_cost;
     }
