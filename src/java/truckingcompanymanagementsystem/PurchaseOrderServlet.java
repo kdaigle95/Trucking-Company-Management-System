@@ -7,6 +7,8 @@ package truckingcompanymanagementsystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,7 @@ public class PurchaseOrderServlet extends HttpServlet {
        
         
         ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-        ArrayList<TotalCosts> totalCostsArray = new ArrayList<TotalCosts>();
+        
         
         String orderID_string = request.getParameter("orderID");
         int orderID = Integer.parseInt(orderID_string);
@@ -44,11 +46,26 @@ public class PurchaseOrderServlet extends HttpServlet {
         ReportGeneration rg = new ReportGeneration();
         
         purchaseOrderDataArray = rg.makePurchaseReport(orderID);
-        System.out.println("testtesttesttesttest");
-        System.out.println(purchaseOrderDataArray.toString());
         
+        double subtotal = 0.0;
+        for (int i = 0; i < purchaseOrderDataArray.size(); i++) {
+            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
+        }
+        subtotal = BigDecimal.valueOf(subtotal)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double shippingCost = BigDecimal.valueOf(subtotal * 0.01)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double tax = BigDecimal.valueOf(subtotal * 0.09)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+
+        request.setAttribute("subtotal", subtotal);
+        request.setAttribute("shippingCost", shippingCost);
+        request.setAttribute("tax", tax);
+        request.setAttribute("total", total);
         
-        totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
+        //totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
         
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
@@ -99,41 +116,7 @@ public class PurchaseOrderServlet extends HttpServlet {
     }// </editor-fold>
 
     
-    class TotalCosts
-    {
-        double subtotal;
-        double shippingCost;
-        double tax;
-        double total;
-        
-        public TotalCosts(ArrayList<PurchaseOrder> purchaseOrderDataArray) {
-            double subtotal = 0.0;
-        for(int i = 0; i < purchaseOrderDataArray.size(); i++) {
-            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
-        }
-        double shippingCost = subtotal * .15;
-        double tax = subtotal * 0.09;
-        double total = subtotal + shippingCost + tax;
-        }
 
-        public double getSubtotal() {
-            return subtotal;
-        }
-
-        public double getShippingcost() {
-            return shippingCost;
-        }
-
-        public double getTax() {
-            return tax;
-        }
-
-        public double getTotal() {
-            return total;
-        }
         
-        
-        
-        
-    }
+    
 }

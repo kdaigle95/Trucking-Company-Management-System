@@ -154,7 +154,7 @@ public class ReportGeneration {
             
             while(manifest.next())
             {
-                manifestList.add(new Manifest(
+                manifestList.add(ManifestFactory.getManifestFactory().createManifest(
                         manifest.getString("item_name"),
                         manifest.getInt("item_amount"),
                         manifest.getFloat("unit_cost"),
