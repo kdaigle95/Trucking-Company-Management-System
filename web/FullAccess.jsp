@@ -193,15 +193,19 @@
                            <th>Availability</th>
                            <th>Delete</th>
                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
-                           <tr class="tr">                
-                               <td>${vehicleDataArray.m_vin}</td>
-                               <td>${vehicleDataArray.m_truckBrand}</td>
-                               <td>${vehicleDataArray.m_truckYear}</td>
-                               <td>${vehicleDataArray.m_truckModel}</td>
-                               <td>${vehicleDataArray.m_truckID}</td>
-                               <td>${vehicleDataArray.m_driverID}</td>
-                               <td>${vehicleDataArray.m_availability}</td>                              
-                               <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
+                           <tr class="tr">
+                                <form action="UpdateDataServlet" method="post">
+                                <input type="hidden" name="generic_table" value="vehicle_data"/> 
+                                <td><input type="text" name="m_vin" value="${vehicleDataArray.m_vin}"></td>
+                                <td><input type="text" name="m_truckBrand" value="${vehicleDataArray.m_truckBrand}"></td>
+                                <td><input type="text" name="m_truckYear" value="${vehicleDataArray.m_truckYear}"></td>
+                                <td><input type="text" name="m_truckModel" value="${vehicleDataArray.m_truckModel}"></td>
+                                <td><input type="text" name="m_truckID" value="${vehicleDataArray.m_truckID}"></td>
+                                <td><input type="text" name="m_driverID" value="${vehicleDataArray.m_driverID}"></td>
+                                <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>                              
+                                <td><input type="submit" value="Update"></td>
+                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
+                                </form>
                             </tr>    
                            </c:forEach> 
                         </table>

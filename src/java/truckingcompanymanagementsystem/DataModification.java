@@ -157,28 +157,18 @@ public class DataModification {
         return sql;
     }
     
-    protected String updateVehicle(int id, String first, String middle,
-            String last, String streetAddr, String city, String state, int zip,
-            String homeNum, String cellNum, int years, String position,
-            int salary, int payrate, int assignment) {
-        sql = "UPDATE vehicle_data "
-              + "SET " + "first_name = " + "'" + first + "', "
-                + "middle_name = " + "'" + middle + "', "
-                + "last_name = " + "'" + last + "', "
-                + "street_address = " + "'" + streetAddr + "', "
-                + "city = " + "'" + city + "', "
-                + "state = " + "'" + state + "', "
-                + "zip = " + "'" + zip + "', "
-                + "home_phone_number = " + "'" + homeNum + "', "
-                + "cell_phone_number = " + "'" + cellNum + "', "
-                + "years_with_company = " + "'" + years + "', "
-                + "position = " + "'" + position + "', "
-                + "salary = " + "'" + salary + "', "
-                + "monthly_pay_rate = " + "'" + payrate + "', "
-                + "assignment = " + "'" + assignment + "'"
-                + " WHERE employee_id_number = " + id + ";";
-        return sql;
-    }    
+    protected String updateTruck(int id, String vin, String make, int year,
+        String model, int driverID, int availability) {
+    sql = "UPDATE vehicle_data "
+            + "SET vin = " + "'" + vin + "', "
+            + "truck_brand = " + "'" + make + "', "
+            + "truck_year = " + "'" + year + "', "
+            + "truck_model = " + "'" + model + "', "
+            + "driver_id = " + "'" + driverID + "', "
+            + "availability = " + "'" + availability + "'"
+            + " WHERE truck_id = " + id + ";";
+    return sql;
+    }  
     
     protected String updateMaintenance(int id, int truckID, String truckVin,
             int maintenanceID, String date, String jobType, String parts, 
