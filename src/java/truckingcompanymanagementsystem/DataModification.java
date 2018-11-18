@@ -83,6 +83,8 @@ public class DataModification {
             String last, String streetAddr, String city, String state, int zip,
             String homeNum, String cellNum, int years, String position, int assignment,
             int salary) {
+        if(position.toLowerCase() != "driver")
+            assignment = 1;
         int payrate = salary / 12;
         sql = "UPDATE Personnel_Data "
                 + "SET first_name = '" + first + "'"
