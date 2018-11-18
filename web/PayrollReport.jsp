@@ -41,11 +41,11 @@
                 <th>First Name</th>
                 <th>Position</th>
                 <th>Pay</th>
-                    <c:forEach items="${payrollReportDataArray}" var="payrollReportDataArray" begin="0">
+                    <c:forEach items="${payrollReportDataArray}" var="partsDataArray" begin="0">
                     <tr class="tr"> 
-                        <td>${payrollReportDataArray.employeeID}</td>
-                        <td>${payrollReportDataArray.lName}</td>
-                        <td>${payrollReportDataArray.fName}</td>
+                        <td>${payrollReportDataArray.id}</td>
+                        <td>${payrollReportDataArray.last}</td>
+                        <td>${payrollReportDataArray.first}</td>
                         <td>${payrollReportDataArray.position}</td>
                         <td>${payrollReportDataArray.pay}</td>
                     </tr>    

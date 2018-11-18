@@ -26,7 +26,7 @@ public class PayrollReport {
         this.pay = pay;
     }
 
-    public int getEmployeeid() {
+    public int getEmployeeID() {
         return employeeID;
     }
 
