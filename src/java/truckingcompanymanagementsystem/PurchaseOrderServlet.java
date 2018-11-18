@@ -69,6 +69,13 @@ public class PurchaseOrderServlet extends HttpServlet {
         System.out.println("testtesttesttesttest");
         System.out.println(purchaseOrderDataArray.toString());
         
+        double subtotal = 0.0;
+        for(int i = 0; i < purchaseOrderDataArray.size(); i++) {
+            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
+        }
+        double shippingCost = subtotal * .15;
+        double tax = subtotal * 0.09;
+        double total = subtotal + shippingCost + tax;
         
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);

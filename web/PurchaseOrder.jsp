@@ -35,26 +35,40 @@
             <h1>Click Submit to Generate Purchase Order</h1>
             <input type="hidden" name="orderID" value="<%=request.getParameter("id")%>"/>
             <input type="submit" value="submit">
-        <h1>Purchase Order</h1>
-        
-        <table class = "table">
-            <tr>Item Name</tr>
-            <tr>Item Amount</tr>
-            <tr>Unit Cost</tr>
-            <tr>Total Cost</tr>
-            <tr>Availability</tr> 
-        
-            <c:forEach items="${purchaseOrderDataArray}" var="purchaseOrderDataArray" begin="0">
+            <h1>Purchase Order</h1>
+
+            <table class = "table">
+                <tr>Item Name</tr>
+                <tr>Item Amount</tr>
+                <tr>Unit Cost</tr>
+                <tr>Total Cost</tr>
+                <tr>Availability</tr> 
+
+                <c:forEach items="${purchaseOrderDataArray}" var="purchaseOrderDataArray" begin="0">
+                    <tr class="tr">
+                        <td>${purchaseOrderDataArray.item_name}</td>
+                        <td>${purchaseOrderDataArray.item_amount}</td>
+                        <td>${purchaseOrderDataArray.unit_cost}</td>
+                        <td>${purchaseOrderDataArray.total_item_cost}</td>
+                        <td>${purchaseOrderDataArray.availability}</td>
+                    </tr>
+                </c:forEach>
+                        
+            </table>
+            
+            <table class = "table">
+                <tr>Subtotal</tr>
+                <tr>Sales Tax</tr>
+                <tr>Shipping and Handling</tr>
+                <tr>Total Cost</tr>
                 <tr class="tr">
-                <td>${purchaseOrderDataArray.item_name}</td>
-                <td>${purchaseOrderDataArray.item_amount}</td>
-                <td>${purchaseOrderDataArray.unit_cost}</td>
-                <td>${purchaseOrderDataArray.total_item_cost}</td>
-                <td>${purchaseOrderDataArray.availability}</td>
+                    <td>${subtotal}</td>
+                    <td>${tax}</td>
+                    <td>${shippingCost}</td>
+                    <td>${total}</td>
+                        
                 </tr>
-            </c:forEach>
-        </table>
-        <button type="button" name="back" onclick="history.back()">back</button>
+            <button type="button" name="back" onclick="history.back()">back</button>
         </form>
     </body>
 </html>
