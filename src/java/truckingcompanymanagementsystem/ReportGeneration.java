@@ -108,6 +108,7 @@ public class ReportGeneration {
                         monthlyMaintReport.getString("cost"),
                         monthlyMaintReport.getString("detailed_report")
                 ));
+               System.out.println(monthlyMaintReport.getInt("work_order"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

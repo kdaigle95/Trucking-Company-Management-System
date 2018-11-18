@@ -36,8 +36,8 @@ public class MonthlyMaintenanceServlet extends HttpServlet {
          String startDate ="";
          String endDate = "";
          
-         startDate = request.getParameter("startDate");
-         endDate = request.getParameter("endDate");
+         startDate = request.getParameter("startdate");
+         endDate = request.getParameter("enddate");
          ReportGeneration rg = new ReportGeneration();
          ArrayList<Maintenance> maintenanceDataArray = null;
          
