@@ -20,6 +20,10 @@
         <servlet-name>ManifestServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.ManifestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PayrollServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.PayrollServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
         <url-pattern>/DataServlet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ManifestServlet</servlet-name>
         <url-pattern>/ManifestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PayrollServlet</servlet-name>
+        <url-pattern>/PayrollServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
