@@ -148,22 +148,25 @@
                            
                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                            <tr class="tr">
-                               <td>${outgoingShippingArray.m_orderID}</td>
-                               <td>${outgoingShippingArray.m_destinationCompany}</td>
-                               <td>${outgoingShippingArray.m_destinationCompanyAddress}</td>
-                               <td>${outgoingShippingArray.m_destinationCompanyCity}</td>
-                               <td>${outgoingShippingArray.m_destinationCompanyState}</td>
-                               <td>${outgoingShippingArray.m_destinationCompanyZip}</td>
-                               <td>${outgoingShippingArray.m_truckID}</td>
-                               <td>${outgoingShippingArray.m_departureDate}</td>
-                               <td>${outgoingShippingArray.m_estArrival}</td>
-                               <td>${outgoingShippingArray.m_arrivalConf}</td>
-                               <td>${outgoingShippingArray.m_driverID}</td>
-                               <td>${outgoingShippingArray.m_paymentConf}</td>                               
-                               <td><a href="edit.jsp?id=#">Edit</a></td>
-                               <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
-                               <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
-                               <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                <form action="UpdateDataServlet" method="post">
+                                <input type="hidden" name="generic_table" value="outgoing_shipping"/> 
+                                <td><input type="text" name="m_truckID" value="${outgoingShippingArray.m_orderID}"></td>
+                                <td><input type="text" name="m_destinationCompany" value="${outgoingShippingArray.m_destinationCompany}"></td>
+                                <td><input type="text" name="m_destinationCompanyAddress" value="${outgoingShippingArray.m_destinationCompanyAddress}"></td>
+                                <td><input type="text" name="m_destinationCompanyCity" value="${outgoingShippingArray.m_destinationCompanyCity}"></td>
+                                <td><input type="text" name="m_destinationCompanyState" value="${outgoingShippingArray.m_destinationCompanyState}"></td>
+                                <td><input type="text" name="m_destinationCompanyZip" value="${outgoingShippingArray.m_destinationCompanyZip}"></td>
+                                <td><input type="text" name="m_truckID" value="${outgoingShippingArray.m_truckID}"></td>
+                                <td><input type="text" name="m_departureDate" value="${outgoingShippingArray.m_departureDate}"></td>
+                                <td><input type="text" name="m_estArrival" value="${outgoingShippingArray.m_estArrival}"></td>
+                                <td><input type="text" name="m_arrivalConf" value="${outgoingShippingArray.m_arrivalConf}"></td>
+                                <td><input type="text" name="m_driverID" value="${outgoingShippingArray.m_driverID}"></td>
+                                <td><input type="text" name="m_paymentConf" value="${outgoingShippingArray.m_paymentConf}"></td>
+                                <td><input type="submit" value="Update"></td>
+                                <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
+                                <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
+                                <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                </form>
                             </tr>    
                            </c:forEach>
                         </table>

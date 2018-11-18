@@ -134,30 +134,27 @@ public class DataModification {
         return sql;
     }
     
-    protected String updateOutgoing(int id, String first, String middle,
-            String last, String streetAddr, String city, String state, int zip,
-            String homeNum, String cellNum, int years, String position,
-            int salary, int payrate, int assignment) {
+    protected String updateOutgoing(int id, String desCompany, String address,
+            String city, String state, int zip, int truckID,
+            String date, String estimate_arrival, String arrivalConf,
+            int driver_id, String payment_confirmation) {
         sql = "UPDATE outgoing_shipping "
-              + "SET " + "first_name = " + "'" + first + "', "
-                + "middle_name = " + "'" + middle + "', "
-                + "last_name = " + "'" + last + "', "
-                + "street_address = " + "'" + streetAddr + "', "
+              + "SET " + "destination_company = " + "'" + desCompany + "', "
+                + "address = " + "'" + address + "', "
                 + "city = " + "'" + city + "', "
                 + "state = " + "'" + state + "', "
                 + "zip = " + "'" + zip + "', "
-                + "home_phone_number = " + "'" + homeNum + "', "
-                + "cell_phone_number = " + "'" + cellNum + "', "
-                + "years_with_company = " + "'" + years + "', "
-                + "position = " + "'" + position + "', "
-                + "salary = " + "'" + salary + "', "
-                + "monthly_pay_rate = " + "'" + payrate + "', "
-                + "assignment = " + "'" + assignment + "'"
-                + " WHERE employee_id_number = " + id + ";";
+                + "truck_id = " + "'" + truckID + "', "
+                + "departure_date_time = " + "'" + date + "', "
+                + "estimated_arrival = " + "'" + estimate_arrival + "', "
+                + "arrival_confirmation = " + "'" + arrivalConf + "', "
+                + "driver_id = " + "'" + driver_id + "', "
+                + "payment_confirmation = " + "'" + payment_confirmation + "'"
+                + " WHERE order_id = " + id + ";";
         return sql;
     }
     
-    protected String updateTruck(int id, String vin, String make, int year,
+    protected String updateVehicle(int id, String vin, String make, int year,
         String model, int driverID, int availability) {
     sql = "UPDATE vehicle_data "
             + "SET vin = " + "'" + vin + "', "

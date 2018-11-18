@@ -55,27 +55,32 @@ public class UpdateDataServlet extends HttpServlet {
                 break;
                 
             case "outgoing_shipping":
-//                outgoingSQLQuery = datamod.updateOutgoing(
-//                       Integer.parseInt(request.getParameter("m_truckID")),
-//                       request.getParameter("m_vin"), 
-//                       request.getParameter("m_truckBrand"),
-//                       Integer.parseInt(request.getParameter("m_truckYear")), 
-//                       request.getParameter("m_truckModel"), 
-//                       Integer.parseInt(request.getParameter("m_driverID")), 
-//                       Integer.parseInt(request.getParameter("m_availability")) 
-//                    );
+                outgoingSQLQuery = datamod.updateOutgoing(
+                       Integer.parseInt(request.getParameter("m_truckID")),
+                       request.getParameter("m_destinationCompany"), 
+                       request.getParameter("m_destinationCompanyAddress"),
+                       request.getParameter("m_destinationCompanyCity"), 
+                       request.getParameter("m_destinationCompanyState"), 
+                       Integer.parseInt(request.getParameter("m_destinationCompanyZip")), 
+                       Integer.parseInt(request.getParameter("m_truckID")),
+                       request.getParameter("m_departureDate"),
+                       request.getParameter("m_estArrival"),
+                       request.getParameter("m_arrivalConf"),
+                       Integer.parseInt(request.getParameter("m_driverID")),
+                       request.getParameter("m_paymentConf")
+                    );
 
-//                System.out.println(vehicleSQLQuery);
-//                try {
-//                    db.EditData(vehicleSQLQuery);
-//                } catch (SQLException | NullPointerException ex) {
-//                    Logger.getLogger(UpdateDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                System.out.println(tableName);
+                System.out.println(outgoingSQLQuery);
+                try {
+                    db.EditData(outgoingSQLQuery);
+                } catch (SQLException | NullPointerException ex) {
+                    Logger.getLogger(UpdateDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println(tableName);
                 break;
                 
             case "vehicle_data":
-                vehicleSQLQuery = datamod.updateTruck(
+                vehicleSQLQuery = datamod.updateVehicle(
                         Integer.parseInt(request.getParameter("m_truckID")),
                         request.getParameter("m_vin"), 
                         request.getParameter("m_truckBrand"),
