@@ -52,6 +52,7 @@ public class PurchaseOrderServlet extends HttpServlet {
         
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
+        
         RequestDispatcher view = null;
         view = request.getRequestDispatcher("PurchaseOrder.jsp");
         view.forward(request, response);
