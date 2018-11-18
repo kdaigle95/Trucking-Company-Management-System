@@ -13,19 +13,19 @@
         <title>JSP Page</title>
     </head>
     <style>
-        table, td, th 
-        {    
+        table, td, th
+        {
             border: 1px solid #ddd;
             text-align: left;
         }
 
-        table 
+        table
         {
             border-collapse: collapse;
             width: 100%;
         }
 
-        th, td 
+        th, td
         {
             padding: 15px;
         }
@@ -42,7 +42,7 @@
                 <tr>Item Amount</tr>
                 <tr>Unit Cost</tr>
                 <tr>Total Cost</tr>
-                <tr>Availability</tr> 
+                <tr>Availability</tr>
 
                 <c:forEach items="${purchaseOrderDataArray}" var="purchaseOrderDataArray" begin="0">
                     <tr class="tr">
@@ -62,15 +62,13 @@
                 <tr>Shipping and Handling</tr>
                 <tr>Total Cost</tr>
 
-                <c:forEach items="${totalCostsArray}" var="totalCostsArray" begin="0">
+
                     <tr class="tr">
-                        <td>${totalCostsArray.subtotal}</td>
-                        <td>${totalCostsArray.tax}</td>
-                        <td>${totalCostsArray.shippingCost}</td>
-                        <td>${totalCostsArray.total}</td>
+                        <td>${subtotal}</td>
+                        <td>${tax}</td>
+                        <td>${shippingCost}</td>
+                        <td>${total}</td>
                     </tr>
-                </c:forEach>
-                <button type="button" name="back" onclick="history.back()">back</button>
-        </form>
+            </table>
     </body>
 </html>

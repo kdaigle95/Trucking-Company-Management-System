@@ -7,6 +7,8 @@ package truckingcompanymanagementsystem;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,9 +52,18 @@ public class ManifestServlet extends HttpServlet {
             subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
         }
         
-        double shippingCost = subtotal * .15;
-        double tax = subtotal * 0.09;
-        double total = subtotal + shippingCost + tax;
+       double subtotal = 0.0;
+        for (int i = 0; i < purchaseOrderDataArray.size(); i++) {
+            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
+        }
+        subtotal = BigDecimal.valueOf(subtotal)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double shippingCost = BigDecimal.valueOf(subtotal * 0.01)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double tax = BigDecimal.valueOf(subtotal * 0.09)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
+        double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
+                .setScale(2, RoundingMode.HALF_UP).doubleValue();
         
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
