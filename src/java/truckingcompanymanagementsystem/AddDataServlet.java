@@ -118,7 +118,6 @@ public class AddDataServlet extends HttpServlet {
                             Integer.parseInt(request.getParameter("m_driverID")),
                             Integer.parseInt(request.getParameter("m_availability"))
                     );
-
                     try {
 
                         System.out.println(vehicleSQLQuery);          

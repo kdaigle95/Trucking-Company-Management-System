@@ -110,7 +110,7 @@ public class DataModification {
 
         }
     }
-
+  
     protected String updateIncoming(int id, String source, String address,
             String city, String state, int zip, int truckID, String departureDate,
             String estArrival, String arrivalConf, int driverID, String paymentConf) {
@@ -262,7 +262,6 @@ public class DataModification {
                 + ");";
 
         return sql;
-
     }
 
     protected String addMaintenance(int workOrder, int truckID, String truckVin,
