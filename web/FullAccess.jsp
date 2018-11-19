@@ -62,7 +62,7 @@
                             <td><a href="PayrollServlet"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
                             <!--<td><a href=#><button>Generate Report</button></a></td>-->
                             <th>Maintenance Report</th>
-                             <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
+                            <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
                             <!--<td><a href=#><button>Generate Report</button></a></td>-->
                             <th>Summary of incoming Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
@@ -123,7 +123,7 @@
                                     <td><input type="text" name="m_paymentConf" value="${incomingShippingArray.m_paymentConf}"></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
-                               <td><a href="PurchaseOrderServlet?orderID=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                                    <td><a href="PurchaseOrderServlet?orderID=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
                                 </form>
                                 </tr>    
                             </c:forEach>  
@@ -140,23 +140,23 @@
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">   
-                           <th>Order ID</th>
-                           <th>Destination Company</th>
-                           <th>Address</th>
-                           <th>City</th>
-                           <th>State</th>
-                           <th>Zip</th>
-                           <th>Truck ID</th>
-                           <th>Departure Date</th>
-                           <th>Estimated Arrival</th>
-                           <th>Has Arrived</th>
-                           <th>Driver ID</th>
-                           <th>Has Paid</th>
-                           <th>Modify Contents</th>
-                           <th>Delete</th>
-                           <th>Link to Shipping Manifest</th>
-                           <th>Link to Purchase Order</th>
-                            <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
+                            <th>Order ID</th>
+                            <th>Destination Company</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Zip</th>
+                            <th>Truck ID</th>
+                            <th>Departure Date</th>
+                            <th>Estimated Arrival</th>
+                            <th>Has Arrived</th>
+                            <th>Driver ID</th>
+                            <th>Has Paid</th>
+                            <th>Modify Contents</th>
+                            <th>Delete</th>
+                            <th>Link to Shipping Manifest</th>
+                            <th>Link to Purchase Order</th>
+                                <c:forEach items="${outgoingShippingArray}" var="outgoingShippingArray" begin="0">
                                 <tr class="tr">
                                 <form action="UpdateDataServlet" method="post">
                                     <input type="hidden" name="generic_table" value="outgoing_shipping"/> 
@@ -237,6 +237,8 @@
                         <a href="AddData.jsp?maintenance_data">
                             <button class="button">Add New Record</button>       
                         </a>
+                        <a href="MonthlyMaintenance.jsp"><input type="button" value="Monthly Maintenance Report" name="Monthly Maintenance Report"/></a>
+
                     </div>
                     <button class="accordion">Routine Maintenance and Repairs</button>
                     <div class ="panel">
@@ -285,6 +287,10 @@
                         <a href="AddData.jsp?Personnel_Data">
                             <button class="button">Add New Personnel</button>       
                         </a>
+                       
+                            <td><a href="PayrollServlet"><input type="button" value="Monthly Payroll Report" name="Monthly Payroll Report"/></a></td>
+                       
+                        </a>
                     </div>
                     <button class="accordion">People in the Company</button>
 
@@ -292,6 +298,8 @@
 
 
                         <div id="draggable" class=" draggable ui-widget-content">
+
+
                             <table class="table" >
 
                                 <th>ID</th>

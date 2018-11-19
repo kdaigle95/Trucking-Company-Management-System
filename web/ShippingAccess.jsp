@@ -200,6 +200,8 @@
                         <a href="AddData.jsp?maintenance_data">
                             <button class="button">Add New Record</button>       
                         </a>
+                        <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
+
                     </div>
                     <button class="accordion">Routine Maintenance and Repairs</button> 
                     <div class ="panel">
