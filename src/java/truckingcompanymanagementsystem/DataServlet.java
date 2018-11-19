@@ -32,6 +32,10 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
+        ArrayList<IncomingShipping> driverIncomingArray = null;
+        ArrayList<OutgoingShipping> driverOutgoingArray = null;
+        ReportGeneration rg = new ReportGeneration();
+        int id = 0;
 
         
         String defaultOpen = "defaultOpen";
@@ -58,6 +62,7 @@ public class DataServlet extends HttpServlet {
             Controller.getInstance().GetIncomingShippingData();
             Controller.getInstance().GetOutgoingShippingData();
             Controller.getInstance().GetMaintenanceData();
+            
             //Controller.getInstance().GetManifestData(orderID);
             //Controller.getInstance().GetPurchaseOrderData(orderID);
         } catch (SQLException ex) {
@@ -97,6 +102,7 @@ public class DataServlet extends HttpServlet {
         if(ua.has_logged_in == false)
         {
             ua.userAuthentication(username, password);
+            id = ua.getID();
         }
         
         RequestDispatcher view = null;
@@ -115,7 +121,12 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);                     
 
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
-        System.out.println(this);         
+        System.out.println(this);     
+        
+        driverIncomingArray = rg.makeDriverIncoming(id);
+        driverOutgoingArray = rg.makeDriverOutgoing(id);
+        System.out.println(driverIncomingArray.toString());
+        System.out.println(driverOutgoingArray.toString());
         
         
         //manifestDataArray = Controller.getInstance().getManifestDataList();
@@ -206,7 +217,8 @@ public class DataServlet extends HttpServlet {
         }
         else if (ua.access_level == "driver") {       // Driver access -> if user == driver
             response.setContentType("text/html");       
-            request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+            request.setAttribute("driverIncomingArray", driverIncomingArray);
+            request.setAttribute("driverOutgoingArray", driverOutgoingArray);
 
             view = request.getRequestDispatcher("DriverAccess.jsp");
             view.forward(request, response);

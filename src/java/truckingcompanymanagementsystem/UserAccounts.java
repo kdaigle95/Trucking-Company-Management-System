@@ -41,6 +41,7 @@ public final class UserAccounts
     static String stored_username;
     static String position;
     static String access_level;
+    static int id;
     static boolean has_logged_in = false;
     static boolean user_authenticated = false;
         
@@ -85,10 +86,11 @@ public final class UserAccounts
         {
             
             ResultSet acceptable_password = null;   
-            acceptable_password = connection.getGenericResultSet("SELECT passwords FROM users WHERE users = '"+username+"'");
+            acceptable_password = connection.getGenericResultSet("SELECT passwords, id FROM users WHERE users = '"+username+"'");
             while(acceptable_password.next())
             {
                 String database_password = acceptable_password.getString("passwords");
+                id = acceptable_password.getInt("id");
                 if(password.equals(database_password))
                 {
                     user_authenticated = true;
@@ -125,6 +127,10 @@ public final class UserAccounts
         }
         
         
+    }
+    
+    public int getID() {
+        return id;
     }
     
     
