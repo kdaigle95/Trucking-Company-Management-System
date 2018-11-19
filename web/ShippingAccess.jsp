@@ -170,6 +170,8 @@
                                <td>${vehicleDataArray.m_truckID}</td>
                                <td>${vehicleDataArray.m_driverID}</td>
                                <td>${vehicleDataArray.m_availability}</td>
+                               <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                               <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                             </tr>    
                            </c:forEach> 
