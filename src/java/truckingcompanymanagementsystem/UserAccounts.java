@@ -19,9 +19,11 @@ public final class UserAccounts {
 
     private UserAccounts() {
         //constructor
+        
     }
 
     public static UserAccounts getInstance() {
+        
         return UserAccountsHolder.INSTANCE;
     }
 
@@ -44,6 +46,7 @@ public final class UserAccounts {
         //User CurrentUser = new User();
         ResultSet login = null;
         String loginQuery = "SELECT username FROM Personnel_Data";
+        
         try {
             connection.startConnection();
             login = connection.getGenericResultSet(loginQuery);
