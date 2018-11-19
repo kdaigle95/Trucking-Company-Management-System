@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
-//import truckingcompanymanagementsystem.UserAccounts.User;
 
 /**
  *
@@ -47,12 +46,7 @@ public class DataServlet extends HttpServlet {
         }
         catch(NullPointerException ex){
             tableName = "";
-        }
-
-
-        //ArrayList<Manifest> manifestDataArray = null;
-        //ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-        
+        }  
         
 
         //Get updated version of data
@@ -68,22 +62,7 @@ public class DataServlet extends HttpServlet {
         } catch (SQLException ex) {
             //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
-        }
-
-       // personnelArray = Controller.getInstance().getPersonnelList();
-        //System.out.println(this);
-
-        //incomingShippingArray = Controller.getInstance().getIncomingShippingList();
-        //System.out.println(this);
-
-        //outgoingShippingArray = Controller.getInstance().getOutgoingShippingList();
-        //System.out.println(this);
-
-        //vehicleDataArray = Controller.getInstance().getVehicleDataList();
-        //System.out.println(this);                     
-
-        //maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
-        //System.out.println(this);         
+        }     
         
         
         UserAccounts ua = Controller.getInstance().getUserAccounts();

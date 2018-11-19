@@ -6,15 +6,9 @@
 
 --%>
 
-<%--
-<?xml version="1.0" encoding="UTF-8"?>
-<%@page contentType="application/xml" pageEncoding="UTF-8"%>
---%>
-
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
 
 <%@page import = "truckingcompanymanagementsystem.*" %>
@@ -51,31 +45,9 @@
             <h3>Trucking Company Management System</h3>
             <p id = "date"></p>
             <p>To protect the privacy and security of the company information, users of the system will have access to information only on a "need to know" basis.</p>
-
-            <div class="row">
-                <div class="column" style="background-color: #717e99;">
-                    <h2>Company Reports</h2>
-                    <button class="accordion">Reports</button>
-                    <div class ="panel">
-                        <table class="table">
-                            <th>Monthly Payroll Report</th>
-                            <td><a href="PayrollServlet"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
-                            <!--<td><a href=#><button>Generate Report</button></a></td>-->
-                            <th>Maintenance Report</th>
-                            <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
-                            <!--<td><a href=#><button>Generate Report</button></a></td>-->
-                            <th>Summary of incoming Shipments</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
-                            <th>Summary of outgoing Shipments</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div id="Shipping" class="tabcontent" >
-
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
                     <h2>Incoming Shipments</h2>           
@@ -85,9 +57,7 @@
                         </a>
                     </div>
                     <button class="accordion">Pick-ups</button>
-
                     <div class ="panel">
-
                         <table class="table">
                             <th>Order ID</th>
                             <th>Source Company</th>

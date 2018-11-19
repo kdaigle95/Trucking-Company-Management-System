@@ -43,7 +43,6 @@ public final class UserAccounts {
     static boolean user_authenticated = false;
 
     public void userAuthentication(String username, String password) {
-        //User CurrentUser = new User();
         ResultSet login = null;
         String loginQuery = "SELECT username FROM Personnel_Data";
         
