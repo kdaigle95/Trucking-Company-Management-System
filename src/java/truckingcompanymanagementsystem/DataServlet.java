@@ -87,8 +87,7 @@ public class DataServlet extends HttpServlet {
         
         
         UserAccounts ua = Controller.getInstance().getUserAccounts();
-        ua.has_logged_in = false;
-        ua.user_authenticated = false;
+        //ua.has_logged_in = false;
 
         //user name and password is not cached
         //this means you can only view the dataservlet the one time
