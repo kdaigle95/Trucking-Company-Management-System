@@ -54,19 +54,14 @@
                         <table class="table">
                             <th>Monthly Payroll Report</th>
                             <td><a href="PayrollServlet"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
-<<<<<<< HEAD
                             <th>Maintenance Report</th>
                              <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
                             <th>Summary of incoming Shipments</th>
                             <td><a href=#><button>Generate Report</button></a></td>
                             <th>Summary of outgoing Shipments</th>
-                            <td><a href=#><button>Generate Report</button></a></td>
-=======
-                            
+                            <td><a href=#><button>Generate Report</button></a></td>                           
                             <th>Maintenance Report</th>
                              <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
-                  
->>>>>>> af6f6d8637003397281d52356093824a4a1ed9d2
                         </table>
                     </div>
                 </div>
