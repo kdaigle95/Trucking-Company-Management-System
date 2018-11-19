@@ -101,8 +101,7 @@ public final class UserAccounts
                     stored_username = username;
                     switch(access)
                     {
-                        case 1:
-                            
+                        case 1:                           
                             access_level = "full";
                             break;
                             
@@ -110,13 +109,15 @@ public final class UserAccounts
                             access_level = "shipping";
                             break;
                             
+                        case 3:
+                            access_level = "driver";
+                            break;  
+                            
                         case 4:
                             access_level = "maint";
                             break;
                             
-                        case 3:
-                            access_level = "driver";
-                            break;
+                        
                     }
                 }
             }
