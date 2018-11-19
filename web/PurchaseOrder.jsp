@@ -31,10 +31,6 @@
         }
     </style>
     <body>
-        <form action="PurchaseOrderServlet">
-            <h1>Click Submit to Generate Purchase Order</h1>
-            <input type="hidden" name="orderID" value="<%=request.getParameter("id")%>"/>
-            <input type="submit" value="submit">
             <h1>Purchase Order</h1>
 
             <table class = "table">
