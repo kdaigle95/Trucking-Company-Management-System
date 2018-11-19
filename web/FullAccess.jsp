@@ -161,7 +161,7 @@
                                <td>${outgoingShippingArray.m_paymentConf}</td>
                                <td><a href="edit.jsp?id=#">Edit</a></td>
                                <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
-                               <td><a href="Manifest.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Manifest" name="Manifest"/></a></td>
+                               <td><a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Manifest" name="Manifest"/></a></td>
                                <td><a href="PurchaseOrderServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
                                <!--<td><a href="Manifest.jsp">Manifest</a></td>
                                <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>

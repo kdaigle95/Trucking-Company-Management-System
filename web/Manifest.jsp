@@ -31,12 +31,6 @@
         }
     </style>
     <body>
-        <form action="ManifestServlet">
-            <h1>Click Submit to Generate Manifest</h1>
-            <input type="hidden" name="orderID" value="<%=request.getParameter("id")%>"/>
-            <input type="submit" value="submit">
-            <h1>Shipping Manifest</h1>
-
             <table class = "table">
                 <tr>Item Name</tr>
                 <tr>Item Amount</tr>
