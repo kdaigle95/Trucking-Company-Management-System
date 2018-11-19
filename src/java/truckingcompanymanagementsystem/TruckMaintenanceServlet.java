@@ -6,20 +6,19 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 
 /**
  *
- * @author justin
+ * @author kdaig
  */
-public class PurchaseOrderServlet extends HttpServlet {
+public class TruckMaintenanceServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,52 +29,29 @@ public class PurchaseOrderServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Maintenance> maintenanceDataArray = null;
 
-        ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-
-
-        String orderID_string = request.getParameter("orderID");
-        int orderID = Integer.parseInt(orderID_string);
+        String truckID_string = request.getParameter("truckID");
+        int truckID = Integer.parseInt(truckID_string);
 
         ReportGeneration rg = new ReportGeneration();
-
-        purchaseOrderDataArray = rg.makePurchaseReport(orderID);
-
-        double subtotal = 0.0;
-        for (int i = 0; i < purchaseOrderDataArray.size(); i++) {
-            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
-        }
-        subtotal = BigDecimal.valueOf(subtotal)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double shippingCost = BigDecimal.valueOf(subtotal * 0.01)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double tax = BigDecimal.valueOf(subtotal * 0.09)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-        double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
-                .setScale(2, RoundingMode.HALF_UP).doubleValue();
-
-        request.setAttribute("subtotal", subtotal);
-        request.setAttribute("shippingCost", shippingCost);
-        request.setAttribute("tax", tax);
-        request.setAttribute("total", total);
-
-        //totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
+        System.out.println(truckID);
+        maintenanceDataArray = rg.makeTruckMaintenanceReport(truckID);
+        System.out.println(maintenanceDataArray.toString());
 
         response.setContentType("text/html");
-        request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
-        request.setAttribute("subtotal", subtotal);
-        request.setAttribute("shippingCost", shippingCost);
-        request.setAttribute("tax", tax);
-        request.setAttribute("total", total);
+        request.setAttribute("maintenanceDataArray", maintenanceDataArray);
 
         RequestDispatcher view = null;
-        view = request.getRequestDispatcher("PurchaseOrder.jsp");
+        view = request.getRequestDispatcher("TruckMaintenance.jsp");
         view.forward(request, response);
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -113,9 +89,5 @@ public class PurchaseOrderServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
-
-
 
 }

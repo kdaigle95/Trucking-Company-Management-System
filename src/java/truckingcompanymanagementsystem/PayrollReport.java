@@ -30,7 +30,7 @@ public class PayrollReport {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeid(int employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -38,7 +38,7 @@ public class PayrollReport {
         return lName;
     }
 
-    public void setlName(String lName) {
+    public void setlname(String lName) {
         this.lName = lName;
     }
 
@@ -46,7 +46,7 @@ public class PayrollReport {
         return fName;
     }
 
-    public void setfName(String fName) {
+    public void setfname(String fName) {
         this.fName = fName;
     }
 

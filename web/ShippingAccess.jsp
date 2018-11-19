@@ -84,7 +84,7 @@
                                     <td><input type="text" name="m_paymentConf" value="${incomingShippingArray.m_paymentConf}"></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
-                                    <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                    <td><a href="PurchaseOrderServlet?orderID=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
                                 </form>
                                 </tr>    
                             </c:forEach>  
@@ -136,8 +136,8 @@
                                     <td><input type="text" name="m_paymentConf" value="${outgoingShippingArray.m_paymentConf}"></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
-                                    <td><button class="manifestButton" onclick="on()">Shipping Manifest</button></td>
-                                    <td><button class="purchaseOrderButton" onclick="on()">Purchase Order</button></td>
+                                    <td><a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
+                                    <td><a href="PurchaseOrderServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
                                 </form>
                                 </tr>    
                             </c:forEach>
@@ -178,7 +178,9 @@
                                     <td><input type="text" name="m_truckModel" value="${vehicleDataArray.m_truckModel}"></td>
                                     <td><input type="text" name="m_truckID" value="${vehicleDataArray.m_truckID}"></td>
                                     <td><input type="text" name="m_driverID" value="${vehicleDataArray.m_driverID}"></td>
-                                    <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>                              
+                                    <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>
+                                    <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                                    <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
                                 </form>

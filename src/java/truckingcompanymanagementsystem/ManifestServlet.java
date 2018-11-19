@@ -6,20 +6,21 @@
 package truckingcompanymanagementsystem;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 
 /**
  *
- * @author justin
+ * @author justi
  */
-public class PurchaseOrderServlet extends HttpServlet {
+public class ManifestServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,21 +31,24 @@ public class PurchaseOrderServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-
-
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+     
+        
+        
+        ArrayList<Manifest> manifestDataArray = null;
+        
         String orderID_string = request.getParameter("orderID");
         int orderID = Integer.parseInt(orderID_string);
-
+       
+        
         ReportGeneration rg = new ReportGeneration();
-
-        purchaseOrderDataArray = rg.makePurchaseReport(orderID);
-
-        double subtotal = 0.0;
-        for (int i = 0; i < purchaseOrderDataArray.size(); i++) {
-            subtotal += purchaseOrderDataArray.get(i).getTotal_item_cost();
+        
+        manifestDataArray = rg.makeManifestReport(orderID);
+       
+      
+       double subtotal = 0.0;
+        for (int i = 0; i < manifestDataArray.size(); i++) {
+            subtotal += manifestDataArray.get(i).getTotal_item_cost();
         }
         subtotal = BigDecimal.valueOf(subtotal)
                 .setScale(2, RoundingMode.HALF_UP).doubleValue();
@@ -55,24 +59,19 @@ public class PurchaseOrderServlet extends HttpServlet {
         double total = BigDecimal.valueOf(subtotal + shippingCost + tax)
                 .setScale(2, RoundingMode.HALF_UP).doubleValue();
 
+        
         request.setAttribute("subtotal", subtotal);
         request.setAttribute("shippingCost", shippingCost);
         request.setAttribute("tax", tax);
         request.setAttribute("total", total);
-
-        //totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
 
         response.setContentType("text/html");
-        request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
-        request.setAttribute("subtotal", subtotal);
-        request.setAttribute("shippingCost", shippingCost);
-        request.setAttribute("tax", tax);
-        request.setAttribute("total", total);
-
+        request.setAttribute("manifestDataArray", manifestDataArray);
         RequestDispatcher view = null;
-        view = request.getRequestDispatcher("PurchaseOrder.jsp");
+        view = request.getRequestDispatcher("Manifest.jsp");
         view.forward(request, response);
-
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -113,9 +112,5 @@ public class PurchaseOrderServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
-
-
 
 }

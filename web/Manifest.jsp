@@ -4,6 +4,7 @@
     Author     : justin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,39 +13,56 @@
         <title>JSP Page</title>
     </head>
     <style>
-        table, td, th 
-        {    
+        table, td, th
+        {
             border: 1px solid #ddd;
             text-align: left;
         }
 
-        table 
+        table
         {
             border-collapse: collapse;
             width: 100%;
         }
 
-        th, td 
+        th, td
         {
             padding: 15px;
         }
     </style>
     <body>
-        <h1>Manifest</h1>
-        <button type="button" name="back" onclick="history.back()">back</button>
-        <table>
-          <tr>
-            <th>Item Name</th>
-            <th>Item Amount</th>
-            <th>Unit Cost</th>
-            <th>Total Cost</th>
-          </tr> 
-          <tr>
-            <td>Test Value</td>
-            <td>Test Value</td>
-            <td>Test Value</td>
-            <td>Test Value</td>
-          </tr>
-        </table>
+            <table class = "table">
+                <tr>Item Name</tr>
+                <tr>Item Amount</tr>
+                <tr>Unit Cost</tr>
+                <tr>Total Cost</tr>
+
+                <c:forEach items="${manifestDataArray}" var="manifestDataArray" begin="0">
+                    <tr class="tr">
+                        <td>${manifestDataArray.item_name}</td>
+                        <td>${manifestDataArray.item_amount}</td>
+                        <td>${manifestDataArray.unit_cost}</td>
+                        <td>${manifestDataArray.total_item_cost}</td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+
+            <table class = "table">
+                <tr>Subtotal</tr>
+                <tr>Sales Tax</tr>
+                <tr>Shipping and Handling</tr>
+                <tr>Total Cost</tr>
+
+
+                    <tr class="tr">
+                        <td>${subtotal}</td>
+                        <td>${tax}</td>
+                        <td>${shippingCost}</td>
+                        <td>${total}</td>
+                    </tr>
+            </table>
+            <button type="button" name="back" onclick="history.back()">back</button>
+        </form>
     </body>
 </html>

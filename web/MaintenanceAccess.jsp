@@ -50,6 +50,7 @@
                     <button class="accordion">Vehicle</button> 
                     <div class ="panel">
                         <table class="table">
+
                             <th>Vin</th>
                             <th>Truck Brand</th>
                             <th>Truck Year</th>
@@ -71,6 +72,8 @@
                                     <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>                              
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
+                                   <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                               <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                 </form>
                                 </tr>    
                             </c:forEach> 

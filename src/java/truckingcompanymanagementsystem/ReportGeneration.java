@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class ReportGeneration {
 
     ArrayList<PayrollReport> payroll = new ArrayList<PayrollReport>();
-    ArrayList<MaintenanceReport> monthlyMaint = new ArrayList<MaintenanceReport>();
-    ArrayList<MaintenanceReport> truckMaint = new ArrayList<MaintenanceReport>();
+    ArrayList<Maintenance> monthlyMaint = new ArrayList<Maintenance>();
+    ArrayList<Maintenance> truckMaint = new ArrayList<Maintenance>();
     ArrayList<PartList> partList = new ArrayList<PartList>();
     ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
     ArrayList<Manifest> manifestList = new ArrayList<Manifest>();
@@ -63,7 +63,7 @@ public class ReportGeneration {
         return payroll;
     }
 
-    public ArrayList<MaintenanceReport> makeTruckMaintenanceReport(int truckID) {
+    public ArrayList<Maintenance> makeTruckMaintenanceReport(int truckID) {
         truckMaint.clear();
         ResultSet truckReport = null;
         try {
@@ -71,7 +71,7 @@ public class ReportGeneration {
                     + "WHERE truck_id = " + truckID + " ORDER BY date ASC");
 
             while (truckReport.next()) {
-                monthlyMaint.add(new MaintenanceReport(
+                truckMaint.add(new Maintenance(
                         truckReport.getInt("work_order"),
                         truckReport.getInt("truck_id"),
                         truckReport.getString("truck_vin"),
@@ -89,7 +89,7 @@ public class ReportGeneration {
         return truckMaint;
     }
 
-    public ArrayList<MaintenanceReport> makeMonthlyMaintenanceReport(String startDate, String endDate) {
+    public ArrayList<Maintenance> makeMonthlyMaintenanceReport(String startDate, String endDate) {
         monthlyMaint.clear();
         ResultSet monthlyMaintReport = null;
         try {
@@ -97,7 +97,7 @@ public class ReportGeneration {
                     + "WHERE `date` BETWEEN \"" + startDate + "\" AND \"" + endDate
                     + "\" ORDER BY date ASC");
             while (monthlyMaintReport.next()) {
-                monthlyMaint.add(new MaintenanceReport(
+                monthlyMaint.add(new Maintenance(
                         monthlyMaintReport.getInt("work_order"),
                         monthlyMaintReport.getInt("truck_id"),
                         monthlyMaintReport.getString("truck_vin"),
@@ -108,6 +108,7 @@ public class ReportGeneration {
                         monthlyMaintReport.getString("cost"),
                         monthlyMaintReport.getString("detailed_report")
                 ));
+               System.out.println(monthlyMaintReport.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -154,6 +155,7 @@ public class ReportGeneration {
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
 
+
             while (manifest.next()) {
                 manifestList.add(new Manifest(
                         manifest.getString("item_name"),
@@ -179,7 +181,7 @@ public class ReportGeneration {
                     + orderID + " AND manifests.item_id = items.item_id;");
 
             while (purchase_results.next()) {
-                purchaseList.add(new PurchaseOrder(
+                purchaseList.add(PurchaseOrderFactory.getPurchaseOrderFactory().createPurchaseOrder(
                         purchase_results.getString("item_name"),
                         purchase_results.getInt("item_amount"),
                         purchase_results.getFloat("unit_cost"),
@@ -264,11 +266,11 @@ public class ReportGeneration {
         return payroll;
     }
 
-    public ArrayList<MaintenanceReport> getMonthlyMaint() {
+    public ArrayList<Maintenance> getMonthlyMaint() {
         return monthlyMaint;
     }
 
-    public ArrayList<MaintenanceReport> getTruckMaint() {
+    public ArrayList<Maintenance> getTruckMaint() {
         return truckMaint;
     }
 
