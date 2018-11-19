@@ -60,7 +60,6 @@ public class PurchaseOrderServlet extends HttpServlet {
         request.setAttribute("tax", tax);
         request.setAttribute("total", total);
 
-        //totalCostsArray.add(new TotalCosts(purchaseOrderDataArray));
 
         response.setContentType("text/html");
         request.setAttribute("purchaseOrderDataArray", purchaseOrderDataArray);
