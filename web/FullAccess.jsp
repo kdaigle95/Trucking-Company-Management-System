@@ -60,10 +60,8 @@
                         <table class="table">
                             <th>Monthly Payroll Report</th>
                             <td><a href="PayrollServlet"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
-                            
                             <th>Maintenance Report</th>
                              <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
-                  
                         </table>
                     </div>
                 </div>
@@ -119,7 +117,7 @@
                                     <td><input type="text" name="m_paymentConf" value="${incomingShippingArray.m_paymentConf}"></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping">Delete</a></td>
-                               <td><a href="PurchaseOrderServlet?orderID=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                                    <td><a href="PurchaseOrderServlet?orderID=${incomingShippingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
                                 </form>
                                 </tr>    
                             </c:forEach>  
