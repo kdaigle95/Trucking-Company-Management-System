@@ -41,7 +41,8 @@ public final class UserAccounts
     static String stored_username;
     static String position;
     static String access_level;
-    static int id;
+    private int access;
+    private int id;
     static boolean has_logged_in = false;
     static boolean user_authenticated = false;
         
@@ -54,12 +55,12 @@ public final class UserAccounts
     public void userAuthentication(String username, String password)
     {
         //User CurrentUser = new User();
-        ResultSet acceptable_username = null;
-        String acceptable_username_query = "SELECT users FROM users";
+        ResultSet login = null;
+        String loginQuery = "SELECT username FROM Personnel_Data";
         try
         {
             connection.startConnection();
-            acceptable_username = connection.getGenericResultSet(acceptable_username_query);
+            login = connection.getGenericResultSet(loginQuery);
         }
         catch(SQLException ex)
         {
@@ -71,9 +72,9 @@ public final class UserAccounts
         
         try
         {
-        while(acceptable_username.next())
+        while(login.next())
         {
-            String database_username = acceptable_username.getString("users");            
+            String database_username = login.getString("username");            
             
             if(username.equals(database_username))
             {
@@ -85,33 +86,35 @@ public final class UserAccounts
         if(found)
         {
             
-            ResultSet acceptable_password = null;   
-            acceptable_password = connection.getGenericResultSet("SELECT passwords, id FROM users WHERE users = '"+username+"'");
-            while(acceptable_password.next())
+            login = connection.getGenericResultSet("SELECT password, "
+                    + "employee_id_number, access FROM Personnel_Data WHERE username = '" 
+                    + username + "'");
+            while(login.next())
             {
-                String database_password = acceptable_password.getString("passwords");
-                id = acceptable_password.getInt("id");
+                String database_password = login.getString("password");
+                id = login.getInt("employee_id_number");
+                access = login.getInt("access");
                 if(password.equals(database_password))
                 {
                     user_authenticated = true;
                     has_logged_in = true;
                     stored_username = username;
-                    switch(stored_username)
+                    switch(access)
                     {
-                        case "masterTest":
+                        case 1:
                             
                             access_level = "full";
                             break;
                             
-                        case "shippingTest":
+                        case 2:
                             access_level = "shipping";
                             break;
                             
-                        case "maintTest":
+                        case 4:
                             access_level = "maint";
                             break;
                             
-                        case "truckTest":
+                        case 3:
                             access_level = "driver";
                             break;
                     }
