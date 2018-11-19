@@ -16,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
-//import truckingcompanymanagementsystem.UserAccounts.User;
 
 /**
  *
@@ -47,12 +46,7 @@ public class DataServlet extends HttpServlet {
         }
         catch(NullPointerException ex){
             tableName = "";
-        }
-
-
-        //ArrayList<Manifest> manifestDataArray = null;
-        //ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
-        
+        }  
         
 
         //Get updated version of data

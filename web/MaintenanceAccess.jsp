@@ -72,8 +72,8 @@
                                     <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>                              
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
-                                   <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
-                               <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
+                                    <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                                    <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
                                 </form>
                                 </tr>    
                             </c:forEach> 
@@ -91,6 +91,10 @@
                         <a href="AddData.jsp?maintenance_data">
                             <button class="button">Add Active Vehicle</button>       
                         </a>
+                        <td>
+                            <a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a>
+                        </td>
+
                     </div>
                     <button class="accordion">Repair Records</button> 
                     <div class ="panel">

@@ -3,7 +3,6 @@
 <%@page import = "truckingcompanymanagementsystem.*" %>
 <%@page import = "javax.servlet.http.*,javax.servlet.*" %>
 
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,7 +12,6 @@
     </head>
     <body>
         <h1>Trucking Company Management System</h1>
-        <h3>"Managing your records for over a decade"</h3>
         <div class="loop-wrapper">
             <div class="mountain"></div>
             <div class="hill"></div>
@@ -34,7 +32,6 @@
                 <p >
                 <a class="a" href="#">Forgot your password?</a>
                 </p>
-
                 <button class="button">
                     <i class="spinner"></i>
                     <span class="state">Submit</span>

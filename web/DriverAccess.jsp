@@ -31,18 +31,19 @@
         <button class="tablink" onclick="openPage('Safety', this, 'rgba(9,21,52,0.98)')">Safety</button>
 
         <div id="Home" class="tabcontent">
-            <h3>Home</h3>
+            <h3>Trucking Company Management System</h3>
             <p id = "date"></p>
-            <p>Company Info</p>      
+            <p>Quality Shipping Services<br>Best Drivers<br>No Hassle</p>      
         </div>
 
         <div id="Shipping" class="tabcontent" >
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Incoming Shipments</h2>
+                    <h2>Current Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table">
+                            <th>Complete Order</th>
                             <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
@@ -55,6 +56,7 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
+                                    <td><a href=""><input type="button" name="" value="Submit Complete Order"></a></td>
                                     <td>${driverIncomingArray.m_orderID}</td>
                                     <td>${driverIncomingArray.m_sourceCompany}</td>
                                     <td>${driverIncomingArray.m_address}</td>
@@ -65,14 +67,13 @@
                                     <td>${driverIncomingArray.m_departureDate}</td>
                                     <td>${driverIncomingArray.m_estArrival}</td>
                                     <td><a href="PurchaseOrderServlet?orderID=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
-
                                 </tr>    
                             </c:forEach> 
                         </table>
                     </div>
                 </div>
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Outgoing Shipments</h2>
+                    <h2>Delivered Shipments</h2>
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">
@@ -87,23 +88,21 @@
                             <th>Estimated Arrival Date</th>
                             <th>Manifest</th>
                             <th>Purchase Order</th>
-                                <c:forEach items="${driverOutgoingArray}" var="driverOutgoingArray" begin="0">
-                                <tr class="tr">      
-                                    <td>${driverOutgoingArray.m_orderID}</td>
-                                    <td>${driverOutgoingArray.m_destinationCompany}</td>
-                                    <td>${driverOutgoingArray.m_destinationCompanyAddress}</td>
-                                    <td>${driverOutgoingArray.m_destinationCompanyCity}</td>
-                                    <td>${driverOutgoingArray.m_destinationCompanyState}</td>
-                                    <td>${driverOutgoingArray.m_destinationCompanyZip}</td>
-                                    <td>${driverOutgoingArray.m_truckID}</td>
-                                    <td>${driverOutgoingArray.m_departureDate}</td>
-                                    <td>${driverOutgoingArray.m_estArrival}</td>
-                                    <td><a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
-                                    <td><a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
-
-                                </tr>    
-                            </c:forEach> 
-
+                            <c:forEach items="${driverOutgoingArray}" var="driverOutgoingArray" begin="0">
+                            <tr class="tr">      
+                                <td>${driverOutgoingArray.m_orderID}</td>
+                                <td>${driverOutgoingArray.m_destinationCompany}</td>
+                                <td>${driverOutgoingArray.m_destinationCompanyAddress}</td>
+                                <td>${driverOutgoingArray.m_destinationCompanyCity}</td>
+                                <td>${driverOutgoingArray.m_destinationCompanyState}</td>
+                                <td>${driverOutgoingArray.m_destinationCompanyZip}</td>
+                                <td>${driverOutgoingArray.m_truckID}</td>
+                                <td>${driverOutgoingArray.m_departureDate}</td>
+                                <td>${driverOutgoingArray.m_estArrival}</td>
+                                <td><a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
+                                <td><a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                            </tr>
+                            </c:forEach>
                         </table>
                     </div>                
                 </div>
