@@ -10,10 +10,6 @@ import java.util.Map;
  * @author Andrea
  */
 public class OutgoingShipping {
-
-//    static Iterable<Map.Entry<Object, Object>> entrySet() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     
     private int m_orderID;
     private String m_destinationCompany;
@@ -22,14 +18,8 @@ public class OutgoingShipping {
     private String m_destinationCompanyState;
     private int m_destinationCompanyZip;
     private int m_truckID;
-    
-    //private String m_departureDate;
     private java.util.Date m_departureDate;
-    
-    //private String m_estArrival;
     private java.util.Date m_estArrival;
-    
-    
     private String m_arrivalConf;
     private int m_driverID;
     private String m_paymentConf;

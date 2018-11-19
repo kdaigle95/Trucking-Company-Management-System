@@ -32,10 +32,29 @@ public class DataServlet extends HttpServlet {
         ArrayList<OutgoingShipping> outgoingShippingArray = null;
         ArrayList<Vehicle> vehicleDataArray = null;
         ArrayList<Maintenance> maintenanceDataArray = null;
+        ArrayList<IncomingShipping> driverIncomingArray = null;
+        ArrayList<OutgoingShipping> driverOutgoingArray = null;
+        ReportGeneration rg = new ReportGeneration();
+        int id = 0;
+
+        
+        String defaultOpen = "defaultOpen";
+        String defaultClosed = "defaultClosed";
+        
+        String tableName;
+        try{
+            tableName = request.getParameter("tableName").trim();
+        }
+        catch(NullPointerException ex){
+            tableName = "";
+        }
+
+
         //ArrayList<Manifest> manifestDataArray = null;
         //ArrayList<PurchaseOrder> purchaseOrderDataArray = null;
         
         
+
         //Get updated version of data
         try {
             Controller.getInstance().GetPersonnelData();
@@ -43,6 +62,7 @@ public class DataServlet extends HttpServlet {
             Controller.getInstance().GetIncomingShippingData();
             Controller.getInstance().GetOutgoingShippingData();
             Controller.getInstance().GetMaintenanceData();
+            
             //Controller.getInstance().GetManifestData(orderID);
             //Controller.getInstance().GetPurchaseOrderData(orderID);
         } catch (SQLException ex) {
@@ -82,6 +102,7 @@ public class DataServlet extends HttpServlet {
         if(ua.has_logged_in == false)
         {
             ua.userAuthentication(username, password);
+            id = ua.getID();
         }
         
         RequestDispatcher view = null;
@@ -100,7 +121,12 @@ public class DataServlet extends HttpServlet {
         System.out.println(this);                     
 
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
-        System.out.println(this);         
+        System.out.println(this);     
+        
+        driverIncomingArray = rg.makeDriverIncoming(id);
+        driverOutgoingArray = rg.makeDriverOutgoing(id);
+        System.out.println(driverIncomingArray.toString());
+        System.out.println(driverOutgoingArray.toString());
         
         
         //manifestDataArray = Controller.getInstance().getManifestDataList();
@@ -110,21 +136,68 @@ public class DataServlet extends HttpServlet {
         //System.out.println(this);
         
         
+        switch(tableName){
+            
+            case "incoming_shipping":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultOpen);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "outgoing_shipping":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultOpen);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "vehicle_data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultOpen);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+                
+            case "maintenance_data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultOpen);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+
+            case "Personnel_Data":
+                request.setAttribute("homeOpen", defaultClosed);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultOpen);
+                break;
+                
+            default:
+                request.setAttribute("homeOpen", defaultOpen);
+                request.setAttribute("shippingOpen", defaultClosed);
+                request.setAttribute("equipmentOpen", defaultClosed);
+                request.setAttribute("personnelOpen", defaultClosed);
+                break;
+     
+        }       
  
     if(ua.user_authenticated == true)
     {
-        if (ua.access_level == "full") {         // Full access -> if user == admin
+        if (ua.getAccess() == 1) {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
             request.setAttribute("outgoingShippingArray", outgoingShippingArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
+            
+
 
             view = request.getRequestDispatcher("FullAccess.jsp");
             view.forward(request, response);
         }
-        else if (ua.access_level == "shipping") {   // Shipping access -> if user == shipping
+        else if (ua.getAccess() == 2) {   // Shipping access -> if user == shipping
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
@@ -134,7 +207,7 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("ShippingAccess.jsp");
             view.forward(request, response);
         }
-        else if (ua.access_level == "maint") {      // Maintenance access -> if user == maintenance
+        else if (ua.getAccess() == 4) {      // Maintenance access -> if user == maintenance
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
@@ -142,9 +215,10 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("MaintenanceAccess.jsp");
              view.forward(request, response);
         }
-        else if (ua.access_level == "driver") {       // Driver access -> if user == driver
+        else if (ua.getAccess() == 3) {       // Driver access -> if user == driver
             response.setContentType("text/html");       
-            request.setAttribute("outgoingShippingArray", outgoingShippingArray);
+            request.setAttribute("driverIncomingArray", driverIncomingArray);
+            request.setAttribute("driverOutgoingArray", driverOutgoingArray);
 
             view = request.getRequestDispatcher("DriverAccess.jsp");
             view.forward(request, response);
@@ -163,7 +237,9 @@ public class DataServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
-        processRequest(request, response);        
+        processRequest(request, response);
+        
+
     }
     
     @Override

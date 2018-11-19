@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author kdaig
- * manifest and purchase order functions updated by Justin on 11/16/18
+ * @author kdaig manifest and purchase order functions updated by Justin on
+ * 11/16/18
  */
 public class ReportGeneration {
 
@@ -23,6 +23,8 @@ public class ReportGeneration {
     ArrayList<PartList> partList = new ArrayList<PartList>();
     ArrayList<PurchaseOrder> purchaseList = new ArrayList<PurchaseOrder>();
     ArrayList<Manifest> manifestList = new ArrayList<Manifest>();
+    ArrayList<OutgoingShipping> driverOutgoing = new ArrayList<OutgoingShipping>();
+    ArrayList<IncomingShipping> driverIncoming = new ArrayList<IncomingShipping>();
     private static ReportGeneration instance = null;
     private Database db = Database.getInstance();
 
@@ -152,10 +154,10 @@ public class ReportGeneration {
                     + "manifests.total_item_cost FROM items "
                     + "INNER JOIN TCMS_Database.manifests ON manifests.order_id = "
                     + orderID + " AND manifests.item_id = items.item_id;");
-            
-            while(manifest.next())
-            {
-                manifestList.add(ManifestFactory.getManifestFactory().createManifest(
+
+
+            while (manifest.next()) {
+                manifestList.add(new Manifest(
                         manifest.getString("item_name"),
                         manifest.getInt("item_amount"),
                         manifest.getFloat("unit_cost"),
@@ -168,7 +170,7 @@ public class ReportGeneration {
         return manifestList;
     }
 
-     public ArrayList<PurchaseOrder> makePurchaseReport(int orderID) {
+    public ArrayList<PurchaseOrder> makePurchaseReport(int orderID) {
         purchaseList.clear();
         ResultSet purchase_results = null;
         try {
@@ -193,12 +195,73 @@ public class ReportGeneration {
 
         return purchaseList;
     }
+
+    public ArrayList<OutgoingShipping> makeDriverOutgoing(int driverID) {
+        driverOutgoing.clear();
+        ResultSet shipping = null;
+        try {
+            shipping = db.getGenericResultSet("SELECT * FROM outgoing_shipping "
+                    + "WHERE driver_id = " + driverID
+                    + " AND arrival_confirmation = 'false' ORDER BY order_id ASC");
+            
+            while(shipping.next())
+            {
+                driverOutgoing.add(new OutgoingShipping(
+                shipping.getInt("order_id"),
+                shipping.getString("destination_company"),
+                shipping.getString("address"),
+                shipping.getString("city"),
+                shipping.getString("state"),
+                shipping.getInt("zip"),
+                shipping.getInt("truck_id"),
+                shipping.getDate("departure_date_time"),
+                shipping.getDate("estimated_arrival"),
+                shipping.getString("arrival_confirmation"),
+                shipping.getInt("driver_id"),
+                shipping.getString("payment_confirmation")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return driverOutgoing;
+    }
     
-     
-    public ArrayList<PurchaseOrder> getPurchaseList()
-    {
+     public ArrayList<IncomingShipping> makeDriverIncoming(int driverID) {
+        driverIncoming.clear();
+        ResultSet shipping = null;
+        try {
+            shipping = db.getGenericResultSet("SELECT * FROM incoming_shipping "
+                    + "WHERE driver_id = " + driverID
+                    + " AND arrival_confirmation = 'false' ORDER BY order_id ASC");
+            
+            while(shipping.next())
+            {
+                driverIncoming.add(new IncomingShipping(
+                shipping.getInt("order_id"),
+                shipping.getString("source_company"),
+                shipping.getString("address"),
+                shipping.getString("city"),
+                shipping.getString("state"),
+                shipping.getInt("zip"),
+                shipping.getInt("truck_id"),
+                shipping.getDate("departure_date_time"),
+                shipping.getDate("estimated_arrival"),
+                shipping.getString("arrival_confirmation"),
+                shipping.getInt("driver_id"),
+                shipping.getString("payment_confirmation")
+                ));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return driverIncoming;
+    }
+
+    public ArrayList<PurchaseOrder> getPurchaseList() {
         return purchaseList;
     }
+
     public ArrayList<PayrollReport> getPayroll() {
         return payroll;
     }
@@ -213,6 +276,14 @@ public class ReportGeneration {
 
     public ArrayList<PartList> getPartsList() {
         return partList;
+    }
+
+    public ArrayList<IncomingShipping> getDriverIncoming() {
+        return driverIncoming;
+    }
+
+    public ArrayList<OutgoingShipping> getDriverOutgoing() {
+        return driverOutgoing;
     }
 
 }

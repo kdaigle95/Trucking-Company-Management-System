@@ -198,7 +198,7 @@ public class AddDataServlet extends HttpServlet {
         
 
         response.setContentType("text/html");                      
-        RequestDispatcher view = request.getRequestDispatcher("DataServlet");
+        RequestDispatcher view = request.getRequestDispatcher("DataServlet?tableName=" + tableName);
         view.forward(request, response);
     }
 
