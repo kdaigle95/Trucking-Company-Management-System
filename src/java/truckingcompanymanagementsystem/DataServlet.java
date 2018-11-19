@@ -184,7 +184,7 @@ public class DataServlet extends HttpServlet {
  
     if(ua.user_authenticated == true)
     {
-        if (ua.access_level == "full") {         // Full access -> if user == admin
+        if (ua.getAccess() == 1) {         // Full access -> if user == admin
             response.setContentType("text/html");
             request.setAttribute("personnelArray", personnelArray);
             request.setAttribute("vehicleDataArray", vehicleDataArray);
@@ -197,7 +197,7 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("FullAccess.jsp");
             view.forward(request, response);
         }
-        else if (ua.access_level == "shipping") {   // Shipping access -> if user == shipping
+        else if (ua.getAccess() == 2) {   // Shipping access -> if user == shipping
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("incomingShippingArray", incomingShippingArray);
@@ -207,7 +207,7 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("ShippingAccess.jsp");
             view.forward(request, response);
         }
-        else if (ua.access_level == "maint") {      // Maintenance access -> if user == maintenance
+        else if (ua.getAccess() == 4) {      // Maintenance access -> if user == maintenance
             response.setContentType("text/html");       
             request.setAttribute("vehicleDataArray", vehicleDataArray);
             request.setAttribute("maintenanceDataArray", maintenanceDataArray);
@@ -215,7 +215,7 @@ public class DataServlet extends HttpServlet {
             view = request.getRequestDispatcher("MaintenanceAccess.jsp");
              view.forward(request, response);
         }
-        else if (ua.access_level == "driver") {       // Driver access -> if user == driver
+        else if (ua.getAccess() == 3) {       // Driver access -> if user == driver
             response.setContentType("text/html");       
             request.setAttribute("driverIncomingArray", driverIncomingArray);
             request.setAttribute("driverOutgoingArray", driverOutgoingArray);
