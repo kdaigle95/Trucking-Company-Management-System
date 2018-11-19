@@ -31,10 +31,7 @@
         }
     </style>
     <body>
-        <form action="TruckMaintenanceServlet">
-            <h1>Click Submit to Generate Maintenance Report</h1>
-            <input type="hidden" name="truckID" value="<%=request.getParameter("id")%>"/>
-            <input type="submit" value="submit">
+     
             <h1>Truck Maintenance</h1>
 
             <table class="table">

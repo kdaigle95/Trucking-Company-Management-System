@@ -31,10 +31,6 @@
         }
     </style>
     <body>
-        <form action="PartsListServlet">
-            <h1>Click Submit to Generate Parts List</h1>
-            <input type="hidden" name="truckID" value="<%=request.getParameter("id")%>"/>
-            <input type="submit" value="submit">
             <h1>Parts List</h1>
 
             <table class="table">

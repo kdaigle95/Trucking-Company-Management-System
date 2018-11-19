@@ -31,11 +31,6 @@
         }
     </style>
     <body>
-        <form action="PayrollServlet">
-                        <h1>Monthly Payroll Report</h1>
-                        <input type="hidden" name="truckID" >
-                        <input type="submit" value="submit">
-
             <table class="table">
                 <th>ID</th>
                 <th>Last Name</th>
