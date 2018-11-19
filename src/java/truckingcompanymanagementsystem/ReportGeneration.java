@@ -80,8 +80,6 @@ public class ReportGeneration {
                         truckReport.getString("cost"),
                         truckReport.getString("detailed_report")
                 ));
-                
-                System.out.println(truckMaint.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +106,7 @@ public class ReportGeneration {
                         monthlyMaintReport.getString("cost"),
                         monthlyMaintReport.getString("detailed_report")
                 ));
-               System.out.println(monthlyMaintReport.getInt("work_order"));
+               System.out.println(monthlyMaintReport.toString());
             }
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

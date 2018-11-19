@@ -4,6 +4,7 @@
     Author     : justi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@
             <table class="table">
                 <th>Work Order</th>
                 <th>Truck ID</th>
-                <th>Truck VIN</th>
+                <th>Truck Vin</th>
                 <th>Maintenance ID</th>
                 <th>Date</th>
                 <th>Job Type</th>

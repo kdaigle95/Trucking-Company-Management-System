@@ -36,12 +36,15 @@ public class MonthlyMaintenanceServlet extends HttpServlet {
          String startDate ="";
          String endDate = "";
          
+         
          startDate = request.getParameter("startdate");
          endDate = request.getParameter("enddate");
+         System.out.println(startDate + "--" + endDate);
          ReportGeneration rg = new ReportGeneration();
          ArrayList<Maintenance> maintenanceDataArray = null;
          
          maintenanceDataArray = rg.makeMonthlyMaintenanceReport(startDate, endDate);
+         System.out.println(maintenanceDataArray.toString());
         
         response.setContentType("text/html");
         request.setAttribute("maintenanceDataArray", maintenanceDataArray);
