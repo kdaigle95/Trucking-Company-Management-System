@@ -123,16 +123,23 @@
             <div id="googleMap" style="width:100%;height:100%;"></div>
 
             <script>
-                function myMap() {
+                function myMap() 
+                {
                     var mapProp = {
-                        center: new google.maps.LatLng(37.0902, -95.7129),
-                        zoom: 4
+                        center: new google.maps.LatLng(34.7304, -86.5861),
+                        zoom: 6
                     };
                     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                
+               
                 }
+                   
+                    
+                  
+                
             </script>
-
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxwJ1CTRfiujiAu4ZZABGJMhu2Gjj8g&callback=myMap"></script>
+            
 
     </body>
 </html>
