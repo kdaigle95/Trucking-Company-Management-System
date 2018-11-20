@@ -6,33 +6,17 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="CSS/Report.css" rel="stylesheet" type="text/css"/>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Purchase Order</title>
     </head>
-    <style>
-        table, td, th 
-        {    
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        table 
-        {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td 
-        {
-            padding: 15px;
-        }
-    </style>
     <body>
             <h1>Purchase Order</h1>
-
+            
             <table class = "table">
                 <th>Item Name</th>
                 <th>Item Amount</th>
@@ -66,7 +50,7 @@
                         <td>${total}</td>
                     </tr>
             </table>
-                <button type="button" name="back" onclick="history.back()">back</button>
+                <button class="button" onclick="history.back()">back</button>
         </form>
     </body>
 </html>

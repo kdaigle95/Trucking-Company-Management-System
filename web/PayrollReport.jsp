@@ -6,30 +6,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="CSS/Report.css" rel="stylesheet" type="text/css"/>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Monthly Payroll</title>
     </head>
-    <style>
-        table, td, th
-        {
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        table
-        {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td
-        {
-            padding: 15px;
-        }
-    </style>
     <body>
             <table class="table">
                 <th>ID</th>

@@ -26,7 +26,7 @@
         <title>TCMS</title>
     </head>
     <body>      
-        <div align ="right">
+        <div>
             <h1>Full Access User</h1>
             <form action="Logout.jsp">
                 <button class="button" id="form_submit">Logout</button>

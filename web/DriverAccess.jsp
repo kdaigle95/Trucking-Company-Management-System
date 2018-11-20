@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1>Driver Access User</h1>
-        <div align ="right">
+        <div>
             <form action="Logout.jsp">
                 <button class="button" id="form_submit">Logout</button>
             </form>
@@ -43,7 +43,7 @@
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table">
-                            <th>Complete Order</th>
+                            <%--<th>Complete Order</th>--%>
                             <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
@@ -56,11 +56,11 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
-                                    <td>
+                                    <%--<td>
                                         <a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
                                         <button class="button">Submit Completed Shipment</button>
                                         </a>
-                                    </td>
+                                    </td>--%>
                                     <td>${driverIncomingArray.m_orderID}</td>
                                     <td>${driverIncomingArray.m_sourceCompany}</td>
                                     <td>${driverIncomingArray.m_address}</td>

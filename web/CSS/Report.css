@@ -1,0 +1,56 @@
+/* 
+    Created on : Nov 19, 2018, 10:21:08 PM
+    Author     : Andrea
+*/
+
+body, html {
+    height: 100%;
+    margin: 0;
+    background: rgba(0,102,153,0.1);
+}
+h1{
+    
+    font-family: Arial;
+    color: white;
+    text-shadow: 2px 2px #091534;
+    text-align: center;
+    
+}
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th
+{
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 15px;
+}
+        
+.tr{
+    text-align: left;
+    height: 5px;
+    vertical-align: central;
+    padding: 20px;
+    border-bottom: 1px solid #091534;
+}
+
+.tr:nth-child(even){
+    background-color: rgba(0,102,153,0.3);
+}
+
+.tr:nth-child(even):hover{
+    background-color: rgba(0,102,153,0.5);
+    color: white;
+}
+
+.tr:nth-child(odd){
+    background-color: rgba(0,102,153,0.1);
+}
+
+.tr:nth-child(odd):hover{
+    background-color: rgba(0,102,153,0.5);
+    color: white;
+}

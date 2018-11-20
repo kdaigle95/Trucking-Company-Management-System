@@ -21,9 +21,9 @@
             <form action="DeleteDataServlet">
                 <input type="hidden" name="primary_key" value="<%=request.getParameter("id")%>"/>
                 <input type="hidden" name="generic_table" value="<%=request.getParameter("generic_table")%>"/>
-                
+                <button class="button">Confirm Delete</button>
             </form>
-            <button class="button">Confirm Delete</button>    
+                
          
         </div>
     </body>
