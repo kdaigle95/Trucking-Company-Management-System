@@ -23,9 +23,9 @@
         <div class ="panel" align ="center">
             <form action="LogoutServlet">
             <h1>Click logout to exit or click back to return to previous page</h1>
-            <input type="submit" value="logout">
+            <button class="button">Logout</button>
             </form>
-            <button type="button" name="back" onclick="history.back()">back</button>
+            <button class="button" onclick="history.back()">Back</button>           
         </div>
     </body>  
 </html>

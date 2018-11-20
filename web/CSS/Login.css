@@ -40,6 +40,17 @@ form{
     align-content: center;
 }
 
+.button{
+    color: rgba(9,21,52,0.98);
+    border-radius: 2px 2px 5px 5px;
+}
+
+.button:hover{
+    background-color: #006699;
+    color: white;
+}
+
+
 @keyframe spinner{
     0% { transform: rotateZ(0deg); }
     100%{ transform: rotateZ(359deg); } 

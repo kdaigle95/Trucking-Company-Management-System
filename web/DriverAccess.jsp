@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1>Driver Access User</h1>
-        <div align ="right">
+        <div>
             <form action="Logout.jsp">
                 <button class="button" id="form_submit">Logout</button>
             </form>
