@@ -425,7 +425,7 @@ public class DataModification {
         sql = "UPDATE Personnel_Data "
                 + "SET assignment = 0 "
                 + "WHERE assignment = "
-                + orderID + ";";
+                + "'" + orderID + "'" + ";";
         return sql;
     }
 
@@ -433,7 +433,7 @@ public class DataModification {
         sql = "UPDATE vehicle_data "
                 + "SET availability = 0, driver_id = 0 "
                 + "WHERE availability = "
-                + orderID + "; ";
+                + "'" + orderID + "'" + "; ";
         return sql;
     }
 

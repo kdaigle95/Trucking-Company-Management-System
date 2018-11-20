@@ -43,7 +43,10 @@
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>truckingcompanymanagementsystem.LogoutServlet</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>CompleteShipmentServlet</servlet-name>
+        <servlet-class>truckingcompanymanagementsystem.CompleteShipmentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DataServlet</servlet-name>
@@ -88,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompleteShipmentServlet</servlet-name>
+        <url-pattern>/CompleteShipmentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

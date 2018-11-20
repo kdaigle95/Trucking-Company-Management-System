@@ -1,10 +1,6 @@
-/*
- *import java.sql.Statement;
- */
 package truckingcompanymanagementsystem;
 
-import java.util.*;
-import java.io.*;
+
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +14,6 @@ import java.sql.SQLException;
 public final class Database {
 
     private static String url = "jdbc:mysql://tcms.cidg670ru4vm.us-east-1.rds.amazonaws.com:3306/TCMS_Database?useSSL=false";
-    //private static String localUrl = "jdbc:mysql://localhost:3306/tcms?allowPublicKeyRetrieval=true&autoReconnect=true&useSSL=false";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
     private static String username = "masteruser";
     private static String password = "thecakeisalie";
@@ -157,9 +152,9 @@ public final class Database {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(dataMod.unassignDriver(orderID));
             stmt.executeUpdate(dataMod.unassignTruck(orderID));
-            if (orderType == "incoming") {
+            if (orderType.equals("incoming_shipping")) {
                 stmt.executeUpdate(dataMod.incomingArrived(orderID));
-            } else if (orderType == "outgoing") {
+            } else if (orderType.equals("outgoing_shipping")) {
                 stmt.executeUpdate(dataMod.outgoingArrived(orderID));
             }
             deallocated = true;

@@ -19,7 +19,7 @@
         <h1>Driver Access User</h1>
         <div align ="right">
             <form action="Logout.jsp">
-                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+                <button class="button" id="form_submit">Logout</button>
             </form>
         </div>    
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
@@ -56,7 +56,11 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
-                                    <td><a href=""><input type="button" name="" value="Submit Complete Order"></a></td>
+                                    <td>
+                                        <a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
+                                        <button class="button">Submit Completed Shipment</button>
+                                        </a>
+                                    </td>
                                     <td>${driverIncomingArray.m_orderID}</td>
                                     <td>${driverIncomingArray.m_sourceCompany}</td>
                                     <td>${driverIncomingArray.m_address}</td>
@@ -66,7 +70,11 @@
                                     <td>${driverIncomingArray.m_truckID}</td>
                                     <td>${driverIncomingArray.m_departureDate}</td>
                                     <td>${driverIncomingArray.m_estArrival}</td>
-                                    <td><a href="PurchaseOrderServlet?orderID=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                                    <td>   
+                                        <a href="PurchaseOrderServlet?orderID=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
+                                        <button class="button">Purchase Order</button>
+                                        </a>
+                                    </td>
                                 </tr>    
                             </c:forEach> 
                         </table>
@@ -118,7 +126,7 @@
                 function myMap() {
                     var mapProp = {
                         center: new google.maps.LatLng(37.0902, -95.7129),
-                        zoom: 4,
+                        zoom: 4
                     };
                     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
                 }

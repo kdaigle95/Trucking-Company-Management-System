@@ -108,14 +108,6 @@ public class DataServlet extends HttpServlet {
         System.out.println(driverIncomingArray.toString());
         System.out.println(driverOutgoingArray.toString());
         
-        
-        //manifestDataArray = Controller.getInstance().getManifestDataList();
-        //System.out.println(this);
-        
-        //purchaseOrderDataArray = Controller.getInstance().getPurchaseOrderDataList();
-        //System.out.println(this);
-        
-        
         switch(tableName){
             
             case "incoming_shipping":
