@@ -1,0 +1,56 @@
+/* 
+    Created on : Nov 18, 2018, 9:08:56 PM
+    Author     : Andrea
+*/
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+    background-image: linear-gradient(to bottom, rgba(0,102,153,0.75), rgba(9,21,52,0.98));
+    overflow: hidden;
+}
+
+h1{
+    color: white;
+    text-shadow: 2px 2px #091534;
+    text-align: center;
+    
+}
+
+h2{
+    color: white;
+    text-shadow: 1px 1px #091534;
+    text-align: center;  
+}
+
+form{
+    color: #ffffff;
+    align-content: center;
+    justify-content: center;
+}
+
+.p{
+    color: white;
+    text-align: center; 
+}
+
+.panel{
+    padding: 10px;
+    background-color: white;
+    display: none;
+    overflow-x: scroll;
+    align-content: center;
+}
+
+.button{
+    color: rgba(9,21,52,0.98);
+    border-radius: 2px 2px 5px 5px;
+    align-content: center;
+    justify-content: center;
+}
+
+.button:hover{
+    background-color: #006699;
+    color: white;
+}

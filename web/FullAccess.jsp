@@ -25,11 +25,11 @@
 
         <title>TCMS</title>
     </head>
-    <body>
-        <h1>Full Access User</h1>
+    <body>      
         <div align ="right">
+            <h1>Full Access User</h1>
             <form action="Logout.jsp">
-                <input type ="submit" value="logout" name ="logout" id="form_submit"/>
+                <button class="button" id="form_submit">Logout</button>
             </form>
         </div>
 
@@ -53,9 +53,9 @@
                     <div class ="panel">
                         <table class="table">
                             <th>Monthly Payroll Report</th>
-                            <td><a href="PayrollServlet"><input type="button" value="Generate Report" name="Monthly Payroll Report"/></a></td>
+                            <td><a href="PayrollServlet"><button class="button" >Generate Report</button></a></td>
                             <th>Maintenance Report</th>
-                             <td><a href="MonthlyMaintenance.jsp"><input type="button" value="Generate Report" name="Monthly Maintenance Report"/></a></td>
+                            <td><a href="MonthlyMaintenance.jsp"><button class="button">Generate Report</button></a></td>
                         </table>
                     </div>
                 </div>

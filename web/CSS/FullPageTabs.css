@@ -1,6 +1,3 @@
-/*
-    color: #DBE5FF (white gray)
-*/
 /* 
     Created on : Oct 24, 2018, 1:41:57 PM
     Author     : Andrea
@@ -8,20 +5,16 @@
 */
 
 /* Set height of body and the document to 100% to enable "full page tabs" */
-
 body, html {
     height: 100%;
     margin: 0;
-    font-family: Arial;
-    background-color: whitesmoke;
+    background-color: rgba(9,53,103,0.2);
 }
 
 h1{
-    
-    font-family: Arial;
-    color: #091534;
-    text-shadow: 1px 1px white;
-    
+    color: white;
+    padding-right: 10px;
+    text-shadow: 2px 1px #091534;  
 }
 
 h2{
@@ -48,14 +41,6 @@ p{
     color: #DBE5FF;
     text-shadow: 1px 1px #091534;
 }
-
-
-
-/*.homebackgroundimage{
-    background: url(tcms1.png) no-repeat center fixed;
-    opacity: .7;
-    filter: alpha(opacity=70);
-}*/
 
 /*Style tab links */
 .tablink{
@@ -164,7 +149,7 @@ input[type=text] {
 /*Responsive layout */
 @media screen and (max-width:600px){
     .column{
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -230,7 +215,7 @@ over it (hover)*/
     padding: 10px; 
 }
 
-/*________________Buttons_______________________*/
+/*________________Button_______________________*/
 .button{
     color: rgba(9,21,52,0.98);
     border-radius: 2px 2px 5px 5px;
@@ -239,87 +224,6 @@ over it (hover)*/
 .button:hover{
     background-color: #006699;
     color: white;
-}
-
-/*________________Dropdown Report Button_______________________*/
-.reportButton{
-    background-color: #091534;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    outline: none;
-}
-
-.dropdown{
-    background-color: #8db3c4;
-    position:absolute;
-    display: inline-block;
-}
-
-.dropdown-content{
-    display: none;
-    position: absolute;
-    background-color: #8db3c4;
-    min-width: 160px;
-    z-index: 1;
-}
-
-.dropdown-content a{
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover{
-    background-color: #006699;
-}
-
-.dropdown:hover .dropdown-content{
-    display: block;
-}
-
-.reportButton:hover, .dropdown:hover .reportButton{
-    background-color: #006699;
-}
-
-.addShipmentButton{
-    background-color: #091534;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-}
-
-.addShipmentButton:hover{
-    background-color: #006699;
-}
-
-.purchaseOrderButton{
-    background-color: #091534;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-}
-
-.purchaseOrderButton:hover{
-    background-color: #006699;
-}
-
-.manifestButton{
-    background-color: #091534;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-}
-
-.manifestButton:hover{
-    background-color: #006699;
 }
 
 
