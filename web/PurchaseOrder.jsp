@@ -16,7 +16,7 @@
     </head>
     <body>
             <h1>Purchase Order</h1>
-
+            
             <table class = "table">
                 <th>Item Name</th>
                 <th>Item Amount</th>
