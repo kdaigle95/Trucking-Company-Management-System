@@ -39,7 +39,7 @@
         <div id="Shipping" class="tabcontent" >
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Current Shipments</h2>
+                    <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Delivered Shipments</h2>
+                    <h2>Outgoing Shipments</h2>
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">
@@ -123,16 +123,23 @@
             <div id="googleMap" style="width:100%;height:100%;"></div>
 
             <script>
-                function myMap() {
+                function myMap() 
+                {
                     var mapProp = {
-                        center: new google.maps.LatLng(37.0902, -95.7129),
-                        zoom: 4
+                        center: new google.maps.LatLng(34.7304, -86.5861),
+                        zoom: 6
                     };
                     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                
+               
                 }
+                   
+                    
+                  
+                
             </script>
-
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxwJ1CTRfiujiAu4ZZABGJMhu2Gjj8g&callback=myMap"></script>
+            
 
     </body>
 </html>
