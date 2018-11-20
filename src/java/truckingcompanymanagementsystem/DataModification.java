@@ -6,8 +6,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Kyle 
- * edits Andrea 11/11-17/2018
+ * @author Kyle edits Andrea 11/11-17/2018
  */
 public class DataModification {
 
@@ -48,7 +47,7 @@ public class DataModification {
 
         }
     }
-    
+
     protected void updateRow(String tableName, long primaryKey, String columnName, String newData) {
         switch (tableName) {
             case "Personnel_Data":
@@ -110,12 +109,12 @@ public class DataModification {
 
         }
     }
-  
+
     protected String updateIncoming(int id, String source, String address,
             String city, String state, int zip, int truckID, String departureDate,
             String estArrival, String arrivalConf, int driverID, String paymentConf) {
         sql = "UPDATE incoming_shipping "
-              + "SET " + "source_company = " + "'" + source + "', "
+                + "SET " + "source_company = " + "'" + source + "', "
                 + "address = " + "'" + address + "', "
                 + "city = " + "'" + city + "', "
                 + "state = " + "'" + state + "', "
@@ -129,13 +128,13 @@ public class DataModification {
                 + " WHERE order_id = " + id + ";";
         return sql;
     }
-    
+
     protected String updateOutgoing(int id, String desCompany, String address,
             String city, String state, int zip, int truckID,
             String date, String estimate_arrival, String arrivalConf,
             int driver_id, String payment_confirmation) {
         sql = "UPDATE outgoing_shipping "
-              + "SET " + "destination_company = " + "'" + desCompany + "', "
+                + "SET " + "destination_company = " + "'" + desCompany + "', "
                 + "address = " + "'" + address + "', "
                 + "city = " + "'" + city + "', "
                 + "state = " + "'" + state + "', "
@@ -149,25 +148,25 @@ public class DataModification {
                 + " WHERE order_id = " + id + ";";
         return sql;
     }
-    
+
     protected String updateVehicle(int id, String vin, String make, int year,
-        String model, int driverID, int availability) {
-    sql = "UPDATE vehicle_data "
-            + "SET vin = " + "'" + vin + "', "
-            + "truck_brand = " + "'" + make + "', "
-            + "truck_year = " + "'" + year + "', "
-            + "truck_model = " + "'" + model + "', "
-            + "driver_id = " + "'" + driverID + "', "
-            + "availability = " + "'" + availability + "'"
-            + " WHERE truck_id = " + id + ";";
-    return sql;
-    }  
-    
+            String model, int driverID, int availability) {
+        sql = "UPDATE vehicle_data "
+                + "SET vin = " + "'" + vin + "', "
+                + "truck_brand = " + "'" + make + "', "
+                + "truck_year = " + "'" + year + "', "
+                + "truck_model = " + "'" + model + "', "
+                + "driver_id = " + "'" + driverID + "', "
+                + "availability = " + "'" + availability + "'"
+                + " WHERE truck_id = " + id + ";";
+        return sql;
+    }
+
     protected String updateMaintenance(int id, int truckID, String truckVin,
-            int maintenanceID, String date, String jobType, String parts, 
-            String cost, String reportDetails){
+            int maintenanceID, String date, String jobType, String parts,
+            String cost, String reportDetails) {
         sql = "UPDATE maintenance_data "
-              + "SET " + "truck_id = " + "'" + truckID + "', "
+                + "SET " + "truck_id = " + "'" + truckID + "', "
                 + "truck_vin = " + "'" + truckVin + "', "
                 + "maintenance_id = " + "'" + maintenanceID + "', "
                 + "date = " + "'" + date + "', "
@@ -177,14 +176,14 @@ public class DataModification {
                 + "detailed_report = " + "'" + reportDetails + "'"
                 + " WHERE work_order = " + id + ";";
         return sql;
-    }    
-    
+    }
+
     protected String updatePersonnel(int id, String first, String middle,
             String last, String streetAddr, String city, String state, int zip,
             String homeNum, String cellNum, int years, String position,
             int salary, int payrate, int assignment) {
         sql = "UPDATE Personnel_Data "
-              + "SET " + "first_name = " + "'" + first + "', "
+                + "SET " + "first_name = " + "'" + first + "', "
                 + "middle_name = " + "'" + middle + "', "
                 + "last_name = " + "'" + last + "', "
                 + "street_address = " + "'" + streetAddr + "', "
@@ -227,6 +226,26 @@ public class DataModification {
             String last, String streetAddr, String city, String state, int zip,
             String homeNum, String cellNum, int years, String position,
             int salary, int payrate, int assignment) {
+        int access = 0;
+        switch (position.toLowerCase()) {
+            case "office":
+                access = 1;
+                break;
+
+            case "shipping":
+                access = 2;
+                break;
+            case "driver":
+                access = 3;
+                break;
+            case "maintenance":
+                access = 4;
+                break;
+
+        }
+        String username = first.charAt(0) + last;
+        username = username.toLowerCase();
+
         sql = "INSERT INTO Personnel_Data "
                 + "VALUES ('" + id + "', "
                 + "'" + first + "', "
@@ -242,7 +261,10 @@ public class DataModification {
                 + "'" + position + "', "
                 + "'" + salary + "', "
                 + "'" + payrate + "', "
-                + "'" + assignment + "'"
+                + "'" + assignment + "', "
+                + "'" + username + "', "
+                + "'pass', "
+                + access
                 + ");";
 
         return sql;
