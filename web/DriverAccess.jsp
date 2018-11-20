@@ -39,7 +39,7 @@
         <div id="Shipping" class="tabcontent" >
             <div class="row">
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Current Shipments</h2>
+                    <h2>Incoming Shipments</h2>
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="column" style="background-color: #717e99;">
-                    <h2>Delivered Shipments</h2>
+                    <h2>Outgoing Shipments</h2>
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">

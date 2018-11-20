@@ -197,7 +197,7 @@ public class DataServlet extends HttpServlet {
         }
         else {                  // Not valid user
             response.setContentType("text/html");                      
-            view = request.getRequestDispatcher("AccesDenied.jsp");
+            view = request.getRequestDispatcher("AccessDenied.jsp");
             view.forward(request, response);
         }
         
