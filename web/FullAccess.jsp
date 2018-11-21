@@ -273,9 +273,6 @@
                         <a href="AddData.jsp?Personnel_Data">
                             <button class="button">Add New Personnel</button>
                         </a>                    
-                        <a href="PayrollServlet">
-                            <button class="button">Monthly Payroll Report</button>
-                        </a>
                    </div>
                     <button class="accordion">People in the Company</button>
                     <div class ="panel" id="containment-wrapper">
