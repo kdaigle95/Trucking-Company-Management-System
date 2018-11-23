@@ -347,7 +347,8 @@ public class DataModification {
     protected String incomingArrived(int orderID) {
         sql = "UPDATE incoming_shipping "
                 + "SET arrival_confirmation = 'true' "
-                + "WHERE order_id = 1139;";
+                + "WHERE order_id = "
+                + orderID + ";";
         return sql;
 
     }
@@ -355,7 +356,8 @@ public class DataModification {
     protected String outgoingArrived(int orderID) {
         sql = "UPDATE outgoing_shipping "
                 + "SET arrival_confirmation = 'true' "
-                + "WHERE order_id = 1139;";
+                + "WHERE order_id = "
+                + orderID + ";";
         return sql;
     }
 

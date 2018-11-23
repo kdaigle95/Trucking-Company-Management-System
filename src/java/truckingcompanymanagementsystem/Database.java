@@ -98,7 +98,7 @@ public final class Database {
             Statement st = conn.createStatement();
             st.executeUpdate(dataQuery);
             deleteDataQuery = true;
-            System.out.print("deletDataQuery");
+
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -114,7 +114,7 @@ public final class Database {
             Statement st = conn.createStatement();
             st.executeUpdate(dataQuery);
             updateDataQuery = true;
-            System.out.print("deletDataQuery");
+
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,9 +134,9 @@ public final class Database {
                 stmt.executeUpdate(dataMod.addDriverAndVehicleIncoming(orderID));
             } else if (orderType.toLowerCase() == "outgoing") {
                 stmt.executeUpdate(dataMod.addDriverAndVehicleOutgoing(orderID));
-                System.out.println("outgoing break reached");
+
             }
-            System.out.println("break reached");
+
             allocated = true;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -150,13 +150,13 @@ public final class Database {
         boolean deallocated = false;
         try {
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate(dataMod.unassignDriver(orderID));
-            stmt.executeUpdate(dataMod.unassignTruck(orderID));
             if (orderType.equals("incoming_shipping")) {
                 stmt.executeUpdate(dataMod.incomingArrived(orderID));
             } else if (orderType.equals("outgoing_shipping")) {
                 stmt.executeUpdate(dataMod.outgoingArrived(orderID));
             }
+            stmt.executeUpdate(dataMod.unassignDriver(orderID));           
+            stmt.executeUpdate(dataMod.unassignTruck(orderID));           
             deallocated = true;
         } catch (SQLException ex) {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);

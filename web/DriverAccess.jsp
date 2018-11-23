@@ -56,11 +56,7 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
-                                    <%--<td>
-                                        <a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
-                                        <button class="button">Submit Completed Shipment</button>
-                                        </a>
-                                    </td>--%>
+                                    <td><a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping"><button class="button">Submit Completed Shipment</button></a></td>
                                     <td>${driverIncomingArray.m_orderID}</td>
                                     <td>${driverIncomingArray.m_sourceCompany}</td>
                                     <td>${driverIncomingArray.m_address}</td>

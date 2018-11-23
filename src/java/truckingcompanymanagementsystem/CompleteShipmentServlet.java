@@ -38,7 +38,6 @@ public class CompleteShipmentServlet extends HttpServlet {
         int primary_key = Integer.parseInt(request.getParameter("id"));
         
         
-        
         db.deallocateOrders(tableName, primary_key);
 
         

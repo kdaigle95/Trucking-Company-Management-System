@@ -105,9 +105,7 @@ public class DataServlet extends HttpServlet {
         
         driverIncomingArray = rg.makeDriverIncoming(id);
         driverOutgoingArray = rg.makeDriverOutgoing(id);
-        System.out.println(driverIncomingArray.toString());
-        System.out.println(driverOutgoingArray.toString());
-        
+
         switch(tableName){
             
             case "incoming_shipping":
