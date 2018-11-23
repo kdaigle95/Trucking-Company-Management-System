@@ -43,7 +43,7 @@
                     <button class="accordion">Shipment pick-ups</button> 
                     <div class ="panel">
                         <table class="table">
-                            <%--<th>Complete Order</th>--%>
+                            <th>Confirm Arrival</th>
                             <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
@@ -56,7 +56,7 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
-                                    <td><a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping"><button class="button">Submit Completed Shipment</button></a></td>
+                                    <td><a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping"><button class="button">Confirm Arrival</button></a></td>
                                     <td>${driverIncomingArray.m_orderID}</td>
                                     <td>${driverIncomingArray.m_sourceCompany}</td>
                                     <td>${driverIncomingArray.m_address}</td>
@@ -68,7 +68,7 @@
                                     <td>${driverIncomingArray.m_estArrival}</td>
                                     <td>   
                                         <a href="PurchaseOrderServlet?orderID=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
-                                        <button class="button">Purchase Order</button>
+                                            <button class="button">Purchase Order</button>
                                         </a>
                                     </td>
                                 </tr>    
@@ -81,6 +81,7 @@
                     <button class="accordion">Deliveries</button>
                     <div class ="panel">                  
                         <table class="table">
+                            <th>Confirm Arrival</th>
                             <th>Order ID</th>
                             <th>Source Company</th>
                             <th>Address</th>
@@ -92,20 +93,22 @@
                             <th>Estimated Arrival Date</th>
                             <th>Manifest</th>
                             <th>Purchase Order</th>
-                            <c:forEach items="${driverOutgoingArray}" var="driverOutgoingArray" begin="0">
-                            <tr class="tr">      
-                                <td>${driverOutgoingArray.m_orderID}</td>
-                                <td>${driverOutgoingArray.m_destinationCompany}</td>
-                                <td>${driverOutgoingArray.m_destinationCompanyAddress}</td>
-                                <td>${driverOutgoingArray.m_destinationCompanyCity}</td>
-                                <td>${driverOutgoingArray.m_destinationCompanyState}</td>
-                                <td>${driverOutgoingArray.m_destinationCompanyZip}</td>
-                                <td>${driverOutgoingArray.m_truckID}</td>
-                                <td>${driverOutgoingArray.m_departureDate}</td>
-                                <td>${driverOutgoingArray.m_estArrival}</td>
-                                <td><a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
-                                <td><a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
-                            </tr>
+                                <c:forEach items="${driverOutgoingArray}" var="driverOutgoingArray" begin="0">
+                                <tr class="tr"> 
+                                    <td><a href="CompleteShipmentServlet?id=${driverOutgoingArray.m_orderID}&generic_table=outgoing_shipping"><button class="button">Confirm Arrival</button></a></td>
+
+                                    <td>${driverOutgoingArray.m_orderID}</td>
+                                    <td>${driverOutgoingArray.m_destinationCompany}</td>
+                                    <td>${driverOutgoingArray.m_destinationCompanyAddress}</td>
+                                    <td>${driverOutgoingArray.m_destinationCompanyCity}</td>
+                                    <td>${driverOutgoingArray.m_destinationCompanyState}</td>
+                                    <td>${driverOutgoingArray.m_destinationCompanyZip}</td>
+                                    <td>${driverOutgoingArray.m_truckID}</td>
+                                    <td>${driverOutgoingArray.m_departureDate}</td>
+                                    <td>${driverOutgoingArray.m_estArrival}</td>
+                                    <td><a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
+                                    <td><a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>                
@@ -119,23 +122,23 @@
             <div id="googleMap" style="width:100%;height:100%;"></div>
 
             <script>
-                function myMap() 
+                function myMap()
                 {
                     var mapProp = {
                         center: new google.maps.LatLng(34.7304, -86.5861),
                         zoom: 6
                     };
                     var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-                
-               
+
+
                 }
-                   
-                    
-                  
-                
+
+
+
+
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxwJ1CTRfiujiAu4ZZABGJMhu2Gjj8g&callback=myMap"></script>
-            
+
 
     </body>
 </html>

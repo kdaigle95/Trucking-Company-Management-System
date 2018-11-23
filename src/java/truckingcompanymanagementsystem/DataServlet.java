@@ -49,20 +49,7 @@ public class DataServlet extends HttpServlet {
         }  
         
 
-        //Get updated version of data
-        try {
-            Controller.getInstance().GetPersonnelData();
-            Controller.getInstance().GetVehicleData();
-            Controller.getInstance().GetIncomingShippingData();
-            Controller.getInstance().GetOutgoingShippingData();
-            Controller.getInstance().GetMaintenanceData();
-            
-            //Controller.getInstance().GetManifestData(orderID);
-            //Controller.getInstance().GetPurchaseOrderData(orderID);
-        } catch (SQLException ex) {
-            //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
-        }     
+        
         
         
         UserAccounts ua = Controller.getInstance().getUserAccounts();
@@ -85,6 +72,23 @@ public class DataServlet extends HttpServlet {
             id = ua.getID();
         }
         
+        //Get updated version of data
+        try {
+            Controller.getInstance().GetPersonnelData();
+            Controller.getInstance().GetVehicleData();
+            Controller.getInstance().GetIncomingShippingData();
+            Controller.getInstance().GetOutgoingShippingData();
+            Controller.getInstance().GetMaintenanceData();
+            rg.makeDriverIncoming(id);
+            rg.makeDriverOutgoing(id);
+            
+            //Controller.getInstance().GetManifestData(orderID);
+            //Controller.getInstance().GetPurchaseOrderData(orderID);
+        } catch (SQLException ex) {
+            //Logger.getLogger(PersonnelDataServlet.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }     
+        
         RequestDispatcher view = null;
         
         
@@ -103,8 +107,8 @@ public class DataServlet extends HttpServlet {
         maintenanceDataArray = Controller.getInstance().getMaintenanceDataList();
         System.out.println(this);     
         
-        driverIncomingArray = rg.makeDriverIncoming(id);
-        driverOutgoingArray = rg.makeDriverOutgoing(id);
+        driverIncomingArray = rg.getDriverIncoming();
+        driverOutgoingArray = rg.getDriverOutgoing();
 
         switch(tableName){
             
