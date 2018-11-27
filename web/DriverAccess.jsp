@@ -56,7 +56,8 @@
                             <th>Purchase Order</th>
                                 <c:forEach items="${driverIncomingArray}" var="driverIncomingArray" begin="0">
                                 <tr class="tr">
-                                    <%--<td>
+                                    <%--This was for updating shippments as they were delivered
+                                        <td>
                                         <a href="CompleteShipmentServlet?id=${driverIncomingArray.m_orderID}&generic_table=incoming_shipping">
                                         <button class="button">Submit Completed Shipment</button>
                                         </a>
@@ -107,8 +108,16 @@
                                 <td>${driverOutgoingArray.m_truckID}</td>
                                 <td>${driverOutgoingArray.m_departureDate}</td>
                                 <td>${driverOutgoingArray.m_estArrival}</td>
-                                <td><a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Manifest" name="Manifest"/></a>
-                                <td><a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=incoming_shipping"><input type="button" value="Purchase Order" name="Purchase Order"/></a>
+                                <td>   
+                                    <a href="ManifestServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=outgoing_shipping">
+                                    <button class="button">Manifest</button>
+                                    </a>
+                                </td>
+                                <td>   
+                                    <a href="PurchaseOrderServlet?orderID=${driverOutgoingArray.m_orderID}&generic_table=outgoing_shipping">
+                                    <button class="button">Purchase Order</button>
+                                    </a>
+                                </td>
                             </tr>
                             </c:forEach>
                         </table>
