@@ -53,7 +53,7 @@
                     <div class ="panel">
                         <table class="table">
                             <th>Monthly Payroll Report</th>
-                            <td><a href="PayrollServlet"><button class="button" >Generate Report</button></a></td>
+                            <td><a href="PayrollReport.jsp"><button class="button" >Generate Report</button></a></td>
                             <th>Maintenance Report</th>
                             <td><a href="MonthlyMaintenance.jsp"><button class="button">Generate Report</button></a></td>
                         </table>
@@ -159,8 +159,11 @@
                                     <td><input type="text" name="m_paymentConf" value="${outgoingShippingArray.m_paymentConf}"></td>
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
-                                    <td><a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
-                                            <input type="button" value="Manifest" name="Manifest"/></a></td>
+                                    <td>   
+                                    <a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
+                                    <button class="button">Manifest</button>
+                                    </a>
+                                    </td>
                                     <td><a href="PurchaseOrderServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
                                             <input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
                                 </form>
