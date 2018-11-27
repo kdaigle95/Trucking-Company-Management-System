@@ -87,7 +87,7 @@
                     <div class ="panel">                  
                         <table class="table">
                             <th>Order ID</th>
-                            <th>Source Company</th>
+                            <th>Destination Company</th>
                             <th>Address</th>
                             <th>City</th>
                             <th>State</th>
