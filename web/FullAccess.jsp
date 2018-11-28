@@ -31,6 +31,9 @@
             <form action="Logout.jsp">
                 <button class="button" id="form_submit">Logout</button>
             </form>
+            <form action="https://docs.google.com/document/d/1_mcy3gJmX1WqJHvg2QDY7J50fhTJE2kUvuQJJ7pjpx4/edit?usp=sharing">
+                <input type="Submit" value="Help" />
+            </form>
         </div>
 
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id=${homeOpen}>Home</button>
@@ -160,9 +163,9 @@
                                     <td><input type="submit" value="Update"></td>
                                     <td><a href="DeleteData.jsp?id=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">Delete</a></td>
                                     <td>   
-                                    <a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
-                                    <button class="button">Manifest</button>
-                                    </a>
+                                        <a href="ManifestServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
+                                            <button class="button">Manifest</button>
+                                        </a>
                                     </td>
                                     <td><a href="PurchaseOrderServlet?orderID=${outgoingShippingArray.m_orderID}&generic_table=outgoing_shipping">
                                             <input type="button" value="Purchase Order" name="Purchase Order"/></a></td>
@@ -198,23 +201,23 @@
                             <th>Delete</th>
                             <th>Parts List</th>
                             <th>Maintenance Report</th>
-                            <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
-                            <tr class="tr">
-                            <form action="UpdateDataServlet" method="post">
-                                <input type="hidden" name="generic_table" value="vehicle_data"/>
-                                <td><input type="text" name="m_vin" value="${vehicleDataArray.m_vin}"></td>
-                                <td><input type="text" name="m_truckBrand" value="${vehicleDataArray.m_truckBrand}"></td>
-                                <td><input type="text" name="m_truckYear" value="${vehicleDataArray.m_truckYear}"></td>
-                                <td><input type="text" name="m_truckModel" value="${vehicleDataArray.m_truckModel}"></td>
-                                <td><input type="text" name="m_truckID" value="${vehicleDataArray.m_truckID}"></td>
-                                <td><input type="text" name="m_driverID" value="${vehicleDataArray.m_driverID}"></td>
-                                <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>
-                                <td><input type="submit" value="Update"></td>
-                                <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
-                                <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
-                                <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
-                            </form>
-                            </tr>
+                                <c:forEach items="${vehicleDataArray}" var="vehicleDataArray" begin="0">
+                                <tr class="tr">
+                                <form action="UpdateDataServlet" method="post">
+                                    <input type="hidden" name="generic_table" value="vehicle_data"/>
+                                    <td><input type="text" name="m_vin" value="${vehicleDataArray.m_vin}"></td>
+                                    <td><input type="text" name="m_truckBrand" value="${vehicleDataArray.m_truckBrand}"></td>
+                                    <td><input type="text" name="m_truckYear" value="${vehicleDataArray.m_truckYear}"></td>
+                                    <td><input type="text" name="m_truckModel" value="${vehicleDataArray.m_truckModel}"></td>
+                                    <td><input type="text" name="m_truckID" value="${vehicleDataArray.m_truckID}"></td>
+                                    <td><input type="text" name="m_driverID" value="${vehicleDataArray.m_driverID}"></td>
+                                    <td><input type="text" name="m_availability" value="${vehicleDataArray.m_availability}"></td>
+                                    <td><input type="submit" value="Update"></td>
+                                    <td><a href="DeleteData.jsp?id=${vehicleDataArray.m_truckID}&generic_table=vehicle_data">Delete</a></td>
+                                    <td><a href="PartsListServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Parts List" name="Parts List"/></a></td>
+                                    <td><a href="TruckMaintenanceServlet?truckID=${vehicleDataArray.m_truckID}&generic_table=vehicle_data"><input type="button" value="Maintenance Report" name="Maintenance"/></a></td>
+                                </form>
+                                </tr>
                             </c:forEach>
                         </table>
                     </div>
@@ -262,7 +265,7 @@
                                     <td><a href="DeleteData.jsp?id=${maintenanceDataArray.m_workOrder}&generic_table=maintenance_data">Delete</a></td>
                                 </form>
                                 </tr>
-                                </c:forEach>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -276,7 +279,7 @@
                         <a href="AddData.jsp?Personnel_Data">
                             <button class="button">Add New Personnel</button>
                         </a>                    
-                   </div>
+                    </div>
                     <button class="accordion">People in the Company</button>
                     <div class ="panel" id="containment-wrapper">
                         <div id="draggable" class=" draggable ui-widget-content">
@@ -298,7 +301,7 @@
                                 <th>Assignment</th>
                                 <th>Modify</th>
                                 <th>Delete</th>
-                                <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
+                                    <c:forEach items="${personnelArray}" var="personnelArray" begin="0">
                                     <tr class="tr">
                                     <form action="UpdateDataServlet" method="post">
                                         <input type="hidden" name="generic_table" value="Personnel_Data"/>

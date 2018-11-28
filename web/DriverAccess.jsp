@@ -21,6 +21,9 @@
             <form action="Logout.jsp">
                 <button class="button" id="form_submit">Logout</button>
             </form>
+            <form action="https://docs.google.com/document/d/1_mcy3gJmX1WqJHvg2QDY7J50fhTJE2kUvuQJJ7pjpx4/edit?usp=sharing">
+                <input type="Submit" value="Help" />
+            </form>
         </div>    
         <button class="tablink" onclick="openPage('Home', this, 'rgba(9,21,52,0.98)')" id="defaultOpen">Home</button>
 
